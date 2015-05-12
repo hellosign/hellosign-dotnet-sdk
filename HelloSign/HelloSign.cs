@@ -104,15 +104,15 @@ namespace HelloSign
         /// </summary>
         /// <param name="email_address"></param>
         /// <returns>The new Account</returns>
-        public Account CreateAccount(string email_address)
+        public Account CreateAccount(string emailAddress)
         {
-            if (String.IsNullOrWhiteSpace(email_address))
+            if (String.IsNullOrWhiteSpace(emailAddress))
             {
                 throw new ArgumentException("email_address is required");
             }
 
             var request = new RestRequest("account/create", Method.POST);
-            request.AddParameter("email_address", email_address); 
+            request.AddParameter("email_address", emailAddress); 
             request.RootElement = "account";
             return Execute<Account>(request);
         }
@@ -138,7 +138,7 @@ namespace HelloSign
         /// </summary>
         /// <param name="callback_url">Your new account callback URL.</param>
         /// <returns>Your Account</returns>
-        public Account UpdateAccount(Uri callback_url)
+        public Account UpdateAccount(Uri callbackUrl)
         {
             if (client.Authenticator == null)
             {
@@ -146,7 +146,7 @@ namespace HelloSign
             }
 
             var request = new RestRequest("account", Method.POST);
-            request.AddParameter("callback_url", callback_url);
+            request.AddParameter("callback_url", callbackUrl);
             request.RootElement = "account";
             return Execute<Account>(request);
         }
