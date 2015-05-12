@@ -15,7 +15,7 @@ namespace HelloSignTestApp
             var account = client.GetAccount();
             //var account = client.CreateAccount("stephen+csharp@hellosign.com");
             //var account = client.UpdateAccount(new Uri("http://example.com"));
-            Console.WriteLine(account.CallbackUrl);
+            Console.WriteLine(account.AccountId);
 
             Console.WriteLine("Press ENTER to exit.");
             Console.Read(); // Keeps the output window open

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
 using RestSharp;
 
 namespace HelloSign
@@ -56,13 +57,18 @@ namespace HelloSign
         private T Execute<T>(RestRequest request) where T : new()
         {
             var response = client.Execute<T>(request);
-
+            
+            // Handle errors
             if (response.ErrorException != null)
             {
                 const string message = "Error retrieving response.  Check inner details for more info.";
-                var apiException = new ApplicationException(message, response.ErrorException);
-                throw apiException;
+                throw new ApplicationException(message, response.ErrorException);
             }
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                throw new ApplicationException("Received status " + response.StatusCode.GetHashCode() + " from server. Full response:\n" + response.Content);
+            }
+
             return response.Data;
         }
 
