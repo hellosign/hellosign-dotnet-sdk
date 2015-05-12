@@ -25,6 +25,23 @@ var newAccount = client.CreateAccount("new.account@example.com");
 Console.WriteLine("The new Account's ID is: " + newAccount.AccountId);
 ```
 
+## Build from Source
+
+### Windows
+
+Use Visual Studio (Express).
+
+### Linux (and OSX?) using Mono
+
+1. Install Mono
+2. Install NuGet
+3. `cd HelloSign`
+4. `nuget install`
+5. `mkdir ../packages`
+6. `mv RestSharp* ../packages`
+7. `cd ..`
+8. `xbuild`
+
 ## License
 
 ```
