@@ -152,5 +152,188 @@ namespace HelloSign
         }
 
         #endregion
+
+        #region Signature Request Methods
+
+        /// <summary>
+        /// Get information about a Signature Request.
+        /// </summary>
+        /// <param name="signatureRequestId">The alphanumeric Signature Request ID (Document ID).</param>
+        /// <returns>The Signature Request</returns>
+        public SignatureRequest GetSignatureRequest(string signatureRequestId)
+        {
+            if (client.Authenticator == null)
+            {
+                throw new UnauthorizedAccessException("This method requires authentication");
+            }
+
+            var request = new RestRequest("signature_request/{id}");
+            request.AddUrlSegment("id", signatureRequestId);
+            request.RootElement = "signature_request";
+            return Execute<SignatureRequest>(request);
+        }
+
+        /// <summary>
+        /// Send a new Signature Request.
+        /// 
+        /// Create a new SignatureRequest object, set its properties, and pass
+        /// it to this method.
+        /// </summary>
+        /// <param name="signatureRequest"></param>
+        /// <returns></returns>
+        public SignatureRequest SendSignatureRequest(SignatureRequest signatureRequest)
+        {
+            if (client.Authenticator == null)
+            {
+                throw new UnauthorizedAccessException("This method requires authentication");
+            }
+
+            var request = new RestRequest("signature_request/send", Method.POST);
+            if (signatureRequest.Title != null) request.AddParameter("title", signatureRequest.Title);
+            if (signatureRequest.Subject != null) request.AddParameter("subject", signatureRequest.Subject);
+            if (signatureRequest.Message != null) request.AddParameter("message", signatureRequest.Message);
+
+            // Add Signers
+            var i = 0;
+            foreach (var signer in signatureRequest.Signers)
+            {
+                string prefix = String.Format("signers[{0}]", i);
+                request.AddParameter(prefix + "[email_address]", signer.EmailAddress);
+                request.AddParameter(prefix + "[name]", signer.Name);
+                if (signer.Order != null) request.AddParameter(prefix + "[order]", signer.Order);
+                if (signer.Pin != null) request.AddParameter(prefix + "[pin]", signer.Pin);
+                i++;
+            }
+
+            // Add CCs
+            i = 0;
+            foreach (var cc in signatureRequest.Ccs)
+            {
+                request.AddParameter(String.Format("cc_email_addresses[{0}]", i), cc);
+                i++;
+            }
+
+            // Add Files/FileUrls
+            if (signatureRequest.Files.Count > 0)
+            {
+                i = 0;
+                foreach (var file in signatureRequest.Files)
+                {
+                    file.AddToRequest(request, String.Format("file[{0}]", i));
+                    i++;
+                }
+            }
+            else if (signatureRequest.FileUrls.Count > 0)
+            {
+                i = 0;
+                foreach (var fileUrl in signatureRequest.FileUrls)
+                {
+                    request.AddParameter(String.Format("file_url[{0}]", i), fileUrl);
+                    i++;
+                }
+            }
+
+            // Add Metadata
+            foreach (var entry in signatureRequest.Metadata)
+            {
+                request.AddParameter(String.Format("metadata[{0}]", entry.Key), entry.Value); // TODO: Escape characters in key
+            }
+
+            // Add Test Mode
+            if (signatureRequest.TestMode)
+            {
+                request.AddParameter("test_mode", "1");
+            }
+
+            request.RootElement = "signature_request";
+            return Execute<SignatureRequest>(request);
+        }
+
+        /// <summary>
+        /// Send a new Signature Request based on a Template.
+        /// 
+        /// Create a new TemplateSignatureRequest object, set its properties,
+        /// and pass it to this method.
+        /// </summary>
+        /// <param name="signatureRequest"></param>
+        /// <returns></returns>
+        public TemplateSignatureRequest SendSignatureRequest(TemplateSignatureRequest signatureRequest)
+        {
+            if (client.Authenticator == null)
+            {
+                throw new UnauthorizedAccessException("This method requires authentication");
+            }
+
+            var request = new RestRequest("signature_request/send", Method.POST);
+            request.AddParameter("template_id", signatureRequest.TemplateId);
+            if (signatureRequest.Title != null) request.AddParameter("title", signatureRequest.Title);
+            if (signatureRequest.Subject != null) request.AddParameter("subject", signatureRequest.Subject);
+            if (signatureRequest.Message != null) request.AddParameter("message", signatureRequest.Message);
+            if (signatureRequest.SigningRedirectUrl != null) request.AddParameter("signing_redirect_url", signatureRequest.SigningRedirectUrl);
+
+            // Add Signers
+            foreach (var signer in signatureRequest.Signers)
+            {
+                string prefix = String.Format("signers[{0}]", signer.Role); // TODO: Escape characters in key
+                request.AddParameter(prefix + "[email_address]", signer.EmailAddress);
+                request.AddParameter(prefix + "[name]", signer.Name);
+                if (signer.Order != null) request.AddParameter(prefix + "[order]", signer.Order);
+                if (signer.Pin != null) request.AddParameter(prefix + "[pin]", signer.Pin);
+            }
+
+            // Add CCs
+            foreach (var entry in signatureRequest.Ccs)
+            {
+                request.AddParameter(String.Format("cc_email_addresses[{0}]", entry.Key), entry.Value); // TODO: Escape characters in key
+            }
+
+            // Add Custom Fields
+            foreach (var entry in signatureRequest.CustomFields)
+            {
+                request.AddParameter(String.Format("custom_fields[{0}]", entry.Key), entry.Value); // TODO: Escape characters in key
+            }
+
+            // Add Metadata
+            foreach (var entry in signatureRequest.Metadata)
+            {
+                request.AddParameter(String.Format("metadata[{0}]", entry.Key), entry.Value); // TODO: Escape characters in key
+            }
+
+            // Add Test Mode
+            if (signatureRequest.TestMode)
+            {
+                request.AddParameter("test_mode", "1");
+            }
+
+            request.RootElement = "signature_request";
+            return Execute<TemplateSignatureRequest>(request);
+        }
+
+        /// <summary>
+        /// Send a reminder to the specified email address to sign the
+        /// specified Signature Request.
+        /// </summary>
+        /// <param name="signatureRequestId"></param>
+        /// <param name="emailAddress"></param>
+        public void RemindSignatureRequest(string signatureRequestId, string emailAddress)
+        {
+            var request = new RestRequest("signature_request/cancel/{id}", Method.POST);
+            request.AddUrlSegment("id", signatureRequestId);
+            request.AddParameter("email_address", emailAddress);
+            client.Execute(request);
+        }
+
+        /// <summary>
+        /// Cancel the specified Signature Request.
+        /// </summary>
+        /// <param name="signatureRequestId"></param>
+        public void CancelSignatureRequest(string signatureRequestId)
+        {
+            var request = new RestRequest("signature_request/cancel/{id}", Method.POST);
+            request.AddUrlSegment("id", signatureRequestId);
+            client.Execute(request);
+        }
+
+        #endregion
     }
 }
