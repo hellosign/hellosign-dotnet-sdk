@@ -36,10 +36,10 @@ namespace HelloSignTestApp
             request.Metadata.Add("custom_text", "NDA #9");
             request.TestMode = true;
             var response = client.SendSignatureRequest(request);
-            Console.WriteLine("New Signature Request ID: " + signatureRequest.SignatureRequestId);
+            Console.WriteLine("New Signature Request ID: " + response.SignatureRequestId);
 
             // Cancel signature request
-            client.CancelSignatureRequest(signatureRequest.SignatureRequestId);
+            client.CancelSignatureRequest(response.SignatureRequestId);
 
             // Send signature request with template
             var tRequest = new TemplateSignatureRequest();

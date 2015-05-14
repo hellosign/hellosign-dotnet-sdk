@@ -6,12 +6,22 @@ An official library for using the HelloSign API written in C#.NET and powered by
 
 ## Usage
 
+First, use our namespace:
+
 ```C#
 using HelloSign;
+```
 
+Create a client object:
+
+```C#
 // Create a client object
 var client = new Client("your account API key here");
+```
 
+### Account Methods
+
+```C#
 // Get your Account details
 var account = client.GetAccount();
 Console.WriteLine("My Account ID is: " + account.AccountId);
@@ -23,6 +33,41 @@ Console.WriteLine("Now my Callback URL is: " + account.CallbackUrl);
 // Create a new Account (throws exception if account already exists)
 var newAccount = client.CreateAccount("new.account@example.com");
 Console.WriteLine("The new Account's ID is: " + newAccount.AccountId);
+```
+
+### Signature Request Methods
+
+```C#
+// Send signature request
+var request = new SignatureRequest();
+request.Title = "NDA with Acme Co.";
+request.Subject = "The NDA we talked about";
+request.Message = "Please sign this NDA and then we can discuss more. Let me know if you have any questions.";
+request.AddSigner("jack@example.com", "Jack");
+request.AddSigner("jill@example.com", "Jill");
+request.AddCc("lawyer@example.com");
+request.AddFile("c:\users\me\My Documents\nda.txt");
+request.AddFile("c:\users\me\My Documents\AppendixA.txt");
+request.Metadata.Add("custom_id", "1234");
+request.Metadata.Add("custom_text", "NDA #9");
+request.TestMode = true;
+var response = client.SendSignatureRequest(request);
+Console.WriteLine("New Signature Request ID: " + response.SignatureRequestId);
+
+// Cancel that signature request
+client.CancelSignatureRequest(response.SignatureRequestId);
+
+// Send signature request using a template
+var tRequest = new TemplateSignatureRequest();
+tRequest.TemplateId = "TEMPLATE ID GOES HERE";
+tRequest.Subject = "Purchase Order";
+tRequest.Message = "Glad we could come to an agreement.";
+tRequest.AddSigner("Client", "george@example.com", "George");
+tRequest.AddCc("Accounting", "accounting@hellosign.com");
+tRequest.CustomFields.Add("Cost", "$20,000");
+tRequest.TestMode = true;
+var tResponse = client.SendSignatureRequest(request);
+Console.WriteLine("New Template Signature Request ID: " + tResponse.SignatureRequestId);
 ```
 
 ## Build from Source
