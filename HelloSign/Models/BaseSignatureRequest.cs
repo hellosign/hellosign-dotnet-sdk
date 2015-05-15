@@ -27,6 +27,9 @@ namespace HelloSign
         public List<string> CcEmailAddresses { get; set; }
 
         public List<Signer> Signers = new List<Signer>();
+        public bool UseTextTags { get; set; }
+        public bool HideTextTags { get; set; }
+        //FormFieldsPerDocument
 
         public BaseSignatureRequest()
         {

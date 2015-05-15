@@ -6,6 +6,12 @@ namespace HelloSign
 {
     public class SignatureRequest : BaseSignatureRequest
     {
+        public enum FileType
+        {
+            ZIP,
+            PDF
+        }
+
         public List<string> Ccs = new List<string>();
         public List<FileContainer> Files = new List<FileContainer>();
         public List<string> FileUrls = new List<string>();

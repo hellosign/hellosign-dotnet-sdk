@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net;
 using RestSharp;
 
@@ -94,6 +95,17 @@ namespace HelloSign
             client.BaseUrl = new Uri(baseUrl);
         }
 
+        /// <summary>
+        /// Throw an exception if credentials have not been supplied.
+        /// </summary>
+        private void RequireAuthentication()
+        {
+            if (client.Authenticator == null)
+            {
+                throw new UnauthorizedAccessException("This method requires authentication");
+            }
+        }
+
         #region Account Methods
 
         /// <summary>
@@ -123,10 +135,7 @@ namespace HelloSign
         /// <returns>Your Account</returns>
         public Account GetAccount()
         {
-            if (client.Authenticator == null)
-            {
-                throw new UnauthorizedAccessException("This method requires authentication");
-            }
+            RequireAuthentication();
 
             var request = new RestRequest("account");
             request.RootElement = "account";
@@ -140,10 +149,7 @@ namespace HelloSign
         /// <returns>Your Account</returns>
         public Account UpdateAccount(Uri callbackUrl)
         {
-            if (client.Authenticator == null)
-            {
-                throw new UnauthorizedAccessException("This method requires authentication");
-            }
+            RequireAuthentication();
 
             var request = new RestRequest("account", Method.POST);
             request.AddParameter("callback_url", callbackUrl);
@@ -162,10 +168,7 @@ namespace HelloSign
         /// <returns>The Signature Request</returns>
         public SignatureRequest GetSignatureRequest(string signatureRequestId)
         {
-            if (client.Authenticator == null)
-            {
-                throw new UnauthorizedAccessException("This method requires authentication");
-            }
+            RequireAuthentication();
 
             var request = new RestRequest("signature_request/{id}");
             request.AddUrlSegment("id", signatureRequestId);
@@ -174,24 +177,27 @@ namespace HelloSign
         }
 
         /// <summary>
-        /// Send a new Signature Request.
-        /// 
-        /// Create a new SignatureRequest object, set its properties, and pass
-        /// it to this method.
+        /// Internal method for calling /signature_request/send or /signature_request/create_embedded
         /// </summary>
         /// <param name="signatureRequest"></param>
+        /// <param name="clientId">App Client ID if for embedded signing; null otherwise</param>
         /// <returns></returns>
-        public SignatureRequest SendSignatureRequest(SignatureRequest signatureRequest)
+        private SignatureRequest _PostSignatureRequest(SignatureRequest signatureRequest, string clientId = null)
         {
-            if (client.Authenticator == null)
-            {
-                throw new UnauthorizedAccessException("This method requires authentication");
-            }
+            RequireAuthentication();
 
-            var request = new RestRequest("signature_request/send", Method.POST);
+            // Setup request
+            var endpoint = (clientId == null) ? "signature_request/send" : "signature_request/create_embedded";
+            var request = new RestRequest(endpoint, Method.POST);
+
+            // Add simple parameters
+            if (clientId != null) request.AddParameter("client_id", clientId);
             if (signatureRequest.Title != null) request.AddParameter("title", signatureRequest.Title);
             if (signatureRequest.Subject != null) request.AddParameter("subject", signatureRequest.Subject);
             if (signatureRequest.Message != null) request.AddParameter("message", signatureRequest.Message);
+            if (signatureRequest.TestMode) request.AddParameter("test_mode", "1");
+            if (signatureRequest.UseTextTags) request.AddParameter("use_text_tags", "1");
+            if (signatureRequest.HideTextTags) request.AddParameter("hide_text_tags", "1");
 
             // Add Signers
             var i = 0;
@@ -239,37 +245,61 @@ namespace HelloSign
                 request.AddParameter(String.Format("metadata[{0}]", entry.Key), entry.Value); // TODO: Escape characters in key
             }
 
-            // Add Test Mode
-            if (signatureRequest.TestMode)
-            {
-                request.AddParameter("test_mode", "1");
-            }
-
             request.RootElement = "signature_request";
             return Execute<SignatureRequest>(request);
         }
 
         /// <summary>
-        /// Send a new Signature Request based on a Template.
+        /// Create a new file-based Signature Request (NOT for Embedded Signing).
         /// 
-        /// Create a new TemplateSignatureRequest object, set its properties,
-        /// and pass it to this method.
+        /// Create a new SignatureRequest object, set its properties, and pass
+        /// it to this method.
         /// </summary>
         /// <param name="signatureRequest"></param>
         /// <returns></returns>
-        public TemplateSignatureRequest SendSignatureRequest(TemplateSignatureRequest signatureRequest)
+        public SignatureRequest SendSignatureRequest(SignatureRequest signatureRequest)
         {
-            if (client.Authenticator == null)
-            {
-                throw new UnauthorizedAccessException("This method requires authentication");
-            }
+            return _PostSignatureRequest(signatureRequest);
+        }
 
-            var request = new RestRequest("signature_request/send_with_template", Method.POST);
+        /// <summary>
+        /// Create a new file-based Signature Request for Embedded Signing.
+        /// 
+        /// Create a new SignatureRequest object, set its properties, and pass
+        /// it to this method.
+        /// </summary>
+        /// <param name="signatureRequest"></param>
+        /// <param name="clientId"></param>
+        /// <returns></returns>
+        public SignatureRequest CreateEmbeddedSignatureRequest(SignatureRequest signatureRequest, string clientId)
+        {
+            return _PostSignatureRequest(signatureRequest, clientId);
+        }
+
+        /// <summary>
+        /// Internal method for calling /signature_request/send_with_template or
+        /// /signature_request/create_embedded_with_template
+        /// </summary>
+        /// <param name="signatureRequest"></param>
+        /// <returns></returns>
+        public TemplateSignatureRequest _PostSignatureRequest(TemplateSignatureRequest signatureRequest, string clientId = null)
+        {
+            RequireAuthentication();
+
+            // Setup request
+            var endpoint = (clientId == null) ? "signature_request/send_with_template" : "signature_request/create_embedded_with_template";
+            var request = new RestRequest(endpoint, Method.POST);
+
+            // Add simple parameters
             request.AddParameter("template_id", signatureRequest.TemplateId);
+            if (clientId != null) request.AddParameter("client_id", clientId);
             if (signatureRequest.Title != null) request.AddParameter("title", signatureRequest.Title);
             if (signatureRequest.Subject != null) request.AddParameter("subject", signatureRequest.Subject);
             if (signatureRequest.Message != null) request.AddParameter("message", signatureRequest.Message);
             if (signatureRequest.SigningRedirectUrl != null) request.AddParameter("signing_redirect_url", signatureRequest.SigningRedirectUrl);
+            if (signatureRequest.TestMode) request.AddParameter("test_mode", "1");
+            if (signatureRequest.UseTextTags) request.AddParameter("use_text_tags", "1");
+            if (signatureRequest.HideTextTags) request.AddParameter("hide_text_tags", "1");
 
             // Add Signers
             foreach (var signer in signatureRequest.Signers)
@@ -299,14 +329,34 @@ namespace HelloSign
                 request.AddParameter(String.Format("metadata[{0}]", entry.Key), entry.Value); // TODO: Escape characters in key
             }
 
-            // Add Test Mode
-            if (signatureRequest.TestMode)
-            {
-                request.AddParameter("test_mode", "1");
-            }
-
             request.RootElement = "signature_request";
             return Execute<TemplateSignatureRequest>(request);
+        }
+
+        /// <summary>
+        /// Send a new Signature Request based on a Template.
+        /// 
+        /// Create a new TemplateSignatureRequest object, set its properties,
+        /// and pass it to this method.
+        /// </summary>
+        /// <param name="signatureRequest"></param>
+        /// <returns></returns>
+        public TemplateSignatureRequest SendSignatureRequest(TemplateSignatureRequest signatureRequest)
+        {
+            return _PostSignatureRequest(signatureRequest);
+        }
+
+        /// <summary>
+        /// Send a new Signature Request for Embedded Signing based on a Template.
+        /// 
+        /// Create a new TemplateSignatureRequest object, set its properties,
+        /// and pass it to this method.
+        /// </summary>
+        /// <param name="signatureRequest"></param>
+        /// <returns></returns>
+        public TemplateSignatureRequest SendSignatureRequest(TemplateSignatureRequest signatureRequest, string clientId)
+        {
+            return _PostSignatureRequest(signatureRequest, clientId);
         }
 
         /// <summary>
@@ -317,6 +367,8 @@ namespace HelloSign
         /// <param name="emailAddress"></param>
         public void RemindSignatureRequest(string signatureRequestId, string emailAddress)
         {
+            RequireAuthentication();
+
             var request = new RestRequest("signature_request/cancel/{id}", Method.POST);
             request.AddUrlSegment("id", signatureRequestId);
             request.AddParameter("email_address", emailAddress);
@@ -329,9 +381,90 @@ namespace HelloSign
         /// <param name="signatureRequestId"></param>
         public void CancelSignatureRequest(string signatureRequestId)
         {
+            RequireAuthentication();
+
             var request = new RestRequest("signature_request/cancel/{id}", Method.POST);
             request.AddUrlSegment("id", signatureRequestId);
             client.Execute(request);
+        }
+
+        /// <summary>
+        /// Download a Signature Request as a merged PDF (or a ZIP of unmerged
+        /// PDFs) and get the byte array.
+        /// </summary>
+        /// <param name="signatureRequestId"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public byte[] DownloadSignatureRequestFiles(string signatureRequestId, SignatureRequest.FileType type = SignatureRequest.FileType.PDF)
+        {
+            RequireAuthentication();
+
+            var request = new RestRequest("signature_request/files/{id}");
+            if (type == SignatureRequest.FileType.ZIP)
+            {
+                request.AddQueryParameter("file_type", "zip");
+            }
+            return client.DownloadData(request);
+        }
+
+        /// <summary>
+        /// Download a Signature Request as a merged PDF (or a ZIP of unmerged
+        /// PDFs) and write the resulting file to disk.
+        /// </summary>
+        /// <param name="signatureRequestId"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public void DownloadSignatureRequestFiles(string signatureRequestId, string destination, SignatureRequest.FileType type = SignatureRequest.FileType.PDF)
+        {
+            File.WriteAllBytes(destination, DownloadSignatureRequestFiles(signatureRequestId, type));
+        }
+
+        #endregion
+
+        // TODO: Template
+
+        // TODO: Team
+
+        // TODO: Unclaimed Draft
+
+        #region Embedded Methods
+
+        /// <summary>
+        /// Retrieve an embedded object containing a signature url that can be
+        /// opened in an iFrame.
+        /// </summary>
+        /// <param name="signatureId"></param>
+        /// <returns></returns>
+        public Embedded GetSignUrl(string signatureId)
+        {
+            RequireAuthentication();
+
+            var request = new RestRequest("embedded/sign_url/{id}");
+            request.AddUrlSegment("id", signatureId);
+            request.RootElement = "embedded";
+            return Execute<Embedded>(request);
+        }
+
+        /// <summary>
+        /// Retrieve an embedded object containing a template url that can be
+        /// opened in an iFrame. Note that only templates created via the
+        /// embedded template process are available to be edited with this
+        /// endpoint.
+        /// </summary>
+        /// <param name="templateId"></param>
+        /// <param name="skipSignerRoles">If signer roles were already provided, do not prompt the user to edit them.</param>
+        /// <param name="skipSubjectMessage">If subject/message were already provided, do not prompt the user to edit them.</param>
+        /// <returns></returns>
+        public Embedded GetEditUrl(string templateId, bool skipSignerRoles = false, bool skipSubjectMessage = false)
+        {
+            RequireAuthentication();
+
+            var request = new RestRequest("embedded/edit_url/{id}");
+            request.AddUrlSegment("id", templateId);
+            if (skipSignerRoles) request.AddQueryParameter("skip_signer_roles", "1");
+            if (skipSubjectMessage) request.AddQueryParameter("skip_subject_message", "1");
+            request.RootElement = "embedded";
+            return Execute<Embedded>(request);
         }
 
         #endregion
