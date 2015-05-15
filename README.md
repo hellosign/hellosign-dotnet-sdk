@@ -21,18 +21,26 @@ var client = new Client("your account API key here");
 
 ### Account Methods
 
+#### Get your Account details
+
 ```C#
-// Get your Account details
 var account = client.GetAccount();
 Console.WriteLine("My Account ID is: " + account.AccountId);
+```
 
-// Update your Account Callback URL
-account = client.UpdateAccount("https://example.com/hellosign.asp");
+#### Update your Account Callback URL
+
+```C#
+var account = client.UpdateAccount("https://example.com/hellosign.asp");
 Console.WriteLine("Now my Callback URL is: " + account.CallbackUrl);
+```
 
-// Create a new Account (throws exception if account already exists)
-var newAccount = client.CreateAccount("new.account@example.com");
-Console.WriteLine("The new Account's ID is: " + newAccount.AccountId);
+#### Create a new Account
+
+```C#
+// Throws exception if account already exists
+var account = client.CreateAccount("new.account@example.com");
+Console.WriteLine("The new Account's ID is: " + account.AccountId);
 ```
 
 ### Signature Request Methods
