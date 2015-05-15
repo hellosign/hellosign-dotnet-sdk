@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\CustomField.cs" />
     <Compile Include="Models\Signature.cs" />
     <Compile Include="Models\BaseSignatureRequest.cs" />
     <Compile Include="Models\TemplateSignatureRequest.cs" />

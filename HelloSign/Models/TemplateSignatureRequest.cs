@@ -11,12 +11,12 @@ namespace HelloSign
     {
         public string TemplateId { get; set; }
         public Dictionary<String, String> Ccs { get; set; }
-        public Dictionary<String, String> CustomFields { get; set; }
+        //public Dictionary<String, String> CustomFields { get; set; }
 
         public TemplateSignatureRequest() : base()
         {
             Ccs = new Dictionary<string,string>();
-            CustomFields = new Dictionary<string,string>();
+            //CustomFields = new Dictionary<string,string>();
         }
 
         /// <summary>
@@ -38,6 +38,32 @@ namespace HelloSign
         public void AddCc(string role, string emailAddress)
         {
             Ccs.Add(role, emailAddress);
+        }
+
+        /// <summary>
+        /// Convenience method for adding a custom field.
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        public void AddCustomField(string key, string value)
+        {
+            var customField = new CustomField();
+            customField.Name = key;
+            customField.Value = value;
+            CustomFields.Add(customField);
+        }
+
+        /// <summary>
+        /// Convenience method for adding a boolean custom field.
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="value"></param>
+        public void AddCustomField(string key, bool value)
+        {
+            var customField = new CustomField();
+            customField.Name = key;
+            customField.Value = value ? "true" : "false";
+            CustomFields.Add(customField);
         }
     }
 }

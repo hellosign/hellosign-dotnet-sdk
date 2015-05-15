@@ -4,14 +4,14 @@ namespace HelloSign
 {
     public class Signature
     {
-        string SignatureId { get; set; }
-        string SignerEmailAddress { get; set; }
-        string SignerName { get; set; }
-        int? Order { get; set; }
-        string StatusCode { get; set; }
+        public string SignatureId { get; set; }
+        public string SignerEmailAddress { get; set; }
+        public string SignerName { get; set; }
+        public int? Order { get; set; }
+        public string StatusCode { get; set; }
         //SignedAt
         //LastViewedAt
         //LastRemindedAt
-        bool HasPin { get; set; }
+        public bool HasPin { get; set; }
     }
 }

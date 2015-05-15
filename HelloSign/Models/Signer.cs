@@ -24,7 +24,7 @@ namespace HelloSign
             Name = name;
             Order = order;
             Pin = pin;
-            role = role;
+            Role = role;
         }
     }
 }

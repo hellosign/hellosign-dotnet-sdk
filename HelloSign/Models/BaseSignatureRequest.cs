@@ -17,7 +17,7 @@ namespace HelloSign
         public Dictionary<String, String> Metadata { get; set; }
         public bool IsComplete { get; set; }
         public bool HasError { get; set; }
-        //public List<???> CustomFields { get; set; }
+        public List<CustomField> CustomFields { get; set; }
         //public List<SignatureResponseData> ResponseData { get; set; }
         public string SigningUrl { get; set; }
         public string SigningRedirectUrl { get; set; }
@@ -27,13 +27,11 @@ namespace HelloSign
         public List<string> CcEmailAddresses { get; set; }
 
         public List<Signer> Signers = new List<Signer>();
-        public List<string> Ccs = new List<string>();
-        public List<FileContainer> Files = new List<FileContainer>();
-        public List<string> FileUrls = new List<string>();
 
         public BaseSignatureRequest()
         {
             Metadata = new Dictionary<String, String>();
+            CustomFields = new List<CustomField>();
             CcEmailAddresses = new List<string>();
         }
 
@@ -50,59 +48,20 @@ namespace HelloSign
         }
 
         /// <summary>
-        /// Convenience method for adding a CC email address.
+        /// Get the Custom Field with a specified name, or null.
         /// </summary>
-        /// <param name="emailAddress"></param>
-        public void AddCc(string emailAddress)
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public CustomField GetCustomField(string name)
         {
-            Ccs.Add(emailAddress);
-        }
-
-        /// <summary>
-        /// Add a file to the signature request by giving its local path.
-        /// </summary>
-        /// <param name="path">Full path to file to upload.</param>
-        /// <param name="contentType">The MIME type of the file to upload.</param>
-        public void AddFile(string path, string contentType = null)
-        {
-            if (FileUrls.Count > 0) {
-                throw new NotSupportedException("Cannot use AddFile and AddFileUrl in the same request");
-            }
-
-            var file = new FileContainer();
-            file.Path = path;
-            file.ContentType = contentType;
-            Files.Add(file);
-        }
-    }
-
-    public class FileContainer
-    {
-        public string ContentType { get; set; }
-        public string Filename { get; set; }
-        public string Path { get; set; }
-        public Action<System.IO.Stream> Writer { get; set; }
-        public byte[] Bytes { get; set; }
-
-        public RestRequest AddToRequest(RestRequest request, string name)
-        {
-            if (Path != null) {
-                request.AddFile(name, Path, ContentType);
-            }
-            else if (Writer != null)
+            foreach (var customField in CustomFields)
             {
-                request.AddFile(name, Writer, Filename, ContentType);
+                if (customField.Name.Equals(name))
+                {
+                    return customField;
+                }
             }
-            else if (Bytes != null)
-            {
-                request.AddFile(name, Bytes, Filename, ContentType);
-            }
-            else
-            {
-                throw new NotSupportedException("One of Path, Writer, or Bytes must not be null");
-            }
-
-            return request;
+            return null;
         }
     }
 }

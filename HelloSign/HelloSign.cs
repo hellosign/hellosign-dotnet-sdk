@@ -264,7 +264,7 @@ namespace HelloSign
                 throw new UnauthorizedAccessException("This method requires authentication");
             }
 
-            var request = new RestRequest("signature_request/send", Method.POST);
+            var request = new RestRequest("signature_request/send_with_template", Method.POST);
             request.AddParameter("template_id", signatureRequest.TemplateId);
             if (signatureRequest.Title != null) request.AddParameter("title", signatureRequest.Title);
             if (signatureRequest.Subject != null) request.AddParameter("subject", signatureRequest.Subject);
@@ -290,7 +290,7 @@ namespace HelloSign
             // Add Custom Fields
             foreach (var entry in signatureRequest.CustomFields)
             {
-                request.AddParameter(String.Format("custom_fields[{0}]", entry.Key), entry.Value); // TODO: Escape characters in key
+                request.AddParameter(String.Format("custom_fields[{0}]", entry.Name), entry.Value); // TODO: Escape characters in key
             }
 
             // Add Metadata

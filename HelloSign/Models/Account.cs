@@ -4,7 +4,7 @@ namespace HelloSign
 {
     public class Account
     {
-        public enum RoleCode
+        public enum Role
         {
             ADMIN = 'A',
             MEMBER = 'M',
@@ -15,6 +15,7 @@ namespace HelloSign
         public bool IsPaidHs { get; set; }
         public bool IsPaidHf { get; set; }
         public string CallbackUrl { get; set; }
-        public Dictionary<string, int> Quotas { get; set; }
+        public Dictionary<string, int?> Quotas { get; set; }
+        public Role RoleCode { get; set; }
     }
 }

@@ -8,8 +8,7 @@ namespace HelloSignTestApp
         static void Main(string[] args)
         {
             // Client setup
-            //var client = new HelloSign.Client();
-            var client = new Client("API KEY");
+            var client = new Client("API KEY GOES HERE");
             client.SetEnvironment(Client.Environment.Staging);
             
             // Call API
@@ -19,8 +18,8 @@ namespace HelloSignTestApp
             Console.WriteLine("My Account ID: " + account.AccountId);
 
             // Get signature request
-            var signatureRequest = client.GetSignatureRequest("DOCUMENT ID");
-            Console.WriteLine("Fetched Request Title: " + signatureRequest.Title);
+            //var signatureRequest = client.GetSignatureRequest("DOCUMENT ID GOES HERE");
+            //Console.WriteLine("Fetched Request Title: " + signatureRequest.Title);
 
             // Send signature request
             var request = new SignatureRequest();
@@ -43,13 +42,19 @@ namespace HelloSignTestApp
 
             // Send signature request with template
             var tRequest = new TemplateSignatureRequest();
-            tRequest.TemplateId = "abcdef";
+            tRequest.TemplateId = "TEMPLATE ID GOES HERE";
             tRequest.Subject = "Purchase Order";
             tRequest.Message = "Glad we could come to an agreement.";
             tRequest.AddSigner("Client", "george@example.com", "George");
             tRequest.AddCc("Accounting", "accounting@hellosign.com");
-            tRequest.CustomFields.Add("Cost", "$20,000");
+            tRequest.AddCustomField("Cost", "$20,000");
             tRequest.TestMode = true;
+            var tResponse = client.SendSignatureRequest(tRequest);
+            Console.WriteLine("New Template Signature Request ID: " + tResponse.SignatureRequestId);
+            Console.WriteLine("Custom field 'Cost' is: " + tResponse.GetCustomField("Cost").Value);
+
+            // Cancel that signature request
+            client.CancelSignatureRequest(tResponse.SignatureRequestId);
 
             Console.WriteLine("Press ENTER to exit.");
             Console.Read(); // Keeps the output window open
