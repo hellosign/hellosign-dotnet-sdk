@@ -37,8 +37,9 @@ Console.WriteLine("The new Account's ID is: " + newAccount.AccountId);
 
 ### Signature Request Methods
 
+#### Send Signature Request using files (non-Embedded)
+
 ```C#
-// Send signature request
 var request = new SignatureRequest();
 request.Title = "NDA with Acme Co.";
 request.Subject = "The NDA we talked about";
@@ -53,22 +54,114 @@ request.Metadata.Add("custom_text", "NDA #9");
 request.TestMode = true;
 var response = client.SendSignatureRequest(request);
 Console.WriteLine("New Signature Request ID: " + response.SignatureRequestId);
-
-// Cancel that signature request
-client.CancelSignatureRequest(response.SignatureRequestId);
-
-// Send signature request using a template
-var tRequest = new TemplateSignatureRequest();
-tRequest.TemplateId = "TEMPLATE ID GOES HERE";
-tRequest.Subject = "Purchase Order";
-tRequest.Message = "Glad we could come to an agreement.";
-tRequest.AddSigner("Client", "george@example.com", "George");
-tRequest.AddCc("Accounting", "accounting@hellosign.com");
-tRequest.CustomFields.Add("Cost", "$20,000");
-tRequest.TestMode = true;
-var tResponse = client.SendSignatureRequest(request);
-Console.WriteLine("New Template Signature Request ID: " + tResponse.SignatureRequestId);
 ```
+
+#### Send Signature Request using a template (non-Embedded)
+
+```C#
+var request = new TemplateSignatureRequest();
+request.TemplateId = "TEMPLATE ID HERE";
+request.Subject = "Purchase Order";
+request.Message = "Glad we could come to an agreement.";
+request.AddSigner("Client", "george@example.com", "George");
+request.AddCc("Accounting", "accounting@hellosign.com");
+request.CustomFields.Add("Cost", "$20,000");
+request.TestMode = true;
+var response = client.SendSignatureRequest(request);
+Console.WriteLine("New Template Signature Request ID: " + response.SignatureRequestId);
+```
+
+#### Create Embedded Signature Request using files
+
+```C#
+var request = new SignatureRequest();
+request.Title = "NDA with Acme Co.";
+request.Subject = "The NDA we talked about";
+request.Message = "Please sign this NDA and then we can discuss more. Let me know if you have any questions.";
+request.AddSigner("jack@example.com", "Jack");
+request.AddSigner("jill@example.com", "Jill");
+request.AddCc("lawyer@example.com");
+request.AddFile("c:\users\me\My Documents\nda.txt");
+request.AddFile("c:\users\me\My Documents\AppendixA.txt");
+request.Metadata.Add("custom_id", "1234");
+request.Metadata.Add("custom_text", "NDA #9");
+request.TestMode = true;
+var response = client.CreateEmbeddedSignatureRequest(request, "CLIENT ID HERE");
+Console.WriteLine("New Embedded Signature Request ID: " + response.SignatureRequestId);
+```
+
+#### Create Embedded Signature Request using a template
+
+```C#
+var request = new TemplateSignatureRequest();
+request.TemplateId = "TEMPLATE ID HERE";
+request.Subject = "Purchase Order";
+request.Message = "Glad we could come to an agreement.";
+request.AddSigner("Client", "george@example.com", "George");
+request.AddCc("Accounting", "accounting@hellosign.com");
+request.CustomFields.Add("Cost", "$20,000");
+request.TestMode = true;
+var response = client.CreateEmbeddedSignatureRequest(request, "CLIENT ID HERE");
+Console.WriteLine("New Template-based Embedded Signature Request ID: " + response.SignatureRequestId);
+```
+
+#### Cancel a Signature Request
+
+```C#
+client.CancelSignatureRequest("SIGNATURE REQUEST ID HERE");
+```
+
+#### Remind a Signer to Sign
+
+```C#
+client.RemindSignatureRequest("SIGNATURE REQUEST ID HERE", "EMAIL ADDRESS HERE");
+```
+
+#### Download a Signature Request (in its current state) and save to disk
+
+```C#
+// Download a merged PDF
+client.DownloadSignatureRequestFiles("SIGNATURE REQUEST ID HERE", "/path/to/output.pdf");
+// Or download a ZIP containing individual unmerged PDFs
+client.DownloadSignatureRequestFiles("SIGNATURE REQUEST ID HERE", "/path/to/output.pdf", SignatureRequest.FileType.ZIP);
+```
+
+#### Download a Signature Request (in its current state) as bytes
+
+```C#
+// Download a merged PDF
+client.DownloadSignatureRequestFiles("SIGNATURE REQUEST ID HERE");
+// Or download a ZIP containing individual unmerged PDFs
+client.DownloadSignatureRequestFiles("SIGNATURE REQUEST ID HERE", SignatureRequest.FileType.ZIP);
+```
+
+### Embedded Methods
+
+#### Retrieve Embedded Signing URL for a particular signer
+
+```C#
+response = client.GetSignUrl("SIGNATURE ID HERE");
+Console.WriteLine("Signature URL for HelloSign.open(): " + response.SignUrl);
+```
+
+#### Retrieve Embedded Templates Editing URL
+
+```C#
+response = client.GetEditUrl("EMBEDDED TEMPLATE ID HERE");
+Console.WriteLine("Editing URL for HelloSign.open(): " + response.EditUrl);
+```
+
+### Unclaimed Draft Methods (for Embedded Requesting)
+
+Not implemented
+
+### Template Methods
+
+Not implemented
+
+### Team Methods
+
+Not Implemented
 
 ## Build from Source
 
