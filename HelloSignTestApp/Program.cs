@@ -52,7 +52,7 @@ namespace HelloSignTestApp
             tRequest.Subject = "Purchase Order";
             tRequest.Message = "Glad we could come to an agreement.";
             tRequest.AddSigner("Client", "george@example.com", "George");
-            tRequest.AddCc("Accounting", "accounting@hellosign.com");
+            tRequest.AddCc("Accounting", "accounting@example.com");
             tRequest.AddCustomField("Cost", "$20,000");
             tRequest.TestMode = true;
             var tResponse = client.SendSignatureRequest(tRequest);
