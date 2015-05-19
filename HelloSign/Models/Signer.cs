@@ -2,11 +2,9 @@
 
 namespace HelloSign
 {
-    public class Signer
+    public class Signer : SignerRole
     {
         public string EmailAddress { get; set; }
-        public string Name { get; set; }
-        public int? Order { get; set; }
         public string Pin { get; set; }
         public string Role { get; set; }
 

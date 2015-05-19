@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace HelloSign
 {
@@ -9,9 +10,9 @@ namespace HelloSign
         public string SignerName { get; set; }
         public int? Order { get; set; }
         public string StatusCode { get; set; }
-        //SignedAt
-        //LastViewedAt
-        //LastRemindedAt
+        public DateTime SignedAt { get; set; }
+        public DateTime LastViewedAt { get; set; }
+        public DateTime LastRemindedAt { get; set; }
         public bool HasPin { get; set; }
     }
 }

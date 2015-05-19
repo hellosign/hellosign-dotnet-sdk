@@ -62,6 +62,7 @@ namespace HelloSign
             // Handle errors
             if (response.ErrorException != null)
             {
+                throw response.ErrorException;
                 const string message = "Error retrieving response.  Check inner details for more info.";
                 throw new ApplicationException(message, response.ErrorException);
             }
@@ -314,7 +315,7 @@ namespace HelloSign
             // Add CCs
             foreach (var entry in signatureRequest.Ccs)
             {
-                request.AddParameter(String.Format("cc_email_addresses[{0}]", entry.Key), entry.Value); // TODO: Escape characters in key
+                request.AddParameter(String.Format("ccs[{0}][email_address]", entry.Key), entry.Value); // TODO: Escape characters in key
             }
 
             // Add Custom Fields
@@ -421,11 +422,221 @@ namespace HelloSign
 
         #endregion
 
-        // TODO: Template
+        #region Template Methods
 
-        // TODO: Team
+        /// <summary>
+        /// Get information about a Template.
+        /// </summary>
+        /// <param name="templateId">The alphanumeric Template ID.</param>
+        /// <returns>The Template</returns>
+        public Template GetTemplate(string templateId)
+        {
+            RequireAuthentication();
 
-        // TODO: Unclaimed Draft
+            var request = new RestRequest("template/{id}");
+            request.AddUrlSegment("id", templateId);
+            request.RootElement = "template";
+            return Execute<Template>(request);
+        }
+
+        // TODO: ListTemplates(int page, int pageSize)
+
+        /// <summary>
+        /// Internal method for issuing add_user or remove_user calls for templates.
+        /// </summary>
+        /// <param name="templateId">The template ID.</param>
+        /// <param name="isGrant">True if granting, false if revoking.</param>
+        /// <param name="isEmailAddress">True if identifier is an email address, false if it's a GUID.</param>
+        /// <param name="identifier">The email address or GUID.</param>
+        /// <returns></returns>
+        private Template _ModifyTemplatePermission(string templateId, bool isGrant, string accountId, string emailAddress)
+        {
+            RequireAuthentication();
+
+            if ((accountId != null) && (emailAddress != null))
+            {
+                throw new ArgumentException("Specify accountId OR emailAddress, but not both");
+            }
+
+            var request = new RestRequest("template/{action}_user/{id}");
+            request.AddUrlSegment("action", (isGrant) ? "add" : "remove");
+            request.AddUrlSegment("id", templateId);
+            if (accountId != null)
+                request.AddParameter("account_id", accountId);
+            else if (emailAddress != null)
+                request.AddParameter("email_address", emailAddress);
+            else
+                throw new ArgumentException("accountId or emailAddress is required");
+            request.RootElement = "template";
+            return Execute<Template>(request);
+        }
+
+        /// <summary>
+        /// Grant an account access to an existing template.
+        ///
+        /// Specify a value for either accountId OR emailAddress (not both).
+        /// </summary>
+        /// <param name="templateId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="emailAddress"></param>
+        /// <returns></returns>
+        public Template AddAccountToTemplate(string templateId, string accountId = null, string emailAddress = null)
+        {
+            return _ModifyTemplatePermission(templateId, true, accountId, emailAddress);
+        }
+
+        /// <summary>
+        /// Revoke access to an existing template from an account.
+        ///
+        /// Specify a value for either accountId OR emailAddress (not both).
+        /// </summary>
+        /// <param name="templateId"></param>
+        /// <param name="accountId"></param>
+        /// <param name="emailAddress"></param>
+        /// <returns></returns>
+        public Template RemoveAccountFromTemplate(string templateId, string accountId = null, string emailAddress = null)
+        {
+            return _ModifyTemplatePermission(templateId, false, accountId, emailAddress);
+        }
+
+        // TODO: public EmbeddedTemplate CreateEmbeddedTemplateDraft(EmbeddedTemplateDraft draft)
+
+        /// <summary>
+        /// Delete a Template.
+        /// </summary>
+        /// <param name="templateId">The alphanumeric Template ID.</param>
+        public void DeleteTemplate(string templateId)
+        {
+            RequireAuthentication();
+
+            var request = new RestRequest("template/delete/{id}", Method.POST);
+            request.AddUrlSegment("id", templateId);
+            client.Execute(request);
+        }
+
+        #endregion
+
+        #region Team Methods
+
+        /// <summary>
+        /// Get information about your current team.
+        /// </summary>
+        /// <returns>The Team object</returns>
+        public Team GetTeam()
+        {
+            RequireAuthentication();
+
+            var request = new RestRequest("team");
+            request.RootElement = "team";
+            return Execute<Team>(request);
+        }
+
+        /// <summary>
+        /// Create a new team.
+        /// 
+        /// Will fail if you are already on a team.
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        public Team CreateTeam(string name)
+        {
+            RequireAuthentication();
+
+            var request = new RestRequest("team/create", Method.POST);
+            request.AddParameter("name", name);
+            request.RootElement = "team";
+            return Execute<Team>(request);
+        }
+
+        /// <summary>
+        /// Update the name of your current team.
+        /// </summary>
+        /// <param name="name">The new name.</param>
+        /// <returns></returns>
+        public Team UpdateTeamName(string name)
+        {
+            RequireAuthentication();
+
+            var request = new RestRequest("team");
+            request.AddParameter("name", name);
+            request.RootElement = "team";
+            return Execute<Team>(request);
+        }
+
+        /// <summary>
+        /// Destroy your team.
+        /// </summary>
+        public void DeleteTeam()
+        {
+            RequireAuthentication();
+
+            var request = new RestRequest("team/destroy", Method.POST);
+            client.Execute(request);
+        }
+
+        /// <summary>
+        /// Internal method for adding/removing someone from your team.
+        /// </summary>
+        /// <param name="isAdd">True if adding, false if removing.</param>
+        /// <param name="accountId"></param>
+        /// <param name="emailAddress"></param>
+        /// <returns></returns>
+        private Team _ModifyTeamMembership(bool isAdd, string accountId, string emailAddress)
+        {
+            RequireAuthentication();
+
+            if ((accountId != null) && (emailAddress != null))
+            {
+                throw new ArgumentException("Specify accountId OR emailAddress, but not both");
+            }
+
+            var request = new RestRequest("team/{action}_member");
+            request.AddUrlSegment("action", (isAdd) ? "add" : "remove");
+            if (accountId != null)
+                request.AddParameter("account_id", accountId);
+            else if (emailAddress != null)
+                request.AddParameter("email_address", emailAddress);
+            else
+                throw new ArgumentException("accountId or emailAddress is required");
+            request.RootElement = "team";
+            return Execute<Team>(request);
+        }
+
+        /// <summary>
+        /// Add a member to your team.
+        ///
+        /// Specify a value for either accountId OR emailAddress (not both).
+        /// </summary>
+        /// <param name="accountId"></param>
+        /// <returns></returns>
+        public Team AddMemberToTeam(string accountId = null, string emailAddress = null)
+        {
+            return _ModifyTeamMembership(true, accountId, emailAddress);
+        }
+
+        /// <summary>
+        /// Remove a member from your team.
+        ///
+        /// Specify a value for either accountId OR emailAddress (not both).
+        /// </summary>
+        /// <param name="accountId"></param>
+        /// <returns></returns>
+        public Team RemoveMemberFromTeam(string accountId = null, string emailAddress = null)
+        {
+            return _ModifyTeamMembership(false, accountId, emailAddress);
+        }
+
+        #endregion
+
+        #region Unclaimed Draft Methods
+
+        // TODO: CreateUnclaimedDraft(...)
+
+        // TODO: CreateEmbeddedUnclaimedDraft(...)
+
+        // TODO: CreateEmbeddedUnclaimedDraftWithTemplate(...)
+
+        #endregion
 
         #region Embedded Methods
 

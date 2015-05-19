@@ -48,6 +48,9 @@
     <Compile Include="Models\Embedded.cs" />
     <Compile Include="Models\Signature.cs" />
     <Compile Include="Models\BaseSignatureRequest.cs" />
+    <Compile Include="Models\SignerRole.cs" />
+    <Compile Include="Models\Team.cs" />
+    <Compile Include="Models\Template.cs" />
     <Compile Include="Models\TemplateSignatureRequest.cs" />
     <Compile Include="Models\Signer.cs" />
     <Compile Include="Models\SignatureRequest.cs" />

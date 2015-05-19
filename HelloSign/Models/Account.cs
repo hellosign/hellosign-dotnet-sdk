@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace HelloSign
 {
@@ -12,10 +13,10 @@ namespace HelloSign
 
         public string AccountId { get; set; }
         public string EmailAddress { get; set; }
-        public bool IsPaidHs { get; set; }
-        public bool IsPaidHf { get; set; }
+        public bool? IsPaidHs { get; set; }
+        public bool? IsPaidHf { get; set; }
         public string CallbackUrl { get; set; }
         public Dictionary<string, int?> Quotas { get; set; }
-        public Role RoleCode { get; set; }
+        public string RoleCode { get; set; }
     }
 }
