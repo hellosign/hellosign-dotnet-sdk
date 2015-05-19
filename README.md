@@ -15,8 +15,9 @@ using HelloSign;
 Create a client object:
 
 ```C#
-// Create a client object
-var client = new Client("your account API key here");
+var client = new Client("ACCOUNT API KEY HERE"); // Preferred
+// Or...
+var client = new Client("EMAIL ADDRESS HERE", "PASSWORD HERE"); // Not preferred
 ```
 
 ### Account Methods
