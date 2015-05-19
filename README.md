@@ -148,14 +148,14 @@ client.DownloadSignatureRequestFiles("SIGNATURE REQUEST ID HERE", SignatureReque
 #### Retrieve Embedded Signing URL for a particular signer
 
 ```C#
-response = client.GetSignUrl("SIGNATURE ID HERE");
+var response = client.GetSignUrl("SIGNATURE ID HERE");
 Console.WriteLine("Signature URL for HelloSign.open(): " + response.SignUrl);
 ```
 
 #### Retrieve Embedded Templates Editing URL
 
 ```C#
-response = client.GetEditUrl("EMBEDDED TEMPLATE ID HERE");
+var response = client.GetEditUrl("EMBEDDED TEMPLATE ID HERE");
 Console.WriteLine("Editing URL for HelloSign.open(): " + response.EditUrl);
 ```
 
@@ -165,11 +165,75 @@ Not implemented
 
 ### Template Methods
 
-Not implemented
+#### Get Template details
+
+```C#
+var template = client.GetTemplate("TEMPLATE ID HERE");
+```
+
+#### Add an Account to a Template
+
+```C#
+var template = client.AddAccountToTemplate("TEMPLATE ID HERE", "ACCOUNT ID HERE");
+// Or...
+var template = client.AddAccountToTemplate("TEMPLATE ID HERE", null, "EMAIL ADDRESS HERE");
+```
+
+#### Remove an Account from a Template
+
+```C#
+var template = client.RemoveAccountFromTemplate("TEMPLATE ID HERE", "ACCOUNT ID HERE");
+// Or...
+var template = client.RemoveAccountFromTemplate("TEMPLATE ID HERE", null, "EMAIL ADDRESS HERE");
+```
+
+#### Delete a Template
+
+```C#
+var template = client.DeleteTemplate("TEMPLATE ID HERE");
+```
 
 ### Team Methods
 
-Not Implemented
+#### Get your Team details
+
+```C#
+var team = client.GetTeam();
+```
+
+#### Create a new Team
+
+```C#
+var team = client.CreateTeam("NAME HERE");
+```
+
+#### Update your Team name
+
+```C#
+var team = client.UpdateTeamName("NAME HERE");
+```
+
+#### Delete your Team
+
+```C#
+var team = client.DeleteTeam();
+```
+
+#### Add a member to your Team
+
+```C#
+var team = AddMemberToTeam("ACCOUNT ID HERE");
+// Or...
+var team = AddMemberToTeam(null, "EMAIL ADDRESS HERE");
+```
+
+#### Remove a member from your Team
+
+```C#
+var team = RemoveMemberFromTeam("ACCOUNT ID HERE");
+// Or...
+var team = RemoveMemberFromTeam(null, "EMAIL ADDRESS HERE");
+```
 
 ## Build from Source
 

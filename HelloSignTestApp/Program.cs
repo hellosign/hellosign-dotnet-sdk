@@ -11,11 +11,17 @@ namespace HelloSignTestApp
             var client = new Client("API KEY GOES HERE");
             client.SetEnvironment(Client.Environment.Staging);
             
-            // Call API
+            // Get account
             var account = client.GetAccount();
             //var account = client.CreateAccount("jack@example.com");
             //var account = client.UpdateAccount(new Uri("http://example.com"));
             Console.WriteLine("My Account ID: " + account.AccountId);
+
+            // Create and delete team
+            client.DeleteTeam();
+            client.CreateTeam("Test Program");
+            var team = client.GetTeam();
+            Console.WriteLine("My Team Name: " + team.Name);
 
             // Get signature request
             //var signatureRequest = client.GetSignatureRequest("DOCUMENT ID GOES HERE");
