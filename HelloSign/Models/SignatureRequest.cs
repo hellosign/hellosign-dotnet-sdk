@@ -4,6 +4,9 @@ using RestSharp;
 
 namespace HelloSign
 {
+    /// <summary>
+    /// A file-based (not template-based) HelloSign Signature Request.
+    /// </summary>
     public class SignatureRequest : BaseSignatureRequest
     {
         public enum FileType

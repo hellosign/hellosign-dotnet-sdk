@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace HelloSign
 {
+    /// <summary>
+    /// Representation of a HelloSign Account object.
+    /// </summary>
     public class Account
     {
         public enum Role

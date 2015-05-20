@@ -3,6 +3,10 @@ using System.Collections.Generic;
 
 namespace HelloSign
 {
+    /// <summary>
+    /// Information corresponding to a signer on an existing Signature Request
+    /// and their activity.
+    /// </summary>
     public class Signature
     {
         public string SignatureId { get; set; }

@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace HelloSign
 {
+    /// <summary>
+    /// Representation of a HelloSign Template object.
+    /// </summary>
     public class Template
     {
         public string TemplateId { get; set; }

@@ -2,6 +2,9 @@
 
 namespace HelloSign
 {
+    /// <summary>
+    /// Information about a recipient (a signer) of a Signature Request.
+    /// </summary>
     public class Signer : SignerRole
     {
         public string EmailAddress { get; set; }

@@ -20,6 +20,19 @@ var client = new Client("ACCOUNT API KEY HERE"); // Preferred
 var client = new Client("EMAIL ADDRESS HERE", "PASSWORD HERE"); // Not preferred
 ```
 
+### Error Handling
+
+Most methods will throw a relevant exception if something goes wrong.
+This includes when our server returns an error message documented [here](https://www.hellosign.com/api/reference#ErrorNames).
+
+You should always be prepared to catch these exceptions and handle them appropriately.
+Refer to HelloSign/Exceptions.cs in this repository for information about the custom exception classes this library defines.
+
+#### Warnings
+
+Some API responses include one or more warnings if there was a non-fatal problem with your request.
+At any time, you may inspect the contents of `client.Warnings` (a List of HelloSign.Warning objects) and output them as you see fit.
+
 ### Account Methods
 
 #### Get your Account details

@@ -2,6 +2,9 @@
 
 namespace HelloSign
 {
+    /// <summary>
+    /// Information about a Custom Field in a Template.
+    /// </summary>
     public class CustomField
     {
         public string Name { get; set; }

@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace HelloSign
 {
+    /// <summary>
+    /// Representation of a HelloSign Team object.
+    /// </summary>
     public class Team
     {
         public string Name { get; set; }

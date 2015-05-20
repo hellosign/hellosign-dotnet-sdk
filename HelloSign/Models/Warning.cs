@@ -2,6 +2,9 @@
 
 namespace HelloSign
 {
+    /// <summary>
+    /// Representation of a HelloSign Warning object.
+    /// </summary>
     public class Warning
     {
         public string WarningName { get; set; }

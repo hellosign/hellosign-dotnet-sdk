@@ -5,7 +5,7 @@ using RestSharp;
 namespace HelloSign
 {
     /// <summary>
-    /// Signature Request based on a Template.
+    /// A Signature Request based on a Template.
     /// </summary>
     public class TemplateSignatureRequest : BaseSignatureRequest
     {
