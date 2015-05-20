@@ -18,9 +18,15 @@ namespace HelloSignTestApp
             Console.WriteLine("My Account ID: " + account.AccountId);
 
             // Create and delete team
-            client.DeleteTeam();
-            client.CreateTeam("Test Program");
-            var team = client.GetTeam();
+            Team team;
+            try
+            {
+                team = client.GetTeam();
+            }
+            catch (NotFoundException)
+            {
+                team = client.CreateTeam("Test Program");
+            }
             Console.WriteLine("My Team Name: " + team.Name);
 
             // Get signature request

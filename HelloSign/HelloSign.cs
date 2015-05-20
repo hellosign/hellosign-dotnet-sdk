@@ -6,6 +6,9 @@ using RestSharp;
 
 namespace HelloSign
 {
+    /// <summary>
+    /// Wrapper for interacting with the HelloSign API.
+    /// </summary>
     public class Client
     {
         /// <summary>
@@ -17,6 +20,7 @@ namespace HelloSign
         }
 
         private RestClient client;
+        public List<Warning> Warnings { get; private set; }
 
         /// <summary>
         /// Default constructor with no authentication.
@@ -25,6 +29,7 @@ namespace HelloSign
         public Client()
         {
             client = new RestClient();
+            Warnings = new List<Warning>();
             SetEnvironment(Environment.Prod);
         }
 
@@ -48,6 +53,100 @@ namespace HelloSign
             client.Authenticator = new HttpBasicAuthenticator(username, password);
         }
 
+        private void HandleErrors(IRestResponse response)
+        {
+            // If there was an exception getting the response
+            if (response.ErrorException != null)
+            {
+                const string message = "Error retrieving response.  Check inner details for more info.";
+                throw new ApplicationException(message, response.ErrorException);
+            }
+
+            // Check for errors/warnings from HelloSign
+            if (response.ContentType == "application/json")
+            {
+                // Check for an error
+                var deserializer = new RestSharp.Deserializers.JsonDeserializer();
+                deserializer.RootElement = "error";
+                var error = deserializer.Deserialize<Error>(response);
+                if (error.ErrorName != null)
+                {
+                    switch (error.ErrorName)
+                    {
+                        case "bad_request":
+                            throw new BadRequestException(error.ErrorMsg);
+                        case "unauthorized":
+                            throw new UnauthorizedException(error.ErrorMsg);
+                        case "payment_required":
+                            throw new PaymentRequiredException(error.ErrorMsg);
+                        case "forbidden":
+                            throw new ForbiddenException(error.ErrorMsg);
+                        case "not_found":
+                            throw new NotFoundException(error.ErrorMsg);
+                        case "conflict":
+                            throw new ConflictException(error.ErrorMsg);
+                        case "team_invite_failed":
+                            throw new ForbiddenException(error.ErrorMsg);
+                        case "invalid_recipient":
+                            throw new BadRequestException(error.ErrorMsg);
+                        case "signature_request_cancel_failed":
+                            throw new BadRequestException(error.ErrorMsg);
+                        case "maintenance":
+                            throw new ServiceUnavailableException(error.ErrorMsg);
+                        case "deleted":
+                            throw new GoneException(error.ErrorMsg);
+                        case "unknown":
+                            throw new UnknownException(error.ErrorMsg);
+                        case "method_not_supported":
+                            throw new MethodNotAllowedException(error.ErrorMsg);
+                        case "signature_request_invalid":
+                            throw new Exception(error.ErrorMsg);
+                        case "template_error":
+                            throw new Exception(error.ErrorMsg);
+                        case "invalid_reminder":
+                            throw new BadRequestException(error.ErrorMsg);
+                    }
+                }
+
+                // Look for warnings
+                deserializer.RootElement = "warnings";
+                var warnings = deserializer.Deserialize<List<Warning>>(response);
+                if (warnings[0].WarningName != null)
+                {
+                    Warnings.AddRange(warnings);
+                }
+            }
+
+            // Throw exceptions appropriate for the HTTP status code
+            switch (response.StatusCode)
+            {
+                case HttpStatusCode.BadRequest:
+                    throw new BadRequestException();
+                case HttpStatusCode.Unauthorized:
+                    throw new UnauthorizedException();
+                case HttpStatusCode.PaymentRequired:
+                    throw new PaymentRequiredException();
+                case HttpStatusCode.Forbidden:
+                    throw new ForbiddenException();
+                case HttpStatusCode.NotFound:
+                    throw new NotFoundException();
+                case HttpStatusCode.MethodNotAllowed:
+                    throw new MethodNotAllowedException();
+                case HttpStatusCode.Conflict:
+                    throw new ConflictException();
+                case HttpStatusCode.Gone:
+                    throw new GoneException();
+                case HttpStatusCode.InternalServerError:
+                    throw new UnknownException();
+            }
+
+            // Throw an exception for any non-2xx status code we didn't cover above
+            if (((int)response.StatusCode < 200) || ((int)response.StatusCode >= 300))
+            {
+                throw new ApplicationException("Received status " + response.StatusCode.GetHashCode() + " from server. Full response:\n" + response.Content);
+            }
+        }
+
         /// <summary>
         /// Execute an API call using RestSharp and deserialize the response
         /// into a native object of class T.
@@ -58,20 +157,18 @@ namespace HelloSign
         private T Execute<T>(RestRequest request) where T : new()
         {
             var response = client.Execute<T>(request);
-            
-            // Handle errors
-            if (response.ErrorException != null)
-            {
-                throw response.ErrorException;
-                const string message = "Error retrieving response.  Check inner details for more info.";
-                throw new ApplicationException(message, response.ErrorException);
-            }
-            if (response.StatusCode != HttpStatusCode.OK)
-            {
-                throw new ApplicationException("Received status " + response.StatusCode.GetHashCode() + " from server. Full response:\n" + response.Content);
-            }
-
+            HandleErrors(response);
             return response.Data;
+        }
+
+        /// <summary>
+        /// Execute an API call and return nothing.
+        /// </summary>
+        /// <param name="request">The RestRequest object to execute.</param>
+        private void Execute(RestRequest request)
+        {
+            var response = client.Execute(request);
+            HandleErrors(response);
         }
 
         /// <summary>
@@ -125,7 +222,8 @@ namespace HelloSign
             }
 
             var request = new RestRequest("account/create", Method.POST);
-            request.AddParameter("email_address", emailAddress); 
+            request.AddParameter("email_address", emailAddress);
+            request.AddParameter("password", "trololo");
             request.RootElement = "account";
             return Execute<Account>(request);
         }
