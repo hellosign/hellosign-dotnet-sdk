@@ -223,7 +223,6 @@ namespace HelloSign
 
             var request = new RestRequest("account/create", Method.POST);
             request.AddParameter("email_address", emailAddress);
-            request.AddParameter("password", "trololo");
             request.RootElement = "account";
             return Execute<Account>(request);
         }
