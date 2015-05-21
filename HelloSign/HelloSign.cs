@@ -501,11 +501,12 @@ namespace HelloSign
             RequireAuthentication();
 
             var request = new RestRequest("signature_request/files/{id}");
+            request.AddUrlSegment("id", signatureRequestId);
             if (type == SignatureRequest.FileType.ZIP)
             {
                 request.AddQueryParameter("file_type", "zip");
             }
-            return client.DownloadData(request);
+            return client.DownloadData(request); // TODO: Handle errors
         }
 
         /// <summary>
