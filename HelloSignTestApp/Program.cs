@@ -68,6 +68,23 @@ namespace HelloSignTestApp
             // Cancel that signature request
             client.CancelSignatureRequest(tResponse.SignatureRequestId);
 
+            // Create embedded signature request
+            var eRequest = new SignatureRequest();
+            eRequest.Title = "NDA with Acme Co.";
+            eRequest.Subject = "The NDA we talked about";
+            eRequest.Message = "Please sign this NDA and then we can discuss more. Let me know if you have any questions.";
+            eRequest.AddSigner("jack@example.com", "Jack");
+            eRequest.AddFile("c:\\users\\PATH\\My Documents\\nda.txt");
+            eRequest.Metadata.Add("custom_id", "1234");
+            eRequest.Metadata.Add("custom_text", "NDA #9");
+            eRequest.TestMode = true;
+            var eResponse = client.CreateEmbeddedSignatureRequest(eRequest, "CLIENT ID GOES HERE");
+            Console.WriteLine("New Embedded Signature Request ID: " + eResponse.SignatureRequestId);
+
+            // Get embedded signing URL
+            var embedded = client.GetSignUrl(eResponse.Signatures[0].SignatureId);
+            Console.WriteLine("First Signature Sign URL: " + embedded.SignUrl);
+
             Console.WriteLine("Press ENTER to exit.");
             Console.Read(); // Keeps the output window open
         }
