@@ -74,37 +74,39 @@ namespace HelloSign
                     switch (error.ErrorName)
                     {
                         case "bad_request":
-                            throw new BadRequestException(error.ErrorMsg);
+                            throw new BadRequestException(error.ErrorMsg, error.ErrorName);
                         case "unauthorized":
-                            throw new UnauthorizedException(error.ErrorMsg);
+                            throw new UnauthorizedException(error.ErrorMsg, error.ErrorName);
                         case "payment_required":
-                            throw new PaymentRequiredException(error.ErrorMsg);
+                            throw new PaymentRequiredException(error.ErrorMsg, error.ErrorName);
                         case "forbidden":
-                            throw new ForbiddenException(error.ErrorMsg);
+                            throw new ForbiddenException(error.ErrorMsg, error.ErrorName);
                         case "not_found":
-                            throw new NotFoundException(error.ErrorMsg);
+                            throw new NotFoundException(error.ErrorMsg, error.ErrorName);
                         case "conflict":
-                            throw new ConflictException(error.ErrorMsg);
+                            throw new ConflictException(error.ErrorMsg, error.ErrorName);
                         case "team_invite_failed":
-                            throw new ForbiddenException(error.ErrorMsg);
+                            throw new ForbiddenException(error.ErrorMsg, error.ErrorName);
                         case "invalid_recipient":
-                            throw new BadRequestException(error.ErrorMsg);
+                            throw new BadRequestException(error.ErrorMsg, error.ErrorName);
                         case "signature_request_cancel_failed":
-                            throw new BadRequestException(error.ErrorMsg);
+                            throw new BadRequestException(error.ErrorMsg, error.ErrorName);
                         case "maintenance":
-                            throw new ServiceUnavailableException(error.ErrorMsg);
+                            throw new ServiceUnavailableException(error.ErrorMsg, error.ErrorName);
                         case "deleted":
-                            throw new GoneException(error.ErrorMsg);
+                            throw new GoneException(error.ErrorMsg, error.ErrorName);
                         case "unknown":
-                            throw new UnknownException(error.ErrorMsg);
+                            throw new UnknownException(error.ErrorMsg, error.ErrorName);
                         case "method_not_supported":
-                            throw new MethodNotAllowedException(error.ErrorMsg);
+                            throw new MethodNotAllowedException(error.ErrorMsg, error.ErrorName);
                         case "signature_request_invalid":
-                            throw new Exception(error.ErrorMsg);
+                            throw new ErrorException(error.ErrorMsg, error.ErrorName);
                         case "template_error":
-                            throw new Exception(error.ErrorMsg);
+                            throw new ErrorException(error.ErrorMsg, error.ErrorName);
                         case "invalid_reminder":
-                            throw new BadRequestException(error.ErrorMsg);
+                            throw new BadRequestException(error.ErrorMsg, error.ErrorName);
+                        default:
+                            throw new ErrorException(error.ErrorMsg, error.ErrorName);
                     }
                 }
 
@@ -141,9 +143,10 @@ namespace HelloSign
             }
 
             // Throw an exception for any non-2xx status code we didn't cover above
-            if (((int)response.StatusCode < 200) || ((int)response.StatusCode >= 300))
+            var statusCode = (int)response.StatusCode;
+            if ((statusCode < 200) || (statusCode >= 300))
             {
-                throw new ApplicationException("Received status " + response.StatusCode.GetHashCode() + " from server. Full response:\n" + response.Content);
+                throw new ApplicationException("Received status " + statusCode + " from server. Full response:\n" + response.Content);
             }
         }
 
