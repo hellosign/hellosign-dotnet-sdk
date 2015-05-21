@@ -5,10 +5,17 @@ namespace HelloSignTestApp
 {
     class Program
     {
+        // Configuration
+        const string API_KEY = "Your Account API Key goes here";
+        const string CLIENT_ID = "Your API App Client ID goes here";
+        const string TEMPLATE_ID = "ID of the test template goes here";
+        const string TEST_FILE_1_PATH = "Absolute path to first test document goes here";
+        const string TEST_FILE_2_PATH = "Absolute path to second test document goes here";
+
         static void Main(string[] args)
         {
             // Client setup
-            var client = new Client("API KEY GOES HERE");
+            var client = new Client(API_KEY);
             client.SetEnvironment(Client.Environment.Staging);
             
             // Get account
@@ -22,12 +29,20 @@ namespace HelloSignTestApp
             try
             {
                 team = client.GetTeam();
+                Console.WriteLine("My Team Name: " + team.Name);
             }
             catch (NotFoundException)
             {
-                team = client.CreateTeam("Test Program");
+                try
+                {
+                    team = client.CreateTeam("Test Program");
+                    Console.WriteLine("Created Team Named: " + team.Name);
+                }
+                catch (BadRequestException)
+                {
+                    Console.WriteLine("Couldn't get or create team.");
+                }
             }
-            Console.WriteLine("My Team Name: " + team.Name);
 
             // Get signature request
             //var signatureRequest = client.GetSignatureRequest("DOCUMENT ID GOES HERE");
@@ -41,8 +56,8 @@ namespace HelloSignTestApp
             request.AddSigner("jack@example.com", "Jack");
             request.AddSigner("jill@example.com", "Jill");
             request.AddCc("lawyer@example.com");
-            request.AddFile("c:\\users\\PATH\\My Documents\\nda.txt");
-            request.AddFile("c:\\users\\PATH\\My Documents\\AppendixA.txt");
+            request.AddFile(TEST_FILE_1_PATH);
+            request.AddFile(TEST_FILE_2_PATH);
             request.Metadata.Add("custom_id", "1234");
             request.Metadata.Add("custom_text", "NDA #9");
             request.TestMode = true;
@@ -54,7 +69,7 @@ namespace HelloSignTestApp
 
             // Send signature request with template
             var tRequest = new TemplateSignatureRequest();
-            tRequest.TemplateId = "TEMPLATE ID GOES HERE";
+            tRequest.TemplateId = TEMPLATE_ID;
             tRequest.Subject = "Purchase Order";
             tRequest.Message = "Glad we could come to an agreement.";
             tRequest.AddSigner("Client", "george@example.com", "George");
@@ -74,11 +89,11 @@ namespace HelloSignTestApp
             eRequest.Subject = "The NDA we talked about";
             eRequest.Message = "Please sign this NDA and then we can discuss more. Let me know if you have any questions.";
             eRequest.AddSigner("jack@example.com", "Jack");
-            eRequest.AddFile("c:\\users\\PATH\\My Documents\\nda.txt");
+            eRequest.AddFile(TEST_FILE_1_PATH);
             eRequest.Metadata.Add("custom_id", "1234");
             eRequest.Metadata.Add("custom_text", "NDA #9");
             eRequest.TestMode = true;
-            var eResponse = client.CreateEmbeddedSignatureRequest(eRequest, "CLIENT ID GOES HERE");
+            var eResponse = client.CreateEmbeddedSignatureRequest(eRequest, CLIENT_ID);
             Console.WriteLine("New Embedded Signature Request ID: " + eResponse.SignatureRequestId);
 
             // Get embedded signing URL
