@@ -23,7 +23,7 @@ namespace HelloSign
         public string SigningRedirectUrl { get; set; }
         public string DetailsUrl { get; set; }
         public string RequesterEmailAddress { get; set; }
-        //public List<Signature> Signatures { get; set; }
+        public List<Signature> Signatures { get; set; }
         public List<string> CcEmailAddresses { get; set; }
 
         public List<Signer> Signers = new List<Signer>();
