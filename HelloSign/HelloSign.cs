@@ -289,6 +289,19 @@ namespace HelloSign
             return Execute<Account>(request);
         }
 
+        public Account VerifyAccount(string emailAddress)
+        {
+            if (String.IsNullOrWhiteSpace(emailAddress))
+            {
+                throw new ArgumentException("email_address is required");
+            }
+
+            var request = new RestRequest("account/verify", Method.POST);
+            request.AddParameter("email_address", emailAddress);
+            request.RootElement = "account";
+            return Execute<Account>(request);
+        }
+
         #endregion
 
         #region Signature Request Methods
