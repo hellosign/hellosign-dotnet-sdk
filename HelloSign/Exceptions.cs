@@ -74,4 +74,10 @@ namespace HelloSign
         public ServiceUnavailableException(string message) : base(message) { }
         public ServiceUnavailableException(string message, string name) : base(message, name) { }
     }
+    public class ExceededRateLimitException : ErrorException
+    {
+        public ExceededRateLimitException() : base() { }
+        public ExceededRateLimitException(string message) : base(message) { }
+        public ExceededRateLimitException(string message, string name) : base(message, name) { }
+    }
 }
