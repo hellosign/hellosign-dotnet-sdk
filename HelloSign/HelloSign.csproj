@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Exceptions.cs" />
     <Compile Include="Models\CustomField.cs" />
+    <Compile Include="Models\ObjectList.cs" />
     <Compile Include="Models\Embedded.cs" />
     <Compile Include="Models\Warning.cs" />
     <Compile Include="Models\Signature.cs" />

@@ -17,10 +17,13 @@ namespace HelloSign
         public enum Environment {
             Prod,
             Staging,
+            Dev
         }
 
         private RestClient client;
+        private RestSharp.Deserializers.JsonDeserializer deserializer;
         public List<Warning> Warnings { get; private set; }
+
 
         /// <summary>
         /// Default constructor with no authentication.
@@ -29,6 +32,7 @@ namespace HelloSign
         public Client()
         {
             client = new RestClient();
+            deserializer = new RestSharp.Deserializers.JsonDeserializer();
             Warnings = new List<Warning>();
             SetEnvironment(Environment.Prod);
         }
@@ -66,7 +70,6 @@ namespace HelloSign
             if (response.ContentType == "application/json")
             {
                 // Check for an error
-                var deserializer = new RestSharp.Deserializers.JsonDeserializer();
                 deserializer.RootElement = "error";
                 var error = deserializer.Deserialize<Error>(response);
                 if (error.ErrorName != null)
@@ -105,6 +108,8 @@ namespace HelloSign
                             throw new ErrorException(error.ErrorMsg, error.ErrorName);
                         case "invalid_reminder":
                             throw new BadRequestException(error.ErrorMsg, error.ErrorName);
+                        case "exceeded_rate":
+                            throw new ExceededRateLimitException(error.ErrorMsg, error.ErrorName);
                         default:
                             throw new ErrorException(error.ErrorMsg, error.ErrorName);
                     }
@@ -163,6 +168,22 @@ namespace HelloSign
             HandleErrors(response);
             return response.Data;
         }
+        
+        private ObjectList<T> ExecuteList<T>(RestRequest request, string arrayKey) where T : new()
+        {
+            var response = client.Execute(request);
+            HandleErrors(response);
+            
+            deserializer.RootElement = "list_info";
+            var list = deserializer.Deserialize<ObjectList<T>>(response);
+            
+            // TODO: Check response sanity
+            deserializer.RootElement = arrayKey;
+            var items = deserializer.Deserialize<List<T>>(response);
+            list.Items = items;
+            
+            return list;
+        }
 
         /// <summary>
         /// Execute an API call and return nothing.
@@ -189,6 +210,16 @@ namespace HelloSign
                     break;
                 case Environment.Staging:
                     baseUrl = "https://api-staging.hellosign.com/v3";
+                    break;
+                case Environment.Dev:
+                    baseUrl = "https://www.dev-hellosign.com/apiapp.php/v3";
+                    System.Net.ServicePointManager.ServerCertificateValidationCallback +=
+                        delegate (object sender, System.Security.Cryptography.X509Certificates.X509Certificate certificate,
+                                System.Security.Cryptography.X509Certificates.X509Chain chain,
+                                System.Net.Security.SslPolicyErrors sslPolicyErrors)
+                        {
+                            return true; // **** Always accept
+                        };
                     break;
                 default:
                     throw new ArgumentException("Unsupported environment given");
@@ -275,6 +306,14 @@ namespace HelloSign
             request.AddUrlSegment("id", signatureRequestId);
             request.RootElement = "signature_request";
             return Execute<SignatureRequest>(request);
+        }
+        
+        public ObjectList<SignatureRequest> ListSignatureRequests()
+        {
+            RequireAuthentication();
+            
+            var request = new RestRequest("signature_request/list");
+            return ExecuteList<SignatureRequest>(request, "signature_requests");
         }
 
         /// <summary>
