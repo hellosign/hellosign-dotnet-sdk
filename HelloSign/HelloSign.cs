@@ -168,20 +168,20 @@ namespace HelloSign
             HandleErrors(response);
             return response.Data;
         }
-        
+
         private ObjectList<T> ExecuteList<T>(RestRequest request, string arrayKey) where T : new()
         {
             var response = client.Execute(request);
             HandleErrors(response);
-            
+
             deserializer.RootElement = "list_info";
             var list = deserializer.Deserialize<ObjectList<T>>(response);
-            
+
             // TODO: Check response sanity
             deserializer.RootElement = arrayKey;
             var items = deserializer.Deserialize<List<T>>(response);
             list.Items = items;
-            
+
             return list;
         }
 
@@ -307,12 +307,20 @@ namespace HelloSign
             request.RootElement = "signature_request";
             return Execute<SignatureRequest>(request);
         }
-        
-        public ObjectList<SignatureRequest> ListSignatureRequests()
+
+        public ObjectList<SignatureRequest> ListSignatureRequests(int? page = null, int? pageSize = null)
         {
             RequireAuthentication();
-            
+
             var request = new RestRequest("signature_request/list");
+            if (page != null)
+            {
+                request.AddParameter("page", page);
+            }
+            if (pageSize != null)
+            {
+                request.AddParameter("page_size", pageSize);
+            }
             return ExecuteList<SignatureRequest>(request, "signature_requests");
         }
 
@@ -391,7 +399,7 @@ namespace HelloSign
 
         /// <summary>
         /// Create a new file-based Signature Request (NOT for Embedded Signing).
-        /// 
+        ///
         /// Create a new SignatureRequest object, set its properties, and pass
         /// it to this method.
         /// </summary>
@@ -404,7 +412,7 @@ namespace HelloSign
 
         /// <summary>
         /// Create a new file-based Signature Request for Embedded Signing.
-        /// 
+        ///
         /// Create a new SignatureRequest object, set its properties, and pass
         /// it to this method.
         /// </summary>
@@ -475,7 +483,7 @@ namespace HelloSign
 
         /// <summary>
         /// Send a new Signature Request based on a Template.
-        /// 
+        ///
         /// Create a new TemplateSignatureRequest object, set its properties,
         /// and pass it to this method.
         /// </summary>
@@ -488,7 +496,7 @@ namespace HelloSign
 
         /// <summary>
         /// Send a new Signature Request for Embedded Signing based on a Template.
-        /// 
+        ///
         /// Create a new TemplateSignatureRequest object, set its properties,
         /// and pass it to this method.
         /// </summary>
@@ -579,7 +587,21 @@ namespace HelloSign
             return Execute<Template>(request);
         }
 
-        // TODO: ListTemplates(int page, int pageSize)
+        public ObjectList<Template> ListTemplates(int? page = null, int? pageSize = null)
+        {
+            RequireAuthentication();
+
+            var request = new RestRequest("template/list");
+            if (page != null)
+            {
+                request.AddParameter("page", page);
+            }
+            if (pageSize != null)
+            {
+                request.AddParameter("page_size", pageSize);
+            }
+            return ExecuteList<Template>(request, "templates");
+        }
 
         /// <summary>
         /// Internal method for issuing add_user or remove_user calls for templates.
@@ -673,7 +695,7 @@ namespace HelloSign
 
         /// <summary>
         /// Create a new team.
-        /// 
+        ///
         /// Will fail if you are already on a team.
         /// </summary>
         /// <param name="name"></param>
