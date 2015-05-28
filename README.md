@@ -264,7 +264,7 @@ Use Visual Studio (Express).
 5. `mkdir ../packages`
 6. `mv RestSharp* ../packages`
 7. `cd ..`
-8. `xbuild`
+8. `xbuild` (or `xbuild /p:Configuration=Release` for a non-Debug build)
 
 ## License
 

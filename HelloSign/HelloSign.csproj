@@ -58,6 +58,7 @@
     <Compile Include="Models\TemplateSignatureRequest.cs" />
     <Compile Include="Models\Signer.cs" />
     <Compile Include="Models\SignatureRequest.cs" />
+    <Compile Include="Models\UnclaimedDraft.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="HelloSign.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

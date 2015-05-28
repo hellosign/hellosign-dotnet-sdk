@@ -6,7 +6,7 @@ namespace HelloSignTestApp
     class Program
     {
         // Configuration
-        const string API_KEY = "Your Account API Key goes here";
+        const string API_KEY = "e1bb4fdad736b4d7f350cff23d8ffa3c1538fd853e1c7d0c8c9007d57eb4f66b";
         const string CLIENT_ID = "Your API App Client ID goes here";
         const string TEMPLATE_ID = "ID of the test template goes here";
         const string TEST_FILE_1_PATH = "Absolute path to first test document goes here";
@@ -16,13 +16,22 @@ namespace HelloSignTestApp
         {
             // Client setup
             var client = new Client(API_KEY);
-            client.SetEnvironment(Client.Environment.Staging);
-            
+            client.SetEnvironment(Client.Environment.Dev);
+
             // Get account
             var account = client.GetAccount();
-            //var account = client.CreateAccount("jack@example.com");
+            //var account = client.CreateAccount("stephen@hellosign.com");
             //var account = client.UpdateAccount(new Uri("http://example.com"));
-            Console.WriteLine("My Account ID: " + account.AccountId);
+            //Console.WriteLine("My Account ID: " + account.AccountId);
+
+            // List sig requests
+            var requests = client.ListTemplates();
+            Console.WriteLine("Found this many templates: " + requests.NumResults);
+            foreach (var result in requests)
+            {
+                Console.WriteLine("List item: " + result.TemplateId);
+            }
+            return;
 
             // Create and delete team
             Team team;

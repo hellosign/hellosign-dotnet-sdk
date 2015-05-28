@@ -15,12 +15,22 @@ namespace HelloSign
             PDF
         }
 
-        public List<string> Ccs = new List<string>();
-        public List<FileContainer> Files = new List<FileContainer>();
-        public List<string> FileUrls = new List<string>();
+        public List<string> Ccs { get; private set; }
+        public List<FileContainer> Files { get; private set; }
+        public List<string> FileUrls { get; private set; }
+        public bool UseTextTags { get; set; }
+        public bool HideTextTags { get; set; }
+        // TODO: public List<FormField> FormFieldsPerDocument { get; private set; }
+        
+        public SignatureRequest() : base()
+        {
+            Ccs = new List<string>();
+            Files = new List<FileContainer>();
+            FileUrls = new List<string>();
+        }
 
         /// <summary>
-        /// Convenience method for adding a CC email address.
+        /// Add a CC email address to the request.
         /// </summary>
         /// <param name="emailAddress"></param>
         public void AddCc(string emailAddress)
@@ -37,13 +47,30 @@ namespace HelloSign
         {
             if (FileUrls.Count > 0)
             {
-                throw new NotSupportedException("Cannot use AddFile and AddFileUrl in the same request");
+                throw new NotSupportedException("Cannot add local and remote files in the same request");
             }
 
             var file = new FileContainer();
             file.Path = path;
             file.ContentType = contentType;
             Files.Add(file);
+        }
+        
+        /// <summary>
+        /// Add a file to the signature request by giving its remote address.
+        /// </summary>
+        public void AddFile(Uri uri)
+        {
+            if (Files.Count > 0)
+            {
+                throw new NotSupportedException("Cannot add local and remote files in the same request");
+            }
+            if ((uri.Scheme != "http") && (uri.Scheme != "https"))
+            {
+                throw new ArgumentException("Only HTTP or HTTPS URIs are allowed");
+            }
+            
+            FileUrls.Add(uri.AbsoluteUri);
         }
     }
 
@@ -85,5 +112,29 @@ namespace HelloSign
 
             return request;
         }
+    }
+    
+    public class FormField
+    {
+        public enum FormFieldType
+        {
+            Text,
+            Checkbox,
+            DateSigned,
+            Initials,
+            Signature
+        }
+        
+        public string ApiId { get; set; }
+        public string Name { get; set; }
+        public FormFieldType Type { get; set; }
+        public int X { get; set; }
+        public int Y { get; set; }
+        public int Width { get; set; }
+        public int Height { get; set; }
+        public bool Required { get; set; }
+        public int Signer { get; set; }
+        public int File { get; set; }
+        public int Page { get; set; }
     }
 }

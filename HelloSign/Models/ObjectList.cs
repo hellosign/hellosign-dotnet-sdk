@@ -3,7 +3,10 @@ using System.Collections.Generic;
 namespace HelloSign
 {
     /// <summary>
-    /// Generic base class for a list of objects from the API.
+    /// Generic container for a list of objects from the API.
+    /// Contains metadata concerning the fetched objects as well as the objects
+    /// themselves. The ObjectList can be iterated upon to access the objects
+    /// it contains.
     /// </summary>
     public class ObjectList<T> : IEnumerable<T>
     {
