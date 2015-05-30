@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
+using System.Diagnostics;
 using RestSharp;
 
 namespace HelloSign
@@ -23,7 +24,7 @@ namespace HelloSign
         private RestClient client;
         private RestSharp.Deserializers.JsonDeserializer deserializer;
         public List<Warning> Warnings { get; private set; }
-
+        public string Version { get; private set; }
 
         /// <summary>
         /// Default constructor with no authentication.
@@ -31,7 +32,14 @@ namespace HelloSign
         /// </summary>
         public Client()
         {
+            // Determine product version
+            System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
+            FileVersionInfo fvi = FileVersionInfo.GetVersionInfo(assembly.Location);
+            Version = fvi.ProductVersion;
+
+            // Initialize stuff
             client = new RestClient();
+            client.UserAgent = "hellosign-dotnet-sdk/" + Version;
             deserializer = new RestSharp.Deserializers.JsonDeserializer();
             Warnings = new List<Warning>();
             SetEnvironment(Environment.Prod);
@@ -189,10 +197,12 @@ namespace HelloSign
         /// Execute an API call and return nothing.
         /// </summary>
         /// <param name="request">The RestRequest object to execute.</param>
-        private void Execute(RestRequest request)
+        /// <returns>The IRestResponse object.</returns>
+        private IRestResponse Execute(RestRequest request)
         {
             var response = client.Execute(request);
             HandleErrors(response);
+            return response;
         }
 
         /// <summary>
@@ -531,7 +541,7 @@ namespace HelloSign
             var request = new RestRequest("signature_request/cancel/{id}", Method.POST);
             request.AddUrlSegment("id", signatureRequestId);
             request.AddParameter("email_address", emailAddress);
-            client.Execute(request);
+            Execute(request);
         }
 
         /// <summary>
@@ -544,7 +554,7 @@ namespace HelloSign
 
             var request = new RestRequest("signature_request/cancel/{id}", Method.POST);
             request.AddUrlSegment("id", signatureRequestId);
-            client.Execute(request);
+            Execute(request);
         }
 
         /// <summary>
@@ -564,7 +574,8 @@ namespace HelloSign
             {
                 request.AddQueryParameter("file_type", "zip");
             }
-            return client.DownloadData(request); // TODO: Handle errors
+            var response = Execute(request);
+            return response.RawBytes;
         }
 
         /// <summary>
@@ -684,7 +695,7 @@ namespace HelloSign
 
             var request = new RestRequest("template/delete/{id}", Method.POST);
             request.AddUrlSegment("id", templateId);
-            client.Execute(request);
+            Execute(request);
         }
 
         #endregion
@@ -744,7 +755,7 @@ namespace HelloSign
             RequireAuthentication();
 
             var request = new RestRequest("team/destroy", Method.POST);
-            client.Execute(request);
+            Execute(request);
         }
 
         /// <summary>
