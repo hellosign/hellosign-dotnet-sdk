@@ -55,6 +55,46 @@ namespace HelloSign
             file.ContentType = contentType;
             Files.Add(file);
         }
+
+        /// <summary>
+        /// Add a file to the signature request by providing a byte array.
+        /// </summary>
+        /// <param name="bytes">The file data as an array of bytes.</param>
+        /// <param name="filename">Filename this file should appear to the server as.</param>
+        /// <param name="contentType">The MIME type of the file to upload.</param>
+        public void AddFile(byte[] bytes, string filename, string contentType = null)
+        {
+            if (FileUrls.Count > 0)
+            {
+                throw new NotSupportedException("Cannot add local and remote files in the same request");
+            }
+
+            var file = new FileContainer();
+            file.Bytes = bytes;
+            file.Filename = filename;
+            file.ContentType = contentType;
+            Files.Add(file);
+        }
+
+        /// <summary>
+        /// Add a file to the signature request by providing a Stream.
+        /// </summary>
+        /// <param name="writer">Input stream delegate that will provide the file data.</param>
+        /// <param name="filename">Filename this file should appear to the server as.</param>
+        /// <param name="contentType">The MIME type of the file to upload.</param>
+        public void AddFile(Action<System.IO.Stream> writer, string filename, string contentType = null)
+        {
+            if (FileUrls.Count > 0)
+            {
+                throw new NotSupportedException("Cannot add local and remote files in the same request");
+            }
+
+            var file = new FileContainer();
+            file.Writer = writer;
+            file.Filename = filename;
+            file.ContentType = contentType;
+            Files.Add(file);
+        }
         
         /// <summary>
         /// Add a file to the signature request by giving its remote address.
