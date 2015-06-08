@@ -121,6 +121,7 @@ namespace HelloSignTestApp
             }
 
             // Cancel signature request
+            System.Threading.Thread.Sleep(4000);
             client.CancelSignatureRequest(response.SignatureRequestId);
             Console.WriteLine("Cancelled " + response.SignatureRequestId);
 
@@ -139,6 +140,7 @@ namespace HelloSignTestApp
                 Console.WriteLine("Custom field 'Cost' is: " + tResponse.GetCustomField("Cost").Value);
 
                 // Cancel that signature request
+                System.Threading.Thread.Sleep(4000);
                 client.CancelSignatureRequest(tResponse.SignatureRequestId);
                 Console.WriteLine("Cancelled " + tResponse.SignatureRequestId);
             }
@@ -165,6 +167,7 @@ namespace HelloSignTestApp
                 Console.WriteLine("First Signature Sign URL: " + embedded.SignUrl);
 
                 // Cancel that embedded signature request
+                System.Threading.Thread.Sleep(4000);
                 client.CancelSignatureRequest(eResponse.SignatureRequestId);
                 Console.WriteLine("Cancelled " + eResponse.SignatureRequestId);
             }
