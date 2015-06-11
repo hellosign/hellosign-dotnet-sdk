@@ -17,6 +17,10 @@ namespace HelloSignTestApp
             var client = new Client(API_KEY);
             client.SetEnvironment(ENVIRONMENT);
 
+            // Prepare some fake text files for upload
+            byte[] file1 = System.Text.Encoding.ASCII.GetBytes("Test document, please sign at the end.");
+            byte[] file2 = System.Text.Encoding.ASCII.GetBytes("Did I mention this is only a test?");
+
             // Get account
             var account = client.GetAccount();
             Console.WriteLine("My Account ID: " + account.AccountId);
@@ -68,10 +72,6 @@ namespace HelloSignTestApp
             {
                 Console.WriteLine("List item: " + result.TemplateId);
             }
-
-            // Prepare some fake text files for upload
-            byte[] file1 = System.Text.Encoding.ASCII.GetBytes("Test document, please sign at the end.");
-            byte[] file2 = System.Text.Encoding.ASCII.GetBytes("Did I mention this is only a test?");
 
             // Send signature request
             var request = new SignatureRequest();
@@ -173,6 +173,36 @@ namespace HelloSignTestApp
             }
             else {
                 Console.WriteLine("Skipping CreateEmbeddedSignatureRequest test.");
+            }
+
+            // Create unclaimed draft
+            var draft = new SignatureRequest();
+            draft.AddFile(file1, "Agreement.txt");
+            draft.AddFile(file2, "Appendix.txt");
+            draft.TestMode = true;
+            var uResponse = client.CreateUnclaimedDraft(draft, UnclaimedDraft.Type.RequestSignature);
+            Console.WriteLine("New Unclaimed Draft Claim URL: " + uResponse.ClaimUrl);
+
+            // Create embedded unclaimed draft
+            if (CLIENT_ID.Length > 0) {
+                var eDraft = new SignatureRequest();
+                eDraft.AddFile(file1, "Agreement.txt");
+                eDraft.RequesterEmailAddress = "jack@hellosign.com";
+                eDraft.TestMode = true;
+                var euResponse = client.CreateUnclaimedDraft(eDraft, CLIENT_ID);
+                Console.WriteLine("New Embedded Unclaimed Draft Claim URL: " + euResponse.ClaimUrl);
+
+                // Create embedded unclaimed draft with a template
+                if (TEMPLATE_ID.Length > 0) {
+                    var etDraft = new TemplateSignatureRequest();
+                    etDraft.TemplateId = TEMPLATE_ID;
+                    etDraft.RequesterEmailAddress = "jack@hellosign.com";
+                    etDraft.AddSigner("Client", "george@example.com", "George");
+                    etDraft.AddCc("Accounting", "accounting@example.com");
+                    etDraft.TestMode = true;
+                    var etuResponse = client.CreateUnclaimedDraft(etDraft, CLIENT_ID);
+                    Console.WriteLine("New Embedded Unclaimed Draft with Template Claim URL: " + etuResponse.ClaimUrl);
+                }
             }
 
             Console.WriteLine("Press ENTER to exit.");

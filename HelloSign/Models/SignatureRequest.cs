@@ -19,6 +19,7 @@ namespace HelloSign
         public List<FileContainer> Files { get; private set; }
         public List<string> FileUrls { get; private set; }
         public bool UseTextTags { get; set; }
+        public bool UsePreexistingFields { get; set; }
         public bool HideTextTags { get; set; }
         // TODO: public List<FormField> FormFieldsPerDocument { get; private set; }
         

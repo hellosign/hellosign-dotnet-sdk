@@ -814,13 +814,13 @@ namespace HelloSign
 
         #region Unclaimed Draft Methods
         
-        private UnclaimedDraft _CreateUnclaimedDraft(SignatureRequest signatureRequest, UnclaimedDraft.Type? type, string clientId, string requesterEmailAddress)
+        private UnclaimedDraft _CreateUnclaimedDraft(SignatureRequest signatureRequest, UnclaimedDraft.Type? type, string clientId)
         {
             RequireAuthentication();
             
             // Determine embedded/non-embedded
             bool embedded;
-            if (!(String.IsNullOrEmpty(clientId) || String.IsNullOrEmpty(requesterEmailAddress)))
+            if (!String.IsNullOrEmpty(clientId))
             {
                 embedded = true;
             }
@@ -840,7 +840,6 @@ namespace HelloSign
             if (embedded)
             {
                 request.AddParameter("client_id", clientId);
-                request.AddParameter("requester_email_address", requesterEmailAddress);
             }
             else
             {
@@ -865,7 +864,10 @@ namespace HelloSign
             if (signatureRequest.Message != null) request.AddParameter("message", signatureRequest.Message);
             if (signatureRequest.TestMode) request.AddParameter("test_mode", "1");
             if (signatureRequest.UseTextTags) request.AddParameter("use_text_tags", "1");
+            if (signatureRequest.UsePreexistingFields) request.AddParameter("use_preexisting_fields", "1");
             if (signatureRequest.HideTextTags) request.AddParameter("hide_text_tags", "1");
+            if (embedded && signatureRequest.IsForEmbeddedSigning) request.AddParameter("is_for_embedded_signing", "1");
+            if (embedded && signatureRequest.RequesterEmailAddress != null) request.AddParameter("requester_email_address", signatureRequest.RequesterEmailAddress);
 
             // Add Signers
             var i = 0;
@@ -924,21 +926,67 @@ namespace HelloSign
         /// </summary>
         public UnclaimedDraft CreateUnclaimedDraft(SignatureRequest signatureRequest, UnclaimedDraft.Type type)
         {
-            return _CreateUnclaimedDraft(signatureRequest, type, null, null);
+            return _CreateUnclaimedDraft(signatureRequest, type, null);
         }
         
         /// <summary>
         /// Create an embedded unclaimed draft (for embedded requesting).
         /// </summary>
-        public UnclaimedDraft CreateUnclaimedDraft(SignatureRequest signatureRequest, string clientId = null, string requesterEmailAddress = null)
+        public UnclaimedDraft CreateUnclaimedDraft(SignatureRequest signatureRequest, string clientId = null)
         {
-            return _CreateUnclaimedDraft(signatureRequest, null, clientId, requesterEmailAddress);
+            return _CreateUnclaimedDraft(signatureRequest, null, clientId);
         }
 
-        public UnclaimedDraft CreateUnclaimedDraft(TemplateSignatureRequest signatureRequest, string clientId, string requesterEmailAddress)
+        public UnclaimedDraft CreateUnclaimedDraft(TemplateSignatureRequest signatureRequest, string clientId)
         {
-            // TODO
-            throw new Exception("Not yet implemented");
+            RequireAuthentication();
+
+            // Setup request
+            var endpoint = "unclaimed_draft/create_embedded_with_template";
+            var request = new RestRequest(endpoint, Method.POST);
+
+            // Add simple parameters
+            request.AddParameter("template_id", signatureRequest.TemplateId);
+            request.AddParameter("client_id", clientId);
+            if (signatureRequest.Title != null) request.AddParameter("title", signatureRequest.Title);
+            if (signatureRequest.Subject != null) request.AddParameter("subject", signatureRequest.Subject);
+            if (signatureRequest.Message != null) request.AddParameter("message", signatureRequest.Message);
+            if (signatureRequest.SigningRedirectUrl != null) request.AddParameter("signing_redirect_url", signatureRequest.SigningRedirectUrl);
+            if (signatureRequest.RequestingRedirectUrl != null) request.AddParameter("requesting_redirect_url", signatureRequest.RequestingRedirectUrl);
+            if (signatureRequest.TestMode) request.AddParameter("test_mode", "1");
+            if (signatureRequest.IsForEmbeddedSigning) request.AddParameter("is_for_embedded_signing", "1");
+            if (signatureRequest.RequesterEmailAddress != null) request.AddParameter("requester_email_address", signatureRequest.RequesterEmailAddress);
+
+            // Add Signers
+            foreach (var signer in signatureRequest.Signers)
+            {
+                string prefix = String.Format("signers[{0}]", signer.Role); // TODO: Escape characters in key
+                request.AddParameter(prefix + "[email_address]", signer.EmailAddress);
+                request.AddParameter(prefix + "[name]", signer.Name);
+                if (signer.Order != null) request.AddParameter(prefix + "[order]", signer.Order);
+                if (signer.Pin != null) request.AddParameter(prefix + "[pin]", signer.Pin);
+            }
+
+            // Add CCs
+            foreach (var entry in signatureRequest.Ccs)
+            {
+                request.AddParameter(String.Format("ccs[{0}][email_address]", entry.Key), entry.Value); // TODO: Escape characters in key
+            }
+
+            // Add Custom Fields
+            foreach (var entry in signatureRequest.CustomFields)
+            {
+                request.AddParameter(String.Format("custom_fields[{0}]", entry.Name), entry.Value); // TODO: Escape characters in key
+            }
+
+            // Add Metadata
+            foreach (var entry in signatureRequest.Metadata)
+            {
+                request.AddParameter(String.Format("metadata[{0}]", entry.Key), entry.Value); // TODO: Escape characters in key
+            }
+
+            request.RootElement = "unclaimed_draft";
+            return Execute<UnclaimedDraft>(request);
         }
 
         #endregion

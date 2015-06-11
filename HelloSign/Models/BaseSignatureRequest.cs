@@ -21,6 +21,8 @@ namespace HelloSign
         //public List<SignatureResponseData> ResponseData { get; set; }
         public string SigningUrl { get; set; }
         public string SigningRedirectUrl { get; set; }
+        public string RequestingRedirectUrl { get; set; }
+        public bool IsForEmbeddedSigning { get; set; }
         public string DetailsUrl { get; set; }
         public string RequesterEmailAddress { get; set; }
         public List<Signature> Signatures { get; set; }
