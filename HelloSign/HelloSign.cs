@@ -683,7 +683,16 @@ namespace HelloSign
             return _ModifyTemplatePermission(templateId, false, accountId, emailAddress);
         }
 
-        // TODO: public EmbeddedTemplate CreateEmbeddedTemplateDraft(EmbeddedTemplateDraft draft)
+//         public EmbeddedTemplate CreateEmbeddedTemplateDraft(EmbeddedTemplateDraft draft, string clientId)
+//         {
+//             RequireAuthentication();
+// 
+//             var request = new RestRequest("template/create_embedded_draft", Method.POST);
+// 
+//             // TODO!
+// 
+//             return Execute<EmbeddedTemplate>(request);
+//         }
 
         /// <summary>
         /// Delete a Template.
@@ -814,6 +823,9 @@ namespace HelloSign
 
         #region Unclaimed Draft Methods
         
+        /// <summary>
+        /// Internal method that handles unclaimed_draft/create[_embedded].
+        /// </summary>
         private UnclaimedDraft _CreateUnclaimedDraft(SignatureRequest signatureRequest, UnclaimedDraft.Type? type, string clientId)
         {
             RequireAuthentication();
@@ -857,7 +869,7 @@ namespace HelloSign
                 }
                 request.AddParameter("type", typeString);
             }
-            
+
             // Add simple parameters
             if (signatureRequest.Title != null) request.AddParameter("title", signatureRequest.Title);
             if (signatureRequest.Subject != null) request.AddParameter("subject", signatureRequest.Subject);
@@ -999,14 +1011,14 @@ namespace HelloSign
         /// </summary>
         /// <param name="signatureId"></param>
         /// <returns></returns>
-        public Embedded GetSignUrl(string signatureId)
+        public EmbeddedSign GetSignUrl(string signatureId)
         {
             RequireAuthentication();
 
             var request = new RestRequest("embedded/sign_url/{id}");
             request.AddUrlSegment("id", signatureId);
             request.RootElement = "embedded";
-            return Execute<Embedded>(request);
+            return Execute<EmbeddedSign>(request);
         }
 
         /// <summary>
@@ -1019,7 +1031,7 @@ namespace HelloSign
         /// <param name="skipSignerRoles">If signer roles were already provided, do not prompt the user to edit them.</param>
         /// <param name="skipSubjectMessage">If subject/message were already provided, do not prompt the user to edit them.</param>
         /// <returns></returns>
-        public Embedded GetEditUrl(string templateId, bool skipSignerRoles = false, bool skipSubjectMessage = false)
+        public EmbeddedTemplate GetEditUrl(string templateId, bool skipSignerRoles = false, bool skipSubjectMessage = false)
         {
             RequireAuthentication();
 
@@ -1028,7 +1040,7 @@ namespace HelloSign
             if (skipSignerRoles) request.AddQueryParameter("skip_signer_roles", "1");
             if (skipSubjectMessage) request.AddQueryParameter("skip_subject_message", "1");
             request.RootElement = "embedded";
-            return Execute<Embedded>(request);
+            return Execute<EmbeddedTemplate>(request);
         }
 
         #endregion
