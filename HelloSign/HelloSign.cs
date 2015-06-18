@@ -21,6 +21,7 @@ namespace HelloSign
             Dev
         }
 
+        private string apiKey;
         private RestClient client;
         private RestSharp.Deserializers.JsonDeserializer deserializer;
         public List<Warning> Warnings { get; private set; }
@@ -51,6 +52,7 @@ namespace HelloSign
         /// <param name="apiKey">Your HelloSign account API key.</param>
         public Client(string apiKey) : this()
         {
+            this.apiKey = apiKey;
             client.Authenticator = new HttpBasicAuthenticator(apiKey, "");
         }
 
@@ -247,6 +249,51 @@ namespace HelloSign
                 throw new UnauthorizedAccessException("This method requires authentication");
             }
         }
+
+        #region Event Handling Helpers
+
+        public Event ParseEvent(string data)
+        {
+            // Check for API key
+            if (String.IsNullOrEmpty(apiKey))
+            {
+                throw new Exception("Event parsing is only supported if you initialize Client with an API key.");
+            }
+
+            // Build a fake RestResponse so we can take advantage of the RestSharp Deserializer
+            var fakeResponse = new RestResponse();
+            fakeResponse.Content = data;
+
+            // Parse the main event body
+            deserializer.RootElement = "event";
+            var callbackEvent = deserializer.Deserialize<Event>(fakeResponse);
+            
+            // Verify hash integrity
+            var hashInfo = deserializer.Deserialize<EventHashInfo>(fakeResponse);
+            var hmac = new System.Security.Cryptography.HMACSHA256();
+            var buffer = System.Text.Encoding.ASCII.GetBytes(hashInfo.EventTime + hashInfo.EventType);
+            hmac.Key = System.Text.Encoding.ASCII.GetBytes(apiKey);
+            var hash = System.Text.Encoding.ASCII.GetString(hmac.ComputeHash(buffer));
+            if (String.IsNullOrEmpty(hash))
+            {
+                throw new EventHashException("Was not able to compute event hash.", data);
+            }
+            if (hash != callbackEvent.EventHash) {
+                throw new EventHashException("Event hash does not match expected value; This event may not be genuine. Make sure this API key matches the one on the account generating callbacks.", data);
+            }
+
+            // Parse attached models
+            deserializer.RootElement = "signature_request";
+            callbackEvent.SignatureRequest = deserializer.Deserialize<SignatureRequest>(fakeResponse);
+            deserializer.RootElement = "template";
+            callbackEvent.Template = deserializer.Deserialize<Template>(fakeResponse);
+            deserializer.RootElement = "account";
+            callbackEvent.Account = deserializer.Deserialize<Account>(fakeResponse);
+
+            return callbackEvent;
+        }
+
+        #endregion
 
         #region Account Methods
 

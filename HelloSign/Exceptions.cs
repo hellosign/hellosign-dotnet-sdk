@@ -12,6 +12,16 @@ namespace HelloSign
             ErrorName = name;
         }
     }
+    
+    // Event Exceptions
+    public class EventHashException : Exception
+    {
+        public string EventBody { get; protected set; }
+        public EventHashException(string message, string eventBody) : base(message)
+        {
+            EventBody = eventBody;
+        }
+    }
 
     // HTTP Error Status Exceptions
     public class BadRequestException : ErrorException

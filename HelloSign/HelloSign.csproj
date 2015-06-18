@@ -47,9 +47,11 @@
     <Compile Include="Exceptions.cs" />
     <Compile Include="Models\CustomField.cs" />
     <Compile Include="Models\ObjectList.cs" />
+    <Compile Include="Models\Event.cs" />
     <Compile Include="Models\Embedded.cs" />
     <Compile Include="Models\EmbeddedSign.cs" />
     <Compile Include="Models\EmbeddedTemplate.cs" />
+    <Compile Include="Models\FieldResponse.cs" />
     <Compile Include="Models\Warning.cs" />
     <Compile Include="Models\Signature.cs" />
     <Compile Include="Models\BaseSignatureRequest.cs" />
