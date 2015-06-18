@@ -18,7 +18,7 @@ namespace HelloSign
         public bool IsComplete { get; set; }
         public bool HasError { get; set; }
         public List<CustomField> CustomFields { get; set; }
-        //public List<SignatureResponseData> ResponseData { get; set; }
+        public List<FieldResponse> ResponseData { get; set; }
         public string SigningUrl { get; set; }
         public string SigningRedirectUrl { get; set; }
         public string RequestingRedirectUrl { get; set; }
