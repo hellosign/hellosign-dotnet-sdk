@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace HelloSign
+﻿namespace HelloSign
 {
     /// <summary>
     /// Information about a Signer Role for a HelloSign Template.

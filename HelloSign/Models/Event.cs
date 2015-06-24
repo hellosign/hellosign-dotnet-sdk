@@ -25,6 +25,7 @@ namespace HelloSign
 
     public class EventMetadata
     {
+        public string EventMessage { get; set; }
         public string RelatedSignatureId { get; set; }
         public string ReportedForAccountId { get; set; }
         public string ReportedForAppId { get; set; }
