@@ -430,6 +430,7 @@ namespace HelloSign
             if (signatureRequest.Subject != null) request.AddParameter("subject", signatureRequest.Subject);
             if (signatureRequest.Message != null) request.AddParameter("message", signatureRequest.Message);
             if (signatureRequest.TestMode) request.AddParameter("test_mode", "1");
+            if (signatureRequest.SigningRedirectUrl != null) request.AddParameter("signing_redirect_url", signatureRequest.SigningRedirectUrl);
             if (signatureRequest.UseTextTags) request.AddParameter("use_text_tags", "1");
             if (signatureRequest.HideTextTags) request.AddParameter("hide_text_tags", "1");
 
