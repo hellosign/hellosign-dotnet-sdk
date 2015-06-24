@@ -7,6 +7,22 @@ using RestSharp;
 
 namespace HelloSign
 {
+    internal class Tools
+    {
+        /// <summary>
+        /// UTC DateTime instance for the Unix time epoch (1970-1-1).
+        /// </summary>
+        public static DateTime Epoch = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
+        /// <summary>
+        /// Returns a UTC DateTime instance from a Unix timestamp (in seconds).
+        /// </summary>
+        /// <param name="timestamp">A Unix timestamp in seconds.</param>
+        public static DateTime UnixTimeToDateTime(int timestamp)
+        {
+            return Epoch.AddSeconds(timestamp);
+        }
+    }
+
     /// <summary>
     /// Wrapper for interacting with the HelloSign API.
     /// </summary>
@@ -585,7 +601,7 @@ namespace HelloSign
         {
             RequireAuthentication();
 
-            var request = new RestRequest("signature_request/cancel/{id}", Method.POST);
+            var request = new RestRequest("signature_request/remind/{id}", Method.POST);
             request.AddUrlSegment("id", signatureRequestId);
             request.AddParameter("email_address", emailAddress);
             Execute(request);
