@@ -33,6 +33,7 @@ namespace HelloSign
         /// </summary>
         public enum Environment {
             Prod,
+            QA,
             Staging,
             Dev
         }
@@ -230,17 +231,20 @@ namespace HelloSign
         /// <param name="env"></param>
         public void SetEnvironment(Environment env)
         {
-            string baseUrl;
+            string domain;
             switch (env)
             {
                 case Environment.Prod:
-                    baseUrl = "https://api.hellosign.com/v3";
+                    domain = "hellosign.com";
+                    break;
+                case Environment.QA:
+                    domain = "qa-hellosign.com";
                     break;
                 case Environment.Staging:
-                    baseUrl = "https://api-staging.hellosign.com/v3";
+                    domain = "staging-hellosign.com";
                     break;
                 case Environment.Dev:
-                    baseUrl = "https://www.dev-hellosign.com/apiapp.php/v3";
+                    domain = "dev-hellosign.com";
                     System.Net.ServicePointManager.ServerCertificateValidationCallback +=
                         delegate (object sender, System.Security.Cryptography.X509Certificates.X509Certificate certificate,
                                 System.Security.Cryptography.X509Certificates.X509Chain chain,
@@ -252,7 +256,7 @@ namespace HelloSign
                 default:
                     throw new ArgumentException("Unsupported environment given");
             }
-            client.BaseUrl = new Uri(baseUrl);
+            client.BaseUrl = new Uri(String.Format("https://api.{0}/v3", domain));
         }
 
         /// <summary>
@@ -1107,6 +1111,81 @@ namespace HelloSign
             return Execute<EmbeddedTemplate>(request);
         }
 
+        #endregion
+        
+        #region API App Methods
+        
+        /// <summary>
+        /// Get information about an API App.
+        /// </summary>
+        /// <param name="clientId">The app's client ID.</param>
+        /// <returns>The API App</returns>
+        public ApiApp GetApiApp(string clientId)
+        {
+            RequireAuthentication();
+
+            var request = new RestRequest("api_app/{id}");
+            request.AddUrlSegment("id", clientId);
+            request.RootElement = "api_app";
+            return Execute<ApiApp>(request);
+        }
+
+        public ObjectList<ApiApp> ListApiApps(int? page = null, int? pageSize = null)
+        {
+            RequireAuthentication();
+
+            var request = new RestRequest("api_app/list");
+            if (page != null)
+            {
+                request.AddParameter("page", page);
+            }
+            if (pageSize != null)
+            {
+                request.AddParameter("page_size", pageSize);
+            }
+            return ExecuteList<ApiApp>(request, "api_apps");
+        }
+
+        /// <summary>
+        /// Create a new API App.
+        /// </summary>
+        /// <param name="app">An ApiApp object with the desired values set.</param>
+        /// <returns>The new API App (given back by the server)</returns>
+        public ApiApp CreateApiApp(ApiApp app)
+        {
+            RequireAuthentication();
+
+            var request = new RestRequest("api_app", Method.POST);
+
+            // Add simple parameters
+            request.AddParameter("name", app.Name);
+            request.AddParameter("domain", app.Name);
+            if (app.CallbackUrl != null) request.AddParameter("callback_url", app.CallbackUrl);
+
+            // Add OAuth info if present
+            if (app.Oauth != null)
+            {
+                request.AddParameter("oauth[callback_url]", app.Oauth.CallbackUrl);
+                request.AddParameter("oauth[scopes]", String.Join(",", app.Oauth.Scopes));
+            }
+
+            request.RootElement = "api_app";
+            return Execute<ApiApp>(request);
+        }
+        
+        /// <summary>
+        /// Delete an API App.
+        /// </summary>
+        /// <param name="clientId">The app's client ID.</param>
+        public void DeleteApiApp(string clientId)
+        {
+            RequireAuthentication();
+
+            var request = new RestRequest("api_app/{id}", Method.DELETE);
+            request.AddUrlSegment("id", clientId);
+            Execute(request);
+        }
+        
         #endregion
     }
 }

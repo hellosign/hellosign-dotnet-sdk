@@ -64,6 +64,8 @@
     <Compile Include="Models\SignatureRequest.cs" />
     <Compile Include="Models\UnclaimedDraft.cs" />
     <Compile Include="Models\Account.cs" />
+    <Compile Include="Models\Oauth.cs" />
+    <Compile Include="Models\ApiApp.cs" />
     <Compile Include="HelloSign.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

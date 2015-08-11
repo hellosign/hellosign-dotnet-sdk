@@ -6,9 +6,8 @@ namespace HelloSignTestApp
     class Program
     {
         // Configuration
-        const Client.Environment ENVIRONMENT = Client.Environment.Staging;
+        //const Client.Environment ENVIRONMENT = Client.Environment.QA;
         const string API_KEY = ""; // Your API Key goes here
-        const string CLIENT_ID = ""; // Your API App Client ID goes here
         const string TEMPLATE_ID = ""; // Your test Template ID goes here
 
         static void Main(string[] args)
@@ -62,7 +61,7 @@ namespace HelloSignTestApp
             Console.WriteLine("Found this many signature requests: " + requests.NumResults);
             foreach (var result in requests)
             {
-                Console.WriteLine("List item: " + result.SignatureRequestId);
+                Console.WriteLine("Signature request: " + result.SignatureRequestId);
             }
 
             // List templates
@@ -70,7 +69,7 @@ namespace HelloSignTestApp
             Console.WriteLine("Found this many templates: " + templates.NumResults);
             foreach (var result in templates)
             {
-                Console.WriteLine("List item: " + result.TemplateId);
+                Console.WriteLine("Template: " + result.TemplateId);
             }
 
             // Send signature request
@@ -147,33 +146,49 @@ namespace HelloSignTestApp
             else {
                 Console.WriteLine("Skipping TemplateSignatureRequest test.");
             }
+            
+            // List API apps
+            var apiApps = client.ListApiApps();
+            Console.WriteLine("Found this many API apps: " + apiApps.NumResults);
+            foreach (var result in apiApps)
+            {
+                Console.WriteLine("API app: " + result.Name + " (" + result.ClientId + ")");
+            }
+
+            // Create API app
+            var newApiApp = new ApiApp();
+            DateTime.Now.ToShortTimeString();
+            newApiApp.Name = "C# SDK Test App - " + DateTime.Now.ToString();
+            newApiApp.Domain = "example.com";
+            newApiApp.CallbackUrl = "https://example.com/callback";
+            var aResponse = client.CreateApiApp(newApiApp);
+            Console.WriteLine("New API App: " + aResponse.Name);
+
+            // Get the new API app again (just for demonstration purposes)
+            var apiApp = client.GetApiApp(aResponse.ClientId);
+            var clientId = apiApp.ClientId;
 
             // Create embedded signature request
-            if (CLIENT_ID.Length > 0) {
-                var eRequest = new SignatureRequest();
-                eRequest.Title = "NDA with Acme Co.";
-                eRequest.Subject = "The NDA we talked about";
-                eRequest.Message = "Please sign this NDA and then we can discuss more. Let me know if you have any questions.";
-                eRequest.AddSigner("jack@example.com", "Jack");
-                eRequest.AddFile(file1, "NDA.txt");
-                eRequest.Metadata.Add("custom_id", "1234");
-                eRequest.Metadata.Add("custom_text", "NDA #9");
-                eRequest.TestMode = true;
-                var eResponse = client.CreateEmbeddedSignatureRequest(eRequest, CLIENT_ID);
-                Console.WriteLine("New Embedded Signature Request ID: " + eResponse.SignatureRequestId);
+            var eRequest = new SignatureRequest();
+            eRequest.Title = "NDA with Acme Co.";
+            eRequest.Subject = "The NDA we talked about";
+            eRequest.Message = "Please sign this NDA and then we can discuss more. Let me know if you have any questions.";
+            eRequest.AddSigner("jack@example.com", "Jack");
+            eRequest.AddFile(file1, "NDA.txt");
+            eRequest.Metadata.Add("custom_id", "1234");
+            eRequest.Metadata.Add("custom_text", "NDA #9");
+            eRequest.TestMode = true;
+            var eResponse = client.CreateEmbeddedSignatureRequest(eRequest, clientId);
+            Console.WriteLine("New Embedded Signature Request ID: " + eResponse.SignatureRequestId);
 
-                // Get embedded signing URL
-                var embedded = client.GetSignUrl(eResponse.Signatures[0].SignatureId);
-                Console.WriteLine("First Signature Sign URL: " + embedded.SignUrl);
+            // Get embedded signing URL
+            var embedded = client.GetSignUrl(eResponse.Signatures[0].SignatureId);
+            Console.WriteLine("First Signature Sign URL: " + embedded.SignUrl);
 
-                // Cancel that embedded signature request
-                System.Threading.Thread.Sleep(4000);
-                client.CancelSignatureRequest(eResponse.SignatureRequestId);
-                Console.WriteLine("Cancelled " + eResponse.SignatureRequestId);
-            }
-            else {
-                Console.WriteLine("Skipping CreateEmbeddedSignatureRequest test.");
-            }
+            // Cancel that embedded signature request
+            System.Threading.Thread.Sleep(4000);
+            client.CancelSignatureRequest(eResponse.SignatureRequestId);
+            Console.WriteLine("Cancelled " + eResponse.SignatureRequestId);
 
             // Create unclaimed draft
             var draft = new SignatureRequest();
@@ -184,26 +199,28 @@ namespace HelloSignTestApp
             Console.WriteLine("New Unclaimed Draft Claim URL: " + uResponse.ClaimUrl);
 
             // Create embedded unclaimed draft
-            if (CLIENT_ID.Length > 0) {
-                var eDraft = new SignatureRequest();
-                eDraft.AddFile(file1, "Agreement.txt");
-                eDraft.RequesterEmailAddress = "jack@hellosign.com";
-                eDraft.TestMode = true;
-                var euResponse = client.CreateUnclaimedDraft(eDraft, CLIENT_ID);
-                Console.WriteLine("New Embedded Unclaimed Draft Claim URL: " + euResponse.ClaimUrl);
+            var eDraft = new SignatureRequest();
+            eDraft.AddFile(file1, "Agreement.txt");
+            eDraft.RequesterEmailAddress = "jack@hellosign.com";
+            eDraft.TestMode = true;
+            var euResponse = client.CreateUnclaimedDraft(eDraft, clientId);
+            Console.WriteLine("New Embedded Unclaimed Draft Claim URL: " + euResponse.ClaimUrl);
 
-                // Create embedded unclaimed draft with a template
-                if (TEMPLATE_ID.Length > 0) {
-                    var etDraft = new TemplateSignatureRequest();
-                    etDraft.TemplateId = TEMPLATE_ID;
-                    etDraft.RequesterEmailAddress = "jack@hellosign.com";
-                    etDraft.AddSigner("Client", "george@example.com", "George");
-                    etDraft.AddCc("Accounting", "accounting@example.com");
-                    etDraft.TestMode = true;
-                    var etuResponse = client.CreateUnclaimedDraft(etDraft, CLIENT_ID);
-                    Console.WriteLine("New Embedded Unclaimed Draft with Template Claim URL: " + etuResponse.ClaimUrl);
-                }
+            // Create embedded unclaimed draft with a template
+            if (TEMPLATE_ID.Length > 0) {
+                var etDraft = new TemplateSignatureRequest();
+                etDraft.TemplateId = TEMPLATE_ID;
+                etDraft.RequesterEmailAddress = "jack@hellosign.com";
+                etDraft.AddSigner("Client", "george@example.com", "George");
+                etDraft.AddCc("Accounting", "accounting@example.com");
+                etDraft.TestMode = true;
+                var etuResponse = client.CreateUnclaimedDraft(etDraft, clientId);
+                Console.WriteLine("New Embedded Unclaimed Draft with Template Claim URL: " + etuResponse.ClaimUrl);
             }
+
+            // Delete the API app we created
+            client.DeleteApiApp(clientId);
+            Console.WriteLine("Deleted test API App");
 
             Console.WriteLine("Press ENTER to exit.");
             Console.Read(); // Keeps the output window open
