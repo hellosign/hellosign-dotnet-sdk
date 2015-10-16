@@ -5,8 +5,17 @@ namespace HelloSign
     /// </summary>
     public class Event
     {
+        /// <summary>
+        /// Event timestamp (may become a DateTime in future releases).
+        /// </summary>
         public int? EventTime { get; set; }
+        /// <summary>
+        /// Type of this event (see HelloSign API Documentation for a list of possible constants).
+        /// </summary>
         public string EventType { get; set; }
+        /// <summary>
+        /// Cryptographic hash used to uniquely identify this event.
+        /// </summary>
         public string EventHash { get; set; }
         public EventMetadata EventMetadata { get; set; }
         /// <summary>

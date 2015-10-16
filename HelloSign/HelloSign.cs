@@ -290,21 +290,27 @@ namespace HelloSign
             
             // Verify hash integrity
             var hashInfo = deserializer.Deserialize<EventHashInfo>(fakeResponse);
-            var hmac = new System.Security.Cryptography.HMACSHA256();
-            var buffer = System.Text.Encoding.ASCII.GetBytes(hashInfo.EventTime + hashInfo.EventType);
-            hmac.Key = System.Text.Encoding.ASCII.GetBytes(apiKey);
-            var hash = System.Text.Encoding.ASCII.GetString(hmac.ComputeHash(buffer));
+            var keyBytes = System.Text.Encoding.ASCII.GetBytes(apiKey);
+            var hmac = new System.Security.Cryptography.HMACSHA256(System.Text.Encoding.ASCII.GetBytes(apiKey));
+            var inputBytes = System.Text.Encoding.ASCII.GetBytes(hashInfo.EventTime + hashInfo.EventType);
+            var outputBytes = hmac.ComputeHash(inputBytes);
+            var hash = BitConverter.ToString(outputBytes).Replace("-", "").ToLower();// System.Text.Encoding.ASCII.GetString(hmac.ComputeHash(buffer));
+
+            // If no hash
             if (String.IsNullOrEmpty(hash))
             {
                 throw new EventHashException("Was not able to compute event hash.", data);
             }
-            if (hash != callbackEvent.EventHash) {
+
+            // If mismatched hash
+            if (hash != callbackEvent.EventHash)
+            {
                 throw new EventHashException("Event hash does not match expected value; This event may not be genuine. Make sure this API key matches the one on the account generating callbacks.", data);
             }
 
             // Parse attached models
             deserializer.RootElement = "signature_request";
-            callbackEvent.SignatureRequest = deserializer.Deserialize<SignatureRequest>(fakeResponse);
+            //callbackEvent.SignatureRequest = deserializer.Deserialize<SignatureRequest>(fakeResponse);
             deserializer.RootElement = "template";
             callbackEvent.Template = deserializer.Deserialize<Template>(fakeResponse);
             deserializer.RootElement = "account";

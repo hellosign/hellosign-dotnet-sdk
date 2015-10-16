@@ -33,6 +33,20 @@ Refer to HelloSign/Exceptions.cs in this repository for information about the cu
 Some API responses include one or more warnings if there was a non-fatal problem with your request.
 At any time, you may inspect the contents of `client.Warnings` (a List of HelloSign.Warning objects) and output them as you see fit.
 
+### Callback Event Parsing
+
+If you're implementing a server that will receive callbacks from HelloSign, this library can parse the received JSON
+into a native object and perform the hash-based integrity check for you.
+
+```C#
+String eventJson = ...; // Get this string from the 'json' POST parameter in the HTTP request
+Event myEvent = client.ParseEvent(eventJson);
+
+// The Event object contains accessors for all related data.
+Console.WriteLine("Received event with type: " + event.EventType);
+SignatureRequest request = myEvent.SignatureRequest;
+```
+
 ### Account Methods
 
 #### Get your Account details
