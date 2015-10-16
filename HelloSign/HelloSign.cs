@@ -291,10 +291,10 @@ namespace HelloSign
             // Verify hash integrity
             var hashInfo = deserializer.Deserialize<EventHashInfo>(fakeResponse);
             var keyBytes = System.Text.Encoding.ASCII.GetBytes(apiKey);
-            var hmac = new System.Security.Cryptography.HMACSHA256(System.Text.Encoding.ASCII.GetBytes(apiKey));
+            var hmac = new System.Security.Cryptography.HMACSHA256(keyBytes);
             var inputBytes = System.Text.Encoding.ASCII.GetBytes(hashInfo.EventTime + hashInfo.EventType);
             var outputBytes = hmac.ComputeHash(inputBytes);
-            var hash = BitConverter.ToString(outputBytes).Replace("-", "").ToLower();// System.Text.Encoding.ASCII.GetString(hmac.ComputeHash(buffer));
+            var hash = BitConverter.ToString(outputBytes).Replace("-", "").ToLower();
 
             // If no hash
             if (String.IsNullOrEmpty(hash))
@@ -310,7 +310,7 @@ namespace HelloSign
 
             // Parse attached models
             deserializer.RootElement = "signature_request";
-            //callbackEvent.SignatureRequest = deserializer.Deserialize<SignatureRequest>(fakeResponse);
+            callbackEvent.SignatureRequest = deserializer.Deserialize<SignatureRequest>(fakeResponse);
             deserializer.RootElement = "template";
             callbackEvent.Template = deserializer.Deserialize<Template>(fakeResponse);
             deserializer.RootElement = "account";
