@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <licenseUrl>https://github.com/HelloFax/hellosign-dotnet-sdk/blob/v3/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/HelloFax/hellosign-dotnet-sdk</projectUrl>
+    <!--iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl-->
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <releaseNotes>Initial beta release on nuget.</releaseNotes>
+    <copyright>HelloSign</copyright>
+    <tags>HelloSign eSignatures</tags>
+  </metadata>
+</package>
