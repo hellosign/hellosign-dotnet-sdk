@@ -6,19 +6,51 @@ namespace HelloSignTestApp
     class Program
     {
         // Configuration
-        //const Client.Environment ENVIRONMENT = Client.Environment.QA;
-        const string API_KEY = ""; // Your API Key goes here
         const string TEMPLATE_ID = ""; // Your test Template ID goes here
 
         static void Main(string[] args)
         {
+            // Get API key from environment
+            var apiKey = Environment.GetEnvironmentVariable("APIKEY");
+            if (String.IsNullOrEmpty(apiKey))
+            {
+                throw new Exception("You must provide your HelloSign API key in the APIKEY environment variable.");
+            }
+
+            // Get environment (HS) from first positional argument (optional)
+            var environment = Client.Environment.Staging; // Default environment
+            if (args.Length >= 1) {
+                var environmentString = args[0];
+                Console.WriteLine("Using environment: " + environmentString);
+                switch (environmentString)
+                {
+                    case "prod":
+                        environment = Client.Environment.Prod;
+                        break;
+                    case "qa":
+                        environment = Client.Environment.QA;
+                        break;
+                    case "staging":
+                        environment = Client.Environment.Staging;
+                        break;
+                    case "dev":
+                        environment = Client.Environment.Dev;
+                        break;
+                    default:
+                        throw new Exception("Unrecognized environment " + environmentString + " (should be one of: prod qa staging dev)");
+                }
+            } else {
+                Console.WriteLine("No environment specified. Defaulting to Staging.");
+            }
+
             // Client setup
-            var client = new Client(API_KEY);
-            client.SetEnvironment(ENVIRONMENT);
+            var client = new Client(apiKey);
+            client.SetEnvironment(environment);
 
             // Prepare some fake text files for upload
             byte[] file1 = System.Text.Encoding.ASCII.GetBytes("Test document, please sign at the end.");
             byte[] file2 = System.Text.Encoding.ASCII.GetBytes("Did I mention this is only a test?");
+            byte[] textTagsFile1 = System.Text.Encoding.ASCII.GetBytes("This file has text tags:\n\n[sig|req|signer1]\n\n[initial|req|signer2]");
 
             // Get account
             var account = client.GetAccount();
@@ -36,7 +68,7 @@ namespace HelloSignTestApp
                 Console.WriteLine("Was successfully blocked from creating a pre-existing account.");
             }
 
-            // Create and delete team
+            // Get team (or try to create one)
             Team team;
             try
             {
@@ -103,10 +135,10 @@ namespace HelloSignTestApp
                     Console.WriteLine("Downloaded PDF as out.pdf");
                     break;
                 }
-                catch (NotFoundException e)
+                catch (ConflictException e)
                 {
                     retries--;
-                    Console.Write("Caught not_found: " + e.Message);
+                    Console.Write("└ Caught conflict exception: " + e.Message);
                     if (retries > 0)
                     {
                         Console.WriteLine(". Trying again in 2s...");
@@ -122,7 +154,26 @@ namespace HelloSignTestApp
             // Cancel signature request
             System.Threading.Thread.Sleep(4000);
             client.CancelSignatureRequest(response.SignatureRequestId);
-            Console.WriteLine("Cancelled " + response.SignatureRequestId);
+            Console.WriteLine("└ Cancelled " + response.SignatureRequestId);
+
+            // Send signature request with text tags
+            var ttRequest = new SignatureRequest();
+            ttRequest.Title = "NDA with Acme Co.";
+            ttRequest.Subject = "The NDA we talked about";
+            ttRequest.Message = "Please sign this NDA and then we can discuss more. Let me know if you have any questions.";
+            ttRequest.AddSigner("jack@example.com", "Jack");
+            ttRequest.AddSigner("jill@example.com", "Jill");
+            ttRequest.AddFile(textTagsFile1, "TextTagsDocument.txt");
+            ttRequest.UseTextTags = true;
+            ttRequest.HideTextTags = true;
+            ttRequest.TestMode = true;
+            var ttResponse = client.SendSignatureRequest(ttRequest);
+            Console.WriteLine("New Text Tags Signature Request ID: " + ttResponse.SignatureRequestId);
+
+            // Cancel text tags request
+            System.Threading.Thread.Sleep(4000);
+            client.CancelSignatureRequest(ttResponse.SignatureRequestId);
+            Console.WriteLine("└ Cancelled " + ttResponse.SignatureRequestId);
 
             // Send signature request with template
             if (TEMPLATE_ID.Length > 0) {
@@ -141,7 +192,7 @@ namespace HelloSignTestApp
                 // Cancel that signature request
                 System.Threading.Thread.Sleep(4000);
                 client.CancelSignatureRequest(tResponse.SignatureRequestId);
-                Console.WriteLine("Cancelled " + tResponse.SignatureRequestId);
+                Console.WriteLine("└ Cancelled " + tResponse.SignatureRequestId);
             }
             else {
                 Console.WriteLine("Skipping TemplateSignatureRequest test.");
@@ -183,12 +234,12 @@ namespace HelloSignTestApp
 
             // Get embedded signing URL
             var embedded = client.GetSignUrl(eResponse.Signatures[0].SignatureId);
-            Console.WriteLine("First Signature Sign URL: " + embedded.SignUrl);
+            Console.WriteLine("└ First Signature Sign URL: " + embedded.SignUrl);
 
             // Cancel that embedded signature request
             System.Threading.Thread.Sleep(4000);
             client.CancelSignatureRequest(eResponse.SignatureRequestId);
-            Console.WriteLine("Cancelled " + eResponse.SignatureRequestId);
+            Console.WriteLine("└ Cancelled " + eResponse.SignatureRequestId);
 
             // Create unclaimed draft
             var draft = new SignatureRequest();
