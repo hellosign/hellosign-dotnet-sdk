@@ -1165,7 +1165,7 @@ namespace HelloSign
 
             // Add simple parameters
             request.AddParameter("name", app.Name);
-            request.AddParameter("domain", app.Name);
+            request.AddParameter("domain", app.Domain);
             if (app.CallbackUrl != null) request.AddParameter("callback_url", app.CallbackUrl);
 
             // Add OAuth info if present
