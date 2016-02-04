@@ -606,15 +606,19 @@ namespace HelloSign
         /// Send a reminder to the specified email address to sign the
         /// specified Signature Request.
         /// </summary>
-        /// <param name="signatureRequestId"></param>
-        /// <param name="emailAddress"></param>
-        public void RemindSignatureRequest(string signatureRequestId, string emailAddress)
+        /// <param name="signatureRequestId">The id of the SignatureRequest to send a reminder for.</param>
+        /// <param name="emailAddress">The email address of the signer to send a reminder to.</param>
+        /// <param name="name">Include if two or more signers share an email address.</param>
+        public void RemindSignatureRequest(string signatureRequestId, string emailAddress, string name = null)
         {
             RequireAuthentication();
 
             var request = new RestRequest("signature_request/remind/{id}", Method.POST);
             request.AddUrlSegment("id", signatureRequestId);
             request.AddParameter("email_address", emailAddress);
+            if (name != null) {
+                request.AddParameter("name", name);
+            }
             Execute(request);
         }
 
