@@ -21,7 +21,7 @@ namespace HelloSign
         public bool UseTextTags { get; set; }
         public bool UsePreexistingFields { get; set; }
         public bool HideTextTags { get; set; }
-        // TODO: public List<FormField> FormFieldsPerDocument { get; private set; }
+        public List<FormField> FormFieldsPerDocument { get; set; }
         
         public SignatureRequest() : base()
         {
@@ -63,7 +63,7 @@ namespace HelloSign
         /// <param name="bytes">The file data as an array of bytes.</param>
         /// <param name="filename">Filename this file should appear to the server as.</param>
         /// <param name="contentType">The MIME type of the file to upload.</param>
-        public void AddFile(byte[] bytes, string filename, string contentType = null)
+        public FileSignatureRequestBuilder AddFile(byte[] bytes, string filename, string contentType = null)
         {
             if (FileUrls.Count > 0)
             {
@@ -75,6 +75,8 @@ namespace HelloSign
             file.Filename = filename;
             file.ContentType = contentType;
             Files.Add(file);
+
+            return new FileSignatureRequestBuilder(file, this);
         }
 
         /// <summary>
@@ -112,6 +114,12 @@ namespace HelloSign
             }
             
             FileUrls.Add(uri.AbsoluteUri);
+        }
+
+        public void AddFormField(FormField formField)
+        {
+            if (FormFieldsPerDocument == null) FormFieldsPerDocument = new List<FormField>();
+            FormFieldsPerDocument.Add(formField);
         }
     }
 
@@ -155,27 +163,34 @@ namespace HelloSign
         }
     }
 
-    public class FormField
+    public class FileSignatureRequestBuilder
     {
-        public enum FormFieldType
+        private readonly FileContainer _file;
+        private readonly SignatureRequest _request;
+
+        public FileSignatureRequestBuilder(FileContainer file, SignatureRequest request)
         {
-            Text,
-            Checkbox,
-            DateSigned,
-            Initials,
-            Signature
+            _file = file;
+            _request = request;
         }
-        
-        public string ApiId { get; set; }
-        public string Name { get; set; }
-        public FormFieldType Type { get; set; }
-        public int X { get; set; }
-        public int Y { get; set; }
-        public int Width { get; set; }
-        public int Height { get; set; }
-        public bool Required { get; set; }
-        public int Signer { get; set; }
-        public int File { get; set; }
-        public int Page { get; set; }
+
+        public FileSignatureRequestBuilder WithField(FormField formField)
+        {
+            var fileIndex = _request.Files.IndexOf(_file);
+            formField.File = fileIndex;
+            _request.AddFormField(formField);
+            return this;
+        }
+
+        public FileSignatureRequestBuilder WithFields(params FormField[] formFields)
+        {
+            var fileIndex = _request.Files.IndexOf(_file);
+            foreach (var ff in formFields)
+            {
+                ff.File = fileIndex;
+                _request.AddFormField(ff);
+            }
+            return this;
+        }
     }
 }
