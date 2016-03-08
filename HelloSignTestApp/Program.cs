@@ -8,6 +8,38 @@ namespace HelloSignTestApp
         // Configuration
         const string TEMPLATE_ID = ""; // Your test Template ID goes here
 
+        // Helper function for auto-retrying CancelSignatureRequest call
+        static void cancelSignatureRequest(Client client, string signatureRequestId)
+        {
+            Console.WriteLine("└ Attempting to cancel signature request...");
+            System.Threading.Thread.Sleep(3000);
+            var retries = 5;
+            while (retries > 0)
+            {
+                try
+                {
+                    // Cancel signature request
+                    client.CancelSignatureRequest(signatureRequestId);
+                    Console.WriteLine("└ Cancelled " + signatureRequestId);
+                    break;
+                }
+                catch (ConflictException e)
+                {
+                    retries--;
+                    Console.Write("└ Caught conflict exception: " + e.Message);
+                    if (retries > 0)
+                    {
+                        Console.WriteLine(". Trying again in 2s...");
+                        System.Threading.Thread.Sleep(2000);
+                    }
+                    else
+                    {
+                        Console.WriteLine(". Giving up!");
+                    }
+                }
+            }
+        }
+
         static void Main(string[] args)
         {
             // Get API key from environment
@@ -152,9 +184,7 @@ namespace HelloSignTestApp
             }
 
             // Cancel signature request
-            System.Threading.Thread.Sleep(4000);
-            client.CancelSignatureRequest(response.SignatureRequestId);
-            Console.WriteLine("└ Cancelled " + response.SignatureRequestId);
+            cancelSignatureRequest(client, response.SignatureRequestId);
 
             // Send signature request with text tags
             var ttRequest = new SignatureRequest();
@@ -171,9 +201,7 @@ namespace HelloSignTestApp
             Console.WriteLine("New Text Tags Signature Request ID: " + ttResponse.SignatureRequestId);
 
             // Cancel text tags request
-            System.Threading.Thread.Sleep(4000);
-            client.CancelSignatureRequest(ttResponse.SignatureRequestId);
-            Console.WriteLine("└ Cancelled " + ttResponse.SignatureRequestId);
+            cancelSignatureRequest(client, ttResponse.SignatureRequestId);
 
             // Send signature request with template
             if (TEMPLATE_ID.Length > 0) {
@@ -190,9 +218,7 @@ namespace HelloSignTestApp
                 Console.WriteLine("Custom field 'Cost' is: " + tResponse.GetCustomField("Cost").Value);
 
                 // Cancel that signature request
-                System.Threading.Thread.Sleep(4000);
-                client.CancelSignatureRequest(tResponse.SignatureRequestId);
-                Console.WriteLine("└ Cancelled " + tResponse.SignatureRequestId);
+                cancelSignatureRequest(client, tResponse.SignatureRequestId);
             }
             else {
                 Console.WriteLine("Skipping TemplateSignatureRequest test.");
@@ -237,9 +263,7 @@ namespace HelloSignTestApp
             Console.WriteLine("└ First Signature Sign URL: " + embedded.SignUrl);
 
             // Cancel that embedded signature request
-            System.Threading.Thread.Sleep(4000);
-            client.CancelSignatureRequest(eResponse.SignatureRequestId);
-            Console.WriteLine("└ Cancelled " + eResponse.SignatureRequestId);
+            cancelSignatureRequest(client, eResponse.SignatureRequestId);
 
             // Create unclaimed draft
             var draft = new SignatureRequest();
