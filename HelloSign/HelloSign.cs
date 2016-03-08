@@ -424,14 +424,15 @@ namespace HelloSign
         /// Internal method for calling /signature_request/send or /signature_request/create_embedded
         /// </summary>
         /// <param name="signatureRequest"></param>
-        /// <param name="clientId">App Client ID if for embedded signing; null otherwise</param>
+        /// <param name="clientId">App Client ID if associated with an API App (required for Embedded)</param>
+        /// <param name="isEmbedded">True if for embedded signing; false otherwise</param>
         /// <returns></returns>
-        private SignatureRequest _PostSignatureRequest(SignatureRequest signatureRequest, string clientId = null)
+        private SignatureRequest _PostSignatureRequest(SignatureRequest signatureRequest, string clientId = null, bool isEmbedded = false)
         {
             RequireAuthentication();
 
             // Setup request
-            var endpoint = (clientId == null) ? "signature_request/send" : "signature_request/create_embedded";
+            var endpoint = (isEmbedded) ? "signature_request/create_embedded" : "signature_request/send";
             var request = new RestRequest(endpoint, Method.POST);
 
             // Add simple parameters
@@ -501,10 +502,11 @@ namespace HelloSign
         /// it to this method.
         /// </summary>
         /// <param name="signatureRequest"></param>
+        /// <param name="clientId">Client ID, if associated with an API App</param>
         /// <returns></returns>
-        public SignatureRequest SendSignatureRequest(SignatureRequest signatureRequest)
+        public SignatureRequest SendSignatureRequest(SignatureRequest signatureRequest, string clientId = null)
         {
-            return _PostSignatureRequest(signatureRequest);
+            return _PostSignatureRequest(signatureRequest, clientId, false);
         }
 
         /// <summary>
@@ -514,11 +516,11 @@ namespace HelloSign
         /// it to this method.
         /// </summary>
         /// <param name="signatureRequest"></param>
-        /// <param name="clientId"></param>
+        /// <param name="clientId">API App's Client ID</param>
         /// <returns></returns>
         public SignatureRequest CreateEmbeddedSignatureRequest(SignatureRequest signatureRequest, string clientId)
         {
-            return _PostSignatureRequest(signatureRequest, clientId);
+            return _PostSignatureRequest(signatureRequest, clientId, true);
         }
 
         /// <summary>
@@ -526,13 +528,15 @@ namespace HelloSign
         /// /signature_request/create_embedded_with_template
         /// </summary>
         /// <param name="signatureRequest"></param>
+        /// <param name="clientId">App Client ID if associated with an API App (required for Embedded)</param>
+        /// <param name="isEmbedded">True if for embedded signing; false otherwise</param>
         /// <returns></returns>
-        public TemplateSignatureRequest _PostSignatureRequest(TemplateSignatureRequest signatureRequest, string clientId = null)
+        public TemplateSignatureRequest _PostSignatureRequest(TemplateSignatureRequest signatureRequest, string clientId = null, bool isEmbedded = false)
         {
             RequireAuthentication();
 
             // Setup request
-            var endpoint = (clientId == null) ? "signature_request/send_with_template" : "signature_request/create_embedded_with_template";
+            var endpoint = (isEmbedded) ? "signature_request/create_embedded_with_template" : "signature_request/send_with_template";
             var request = new RestRequest(endpoint, Method.POST);
 
             // Add simple parameters
@@ -583,10 +587,11 @@ namespace HelloSign
         /// and pass it to this method.
         /// </summary>
         /// <param name="signatureRequest"></param>
+        /// <param name="clientId">Client ID, if associated with an API App</param>
         /// <returns></returns>
-        public TemplateSignatureRequest SendSignatureRequest(TemplateSignatureRequest signatureRequest)
+        public TemplateSignatureRequest SendSignatureRequest(TemplateSignatureRequest signatureRequest, string clientId = null)
         {
-            return _PostSignatureRequest(signatureRequest);
+            return _PostSignatureRequest(signatureRequest, clientId, false);
         }
 
         /// <summary>
@@ -596,10 +601,11 @@ namespace HelloSign
         /// and pass it to this method.
         /// </summary>
         /// <param name="signatureRequest"></param>
+        /// <param name="clientId">API App's Client ID</param>
         /// <returns></returns>
         public TemplateSignatureRequest CreateEmbeddedSignatureRequest(TemplateSignatureRequest signatureRequest, string clientId)
         {
-            return _PostSignatureRequest(signatureRequest, clientId);
+            return _PostSignatureRequest(signatureRequest, clientId, true);
         }
 
         /// <summary>
