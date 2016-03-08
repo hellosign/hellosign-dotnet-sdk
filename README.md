@@ -94,6 +94,8 @@ var response = client.SendSignatureRequest(request);
 Console.WriteLine("New Signature Request ID: " + response.SignatureRequestId);
 ```
 
+**Note:** You can optionally pass an API App client ID as a second parameter to SendSignatureRequest.
+
 #### Send Signature Request using a template (non-Embedded)
 
 ```C#
@@ -108,6 +110,8 @@ request.TestMode = true;
 var response = client.SendSignatureRequest(request);
 Console.WriteLine("New Template Signature Request ID: " + response.SignatureRequestId);
 ```
+
+**Note:** You can optionally pass an API App client ID as a second parameter to SendSignatureRequest.
 
 #### Create Embedded Signature Request using files
 
