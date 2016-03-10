@@ -1,5 +1,6 @@
 ﻿using System;
 using HelloSign;
+using HelloSignTestApp.Properties;
 
 namespace HelloSignTestApp
 {
@@ -83,6 +84,7 @@ namespace HelloSignTestApp
             byte[] file1 = System.Text.Encoding.ASCII.GetBytes("Test document, please sign at the end.");
             byte[] file2 = System.Text.Encoding.ASCII.GetBytes("Did I mention this is only a test?");
             byte[] textTagsFile1 = System.Text.Encoding.ASCII.GetBytes("This file has text tags:\n\n[sig|req|signer1]\n\n[initial|req|signer2]");
+            byte[] pdfFile1 = Resources.Test_Document;
 
             // Get account
             var account = client.GetAccount();
@@ -223,7 +225,19 @@ namespace HelloSignTestApp
             else {
                 Console.WriteLine("Skipping TemplateSignatureRequest test.");
             }
-            
+
+            // Send signature request with form fields
+            var ffRequest = new SignatureRequest();
+            ffRequest.AddSigner("jack@example.com", "Jack");
+            ffRequest.AddSigner("jill@example.com", "Jill");
+            ffRequest.AddFile(pdfFile1, "TestDocument.pdf").WithFields(
+                new FormField("sig1", FormField.FormFieldType.Signature, 1, 71, 165, 225, 52, true, 1),
+                new FormField("sig2", FormField.FormFieldType.Signature, 1, 298, 165, 225, 52, true, 2)
+            );
+            ffRequest.TestMode = true;
+            var ffResponse = client.SendSignatureRequest(ffRequest);
+            Console.WriteLine("New Signature Request ID: " + ffResponse.SignatureRequestId);
+
             // List API apps
             var apiApps = client.ListApiApps();
             Console.WriteLine("Found this many API apps: " + apiApps.NumResults);

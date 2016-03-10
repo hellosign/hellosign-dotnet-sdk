@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Diagnostics;
+using System.Linq;
 using RestSharp;
+using RestSharp.Serializers;
 
 namespace HelloSign
 {
@@ -41,6 +43,7 @@ namespace HelloSign
         private string apiKey;
         private RestClient client;
         private RestSharp.Deserializers.JsonDeserializer deserializer;
+        private JsonSerializer serializer;
         public List<Warning> Warnings { get; private set; }
         public string Version { get; private set; }
 
@@ -59,6 +62,7 @@ namespace HelloSign
             client = new RestClient();
             client.UserAgent = "hellosign-dotnet-sdk/" + Version;
             deserializer = new RestSharp.Deserializers.JsonDeserializer();
+            serializer = new JsonSerializer();
             Warnings = new List<Warning>();
             SetEnvironment(Environment.Prod);
         }
@@ -489,6 +493,17 @@ namespace HelloSign
             foreach (var entry in signatureRequest.Metadata)
             {
                 request.AddParameter(String.Format("metadata[{0}]", entry.Key), entry.Value); // TODO: Escape characters in key
+            }
+
+            // Add form fields
+            if (signatureRequest.FormFieldsPerDocument != null && signatureRequest.FormFieldsPerDocument.Any())
+            {
+                var container = signatureRequest.Files.Select(x => new List<FormField>()).ToArray();
+                foreach (var fileFields in signatureRequest.FormFieldsPerDocument.GroupBy(x => x.File))
+                {
+                    container[fileFields.Key] = fileFields.ToList();
+                }
+                request.AddParameter("form_fields_per_document", serializer.Serialize(container));
             }
 
             request.RootElement = "signature_request";
@@ -1010,7 +1025,7 @@ namespace HelloSign
             {
                 request.AddParameter(String.Format("metadata[{0}]", entry.Key), entry.Value); // TODO: Escape characters in key
             }
-            
+
             // TODO: Form fields per doc
 
             request.RootElement = "unclaimed_draft";
