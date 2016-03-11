@@ -1,6 +1,5 @@
 ﻿using System;
 using HelloSign;
-using HelloSignTestApp.Properties;
 
 namespace HelloSignTestApp
 {
@@ -84,7 +83,7 @@ namespace HelloSignTestApp
             byte[] file1 = System.Text.Encoding.ASCII.GetBytes("Test document, please sign at the end.");
             byte[] file2 = System.Text.Encoding.ASCII.GetBytes("Did I mention this is only a test?");
             byte[] textTagsFile1 = System.Text.Encoding.ASCII.GetBytes("This file has text tags:\n\n[sig|req|signer1]\n\n[initial|req|signer2]");
-            byte[] pdfFile1 = Resources.Test_Document;
+            byte[] pdfFile1 = Properties.Resources.Test_Document;
 
             // Get account
             var account = client.GetAccount();
@@ -230,13 +229,20 @@ namespace HelloSignTestApp
             var ffRequest = new SignatureRequest();
             ffRequest.AddSigner("jack@example.com", "Jack");
             ffRequest.AddSigner("jill@example.com", "Jill");
-            ffRequest.AddFile(pdfFile1, "TestDocument.pdf").WithFields(
-                new FormField("sig1", FormField.FormFieldType.Signature, 1, 71, 165, 225, 52, true, 1),
-                new FormField("sig2", FormField.FormFieldType.Signature, 1, 298, 165, 225, 52, true, 2)
+            ffRequest.AddFile(pdfFile1, "TestDocument.txt").WithFields(
+                new FormField("chk1", FormField.TypeCheckbox,     1, 140, 72*1,  36, 36, true, 0),
+                new FormField("txt1", FormField.TypeText,         1, 140, 72*2, 225, 20, true, 0, FormField.ValidationTypeEmailAddress),
+                new FormField("dat1", FormField.TypeDateSigned,   1, 140, 72*3, 225, 52, true, 0),
+                new FormField("sig1", FormField.TypeSignature,    1, 140, 72*4, 225, 52, true, 0),
+                new FormField("sig2", FormField.TypeSignature,    1, 140, 72*5, 225, 52, true, 1)
             );
+            ffRequest.Title = "Form Fields Test";
             ffRequest.TestMode = true;
             var ffResponse = client.SendSignatureRequest(ffRequest);
             Console.WriteLine("New Signature Request ID: " + ffResponse.SignatureRequestId);
+
+            // Cancel form fields request
+            cancelSignatureRequest(client, ffResponse.SignatureRequestId);
 
             // List API apps
             var apiApps = client.ListApiApps();

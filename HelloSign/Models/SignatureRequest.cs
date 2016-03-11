@@ -177,7 +177,7 @@ namespace HelloSign
         public FileSignatureRequestBuilder WithField(FormField formField)
         {
             var fileIndex = _request.Files.IndexOf(_file);
-            formField.File = fileIndex;
+            formField.file = fileIndex;
             _request.AddFormField(formField);
             return this;
         }
@@ -187,7 +187,7 @@ namespace HelloSign
             var fileIndex = _request.Files.IndexOf(_file);
             foreach (var ff in formFields)
             {
-                ff.File = fileIndex;
+                ff.file = fileIndex;
                 _request.AddFormField(ff);
             }
             return this;

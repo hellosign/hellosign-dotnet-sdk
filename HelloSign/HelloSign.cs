@@ -5,7 +5,6 @@ using System.Net;
 using System.Diagnostics;
 using System.Linq;
 using RestSharp;
-using RestSharp.Serializers;
 
 namespace HelloSign
 {
@@ -43,7 +42,7 @@ namespace HelloSign
         private string apiKey;
         private RestClient client;
         private RestSharp.Deserializers.JsonDeserializer deserializer;
-        private JsonSerializer serializer;
+        private RestSharp.Serializers.JsonSerializer serializer;
         public List<Warning> Warnings { get; private set; }
         public string Version { get; private set; }
 
@@ -62,7 +61,7 @@ namespace HelloSign
             client = new RestClient();
             client.UserAgent = "hellosign-dotnet-sdk/" + Version;
             deserializer = new RestSharp.Deserializers.JsonDeserializer();
-            serializer = new JsonSerializer();
+            serializer = new RestSharp.Serializers.JsonSerializer();
             Warnings = new List<Warning>();
             SetEnvironment(Environment.Prod);
         }
@@ -499,7 +498,7 @@ namespace HelloSign
             if (signatureRequest.FormFieldsPerDocument != null && signatureRequest.FormFieldsPerDocument.Any())
             {
                 var container = signatureRequest.Files.Select(x => new List<FormField>()).ToArray();
-                foreach (var fileFields in signatureRequest.FormFieldsPerDocument.GroupBy(x => x.File))
+                foreach (var fileFields in signatureRequest.FormFieldsPerDocument.GroupBy(x => x.file))
                 {
                     container[fileFields.Key] = fileFields.ToList();
                 }

@@ -96,6 +96,26 @@ Console.WriteLine("New Signature Request ID: " + response.SignatureRequestId);
 
 **Note:** You can optionally pass an API App client ID as a second parameter to SendSignatureRequest.
 
+#### Send Signature Request using files and form fields (non-Embedded)
+
+```C#
+var request = new SignatureRequest();
+request.Title = "NDA with Acme Co.";
+request.Subject = "The NDA we talked about";
+request.Message = "Please sign this NDA and then we can discuss more. Let me know if you have any questions.";
+request.AddSigner("jack@example.com", "Jack");
+request.AddFile("c:\users\me\My Documents\nda.pdf").WithFields(
+    //            id      type                     page    x    y    w   h   req signer
+    new FormField("chk1", FormField.TypeCheckbox,     1, 140,  72,  36, 36, true,     0),
+    new FormField("txt1", FormField.TypeText,         1, 140, 144, 225, 20, true,     0),
+    new FormField("dat1", FormField.TypeDateSigned,   1, 140, 216, 225, 52, true,     0),
+    new FormField("sig1", FormField.TypeSignature,    1, 140, 288, 225, 52, true,     0),
+);
+request.TestMode = true;
+var response = client.SendSignatureRequest(request);
+Console.WriteLine("New Signature Request ID: " + response.SignatureRequestId);
+```
+
 #### Send Signature Request using a template (non-Embedded)
 
 ```C#
