@@ -554,13 +554,21 @@ namespace HelloSign
             var request = new RestRequest(endpoint, Method.POST);
 
             // Add simple parameters
-            request.AddParameter("template_id", signatureRequest.TemplateId);
+            if (signatureRequest.TemplateId != null) request.AddParameter("template_id", signatureRequest.TemplateId); // Deprecated
             if (clientId != null) request.AddParameter("client_id", clientId);
             if (signatureRequest.Title != null) request.AddParameter("title", signatureRequest.Title);
             if (signatureRequest.Subject != null) request.AddParameter("subject", signatureRequest.Subject);
             if (signatureRequest.Message != null) request.AddParameter("message", signatureRequest.Message);
             if (signatureRequest.SigningRedirectUrl != null) request.AddParameter("signing_redirect_url", signatureRequest.SigningRedirectUrl);
             if (signatureRequest.TestMode) request.AddParameter("test_mode", "1");
+
+            // Add Template IDs
+            var i = 0;
+            foreach (var templateId in signatureRequest.TemplateIds)
+            {
+                request.AddParameter(String.Format("template_ids[{0}]", i), templateId);
+                i++;
+            }
 
             // Add Signers
             foreach (var signer in signatureRequest.Signers)
@@ -1056,8 +1064,8 @@ namespace HelloSign
             var request = new RestRequest(endpoint, Method.POST);
 
             // Add simple parameters
-            request.AddParameter("template_id", signatureRequest.TemplateId);
             request.AddParameter("client_id", clientId);
+            if (signatureRequest.TemplateId != null) request.AddParameter("template_id", signatureRequest.TemplateId); // Deprecated
             if (signatureRequest.Title != null) request.AddParameter("title", signatureRequest.Title);
             if (signatureRequest.Subject != null) request.AddParameter("subject", signatureRequest.Subject);
             if (signatureRequest.Message != null) request.AddParameter("message", signatureRequest.Message);
@@ -1066,6 +1074,14 @@ namespace HelloSign
             if (signatureRequest.TestMode) request.AddParameter("test_mode", "1");
             if (signatureRequest.IsForEmbeddedSigning) request.AddParameter("is_for_embedded_signing", "1");
             if (signatureRequest.RequesterEmailAddress != null) request.AddParameter("requester_email_address", signatureRequest.RequesterEmailAddress);
+
+            // Add Template IDs
+            var i = 0;
+            foreach (var templateId in signatureRequest.TemplateIds)
+            {
+                request.AddParameter(String.Format("template_ids[{0}]", i), templateId);
+                i++;
+            }
 
             // Add Signers
             foreach (var signer in signatureRequest.Signers)

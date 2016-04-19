@@ -6,7 +6,7 @@ namespace HelloSignTestApp
     class Program
     {
         // Configuration
-        const string TEMPLATE_ID = ""; // Your test Template ID goes here
+        const string TEMPLATE_ID = ""; // Your test Template ID goes here (signer role "Client", CC role "Accounting", custom field "Cost")
 
         // Helper function for auto-retrying CancelSignatureRequest call
         static void cancelSignatureRequest(Client client, string signatureRequestId)
@@ -207,7 +207,8 @@ namespace HelloSignTestApp
             // Send signature request with template
             if (TEMPLATE_ID.Length > 0) {
                 var tRequest = new TemplateSignatureRequest();
-                tRequest.TemplateId = TEMPLATE_ID;
+                tRequest.AddTemplate(TEMPLATE_ID);
+                tRequest.AddTemplate(TEMPLATE_ID);
                 tRequest.Subject = "Purchase Order";
                 tRequest.Message = "Glad we could come to an agreement.";
                 tRequest.AddSigner("Client", "george@example.com", "George");
@@ -304,7 +305,7 @@ namespace HelloSignTestApp
             // Create embedded unclaimed draft with a template
             if (TEMPLATE_ID.Length > 0) {
                 var etDraft = new TemplateSignatureRequest();
-                etDraft.TemplateId = TEMPLATE_ID;
+                etDraft.AddTemplate(TEMPLATE_ID);
                 etDraft.RequesterEmailAddress = "jack@hellosign.com";
                 etDraft.AddSigner("Client", "george@example.com", "George");
                 etDraft.AddCc("Accounting", "accounting@example.com");

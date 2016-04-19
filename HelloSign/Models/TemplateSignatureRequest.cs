@@ -9,14 +9,28 @@ namespace HelloSign
     /// </summary>
     public class TemplateSignatureRequest : BaseSignatureRequest
     {
+        [Obsolete("The TemplateId property is deprecated. Use the AddTemplate method instead.")]
         public string TemplateId { get; set; }
+        public List<string> TemplateIds { get; private set; }
         public Dictionary<String, String> Ccs { get; set; }
         //public Dictionary<String, String> CustomFields { get; set; }
 
         public TemplateSignatureRequest() : base()
         {
+            TemplateIds = new List<string>();
             Ccs = new Dictionary<string,string>();
             //CustomFields = new Dictionary<string,string>();
+        }
+
+        /// <summary>
+        /// Add a template to this request.
+        /// You can call this multiple times to add multiple templates to a request,
+        /// but templates must have compatible roles to be used together.
+        /// </summary>
+        /// <param name="templateId"></param>
+        public void AddTemplate(string templateId)
+        {
+            TemplateIds.Add(templateId);
         }
 
         /// <summary>

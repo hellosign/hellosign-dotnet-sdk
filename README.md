@@ -120,7 +120,7 @@ Console.WriteLine("New Signature Request ID: " + response.SignatureRequestId);
 
 ```C#
 var request = new TemplateSignatureRequest();
-request.TemplateId = "TEMPLATE ID HERE";
+request.AddTemplate("TEMPLATE ID HERE");
 request.Subject = "Purchase Order";
 request.Message = "Glad we could come to an agreement.";
 request.AddSigner("Client", "george@example.com", "George");
@@ -156,7 +156,7 @@ Console.WriteLine("New Embedded Signature Request ID: " + response.SignatureRequ
 
 ```C#
 var request = new TemplateSignatureRequest();
-request.TemplateId = "TEMPLATE ID HERE";
+request.AddTemplate("TEMPLATE ID HERE");
 request.Subject = "Purchase Order";
 request.Message = "Glad we could come to an agreement.";
 request.AddSigner("Client", "george@example.com", "George");
