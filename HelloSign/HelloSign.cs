@@ -14,6 +14,7 @@ namespace HelloSign
         /// UTC DateTime instance for the Unix time epoch (1970-1-1).
         /// </summary>
         public static DateTime Epoch = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
+
         /// <summary>
         /// Returns a UTC DateTime instance from a Unix timestamp (in seconds).
         /// </summary>
@@ -21,6 +22,16 @@ namespace HelloSign
         public static DateTime UnixTimeToDateTime(int timestamp)
         {
             return Epoch.AddSeconds(timestamp);
+        }
+
+        /// <summary>
+        /// String.IsNullOrWhiteSpace backported from .NET 4.0
+        /// </summary>
+        /// <param name="value">Input string</param>
+        /// <returns></returns>
+        public static bool IsNullOrWhiteSpace(string value)
+        {
+            return String.IsNullOrEmpty(value) || value.Trim().Length == 0;
         }
     }
 
@@ -73,7 +84,7 @@ namespace HelloSign
         public Client(string apiKey) : this()
         {
             this.apiKey = apiKey;
-            client.Authenticator = new HttpBasicAuthenticator(apiKey, "");
+            client.Authenticator = new RestSharp.Authenticators.HttpBasicAuthenticator(apiKey, "");
         }
 
         /// <summary>
@@ -84,7 +95,7 @@ namespace HelloSign
         /// <param name="password">Your HelloSign account password.</param>
         public Client(string username, string password) : this()
         {
-            client.Authenticator = new HttpBasicAuthenticator(username, password);
+            client.Authenticator = new RestSharp.Authenticators.HttpBasicAuthenticator(username, password);
         }
 
         private void HandleErrors(IRestResponse response)
@@ -336,7 +347,7 @@ namespace HelloSign
         /// <returns>The new Account</returns>
         public Account CreateAccount(string emailAddress)
         {
-            if (String.IsNullOrWhiteSpace(emailAddress))
+            if (Tools.IsNullOrWhiteSpace(emailAddress))
             {
                 throw new ArgumentException("email_address is required");
             }
@@ -377,7 +388,7 @@ namespace HelloSign
 
         public Account VerifyAccount(string emailAddress)
         {
-            if (String.IsNullOrWhiteSpace(emailAddress))
+            if (Tools.IsNullOrWhiteSpace(emailAddress))
             {
                 throw new ArgumentException("email_address is required");
             }
@@ -1212,7 +1223,7 @@ namespace HelloSign
             if (app.Oauth != null)
             {
                 request.AddParameter("oauth[callback_url]", app.Oauth.CallbackUrl);
-                request.AddParameter("oauth[scopes]", String.Join(",", app.Oauth.Scopes));
+                request.AddParameter("oauth[scopes]", String.Join(",", app.Oauth.Scopes.ToArray()));
             }
 
             request.RootElement = "api_app";
