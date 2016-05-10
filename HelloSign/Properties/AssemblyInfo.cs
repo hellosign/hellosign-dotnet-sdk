@@ -29,7 +29,7 @@ using System.Runtime.InteropServices;
 //      Build Number
 //      Revision
 //
-// [assembly: AssemblyVersion("1.0.*")]
-// [assembly: AssemblyVersion("0.0.0.0")]
 // NOTE: This gets reported in the user-agent string for HTTP requests made.
-[assembly: AssemblyFileVersion("0.5.0.0")]
+[assembly: AssemblyVersion("0.5.0.0")]
+// [assembly: AssemblyVersion("0.0.0.0")]
+// [assembly: AssemblyFileVersion("0.0.0.0")]
