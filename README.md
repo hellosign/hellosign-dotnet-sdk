@@ -1,10 +1,17 @@
 # HelloSign .NET SDK (Beta)
 
-**This SDK is currently in beta; Please email apisupport@hellosign.com to request a build or get help.**
-
-**Use the [Issue Tracker](https://github.com/HelloFax/hellosign-dotnet-sdk/issues) to report bugs or missing functionality.**
-
 An official library for using the HelloSign API written in C#.NET and powered by RestSharp.
+
+**This SDK is currently in beta. If you need help:**
+
+* **Use the [Issue Tracker](https://github.com/HelloFax/hellosign-dotnet-sdk/issues) to report bugs or missing functionality in this library.**
+* **Send an email to apisupport@hellosign.com to request help with our API or your account.**
+
+## Installation
+
+The HelloSign .NET SDK can be installed using the NuGet package manager, under the package name **HelloSign** ([package details](https://www.nuget.org/packages/HelloSign/)).
+
+If you prefer not to use NuGet, you can download a ZIP archive containing the built .dll files from the [Releases](https://github.com/HelloFax/hellosign-dotnet-sdk/releases) page, or clone this repository and build the project yourself (see "Build from Source" below).
 
 ## Usage
 
@@ -322,6 +329,11 @@ Use Visual Studio (Express).
 6. `mv RestSharp* ../packages`
 7. `cd ..`
 8. `xbuild` (or `xbuild /p:Configuration=Release` for a non-Debug build)
+
+### Packaging for NuGet
+
+1. `cd HelloSign`
+2. `nuget pack HelloSign.csproj -Prop Configuration=Release`
 
 ## License
 
