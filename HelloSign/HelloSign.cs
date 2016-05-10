@@ -5,6 +5,8 @@ using System.Net;
 using System.Diagnostics;
 using System.Linq;
 using RestSharp;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace HelloSign
 {
@@ -800,16 +802,71 @@ namespace HelloSign
             return _ModifyTemplatePermission(templateId, false, accountId, emailAddress);
         }
 
-//         public EmbeddedTemplate CreateEmbeddedTemplateDraft(EmbeddedTemplateDraft draft, string clientId)
-//         {
-//             RequireAuthentication();
-// 
-//             var request = new RestRequest("template/create_embedded_draft", Method.POST);
-// 
-//             // TODO!
-// 
-//             return Execute<EmbeddedTemplate>(request);
-//         }
+        public EmbeddedTemplate CreateEmbeddedTemplateDraft(EmbeddedTemplateDraft draft, string clientId)
+        {
+            RequireAuthentication();
+
+            // Set up request
+            var request = new RestRequest("template/create_embedded_draft", Method.POST);
+
+            // Add simple parameters
+            if (clientId != null) request.AddParameter("client_id", clientId);
+            if (draft.Title != null) request.AddParameter("title", draft.Title);
+            if (draft.Subject != null) request.AddParameter("subject", draft.Subject);
+            if (draft.Message != null) request.AddParameter("message", draft.Message);
+            if (draft.TestMode) request.AddParameter("test_mode", "1");
+            if (draft.UsePreexistingFields) request.AddParameter("use_preexisting_fields", "1");
+
+            // Add Signer Roles
+            var i = 0;
+            foreach (var role in draft.SignerRoles)
+            {
+                string prefix = String.Format("signer_roles[{0}]", i);
+                request.AddParameter(prefix + "[name]", role.Name);
+                if (role.Order != null) request.AddParameter(prefix + "[order]", role.Order);
+                i++;
+            }
+
+            // Add CC Roles
+            i = 0;
+            foreach (var cc in draft.Ccs)
+            {
+                request.AddParameter(String.Format("cc_roles[{0}]", i), cc);
+                i++;
+            }
+
+            // Add Files/FileUrls
+            if (draft.Files.Count > 0)
+            {
+                i = 0;
+                foreach (var file in draft.Files)
+                {
+                    file.AddToRequest(request, String.Format("file[{0}]", i));
+                    i++;
+                }
+            }
+            else if (draft.FileUrls.Count > 0)
+            {
+                i = 0;
+                foreach (var fileUrl in draft.FileUrls)
+                {
+                    request.AddParameter(String.Format("file_url[{0}]", i), fileUrl);
+                    i++;
+                }
+            }
+
+            // Add Metadata
+            foreach (var entry in draft.Metadata)
+            {
+                request.AddParameter(String.Format("metadata[{0}]", entry.Key), entry.Value); // TODO: Escape characters in key
+            }
+
+            // Add Merge Fields (JSON)
+            request.AddParameter("merge_fields", JsonConvert.SerializeObject(draft.MergeFields));
+
+            request.RootElement = "template";
+            return Execute<EmbeddedTemplate>(request);
+        }
 
         /// <summary>
         /// Delete a Template.
@@ -1156,7 +1213,7 @@ namespace HelloSign
         /// <param name="skipSignerRoles">If signer roles were already provided, do not prompt the user to edit them.</param>
         /// <param name="skipSubjectMessage">If subject/message were already provided, do not prompt the user to edit them.</param>
         /// <returns></returns>
-        public EmbeddedTemplate GetEditUrl(string templateId, bool skipSignerRoles = false, bool skipSubjectMessage = false)
+        public EmbeddedTemplate GetEditUrl(string templateId, bool skipSignerRoles = false, bool skipSubjectMessage = false, bool testMode = false)
         {
             RequireAuthentication();
 
@@ -1164,6 +1221,7 @@ namespace HelloSign
             request.AddUrlSegment("id", templateId);
             if (skipSignerRoles) request.AddQueryParameter("skip_signer_roles", "1");
             if (skipSubjectMessage) request.AddQueryParameter("skip_subject_message", "1");
+            if (testMode) request.AddQueryParameter("test_mode", "1");
             request.RootElement = "embedded";
             return Execute<EmbeddedTemplate>(request);
         }

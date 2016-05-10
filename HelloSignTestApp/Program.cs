@@ -314,6 +314,21 @@ namespace HelloSignTestApp
                 Console.WriteLine("New Embedded Unclaimed Draft with Template Claim URL: " + etuResponse.ClaimUrl);
             }
 
+            // Create embedded template draft
+            var etDraft = new EmbeddedTemplateDraft();
+            etDraft.TestMode = true;
+            etDraft.AddFile(file1, "NDA.txt");
+            etDraft.Title = "Test Template";
+            etDraft.Subject = "Please sign this document";
+            etDraft.Message = "For your approval.";
+            etDraft.AddSignerRole("Client", 0);
+            etDraft.AddSignerRole("Witness", 1);
+            etDraft.AddCcRole("Manager");
+            etDraft.AddMergeField("Full Name", MergeField.FieldType.Text);
+            etDraft.AddMergeField("Is Registered?", MergeField.FieldType.Checkbox);
+            var etResponse = client.CreateEmbeddedTemplateDraft(etDraft, clientId);
+            Console.WriteLine("New Embedded Template Draft with ID: " + etResponse.TemplateId);
+
             // Delete the API app we created
             client.DeleteApiApp(clientId);
             Console.WriteLine("Deleted test API App");

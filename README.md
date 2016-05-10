@@ -161,7 +161,7 @@ request.Subject = "Purchase Order";
 request.Message = "Glad we could come to an agreement.";
 request.AddSigner("Client", "george@example.com", "George");
 request.AddCc("Accounting", "accounting@hellosign.com");
-request.CustomFields.Add("Cost", "$20,000");
+request.AddCustomField("Cost", "$20,000");
 request.TestMode = true;
 var response = client.CreateEmbeddedSignatureRequest(request, "CLIENT ID HERE");
 Console.WriteLine("New Template-based Embedded Signature Request ID: " + response.SignatureRequestId);
@@ -244,7 +244,24 @@ var template = client.RemoveAccountFromTemplate("TEMPLATE ID HERE", null, "EMAIL
 #### Delete a Template
 
 ```C#
-var template = client.DeleteTemplate("TEMPLATE ID HERE");
+client.DeleteTemplate("TEMPLATE ID HERE");
+```
+
+## Create a new Embedded Template Draft
+
+```C#
+var draft = new EmbeddedTemplateDraft();
+draft.TestMode = true;
+draft.AddFile(file1, "NDA.txt");
+draft.Title = "Test Template";
+draft.Subject = "Please sign this document";
+draft.Message = "For your approval.";
+draft.AddSignerRole("Client", 0);
+draft.AddSignerRole("Witness", 1);
+draft.AddCcRole("Manager");
+draft.AddMergeField("Full Name", MergeField.FieldType.Text);
+draft.AddMergeField("Is Registered?", MergeField.FieldType.Checkbox);
+var response = client.CreateEmbeddedTemplateDraft(draft, "CLIENT ID HERE");
 ```
 
 ### Team Methods
