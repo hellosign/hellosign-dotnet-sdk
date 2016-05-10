@@ -304,13 +304,13 @@ namespace HelloSignTestApp
 
             // Create embedded unclaimed draft with a template
             if (TEMPLATE_ID.Length > 0) {
-                var etDraft = new TemplateSignatureRequest();
-                etDraft.AddTemplate(TEMPLATE_ID);
-                etDraft.RequesterEmailAddress = "jack@hellosign.com";
-                etDraft.AddSigner("Client", "george@example.com", "George");
-                etDraft.AddCc("Accounting", "accounting@example.com");
-                etDraft.TestMode = true;
-                var etuResponse = client.CreateUnclaimedDraft(etDraft, clientId);
+                var teDraft = new TemplateSignatureRequest();
+                teDraft.AddTemplate(TEMPLATE_ID);
+                teDraft.RequesterEmailAddress = "jack@hellosign.com";
+                teDraft.AddSigner("Client", "george@example.com", "George");
+                teDraft.AddCc("Accounting", "accounting@example.com");
+                teDraft.TestMode = true;
+                var etuResponse = client.CreateUnclaimedDraft(teDraft, clientId);
                 Console.WriteLine("New Embedded Unclaimed Draft with Template Claim URL: " + etuResponse.ClaimUrl);
             }
 
