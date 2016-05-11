@@ -190,3 +190,6 @@ ModelManifest.xml
 
 # Visual Studio Code settings
 .settings/
+
+*.exe
+*.nupkg
