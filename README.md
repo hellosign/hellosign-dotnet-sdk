@@ -1,5 +1,7 @@
 # HelloSign .NET SDK (Beta)
 
+[![Build status](https://ci.appveyor.com/api/projects/status/90m1ygpgg50qt30v/branch/v3?svg=true)](https://ci.appveyor.com/project/HelloSign/hellosign-dotnet-sdk/branch/v3)
+
 An official library for using the HelloSign API written in C#.NET and powered by RestSharp.
 
 **This SDK is currently in beta. If you need help:**
@@ -323,12 +325,11 @@ Use Visual Studio (Express).
 
 1. Install Mono
 2. Install NuGet
-3. `cd HelloSign`
-4. `nuget install`
-5. `mkdir ../packages`
-6. `mv RestSharp* ../packages`
-7. `cd ..`
-8. `xbuild` (or `xbuild /p:Configuration=Release` for a non-Debug build)
+3. `mkdir packages`
+4. `cd HelloSign`
+5. `nuget install -o ../packages`
+6. `cd ..`
+7. `xbuild` (or `xbuild /p:Configuration=Release` for a non-Debug build)
 
 ### Packaging for NuGet
 
