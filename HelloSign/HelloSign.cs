@@ -1284,6 +1284,12 @@ namespace HelloSign
                 request.AddParameter("oauth[scopes]", String.Join(",", app.Oauth.Scopes.ToArray()));
             }
 
+            // Add white labeling options
+            if (app.WhiteLabelingOptions.Count != 0)
+            {
+                request.AddParameter("white_labeling_options", JsonConvert.SerializeObject(app.WhiteLabelingOptions));
+            }
+
             request.RootElement = "api_app";
             return Execute<ApiApp>(request);
         }

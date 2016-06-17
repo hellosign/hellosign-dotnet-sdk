@@ -14,5 +14,11 @@ namespace HelloSign
         public bool? IsApproved { get; set; }
         public Account OwnerAccount { get; set; }
         public Oauth Oauth { get; set; }
+        public Dictionary<string, string> WhiteLabelingOptions { get; set; }
+
+        public ApiApp()
+        {
+            WhiteLabelingOptions = new Dictionary<string, string>();
+        }
     }
 }
