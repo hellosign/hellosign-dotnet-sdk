@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Exceptions.cs" />
     <Compile Include="Models\CustomField.cs" />
+    <Compile Include="Models\Document.cs" />
     <Compile Include="Models\FormField.cs" />
     <Compile Include="Models\ObjectList.cs" />
     <Compile Include="Models\Event.cs" />
