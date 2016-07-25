@@ -176,6 +176,13 @@ var response = client.CreateEmbeddedSignatureRequest(request, "CLIENT ID HERE");
 Console.WriteLine("New Template-based Embedded Signature Request ID: " + response.SignatureRequestId);
 ```
 
+#### Get info about an existing Signature Request
+
+```C#
+var request = client.GetSignatureRequest("SIGNATURE REQUEST ID HERE");
+Console.WriteLine("Signature Request title: " + request.Title);
+```
+
 #### Cancel a Signature Request
 
 ```C#
