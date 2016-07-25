@@ -206,6 +206,14 @@ client.DownloadSignatureRequestFiles("SIGNATURE REQUEST ID HERE");
 client.DownloadSignatureRequestFiles("SIGNATURE REQUEST ID HERE", SignatureRequest.FileType.ZIP);
 ```
 
+#### Get a temporary URL to download a Signature Request
+
+```C#
+var url = client.GetSignatureRequestDownloadUrl("SIGNATURE REQUEST ID HERE");
+Console.WriteLine("The download URL is: " + url.FileUrl);
+Console.WriteLine("The URL expires at: " + url.ExpiresAt);
+```
+
 ### Embedded Methods
 
 #### Retrieve Embedded Signing URL for a particular signer
@@ -248,6 +256,14 @@ var template = client.AddAccountToTemplate("TEMPLATE ID HERE", null, "EMAIL ADDR
 var template = client.RemoveAccountFromTemplate("TEMPLATE ID HERE", "ACCOUNT ID HERE");
 // Or...
 var template = client.RemoveAccountFromTemplate("TEMPLATE ID HERE", null, "EMAIL ADDRESS HERE");
+```
+
+#### Get a temporary URL to download a Template's files
+
+```C#
+var url = client.GetTemplateFilesDownloadUrl("TEMPLATE ID HERE");
+Console.WriteLine("The download URL is: " + url.FileUrl);
+Console.WriteLine("The URL expires at: " + url.ExpiresAt);
 ```
 
 #### Delete a Template

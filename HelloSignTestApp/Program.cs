@@ -137,6 +137,14 @@ namespace HelloSignTestApp
                 Console.WriteLine("Template: " + result.TemplateId);
             }
 
+            // If any templates exist, get first one's download URL
+            if (templates.NumResults > 0)
+            {
+                // Get a download URL for this template
+                var tDownloadUrl = client.GetTemplateFilesDownloadUrl(templates.Items[0].TemplateId);
+                Console.WriteLine("Template download URL: " + tDownloadUrl.FileUrl + " (Expires at: " + tDownloadUrl.ExpiresAt + ")");
+            }
+
             // Send signature request
             var request = new SignatureRequest();
             request.Title = "NDA with Acme Co.";
@@ -156,6 +164,10 @@ namespace HelloSignTestApp
             // Get signature request (yes, it's redundant right here)
             var signatureRequest = client.GetSignatureRequest(response.SignatureRequestId);
             Console.WriteLine("Fetched request with Title: " + signatureRequest.Title);
+
+            // Get a download URL for this signature request
+            var downloadUrl = client.GetSignatureRequestDownloadUrl(response.SignatureRequestId);
+            Console.WriteLine("Download URL: " + downloadUrl.FileUrl + " (Expires at: " + downloadUrl.ExpiresAt + ")");
 
             // Download signature request
             Console.WriteLine("Attempting to download PDF...");

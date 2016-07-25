@@ -67,6 +67,7 @@
     <Compile Include="Models\Team.cs" />
     <Compile Include="Models\Template.cs" />
     <Compile Include="Models\TemplateSignatureRequest.cs" />
+    <Compile Include="Models\TemporaryUrl.cs" />
     <Compile Include="Models\Signer.cs" />
     <Compile Include="Models\SignatureRequest.cs" />
     <Compile Include="Models\UnclaimedDraft.cs" />

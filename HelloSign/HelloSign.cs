@@ -709,6 +709,22 @@ namespace HelloSign
             File.WriteAllBytes(destination, DownloadSignatureRequestFiles(signatureRequestId, type));
         }
 
+        /// <summary>
+        /// Get a URL pointing to a downloadable PDF of the Signature Request.
+        /// </summary>
+        /// <param name="signatureRequestId"></param>
+        /// <returns>Information about a temporary URL which can be used to download the PDF.</returns>
+        public TemporaryUrl GetSignatureRequestDownloadUrl(string signatureRequestId)
+        {
+            RequireAuthentication();
+
+            var request = new RestRequest("signature_request/files/{id}");
+            request.AddUrlSegment("id", signatureRequestId);
+            request.AddQueryParameter("get_url", "1");
+
+            return Execute<TemporaryUrl>(request);
+        }
+
         #endregion
 
         #region Template Methods
@@ -879,6 +895,22 @@ namespace HelloSign
             var request = new RestRequest("template/delete/{id}", Method.POST);
             request.AddUrlSegment("id", templateId);
             Execute(request);
+        }
+
+        /// <summary>
+        /// Get a URL pointing to a downloadable PDF of the Signature Request.
+        /// </summary>
+        /// <param name="signatureRequestId"></param>
+        /// <returns>Information about a temporary URL which can be used to download the PDF.</returns>
+        public TemporaryUrl GetTemplateFilesDownloadUrl(string templateId)
+        {
+            RequireAuthentication();
+
+            var request = new RestRequest("template/files/{id}");
+            request.AddUrlSegment("id", templateId);
+            request.AddQueryParameter("get_url", "1");
+
+            return Execute<TemporaryUrl>(request);
         }
 
         #endregion
