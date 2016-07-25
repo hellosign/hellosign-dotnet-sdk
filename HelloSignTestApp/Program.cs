@@ -226,6 +226,23 @@ namespace HelloSignTestApp
                 Console.WriteLine("Skipping TemplateSignatureRequest test.");
             }
 
+            // Send signature request with path to file and form fields
+            var fpRequest = new SignatureRequest();
+            fpRequest.AddSigner("jack@example.com", "Jack");
+            fpRequest.AddSigner("jill@example.com", "Jill");
+            fpRequest.AddFile("HelloSignTestApp/Resources/Test Document.pdf").WithFields(
+                new FormField("chk1", FormField.TypeCheckbox,     1, 140, 72*1,  36, 36, true, 0),
+                new FormField("txt1", FormField.TypeText,         1, 140, 72*2, 225, 20, true, 0, FormField.ValidationTypeEmailAddress),
+                new FormField("dat1", FormField.TypeDateSigned,   1, 140, 72*3, 225, 52, true, 0),
+                new FormField("sig1", FormField.TypeSignature,    1, 140, 72*4, 225, 52, true, 0),
+                new FormField("sig2", FormField.TypeSignature,    1, 140, 72*5, 225, 52, true, 1)
+            );
+            fpRequest.Title = "File Path Test";
+            fpRequest.TestMode = true;
+            var fpResponse = client.SendSignatureRequest(fpRequest);
+            Console.WriteLine("New Signature Request ID: " + fpResponse.SignatureRequestId);
+            cancelSignatureRequest(client, fpResponse.SignatureRequestId);
+
             // Send signature request with form fields
             var ffRequest = new SignatureRequest();
             ffRequest.AddSigner("jack@example.com", "Jack");

@@ -44,7 +44,8 @@ namespace HelloSign
         /// </summary>
         /// <param name="path">Full path to file to upload.</param>
         /// <param name="contentType">The MIME type of the file to upload.</param>
-        public void AddFile(string path, string contentType = null)
+        /// <returns></returns>
+        public FileSignatureRequestBuilder AddFile(string path, string contentType = null)
         {
             if (FileUrls.Count > 0)
             {
@@ -55,6 +56,8 @@ namespace HelloSign
             file.Path = path;
             file.ContentType = contentType;
             Files.Add(file);
+
+            return new FileSignatureRequestBuilder(file, this);
         }
 
         /// <summary>
@@ -63,6 +66,7 @@ namespace HelloSign
         /// <param name="bytes">The file data as an array of bytes.</param>
         /// <param name="filename">Filename this file should appear to the server as.</param>
         /// <param name="contentType">The MIME type of the file to upload.</param>
+        /// <returns></returns>
         public FileSignatureRequestBuilder AddFile(byte[] bytes, string filename, string contentType = null)
         {
             if (FileUrls.Count > 0)
@@ -85,7 +89,8 @@ namespace HelloSign
         /// <param name="writer">Input stream delegate that will provide the file data.</param>
         /// <param name="filename">Filename this file should appear to the server as.</param>
         /// <param name="contentType">The MIME type of the file to upload.</param>
-        public void AddFile(Action<System.IO.Stream> writer, string filename, string contentType = null)
+        /// <returns></returns>
+        public FileSignatureRequestBuilder AddFile(Action<System.IO.Stream> writer, string filename, string contentType = null)
         {
             if (FileUrls.Count > 0)
             {
@@ -97,6 +102,8 @@ namespace HelloSign
             file.Filename = filename;
             file.ContentType = contentType;
             Files.Add(file);
+
+            return new FileSignatureRequestBuilder(file, this);
         }
         
         /// <summary>
@@ -112,7 +119,7 @@ namespace HelloSign
             {
                 throw new ArgumentException("Only HTTP or HTTPS URIs are allowed");
             }
-            
+
             FileUrls.Add(uri.AbsoluteUri);
         }
 
