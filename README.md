@@ -208,9 +208,9 @@ client.DownloadSignatureRequestFiles("SIGNATURE REQUEST ID HERE", "/path/to/outp
 
 ```C#
 // Download a merged PDF
-client.DownloadSignatureRequestFiles("SIGNATURE REQUEST ID HERE");
+var bytes = client.DownloadSignatureRequestFiles("SIGNATURE REQUEST ID HERE");
 // Or download a ZIP containing individual unmerged PDFs
-client.DownloadSignatureRequestFiles("SIGNATURE REQUEST ID HERE", SignatureRequest.FileType.ZIP);
+var bytes = client.DownloadSignatureRequestFiles("SIGNATURE REQUEST ID HERE", SignatureRequest.FileType.ZIP);
 ```
 
 #### Get a temporary URL to download a Signature Request
@@ -263,6 +263,18 @@ var template = client.AddAccountToTemplate("TEMPLATE ID HERE", null, "EMAIL ADDR
 var template = client.RemoveAccountFromTemplate("TEMPLATE ID HERE", "ACCOUNT ID HERE");
 // Or...
 var template = client.RemoveAccountFromTemplate("TEMPLATE ID HERE", null, "EMAIL ADDRESS HERE");
+```
+
+#### Download a Template as a PDF and save to disk
+
+```C#
+client.DownloadTemplateFiles("TEMPLATE ID HERE", "/path/to/output.pdf");
+```
+
+#### Download a Template as a PDF, as bytes
+
+```C#
+var bytes = client.DownloadTemplateFiles("TEMPLATE ID HERE");
 ```
 
 #### Get a temporary URL to download a Template's files

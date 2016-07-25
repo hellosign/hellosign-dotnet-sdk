@@ -898,6 +898,39 @@ namespace HelloSign
         }
 
         /// <summary>
+        /// Download a Template's files as a merged PDF (or a ZIP of unmerged
+        /// PDFs) and get the byte array.
+        /// </summary>
+        /// <param name="templateId"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public byte[] DownloadTemplateFiles(string templateId, SignatureRequest.FileType type = SignatureRequest.FileType.PDF)
+        {
+            RequireAuthentication();
+
+            var request = new RestRequest("template/files/{id}");
+            request.AddUrlSegment("id", templateId);
+            if (type == SignatureRequest.FileType.ZIP)
+            {
+                request.AddQueryParameter("file_type", "zip");
+            }
+            var response = Execute(request);
+            return response.RawBytes;
+        }
+
+        /// <summary>
+        /// Download a Template's files as a merged PDF (or a ZIP of unmerged
+        /// PDFs) and write the resulting file to disk.
+        /// </summary>
+        /// <param name="templateId"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public void DownloadTemplateFiles(string templateId, string destination, SignatureRequest.FileType type = SignatureRequest.FileType.PDF)
+        {
+            File.WriteAllBytes(destination, DownloadTemplateFiles(templateId, type));
+        }
+
+        /// <summary>
         /// Get a URL pointing to a downloadable PDF of the Signature Request.
         /// </summary>
         /// <param name="signatureRequestId"></param>

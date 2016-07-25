@@ -140,9 +140,15 @@ namespace HelloSignTestApp
             // If any templates exist, get first one's download URL
             if (templates.NumResults > 0)
             {
+                var firstTemplateId = templates.Items[0].TemplateId;
+
                 // Get a download URL for this template
-                var tDownloadUrl = client.GetTemplateFilesDownloadUrl(templates.Items[0].TemplateId);
+                var tDownloadUrl = client.GetTemplateFilesDownloadUrl(firstTemplateId);
                 Console.WriteLine("Template download URL: " + tDownloadUrl.FileUrl + " (Expires at: " + tDownloadUrl.ExpiresAt + ")");
+
+                // Download this template's files to disk as a PDF
+                client.DownloadTemplateFiles(firstTemplateId, "template.pdf");
+                Console.WriteLine("Downloaded Template PDF as template.pdf");
             }
 
             // Send signature request
