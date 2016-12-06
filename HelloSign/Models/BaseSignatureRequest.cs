@@ -25,6 +25,7 @@ namespace HelloSign
         public bool IsForEmbeddedSigning { get; set; }
         public string DetailsUrl { get; set; }
         public string RequesterEmailAddress { get; set; }
+        public bool AllowDecline { get; set; }
         public List<Signature> Signatures { get; set; }
         public List<string> CcEmailAddresses { get; set; }
 
@@ -35,6 +36,7 @@ namespace HelloSign
             Metadata = new Dictionary<String, String>();
             CustomFields = new List<CustomField>();
             CcEmailAddresses = new List<string>();
+            AllowDecline = false;
         }
 
         /// <summary>

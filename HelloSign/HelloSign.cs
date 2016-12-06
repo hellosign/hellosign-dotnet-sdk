@@ -574,6 +574,7 @@ namespace HelloSign
             if (signatureRequest.Message != null) request.AddParameter("message", signatureRequest.Message);
             if (signatureRequest.SigningRedirectUrl != null) request.AddParameter("signing_redirect_url", signatureRequest.SigningRedirectUrl);
             if (signatureRequest.TestMode) request.AddParameter("test_mode", "1");
+            if (signatureRequest.AllowDecline) request.AddParameter("allow_decline", "1");
 
             // Add Template IDs
             var i = 0;
