@@ -163,6 +163,7 @@ namespace HelloSignTestApp
             request.AddFile(file2, "AppendixA.txt");
             request.Metadata.Add("custom_id", "1234");
             request.Metadata.Add("custom_text", "NDA #9");
+            request.AllowDecline = true;
             request.TestMode = true;
             var response = client.SendSignatureRequest(request);
             Console.WriteLine("New Signature Request ID: " + response.SignatureRequestId);
@@ -172,12 +173,35 @@ namespace HelloSignTestApp
             Console.WriteLine("Fetched request with Title: " + signatureRequest.Title);
 
             // Get a download URL for this signature request
-            var downloadUrl = client.GetSignatureRequestDownloadUrl(response.SignatureRequestId);
-            Console.WriteLine("Download URL: " + downloadUrl.FileUrl + " (Expires at: " + downloadUrl.ExpiresAt + ")");
+            Console.WriteLine("Attempting to get a PDF link...");
+            var retries = 5;
+            while (retries > 0)
+            {
+                try
+                {
+                    var downloadUrl = client.GetSignatureRequestDownloadUrl(response.SignatureRequestId);
+                    Console.WriteLine("Download URL: " + downloadUrl.FileUrl + " (Expires at: " + downloadUrl.ExpiresAt + ")");
+                    break;
+                }
+                catch (Exception e) // Workaround for an API bug
+                {
+                    retries--;
+                    Console.Write("└ Caught an exception: " + e.Message);
+                    if (retries > 0)
+                    {
+                        Console.WriteLine(". Trying again in 2s...");
+                        System.Threading.Thread.Sleep(2000);
+                    }
+                    else
+                    {
+                        Console.WriteLine(". Giving up!");
+                    }
+                }
+            }
 
             // Download signature request
             Console.WriteLine("Attempting to download PDF...");
-            var retries = 5;
+            retries = 5;
             while (retries > 0)
             {
                 try
