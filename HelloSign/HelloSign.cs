@@ -460,6 +460,7 @@ namespace HelloSign
             if (signatureRequest.SigningRedirectUrl != null) request.AddParameter("signing_redirect_url", signatureRequest.SigningRedirectUrl);
             if (signatureRequest.UseTextTags) request.AddParameter("use_text_tags", "1");
             if (signatureRequest.HideTextTags) request.AddParameter("hide_text_tags", "1");
+            if (signatureRequest.AllowDecline) request.AddParameter("allow_decline", "1");
 
             // Add Signers
             var i = 0;
@@ -574,6 +575,7 @@ namespace HelloSign
             if (signatureRequest.Message != null) request.AddParameter("message", signatureRequest.Message);
             if (signatureRequest.SigningRedirectUrl != null) request.AddParameter("signing_redirect_url", signatureRequest.SigningRedirectUrl);
             if (signatureRequest.TestMode) request.AddParameter("test_mode", "1");
+            if (signatureRequest.AllowDecline) request.AddParameter("allow_decline", "1");
 
             // Add Template IDs
             var i = 0;
