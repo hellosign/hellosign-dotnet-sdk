@@ -301,6 +301,11 @@ namespace HelloSignTestApp
             var ffResponse = client.SendSignatureRequest(ffRequest);
             Console.WriteLine("New Signature Request ID: " + ffResponse.SignatureRequestId);
 
+            // Update form fields request
+            var signatureId = ffResponse.Signatures[0].SignatureId;
+            ffResponse = client.UpdateSignatureRequest(ffResponse.SignatureRequestId, signatureId, "jack-updated@example.com");
+            Console.WriteLine("└ Updated request to email address: " + ffResponse.Signatures[0].SignerEmailAddress);
+
             // Cancel form fields request
             cancelSignatureRequest(client, ffResponse.SignatureRequestId);
 

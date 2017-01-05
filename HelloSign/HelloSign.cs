@@ -666,6 +666,26 @@ namespace HelloSign
         }
 
         /// <summary>
+        /// Update the email address for the specified signature ID on the
+        /// specified Signature Request.
+        /// </summary>
+        /// <param name="signatureRequestId">The ID of the SignatureRequest to update.</param>
+        /// <param name="signatureId">The signature ID for the recipient.</param>
+        /// <param name="emailAddress">The new email address for the recipient.</param>
+        /// <returns></returns>
+        public SignatureRequest UpdateSignatureRequest(string signatureRequestId, string signatureId, string emailAddress)
+        {
+            RequireAuthentication();
+
+            var request = new RestRequest("signature_request/update/{id}", Method.POST);
+            request.AddUrlSegment("id", signatureRequestId);
+            request.AddParameter("signature_id", signatureId);
+            request.AddParameter("email_address", emailAddress);
+            request.RootElement = "signature_request";
+            return Execute<SignatureRequest>(request);
+        }
+
+        /// <summary>
         /// Cancel the specified Signature Request.
         /// </summary>
         /// <param name="signatureRequestId"></param>
