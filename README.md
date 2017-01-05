@@ -195,6 +195,12 @@ client.CancelSignatureRequest("SIGNATURE REQUEST ID HERE");
 client.RemindSignatureRequest("SIGNATURE REQUEST ID HERE", "EMAIL ADDRESS HERE");
 ```
 
+#### Update a Signature Request
+
+```C#
+client.UpdateSignatureRequest("SIGNATURE REQUEST ID HERE", "SIGNATURE ID HERE", "NEW EMAIL ADDRESS HERE");
+```
+
 #### Download a Signature Request (in its current state) and save to disk
 
 ```C#
