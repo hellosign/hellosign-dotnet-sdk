@@ -461,6 +461,7 @@ namespace HelloSign
             if (signatureRequest.UseTextTags) request.AddParameter("use_text_tags", "1");
             if (signatureRequest.HideTextTags) request.AddParameter("hide_text_tags", "1");
             if (signatureRequest.AllowDecline) request.AddParameter("allow_decline", "1");
+            if (signatureRequest.AllowReassign) request.AddParameter("allow_reassign", "1");
 
             // Add Signers
             var i = 0;

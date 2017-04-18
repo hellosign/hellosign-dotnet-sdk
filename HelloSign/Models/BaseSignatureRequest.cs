@@ -26,6 +26,7 @@ namespace HelloSign
         public string DetailsUrl { get; set; }
         public string RequesterEmailAddress { get; set; }
         public bool AllowDecline { get; set; }
+        public bool AllowReassign { get; set; }
         public List<Signature> Signatures { get; set; }
         public List<string> CcEmailAddresses { get; set; }
 
@@ -37,6 +38,7 @@ namespace HelloSign
             CustomFields = new List<CustomField>();
             CcEmailAddresses = new List<string>();
             AllowDecline = false;
+            AllowReassign = false;
         }
 
         /// <summary>
