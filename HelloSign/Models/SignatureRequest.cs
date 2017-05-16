@@ -21,14 +21,16 @@ namespace HelloSign
         public bool UseTextTags { get; set; }
         public bool UsePreexistingFields { get; set; }
         public bool HideTextTags { get; set; }
-        public List<FormField> FormFieldsPerDocument { get; set; }
-        
-        public SignatureRequest() : base()
+	    public bool AllowReassign { get; set; }
+		public List<FormField> FormFieldsPerDocument { get; set; }
+
+		public SignatureRequest() : base()
         {
             Ccs = new List<string>();
             Files = new List<FileContainer>();
             FileUrls = new List<string>();
-        }
+	        AllowReassign = false;
+		}
 
         /// <summary>
         /// Add a CC email address to the request.
