@@ -1,4 +1,4 @@
-# HelloSign .NET SDK (Beta)
+# HelloSign .NET SDK 
 
 [![Build status](https://ci.appveyor.com/api/projects/status/90m1ygpgg50qt30v/branch/v3?svg=true)](https://ci.appveyor.com/project/HelloSign/hellosign-dotnet-sdk/branch/v3)
 
