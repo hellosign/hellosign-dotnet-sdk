@@ -149,6 +149,18 @@ namespace HelloSignTestApp
                 // Download this template's files to disk as a PDF
                 client.DownloadTemplateFiles(firstTemplateId, "template.pdf");
                 Console.WriteLine("Downloaded Template PDF as template.pdf");
+
+                // Get the template itself
+                var template = client.GetTemplate(firstTemplateId);
+                Console.WriteLine("Got Template: " + firstTemplateId);
+
+                // Check the document for custom fields
+                foreach(Document document in template.Documents) {
+                    Console.WriteLine("└ Found Document: " + document.Name);
+                    foreach(CustomField customField in document.CustomFields) {
+                        Console.WriteLine(" └ Found Custom Field: " + customField.Name);
+                    }
+                }
             }
 
             // Send signature request
