@@ -89,9 +89,10 @@ namespace HelloSign
         /// </summary>
         /// <param name="writer">Input stream delegate that will provide the file data.</param>
         /// <param name="filename">Filename this file should appear to the server as.</param>
+        /// <param name="contentLength">The length (in bytes) of the file content.</param>
         /// <param name="contentType">The MIME type of the file to upload.</param>
         /// <returns></returns>
-        public FileSignatureRequestBuilder AddFile(Action<System.IO.Stream> writer, string filename, string contentType = null)
+        public FileSignatureRequestBuilder AddFile(Action<System.IO.Stream> writer, string filename, int contentLength, string contentType = null)
         {
             if (FileUrls.Count > 0)
             {
@@ -101,6 +102,7 @@ namespace HelloSign
             var file = new FileContainer();
             file.Writer = writer;
             file.Filename = filename;
+            file.ContentLength = contentLength;
             file.ContentType = contentType;
             Files.Add(file);
 
@@ -140,6 +142,7 @@ namespace HelloSign
         public string Filename { get; set; }
         public string Path { get; set; }
         public Action<System.IO.Stream> Writer { get; set; }
+        public long ContentLength { get; set; }
         public byte[] Bytes { get; set; }
 
         /// <summary>
@@ -156,7 +159,7 @@ namespace HelloSign
             }
             else if (Writer != null)
             {
-                request.AddFile(name, Writer, Filename, ContentType);
+                request.AddFile(name, Writer, Filename, ContentLength, ContentType);
             }
             else if (Bytes != null)
             {
