@@ -193,3 +193,6 @@ ModelManifest.xml
 
 *.exe
 *.nupkg
+
+#Visual Studio  settings
+.vs/*
