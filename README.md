@@ -6,14 +6,14 @@ An official library for using the HelloSign API written in C#.NET and powered by
 
 **This SDK is currently in beta. If you need help:**
 
-* **Use the [Issue Tracker](https://github.com/HelloFax/hellosign-dotnet-sdk/issues) to report bugs or missing functionality in this library.**
+* **Use the [Issue Tracker](https://github.com/hellosign/hellosign-dotnet-sdk/issues) to report bugs or missing functionality in this library.**
 * **Send an email to apisupport@hellosign.com to request help with our API or your account.**
 
 ## Installation
 
 The HelloSign .NET SDK can be installed using the NuGet package manager, under the package name **HelloSign** ([package details](https://www.nuget.org/packages/HelloSign/)).
 
-If you prefer not to use NuGet, you can download a ZIP archive containing the built .dll files from the [Releases](https://github.com/HelloFax/hellosign-dotnet-sdk/releases) page, or clone this repository and build the project yourself (see "Build from Source" below).
+If you prefer not to use NuGet, you can download a ZIP archive containing the built .dll files from the [Releases](https://github.com/hellosign/hellosign-dotnet-sdk/releases) page, or clone this repository and build the project yourself (see "Build from Source" below).
 
 ## Usage
 
