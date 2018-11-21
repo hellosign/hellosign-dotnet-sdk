@@ -30,6 +30,6 @@ using System.Runtime.InteropServices;
 //      Revision
 //
 // NOTE: This gets reported in the user-agent string for HTTP requests made.
-[assembly: AssemblyVersion("0.5.7.0")]
+[assembly: AssemblyVersion("0.5.8.0")]
 // [assembly: AssemblyVersion("0.0.0.0")]
 // [assembly: AssemblyFileVersion("0.0.0.0")]
