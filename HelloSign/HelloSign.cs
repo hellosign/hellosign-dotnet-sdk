@@ -461,6 +461,7 @@ namespace HelloSign
             if (signatureRequest.UseTextTags) request.AddParameter("use_text_tags", "1");
             if (signatureRequest.HideTextTags) request.AddParameter("hide_text_tags", "1");
             if (signatureRequest.AllowDecline) request.AddParameter("allow_decline", "1");
+            if (signatureRequest.SkipMeNow) request.AddParameter("skip_me_now", "1");
             if (signatureRequest.AllowReassign) request.AddParameter("allow_reassign", "1");
 
             // Add Signers
@@ -577,6 +578,7 @@ namespace HelloSign
             if (signatureRequest.SigningRedirectUrl != null) request.AddParameter("signing_redirect_url", signatureRequest.SigningRedirectUrl);
             if (signatureRequest.TestMode) request.AddParameter("test_mode", "1");
             if (signatureRequest.AllowDecline) request.AddParameter("allow_decline", "1");
+            if (signatureRequest.SkipMeNow) request.AddParameter("skip_me_now", "1");
 
             // Add Template IDs
             var i = 0;
@@ -854,6 +856,7 @@ namespace HelloSign
             if (draft.Subject != null) request.AddParameter("subject", draft.Subject);
             if (draft.Message != null) request.AddParameter("message", draft.Message);
             if (draft.TestMode) request.AddParameter("test_mode", "1");
+            if (draft.SkipMeNow) request.AddParameter("skip_me_now", "1");
             if (draft.UsePreexistingFields) request.AddParameter("use_preexisting_fields", "1");
 
             // Add Signer Roles
@@ -1140,6 +1143,7 @@ namespace HelloSign
             if (signatureRequest.UseTextTags) request.AddParameter("use_text_tags", "1");
             if (signatureRequest.UsePreexistingFields) request.AddParameter("use_preexisting_fields", "1");
             if (signatureRequest.HideTextTags) request.AddParameter("hide_text_tags", "1");
+            if (signatureRequest.SkipMeNow) request.AddParameter("skip_me_now", "1");
             if (embedded && signatureRequest.IsForEmbeddedSigning) request.AddParameter("is_for_embedded_signing", "1");
             if (embedded && signatureRequest.RequesterEmailAddress != null) request.AddParameter("requester_email_address", signatureRequest.RequesterEmailAddress);
 
@@ -1229,6 +1233,7 @@ namespace HelloSign
             if (signatureRequest.RequestingRedirectUrl != null) request.AddParameter("requesting_redirect_url", signatureRequest.RequestingRedirectUrl);
             if (signatureRequest.TestMode) request.AddParameter("test_mode", "1");
             if (signatureRequest.IsForEmbeddedSigning) request.AddParameter("is_for_embedded_signing", "1");
+            if (signatureRequest.SkipMeNow) request.AddParameter("skip_me_now", "1");
             if (signatureRequest.RequesterEmailAddress != null) request.AddParameter("requester_email_address", signatureRequest.RequesterEmailAddress);
 
             // Add Template IDs
