@@ -176,6 +176,12 @@ namespace HelloSignTestApp
             request.Metadata.Add("custom_id", "1234");
             request.Metadata.Add("custom_text", "NDA #9");
             request.AllowDecline = true;
+            request.SigningOptions = new SigningOptions
+            {
+                Draw = true,
+                Type = true,
+                Default = "type"
+            };
             request.TestMode = true;
             var response = client.SendSignatureRequest(request);
             Console.WriteLine("New Signature Request ID: " + response.SignatureRequestId);
@@ -284,7 +290,7 @@ namespace HelloSignTestApp
             var fpRequest = new SignatureRequest();
             fpRequest.AddSigner("jack@example.com", "Jack");
             fpRequest.AddSigner("jill@example.com", "Jill");
-            fpRequest.AddFile("HelloSignTestApp/Resources/Test Document.pdf").WithFields(
+            fpRequest.AddFile(System.AppDomain.CurrentDomain.BaseDirectory + "..\\..\\Resources\\Test Document.pdf").WithFields(
                 new FormField("chk1", FormField.TypeCheckbox,     1, 140, 72*1,  36, 36, true, 0),
                 new FormField("txt1", FormField.TypeText,         1, 140, 72*2, 225, 20, true, 0, FormField.ValidationTypeEmailAddress),
                 new FormField("dat1", FormField.TypeDateSigned,   1, 140, 72*3, 225, 52, true, 0),
