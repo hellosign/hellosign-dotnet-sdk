@@ -19,5 +19,6 @@ namespace HelloSign
         public DateTime LastRemindedAt { get; set; }
         public bool HasPin { get; set; }
         public string DeclineReason { get; set; }
+        public string Error { get; set; }
     }
 }
