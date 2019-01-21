@@ -55,7 +55,6 @@ namespace HelloSign
         private string apiKey;
         private RestClient client;
         private RestSharp.Deserializers.JsonDeserializer deserializer;
-        private RestSharp.Serializers.JsonSerializer serializer;
         public List<Warning> Warnings { get; private set; }
         public string Version { get; private set; }
 
@@ -74,7 +73,6 @@ namespace HelloSign
             client = new RestClient();
             client.UserAgent = "hellosign-dotnet-sdk/" + Version;
             deserializer = new RestSharp.Deserializers.JsonDeserializer();
-            serializer = new RestSharp.Serializers.JsonSerializer();
             Warnings = new List<Warning>();
             SetEnvironment(Environment.Prod);
         }
@@ -518,7 +516,7 @@ namespace HelloSign
                 {
                     container[fileFields.Key] = fileFields.ToList();
                 }
-                request.AddParameter("form_fields_per_document", serializer.Serialize(container));
+                request.AddParameter("form_fields_per_document", JsonConvert.SerializeObject(container));
             }
 
             request.RootElement = "signature_request";
