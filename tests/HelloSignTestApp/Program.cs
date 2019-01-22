@@ -284,7 +284,7 @@ namespace HelloSignTestApp
             var fpRequest = new SignatureRequest();
             fpRequest.AddSigner("jack@example.com", "Jack");
             fpRequest.AddSigner("jill@example.com", "Jill");
-            fpRequest.AddFile("HelloSignTestApp/Resources/Test Document.pdf").WithFields(
+            fpRequest.AddFile("out.pdf").WithFields(
                 new FormField("chk1", FormField.TypeCheckbox,     1, 140, 72*1,  36, 36, true, 0),
                 new FormField("txt1", FormField.TypeText,         1, 140, 72*2, 225, 20, true, 0, FormField.ValidationTypeEmailAddress),
                 new FormField("dat1", FormField.TypeDateSigned,   1, 140, 72*3, 225, 52, true, 0),
@@ -301,7 +301,7 @@ namespace HelloSignTestApp
             var ffRequest = new SignatureRequest();
             ffRequest.AddSigner("jack@example.com", "Jack");
             ffRequest.AddSigner("jill@example.com", "Jill");
-            ffRequest.AddFile(pdfFile1, "TestDocument.txt").WithFields(
+            ffRequest.AddFile(pdfFile1, "TestDocument.pdf").WithFields(
                 new FormField("chk1", FormField.TypeCheckbox,     1, 140, 72*1,  36, 36, true, 0),
                 new FormField("txt1", FormField.TypeText,         1, 140, 72*2, 225, 20, true, 0, FormField.ValidationTypeEmailAddress),
                 new FormField("dat1", FormField.TypeDateSigned,   1, 140, 72*3, 225, 52, true, 0),
