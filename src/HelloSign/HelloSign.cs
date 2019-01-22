@@ -84,17 +84,6 @@ namespace HelloSign
             client.Authenticator = new RestSharp.Authenticators.HttpBasicAuthenticator(apiKey, "");
         }
 
-        /// <summary>
-        /// Constructor initialized with username/password authentication.
-        /// Not preferred; Please use API key authentication instead.
-        /// </summary>
-        /// <param name="username">Your HelloSign account email address.</param>
-        /// <param name="password">Your HelloSign account password.</param>
-        public Client(string username, string password) : this()
-        {
-            client.Authenticator = new RestSharp.Authenticators.HttpBasicAuthenticator(username, password);
-        }
-
         private void HandleErrors(IRestResponse response)
         {
             // If there was an exception getting the response
