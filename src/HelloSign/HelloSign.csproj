@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <ProjectGuid>{DDBF5A27-A93C-4E6E-AA15-C0C102B9568B}</ProjectGuid>
-    <TargetFrameworks>net452</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;net452</TargetFrameworks>
     <RepositoryUrl>https://github.com/hellosign/hellosign-dotnet-sdk.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <Description>Client library for using the HelloSign API</Description>
