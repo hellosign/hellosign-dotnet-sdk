@@ -568,7 +568,6 @@ namespace HelloSign
             var request = new RestRequest(endpoint, Method.POST);
 
             // Add simple parameters
-            if (signatureRequest.TemplateId != null) request.AddParameter("template_id", signatureRequest.TemplateId); // Deprecated
             if (clientId != null) request.AddParameter("client_id", clientId);
             if (signatureRequest.Title != null) request.AddParameter("title", signatureRequest.Title);
             if (signatureRequest.Subject != null) request.AddParameter("subject", signatureRequest.Subject);
@@ -1223,7 +1222,6 @@ namespace HelloSign
 
             // Add simple parameters
             request.AddParameter("client_id", clientId);
-            if (signatureRequest.TemplateId != null) request.AddParameter("template_id", signatureRequest.TemplateId); // Deprecated
             if (signatureRequest.Title != null) request.AddParameter("title", signatureRequest.Title);
             if (signatureRequest.Subject != null) request.AddParameter("subject", signatureRequest.Subject);
             if (signatureRequest.Message != null) request.AddParameter("message", signatureRequest.Message);
