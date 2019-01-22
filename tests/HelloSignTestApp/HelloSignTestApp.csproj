@@ -4,7 +4,7 @@
     <ProjectGuid>{99D13956-F763-4F4F-96B9-35B8C91AA836}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <TargetFrameworks>net452</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;net452</TargetFrameworks>
     <Company>HelloSign</Company>
     <Description>An example program demonstrating the HelloSign .NET SDK</Description>
     <PublishUrl>publish\</PublishUrl>
