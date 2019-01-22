@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Express 2013 for Windows Desktop
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloSign", "HelloSign\HelloSign.csproj", "{DDBF5A27-A93C-4E6E-AA15-C0C102B9568B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloSign", "src\HelloSign\HelloSign.csproj", "{DDBF5A27-A93C-4E6E-AA15-C0C102B9568B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloSignTestApp", "HelloSignTestApp\HelloSignTestApp.csproj", "{99D13956-F763-4F4F-96B9-35B8C91AA836}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloSignTestApp", "tests\HelloSignTestApp\HelloSignTestApp.csproj", "{99D13956-F763-4F4F-96B9-35B8C91AA836}"
 	ProjectSection(ProjectDependencies) = postProject
 		{DDBF5A27-A93C-4E6E-AA15-C0C102B9568B} = {DDBF5A27-A93C-4E6E-AA15-C0C102B9568B}
 	EndProjectSection
