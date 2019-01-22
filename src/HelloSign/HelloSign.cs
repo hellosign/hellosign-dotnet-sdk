@@ -14,26 +14,22 @@ namespace HelloSign
     {
         /// <summary>
         /// UTC DateTime instance for the Unix time epoch (1970-1-1).
+        /// 
+        /// Note: If target changes to .NET Framework 4.6 or higher, replace me with:
+        /// https://msdn.microsoft.com/en-us/library/system.datetimeoffset.fromunixtimeseconds.aspx
         /// </summary>
         public static DateTime Epoch = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
 
         /// <summary>
         /// Returns a UTC DateTime instance from a Unix timestamp (in seconds).
+        /// 
+        /// Note: If target changes to .NET Framework 4.6 or higher, replace me with:
+        /// https://msdn.microsoft.com/en-us/library/system.datetimeoffset.fromunixtimeseconds.aspx
         /// </summary>
         /// <param name="timestamp">A Unix timestamp in seconds.</param>
         public static DateTime UnixTimeToDateTime(int timestamp)
         {
             return Epoch.AddSeconds(timestamp);
-        }
-
-        /// <summary>
-        /// String.IsNullOrWhiteSpace backported from .NET 4.0
-        /// </summary>
-        /// <param name="value">Input string</param>
-        /// <returns></returns>
-        public static bool IsNullOrWhiteSpace(string value)
-        {
-            return String.IsNullOrEmpty(value) || value.Trim().Length == 0;
         }
     }
 
@@ -55,6 +51,7 @@ namespace HelloSign
         private string apiKey;
         private RestClient client;
         private RestSharp.Deserializers.JsonDeserializer deserializer;
+        private const string defaultHost = "api.hellosign.com";
         public List<Warning> Warnings { get; private set; }
         public string Version { get; private set; }
 
@@ -74,7 +71,7 @@ namespace HelloSign
             client.UserAgent = "hellosign-dotnet-sdk/" + Version;
             deserializer = new RestSharp.Deserializers.JsonDeserializer();
             Warnings = new List<Warning>();
-            SetEnvironment(Environment.Prod);
+            SetApiHost(defaultHost);
         }
 
         /// <summary>
@@ -239,6 +236,16 @@ namespace HelloSign
         }
 
         /// <summary>
+        /// Set the host of the HelloSign API to make calls to.
+        /// Useful only for internal testing purposes; Users should generally not change this.
+        /// </summary>
+        /// <param name="host"></param>
+        public void SetApiHost(string host)
+        {
+            client.BaseUrl = new Uri(String.Format("https://{0}/v3", host));
+        }
+
+        /// <summary>
         /// Set the client to point to a different environment.
         /// Not useful to the general public.
         /// </summary>
@@ -347,7 +354,7 @@ namespace HelloSign
         /// <returns>The new Account</returns>
         public Account CreateAccount(string emailAddress)
         {
-            if (Tools.IsNullOrWhiteSpace(emailAddress))
+            if (String.IsNullOrWhiteSpace(emailAddress))
             {
                 throw new ArgumentException("email_address is required");
             }
@@ -388,7 +395,7 @@ namespace HelloSign
 
         public Account VerifyAccount(string emailAddress)
         {
-            if (Tools.IsNullOrWhiteSpace(emailAddress))
+            if (String.IsNullOrWhiteSpace(emailAddress))
             {
                 throw new ArgumentException("email_address is required");
             }

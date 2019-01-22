@@ -49,35 +49,13 @@ namespace HelloSignTestApp
                 throw new Exception("You must provide your HelloSign API key in the APIKEY environment variable.");
             }
 
-            // Get environment (HS) from first positional argument (optional)
-            var environment = Client.Environment.Staging; // Default environment
-            if (args.Length >= 1) {
-                var environmentString = args[0];
-                Console.WriteLine("Using environment: " + environmentString);
-                switch (environmentString)
-                {
-                    case "prod":
-                        environment = Client.Environment.Prod;
-                        break;
-                    case "qa":
-                        environment = Client.Environment.QA;
-                        break;
-                    case "staging":
-                        environment = Client.Environment.Staging;
-                        break;
-                    case "dev":
-                        environment = Client.Environment.Dev;
-                        break;
-                    default:
-                        throw new Exception("Unrecognized environment " + environmentString + " (should be one of: prod qa staging dev)");
-                }
-            } else {
-                Console.WriteLine("No environment specified. Defaulting to Staging.");
-            }
+            // Get API host
+            string apiHost = "api.staging-hellosign.com";
+            Console.WriteLine("Using HelloSign API at host: " + apiHost);
 
             // Client setup
             var client = new Client(apiKey);
-            client.SetEnvironment(environment);
+            client.SetApiHost(apiHost);
 
             // Prepare some fake text files for upload
             byte[] file1 = System.Text.Encoding.ASCII.GetBytes("Test document, please sign at the end.");
