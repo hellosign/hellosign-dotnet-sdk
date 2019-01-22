@@ -8,6 +8,7 @@
     <Authors>HelloSign</Authors>
     <!-- NOTE: The version stated here gets reported in the user-agent string for HTTP requests made. -->
     <Version>1.0.0</Version>
+    <Configuration>Release</Configuration>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
