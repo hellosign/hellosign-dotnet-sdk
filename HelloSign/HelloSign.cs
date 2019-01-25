@@ -1158,6 +1158,7 @@ namespace HelloSign
             if (signatureRequest.UseTextTags) request.AddParameter("use_text_tags", "1");
             if (signatureRequest.UsePreexistingFields) request.AddParameter("use_preexisting_fields", "1");
             if (signatureRequest.HideTextTags) request.AddParameter("hide_text_tags", "1");
+            if (signatureRequest.AllowDecline) request.AddParameter("allow_decline", "1");
             if (signatureRequest.SkipMeNow) request.AddParameter("skip_me_now", "1");
             if (embedded && signatureRequest.IsForEmbeddedSigning) request.AddParameter("is_for_embedded_signing", "1");
             if (embedded && signatureRequest.RequesterEmailAddress != null) request.AddParameter("requester_email_address", signatureRequest.RequesterEmailAddress);
