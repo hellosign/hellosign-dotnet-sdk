@@ -568,7 +568,7 @@ namespace HelloSign
         /// <param name="clientId">App Client ID if associated with an API App (required for Embedded)</param>
         /// <param name="isEmbedded">True if for embedded signing; false otherwise</param>
         /// <returns></returns>
-        public TemplateSignatureRequest _PostSignatureRequest(TemplateSignatureRequest signatureRequest, string clientId = null, bool isEmbedded = false)
+        private TemplateSignatureRequest _PostSignatureRequest(TemplateSignatureRequest signatureRequest, string clientId = null, bool isEmbedded = false)
         {
             RequireAuthentication();
 
