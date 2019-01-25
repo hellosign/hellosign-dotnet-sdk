@@ -504,6 +504,13 @@ namespace HelloSign
                 request.AddParameter(String.Format("metadata[{0}]", entry.Key), entry.Value); // TODO: Escape characters in key
             }
 
+            // Add Signing Options
+            if (signatureRequest.SigningOptions != null)
+            {
+                // Serialize as JSON string
+                request.AddParameter("signing_options", JsonConvert.SerializeObject(signatureRequest.SigningOptions));
+            }
+
             // Add form fields
             if (signatureRequest.FormFieldsPerDocument != null && signatureRequest.FormFieldsPerDocument.Any())
             {
@@ -607,6 +614,13 @@ namespace HelloSign
             foreach (var entry in signatureRequest.Metadata)
             {
                 request.AddParameter(String.Format("metadata[{0}]", entry.Key), entry.Value); // TODO: Escape characters in key
+            }
+
+            // Add Signing Options
+            if (signatureRequest.SigningOptions != null)
+            {
+                // Serialize as JSON string
+                request.AddParameter("signing_options", JsonConvert.SerializeObject(signatureRequest.SigningOptions));
             }
 
             request.RootElement = "signature_request";
@@ -1186,6 +1200,13 @@ namespace HelloSign
                 request.AddParameter(String.Format("metadata[{0}]", entry.Key), entry.Value); // TODO: Escape characters in key
             }
 
+            // Add Signing Options
+            if (signatureRequest.SigningOptions != null)
+            {
+                // Serialize as JSON string
+                request.AddParameter("signing_options", JsonConvert.SerializeObject(signatureRequest.SigningOptions));
+            }
+
             // TODO: Form fields per doc
 
             request.RootElement = "unclaimed_draft";
@@ -1262,6 +1283,13 @@ namespace HelloSign
             foreach (var entry in signatureRequest.Metadata)
             {
                 request.AddParameter(String.Format("metadata[{0}]", entry.Key), entry.Value); // TODO: Escape characters in key
+            }
+
+            // Add Signing Options
+            if (signatureRequest.SigningOptions != null)
+            {
+                // Serialize as JSON string
+                request.AddParameter("signing_options", JsonConvert.SerializeObject(signatureRequest.SigningOptions));
             }
 
             request.RootElement = "unclaimed_draft";

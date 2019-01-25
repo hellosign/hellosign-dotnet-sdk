@@ -154,6 +154,12 @@ namespace HelloSignTestApp
             request.Metadata.Add("custom_id", "1234");
             request.Metadata.Add("custom_text", "NDA #9");
             request.AllowDecline = true;
+            request.SigningOptions = new SigningOptions
+            {
+                Draw = true,
+                Type = true,
+                Default = "type"
+            };
             request.TestMode = true;
             var response = client.SendSignatureRequest(request);
             Console.WriteLine("New Signature Request ID: " + response.SignatureRequestId);
