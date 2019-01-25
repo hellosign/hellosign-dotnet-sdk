@@ -60,6 +60,17 @@ namespace HelloSign
         public string Version { get; private set; }
 
         /// <summary>
+        /// Additional request parameters you wish to inject into your API calls.
+        /// 
+        /// Recommended only for advanced users who need to make requests not otherwise
+        /// made possible by this library.
+        /// 
+        /// These will affect all subsequent API calls you make using this client
+        /// instance, so remember to clear between requests as needed.
+        /// </summary>
+        public Dictionary<string, string> AdditionalParameters { get; set; } = new Dictionary<string, string>();
+
+        /// <summary>
         /// Default constructor with no authentication.
         /// Limited to unauthenticated calls only.
         /// </summary>
@@ -198,6 +209,14 @@ namespace HelloSign
             }
         }
 
+        private void InjectAdditionalParameters(RestRequest request)
+        {
+            foreach (KeyValuePair<string, string> entry in this.AdditionalParameters)
+            {
+                request.AddParameter(entry.Key, entry.Value);
+            }
+        }
+
         /// <summary>
         /// Execute an API call using RestSharp and deserialize the response
         /// into a native object of class T.
@@ -207,6 +226,7 @@ namespace HelloSign
         /// <returns></returns>
         private T Execute<T>(RestRequest request) where T : new()
         {
+            InjectAdditionalParameters(request);
             var response = client.Execute<T>(request);
             HandleErrors(response);
             return response.Data;
@@ -214,6 +234,7 @@ namespace HelloSign
 
         private ObjectList<T> ExecuteList<T>(RestRequest request, string arrayKey) where T : new()
         {
+            InjectAdditionalParameters(request);
             var response = client.Execute(request);
             HandleErrors(response);
 
@@ -235,6 +256,7 @@ namespace HelloSign
         /// <returns>The IRestResponse object.</returns>
         private IRestResponse Execute(RestRequest request)
         {
+            InjectAdditionalParameters(request);
             var response = client.Execute(request);
             HandleErrors(response);
             return response;
@@ -1398,6 +1420,8 @@ namespace HelloSign
         public ApiApp CreateApiApp(ApiApp app)
         {
             RequireAuthentication();
+            ApiApp app2 = new ApiApp { Name = "Foo", Domain = "example.com" };
+
 
             var request = new RestRequest("api_app", Method.POST);
 

@@ -58,6 +58,21 @@ Console.WriteLine("Received event with type: " + event.EventType);
 SignatureRequest request = myEvent.SignatureRequest;
 ```
 
+### Injecting Custom Request Parameters
+
+In cases where this SDK might not directly support specifying a particular API request parameter that needs to be
+passed, there is now a way to inject your own custom parameters into the request before the SDK performs it.
+
+Client.AdditionalParameters is a Dictionary object you can add these extra keys and values to. These parameters will
+be injected into all following API calls made by the SDK until you remove them. Here's an example:
+
+```C#
+client.AdditionalParameters.Add("white_labeling_options", "{'primary_button_color':'#00b3e6'}");
+var app = new ApiApp { Name = "Foo", Domain = "example.com" };
+app = client.CreateApiApp(app)
+client.AdditionalParameters.Remove("white_labeling_options");
+```
+
 ### Account Methods
 
 #### Get your Account details

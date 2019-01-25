@@ -174,7 +174,7 @@ namespace HelloSignTestApp
             request.AddFile(file1, "NDA.txt");
             request.AddFile(file2, "AppendixA.txt");
             request.Metadata.Add("custom_id", "1234");
-            request.Metadata.Add("custom_text", "NDA #9");
+            client.AdditionalParameters.Add("metadata[custom_text]", "NDA #9"); // Inject additional parameter by hand
             request.AllowDecline = true;
             request.SigningOptions = new SigningOptions
             {
@@ -185,6 +185,9 @@ namespace HelloSignTestApp
             request.TestMode = true;
             var response = client.SendSignatureRequest(request);
             Console.WriteLine("New Signature Request ID: " + response.SignatureRequestId);
+
+            // Remove additional parameter
+            client.AdditionalParameters.Remove("metadata[custom_text]");
 
             // Get signature request (yes, it's redundant right here)
             var signatureRequest = client.GetSignatureRequest(response.SignatureRequestId);
