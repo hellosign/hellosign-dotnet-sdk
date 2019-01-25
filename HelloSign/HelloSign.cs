@@ -1066,7 +1066,7 @@ namespace HelloSign
                 throw new ArgumentException("Specify accountId OR emailAddress, but not both");
             }
 
-            var request = new RestRequest("team/{action}_member");
+            var request = new RestRequest("team/{action}_member", Method.POST);
             request.AddUrlSegment("action", (isAdd) ? "add" : "remove");
             if (accountId != null)
                 request.AddParameter("account_id", accountId);
