@@ -612,9 +612,10 @@ namespace HelloSign
             }
 
             // Add Custom Fields
-            foreach (var entry in signatureRequest.CustomFields)
+            if (signatureRequest.CustomFields.Count > 0)
             {
-                request.AddParameter(String.Format("custom_fields[{0}]", entry.Name), entry.Value); // TODO: Escape characters in key
+                // Serialize as JSON string
+                request.AddParameter("custom_fields", JsonConvert.SerializeObject(signatureRequest.CustomFields));
             }
 
             // Add Metadata
@@ -1282,9 +1283,10 @@ namespace HelloSign
             }
 
             // Add Custom Fields
-            foreach (var entry in signatureRequest.CustomFields)
+            if (signatureRequest.CustomFields.Count > 0)
             {
-                request.AddParameter(String.Format("custom_fields[{0}]", entry.Name), entry.Value); // TODO: Escape characters in key
+                // Serialize as JSON string
+                request.AddParameter("custom_fields", JsonConvert.SerializeObject(signatureRequest.CustomFields));
             }
 
             // Add Metadata

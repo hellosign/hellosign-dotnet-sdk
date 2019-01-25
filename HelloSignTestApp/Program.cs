@@ -268,16 +268,16 @@ namespace HelloSignTestApp
             if (TEMPLATE_ID.Length > 0) {
                 var tRequest = new TemplateSignatureRequest();
                 tRequest.AddTemplate(TEMPLATE_ID);
-                tRequest.AddTemplate(TEMPLATE_ID);
                 tRequest.Subject = "Purchase Order";
                 tRequest.Message = "Glad we could come to an agreement.";
                 tRequest.AddSigner("Client", "george@example.com", "George");
                 tRequest.AddCc("Accounting", "accounting@example.com");
-                tRequest.AddCustomField("Cost", "$20,000");
+                tRequest.AddCustomField("Cost", "$20,000", "Client", true);
                 tRequest.TestMode = true;
                 var tResponse = client.SendSignatureRequest(tRequest);
                 Console.WriteLine("New Template Signature Request ID: " + tResponse.SignatureRequestId);
-                Console.WriteLine("Custom field 'Cost' is: " + tResponse.GetCustomField("Cost").Value);
+                Console.WriteLine("Custom field 'Cost' value is: " + tResponse.GetCustomField("Cost").Value);
+                Console.WriteLine("Custom field 'Cost' editor is: " + tResponse.GetCustomField("Cost").Editor);
 
                 // Cancel that signature request
                 cancelSignatureRequest(client, tResponse.SignatureRequestId);
