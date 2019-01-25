@@ -29,6 +29,7 @@ namespace HelloSign
         public bool SkipMeNow { get; set; }
         public List<Signature> Signatures { get; set; }
         public List<string> CcEmailAddresses { get; set; }
+        public SigningOptions SigningOptions { get; set; }
 
         public List<Signer> Signers = new List<Signer>();
 
