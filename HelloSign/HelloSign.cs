@@ -919,7 +919,10 @@ namespace HelloSign
             }
 
             // Add Merge Fields (JSON)
-            request.AddParameter("merge_fields", JsonConvert.SerializeObject(draft.MergeFields));
+            if (draft.MergeFields.Count > 0)
+            {
+                request.AddParameter("merge_fields", JsonConvert.SerializeObject(draft.MergeFields));
+            }
 
             request.RootElement = "template";
             return Execute<EmbeddedTemplate>(request);
