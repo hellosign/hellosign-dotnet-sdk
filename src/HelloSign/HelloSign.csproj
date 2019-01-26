@@ -11,7 +11,7 @@
     <Configuration>Release</Configuration>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
-    <PackageReference Include="RestSharp" Version="106.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.1" />
+    <PackageReference Include="RestSharp" Version="[106.0.0,106.5.4]" />
   </ItemGroup>
 </Project>
