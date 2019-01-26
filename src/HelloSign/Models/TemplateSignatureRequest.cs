@@ -57,11 +57,15 @@ namespace HelloSign
         /// </summary>
         /// <param name="key"></param>
         /// <param name="value"></param>
-        public void AddCustomField(string key, string value)
+        /// <param name="editor"></param>
+        /// <param name="required"></param>
+        public void AddCustomField(string key, string value, string editor = null, bool required = false)
         {
             var customField = new CustomField();
             customField.Name = key;
             customField.Value = value;
+            customField.Editor = editor;
+            customField.Required = required;
             CustomFields.Add(customField);
         }
 
