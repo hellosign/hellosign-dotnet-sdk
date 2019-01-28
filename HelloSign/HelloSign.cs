@@ -1420,8 +1420,6 @@ namespace HelloSign
         public ApiApp CreateApiApp(ApiApp app)
         {
             RequireAuthentication();
-            ApiApp app2 = new ApiApp { Name = "Foo", Domain = "example.com" };
-
 
             var request = new RestRequest("api_app", Method.POST);
 
