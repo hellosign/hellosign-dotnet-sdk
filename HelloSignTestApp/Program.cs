@@ -174,7 +174,7 @@ namespace HelloSignTestApp
             request.AddFile(file1, "NDA.txt");
             request.AddFile(file2, "AppendixA.txt");
             request.Metadata.Add("custom_id", "1234");
-            request.Metadata.Add("custom_text", "NDA #9");
+            client.AdditionalParameters.Add("metadata[custom_text]", "NDA #9"); // Inject additional parameter by hand
             request.AllowDecline = true;
             request.SigningOptions = new SigningOptions
             {
@@ -185,6 +185,9 @@ namespace HelloSignTestApp
             request.TestMode = true;
             var response = client.SendSignatureRequest(request);
             Console.WriteLine("New Signature Request ID: " + response.SignatureRequestId);
+
+            // Remove additional parameter
+            client.AdditionalParameters.Remove("metadata[custom_text]");
 
             // Get signature request (yes, it's redundant right here)
             var signatureRequest = client.GetSignatureRequest(response.SignatureRequestId);
@@ -268,16 +271,16 @@ namespace HelloSignTestApp
             if (TEMPLATE_ID.Length > 0) {
                 var tRequest = new TemplateSignatureRequest();
                 tRequest.AddTemplate(TEMPLATE_ID);
-                tRequest.AddTemplate(TEMPLATE_ID);
                 tRequest.Subject = "Purchase Order";
                 tRequest.Message = "Glad we could come to an agreement.";
                 tRequest.AddSigner("Client", "george@example.com", "George");
                 tRequest.AddCc("Accounting", "accounting@example.com");
-                tRequest.AddCustomField("Cost", "$20,000");
+                tRequest.AddCustomField("Cost", "$20,000", "Client", true);
                 tRequest.TestMode = true;
                 var tResponse = client.SendSignatureRequest(tRequest);
                 Console.WriteLine("New Template Signature Request ID: " + tResponse.SignatureRequestId);
-                Console.WriteLine("Custom field 'Cost' is: " + tResponse.GetCustomField("Cost").Value);
+                Console.WriteLine("Custom field 'Cost' value is: " + tResponse.GetCustomField("Cost").Value);
+                Console.WriteLine("Custom field 'Cost' editor is: " + tResponse.GetCustomField("Cost").Editor);
 
                 // Cancel that signature request
                 cancelSignatureRequest(client, tResponse.SignatureRequestId);

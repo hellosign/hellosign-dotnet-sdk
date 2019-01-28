@@ -60,6 +60,17 @@ namespace HelloSign
         public string Version { get; private set; }
 
         /// <summary>
+        /// Additional request parameters you wish to inject into your API calls.
+        /// 
+        /// Recommended only for advanced users who need to make requests not otherwise
+        /// made possible by this library.
+        /// 
+        /// These will affect all subsequent API calls you make using this client
+        /// instance, so remember to clear between requests as needed.
+        /// </summary>
+        public Dictionary<string, string> AdditionalParameters { get; set; } = new Dictionary<string, string>();
+
+        /// <summary>
         /// Default constructor with no authentication.
         /// Limited to unauthenticated calls only.
         /// </summary>
@@ -198,6 +209,14 @@ namespace HelloSign
             }
         }
 
+        private void InjectAdditionalParameters(RestRequest request)
+        {
+            foreach (KeyValuePair<string, string> entry in this.AdditionalParameters)
+            {
+                request.AddParameter(entry.Key, entry.Value);
+            }
+        }
+
         /// <summary>
         /// Execute an API call using RestSharp and deserialize the response
         /// into a native object of class T.
@@ -207,6 +226,7 @@ namespace HelloSign
         /// <returns></returns>
         private T Execute<T>(RestRequest request) where T : new()
         {
+            InjectAdditionalParameters(request);
             var response = client.Execute<T>(request);
             HandleErrors(response);
             return response.Data;
@@ -214,6 +234,7 @@ namespace HelloSign
 
         private ObjectList<T> ExecuteList<T>(RestRequest request, string arrayKey) where T : new()
         {
+            InjectAdditionalParameters(request);
             var response = client.Execute(request);
             HandleErrors(response);
 
@@ -235,6 +256,7 @@ namespace HelloSign
         /// <returns>The IRestResponse object.</returns>
         private IRestResponse Execute(RestRequest request)
         {
+            InjectAdditionalParameters(request);
             var response = client.Execute(request);
             HandleErrors(response);
             return response;
@@ -463,6 +485,7 @@ namespace HelloSign
             if (signatureRequest.AllowDecline) request.AddParameter("allow_decline", "1");
             if (signatureRequest.SkipMeNow) request.AddParameter("skip_me_now", "1");
             if (signatureRequest.AllowReassign) request.AddParameter("allow_reassign", "1");
+            if (signatureRequest.RequesterEmailAddress != null) request.AddParameter("requester_email_address", signatureRequest.RequesterEmailAddress);
 
             // Add Signers
             var i = 0;
@@ -568,7 +591,7 @@ namespace HelloSign
         /// <param name="clientId">App Client ID if associated with an API App (required for Embedded)</param>
         /// <param name="isEmbedded">True if for embedded signing; false otherwise</param>
         /// <returns></returns>
-        public TemplateSignatureRequest _PostSignatureRequest(TemplateSignatureRequest signatureRequest, string clientId = null, bool isEmbedded = false)
+        private TemplateSignatureRequest _PostSignatureRequest(TemplateSignatureRequest signatureRequest, string clientId = null, bool isEmbedded = false)
         {
             RequireAuthentication();
 
@@ -586,6 +609,7 @@ namespace HelloSign
             if (signatureRequest.TestMode) request.AddParameter("test_mode", "1");
             if (signatureRequest.AllowDecline) request.AddParameter("allow_decline", "1");
             if (signatureRequest.SkipMeNow) request.AddParameter("skip_me_now", "1");
+            if (signatureRequest.RequesterEmailAddress != null) request.AddParameter("requester_email_address", signatureRequest.RequesterEmailAddress);
 
             // Add Template IDs
             var i = 0;
@@ -612,9 +636,10 @@ namespace HelloSign
             }
 
             // Add Custom Fields
-            foreach (var entry in signatureRequest.CustomFields)
+            if (signatureRequest.CustomFields.Count > 0)
             {
-                request.AddParameter(String.Format("custom_fields[{0}]", entry.Name), entry.Value); // TODO: Escape characters in key
+                // Serialize as JSON string
+                request.AddParameter("custom_fields", JsonConvert.SerializeObject(signatureRequest.CustomFields));
             }
 
             // Add Metadata
@@ -918,7 +943,10 @@ namespace HelloSign
             }
 
             // Add Merge Fields (JSON)
-            request.AddParameter("merge_fields", JsonConvert.SerializeObject(draft.MergeFields));
+            if (draft.MergeFields.Count > 0)
+            {
+                request.AddParameter("merge_fields", JsonConvert.SerializeObject(draft.MergeFields));
+            }
 
             request.RootElement = "template";
             return Execute<EmbeddedTemplate>(request);
@@ -1062,7 +1090,7 @@ namespace HelloSign
                 throw new ArgumentException("Specify accountId OR emailAddress, but not both");
             }
 
-            var request = new RestRequest("team/{action}_member");
+            var request = new RestRequest("team/{action}_member", Method.POST);
             request.AddUrlSegment("action", (isAdd) ? "add" : "remove");
             if (accountId != null)
                 request.AddParameter("account_id", accountId);
@@ -1157,9 +1185,10 @@ namespace HelloSign
             if (signatureRequest.UseTextTags) request.AddParameter("use_text_tags", "1");
             if (signatureRequest.UsePreexistingFields) request.AddParameter("use_preexisting_fields", "1");
             if (signatureRequest.HideTextTags) request.AddParameter("hide_text_tags", "1");
+            if (signatureRequest.AllowDecline) request.AddParameter("allow_decline", "1");
             if (signatureRequest.SkipMeNow) request.AddParameter("skip_me_now", "1");
             if (embedded && signatureRequest.IsForEmbeddedSigning) request.AddParameter("is_for_embedded_signing", "1");
-            if (embedded && signatureRequest.RequesterEmailAddress != null) request.AddParameter("requester_email_address", signatureRequest.RequesterEmailAddress);
+            if (signatureRequest.RequesterEmailAddress != null) request.AddParameter("requester_email_address", signatureRequest.RequesterEmailAddress);
 
             // Add Signers
             var i = 0;
@@ -1282,9 +1311,10 @@ namespace HelloSign
             }
 
             // Add Custom Fields
-            foreach (var entry in signatureRequest.CustomFields)
+            if (signatureRequest.CustomFields.Count > 0)
             {
-                request.AddParameter(String.Format("custom_fields[{0}]", entry.Name), entry.Value); // TODO: Escape characters in key
+                // Serialize as JSON string
+                request.AddParameter("custom_fields", JsonConvert.SerializeObject(signatureRequest.CustomFields));
             }
 
             // Add Metadata
