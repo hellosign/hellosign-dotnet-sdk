@@ -9,8 +9,6 @@ namespace HelloSign
     /// </summary>
     public class TemplateSignatureRequest : BaseSignatureRequest
     {
-        [Obsolete("The TemplateId property is deprecated. Use the AddTemplate method instead.")]
-        public string TemplateId { get; set; }
         public List<string> TemplateIds { get; private set; }
         public Dictionary<String, String> Ccs { get; set; }
         //public Dictionary<String, String> CustomFields { get; set; }

@@ -49,35 +49,13 @@ namespace HelloSignTestApp
                 throw new Exception("You must provide your HelloSign API key in the APIKEY environment variable.");
             }
 
-            // Get environment (HS) from first positional argument (optional)
-            var environment = Client.Environment.Staging; // Default environment
-            if (args.Length >= 1) {
-                var environmentString = args[0];
-                Console.WriteLine("Using environment: " + environmentString);
-                switch (environmentString)
-                {
-                    case "prod":
-                        environment = Client.Environment.Prod;
-                        break;
-                    case "qa":
-                        environment = Client.Environment.QA;
-                        break;
-                    case "staging":
-                        environment = Client.Environment.Staging;
-                        break;
-                    case "dev":
-                        environment = Client.Environment.Dev;
-                        break;
-                    default:
-                        throw new Exception("Unrecognized environment " + environmentString + " (should be one of: prod qa staging dev)");
-                }
-            } else {
-                Console.WriteLine("No environment specified. Defaulting to Staging.");
-            }
+            // Get API host
+            string apiHost = "api.staging-hellosign.com";
+            Console.WriteLine("Using HelloSign API at host: " + apiHost);
 
             // Client setup
             var client = new Client(apiKey);
-            client.SetEnvironment(environment);
+            client.SetApiHost(apiHost);
 
             // Prepare some fake text files for upload
             byte[] file1 = System.Text.Encoding.ASCII.GetBytes("Test document, please sign at the end.");
@@ -293,7 +271,7 @@ namespace HelloSignTestApp
             var fpRequest = new SignatureRequest();
             fpRequest.AddSigner("jack@example.com", "Jack");
             fpRequest.AddSigner("jill@example.com", "Jill");
-            fpRequest.AddFile(System.AppDomain.CurrentDomain.BaseDirectory + "..\\..\\Resources\\Test Document.pdf").WithFields(
+            fpRequest.AddFile("out.pdf").WithFields(
                 new FormField("chk1", FormField.TypeCheckbox,     1, 140, 72*1,  36, 36, true, 0),
                 new FormField("txt1", FormField.TypeText,         1, 140, 72*2, 225, 20, true, 0, FormField.ValidationTypeEmailAddress),
                 new FormField("dat1", FormField.TypeDateSigned,   1, 140, 72*3, 225, 52, true, 0),
@@ -310,7 +288,7 @@ namespace HelloSignTestApp
             var ffRequest = new SignatureRequest();
             ffRequest.AddSigner("jack@example.com", "Jack");
             ffRequest.AddSigner("jill@example.com", "Jill");
-            ffRequest.AddFile(pdfFile1, "TestDocument.txt").WithFields(
+            ffRequest.AddFile(pdfFile1, "TestDocument.pdf").WithFields(
                 new FormField("chk1", FormField.TypeCheckbox,     1, 140, 72*1,  36, 36, true, 0),
                 new FormField("txt1", FormField.TypeText,         1, 140, 72*2, 225, 20, true, 0, FormField.ValidationTypeEmailAddress),
                 new FormField("dat1", FormField.TypeDateSigned,   1, 140, 72*3, 225, 52, true, 0),

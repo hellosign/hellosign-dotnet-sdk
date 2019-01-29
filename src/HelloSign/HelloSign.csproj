@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <ProjectGuid>{DDBF5A27-A93C-4E6E-AA15-C0C102B9568B}</ProjectGuid>
+    <TargetFrameworks>netstandard2.0;net452</TargetFrameworks>
+    <RepositoryUrl>https://github.com/hellosign/hellosign-dotnet-sdk.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <Description>Client library for using the HelloSign API</Description>
+    <Authors>HelloSign</Authors>
+    <!-- NOTE: The version stated here gets reported in the user-agent string for HTTP requests made. -->
+    <Version>1.0.0</Version>
+    <Configuration>Release</Configuration>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.1" />
+    <PackageReference Include="RestSharp" Version="[106.0.0,106.5.4]" />
+  </ItemGroup>
+</Project>

@@ -6,7 +6,7 @@
     <title>$title$</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
-    <licenseUrl>https://github.com/hellosign/hellosign-dotnet-sdk/blob/v3/LICENSE</licenseUrl>
+    <license type="expression">MIT</license>
     <projectUrl>https://github.com/hellosign/hellosign-dotnet-sdk</projectUrl>
     <iconUrl>https://s3.amazonaws.com/cdn.hellosign.com/1.22.10/images/logo/hs_no_text_64.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
