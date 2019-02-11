@@ -1,4 +1,4 @@
-# HelloSign .NET SDK 
+# HelloSign .NET SDK
 
 [![Build status](https://ci.appveyor.com/api/projects/status/90m1ygpgg50qt30v/branch/v3?svg=true)](https://ci.appveyor.com/project/HelloSign/hellosign-dotnet-sdk/branch/v3)
 
@@ -240,6 +240,12 @@ var bytes = client.DownloadSignatureRequestFiles("SIGNATURE REQUEST ID HERE", Si
 var url = client.GetSignatureRequestDownloadUrl("SIGNATURE REQUEST ID HERE");
 Console.WriteLine("The download URL is: " + url.FileUrl);
 Console.WriteLine("The URL expires at: " + url.ExpiresAt);
+```
+
+#### Release a Signature Request
+
+```C#
+client.ReleaseSignatureRequest("SIGNATURE REQUEST ID HERE");
 ```
 
 ### Embedded Methods

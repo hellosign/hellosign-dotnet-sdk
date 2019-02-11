@@ -782,6 +782,19 @@ namespace HelloSign
             return Execute<TemporaryUrl>(request);
         }
 
+        /// <summary>
+        /// Release the specified Signature Request.
+        /// </summary>
+        /// <param name="signatureRequestId"></param>
+        public void ReleaseSignatureRequest(string signatureRequestId)
+        {
+            RequireAuthentication();
+
+            var request = new RestRequest("signature_request/release_hold/{id}", Method.POST);
+            request.AddUrlSegment("id", signatureRequestId);
+            Execute(request);
+        }
+
         #endregion
 
         #region Template Methods
@@ -1180,6 +1193,7 @@ namespace HelloSign
             if (signatureRequest.HideTextTags) request.AddParameter("hide_text_tags", "1");
             if (signatureRequest.AllowDecline) request.AddParameter("allow_decline", "1");
             if (signatureRequest.SkipMeNow) request.AddParameter("skip_me_now", "1");
+            if (signatureRequest.HoldRequest) request.AddParameter("hold_request", "1");
             if (embedded && signatureRequest.IsForEmbeddedSigning) request.AddParameter("is_for_embedded_signing", "1");
             if (signatureRequest.RequesterEmailAddress != null) request.AddParameter("requester_email_address", signatureRequest.RequesterEmailAddress);
 
