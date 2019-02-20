@@ -786,13 +786,14 @@ namespace HelloSign
         /// Release the specified Signature Request.
         /// </summary>
         /// <param name="signatureRequestId"></param>
-        public void ReleaseSignatureRequest(string signatureRequestId)
+        /// <returns></returns>
+        public SignatureRequest ReleaseSignatureRequest(string signatureRequestId)
         {
             RequireAuthentication();
 
             var request = new RestRequest("signature_request/release_hold/{id}", Method.POST);
             request.AddUrlSegment("id", signatureRequestId);
-            Execute(request);
+            return Execute<SignatureRequest>(request);
         }
 
         #endregion
