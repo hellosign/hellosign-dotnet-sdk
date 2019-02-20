@@ -362,6 +362,7 @@ namespace HelloSignTestApp
             eDraft.AddFile(file1, "Agreement.txt");
             eDraft.RequesterEmailAddress = "jack@hellosign.com";
             eDraft.TestMode = true;
+            eDraft.HoldRequest = true;
             var euResponse = client.CreateUnclaimedDraft(eDraft, clientId);
             Console.WriteLine("New Embedded Unclaimed Draft Claim URL: " + euResponse.ClaimUrl);
 
