@@ -4,7 +4,7 @@
 
 An official library for using the HelloSign API written in C#.NET and powered by RestSharp.
 
-**This SDK is currently in beta. If you need help:**
+## Getting Help
 
 * **Use the [Issue Tracker](https://github.com/hellosign/hellosign-dotnet-sdk/issues) to report bugs or missing functionality in this library.**
 * **Send an email to apisupport@hellosign.com to request help with our API or your account.**

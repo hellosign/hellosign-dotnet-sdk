@@ -17,7 +17,7 @@ namespace HelloSign
         [JsonProperty("editor")]
         public string Editor { get; set; }
         [JsonProperty("required")]
-        public bool Required { get; set; }
+        public bool? Required { get; set; }
 
         // Properties below are just used when deserializing API responses
         public string Type { get; set; }
