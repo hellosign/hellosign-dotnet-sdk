@@ -459,7 +459,7 @@ namespace HelloSign
         /// <param name="clientId">App Client ID if associated with an API App (required for Embedded)</param>
         /// <param name="isEmbedded">True if for embedded signing; false otherwise</param>
         /// <returns></returns>
-        private SignatureRequest _PostSignatureRequest(SignatureRequest signatureRequest, string clientId = null, bool isEmbedded = false)
+        private SignatureRequest _PostSignatureRequest(SignatureRequest signatureRequest, string clientId = null, bool isEmbedded = false, string accessToken = null)
         {
             RequireAuthentication();
 
@@ -469,6 +469,7 @@ namespace HelloSign
 
             // Add simple parameters
             if (clientId != null) request.AddParameter("client_id", clientId);
+            if (accessToken != null) request.AddParameter("Authorization", string.Format("Bearer " + accessToken), ParameterType.HttpHeader);
             if (signatureRequest.Title != null) request.AddParameter("title", signatureRequest.Title);
             if (signatureRequest.Subject != null) request.AddParameter("subject", signatureRequest.Subject);
             if (signatureRequest.Message != null) request.AddParameter("message", signatureRequest.Message);
@@ -558,9 +559,9 @@ namespace HelloSign
         /// <param name="signatureRequest"></param>
         /// <param name="clientId">Client ID, if associated with an API App</param>
         /// <returns></returns>
-        public SignatureRequest SendSignatureRequest(SignatureRequest signatureRequest, string clientId = null)
+        public SignatureRequest SendSignatureRequest(SignatureRequest signatureRequest, string clientId = null, string accessToken = null)
         {
-            return _PostSignatureRequest(signatureRequest, clientId, false);
+            return _PostSignatureRequest(signatureRequest, clientId, false, accessToken);
         }
 
         /// <summary>
