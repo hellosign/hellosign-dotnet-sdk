@@ -381,17 +381,24 @@ var team = RemoveMemberFromTeam(null, "EMAIL ADDRESS HERE");
 
 ### Windows
 
-Use Visual Studio (Express).
+Use Visual Studio (Express) 2017 or newer.
 
-### Linux (and OSX?) using Mono
+### Linux (and OSX?) using DotNet SDK + Mono
 
-1. Install Mono
-2. Install NuGet
-3. `mkdir packages`
-4. `cd HelloSign`
-5. `nuget install -o ../packages`
-6. `cd ..`
-7. `xbuild` (or `xbuild /p:Configuration=Release` for a non-Debug build)
+To create Debug builds for both the library (HelloSign.dll) and the test application (HelloSignTestApp.dll), run:
+
+```sh
+dotnet build
+```
+
+Or, to create Release builds:
+
+```sh
+dotnet build -c Release
+```
+
+Note: The .NET Framework build target will not be used when running this on a non-Windows system.
+Only .NET Standard 2.0 artifacts will be created.
 
 ### Packaging for NuGet
 

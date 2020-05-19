@@ -13,7 +13,7 @@ namespace HelloSignTestApp
         {
             Console.WriteLine("└ Attempting to cancel signature request...");
             System.Threading.Thread.Sleep(3000);
-            var retries = 5;
+            var retries = 15;
             while (retries > 0)
             {
                 try
@@ -50,7 +50,11 @@ namespace HelloSignTestApp
             }
 
             // Get API host
-            string apiHost = "api.staging-hellosign.com";
+            string apiHost = Environment.GetEnvironmentVariable("APIHOST");
+            if (String.IsNullOrEmpty(apiHost))
+            {
+                throw new Exception("You must specify the API host/domain via the APIHOST environment variable (e.g. 'api.hellosign.com').");
+            }
             Console.WriteLine("Using HelloSign API at host: " + apiHost);
 
             // Client setup
@@ -173,7 +177,7 @@ namespace HelloSignTestApp
 
             // Get a download URL for this signature request
             Console.WriteLine("Attempting to get a PDF link...");
-            var retries = 5;
+            var retries = 15;
             while (retries > 0)
             {
                 try
@@ -200,7 +204,7 @@ namespace HelloSignTestApp
 
             // Download signature request
             Console.WriteLine("Attempting to download PDF...");
-            retries = 5;
+            retries = 15;
             while (retries > 0)
             {
                 try
