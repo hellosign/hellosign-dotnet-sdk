@@ -1473,7 +1473,72 @@ namespace HelloSign
             request.AddUrlSegment("id", clientId);
             Execute(request);
         }
-        
+
+        #endregion
+
+        #region Bulk Send Job Methods
+
+        /// <summary>
+        /// Get a single Bulk Send Job, including a page of its Signature Requests.
+        /// </summary>
+        public BulkSendJob GetBulkSendJob(string bulkSendJobId, int? page = null, int? pageSize = null)
+        {
+            RequireAuthentication();
+
+            var request = new RestRequest("bulk_send_job/{id}");
+            request.AddUrlSegment("id", bulkSendJobId);
+            request.RootElement = "bulk_send_job";
+
+            // Special twist on ExecuteList
+            InjectAdditionalParameters(request);
+            var response = client.Execute(request);
+            HandleErrors(response);
+
+            // Unpack list_info
+            deserializer.RootElement = "list_info";
+            var job = deserializer.Deserialize<BulkSendJob>(response);
+
+            // Unpack list of associated SignatureRequests
+            deserializer.RootElement = "signature_requests";
+            job.Items = deserializer.Deserialize<List<SignatureRequest>>(response);
+
+            // Also unpack the BulkSendJobInfo details
+            deserializer.RootElement = "bulk_send_job";
+            job.JobInfo = deserializer.Deserialize<BulkSendJobInfo>(response);
+
+            return job;
+        }
+
+        /// <inheritdoc />
+        public BulkSendJob GetBulkSendJob(BulkSendJobInfo jobInfo, int? page = null, int? pageSize = null)
+        {
+            return this.GetBulkSendJob(jobInfo.BulkSendJobId);
+        }
+
+        /// <summary>
+        /// Get a list of Bulk Send Jobs.
+        ///
+        /// Note that the items returned are of type BulkSendJobInfo, a
+        /// lightweight structure containing information about the Job.
+        /// If you wish to list Signature Requests for a given job, use
+        /// the GetBulkSendJob method to fetch a single job at a time.
+        /// </summary>
+        public ObjectList<BulkSendJobInfo> ListBulkSendJobs(int? page = null, int? pageSize = null)
+        {
+            RequireAuthentication();
+
+            var request = new RestRequest("bulk_send_job/list");
+            if (page != null)
+            {
+                request.AddParameter("page", page);
+            }
+            if (pageSize != null)
+            {
+                request.AddParameter("page_size", pageSize);
+            }
+            return ExecuteList<BulkSendJobInfo>(request, "bulk_send_jobs");
+        }
+
         #endregion
     }
 }

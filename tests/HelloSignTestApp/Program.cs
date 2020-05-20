@@ -145,6 +145,30 @@ namespace HelloSignTestApp
                 }
             }
 
+            // List Bulk Send Jobs
+            var bulkSendJobInfos = client.ListBulkSendJobs();
+            Console.WriteLine("Found this many bulk send jobs: " + bulkSendJobInfos.NumResults);
+            foreach (BulkSendJobInfo job in bulkSendJobInfos)
+            {
+                string creator = job.IsCreator ? "by me" : "by another user";
+                Console.WriteLine($"└ BulkSendJob: {job.BulkSendJobId} (Total: {job.Total}) Created {creator} on {job.CreatedAt}");
+            }
+
+            // Get a single Bulk Send Job
+            if (bulkSendJobInfos.NumResults > 0)
+            {
+                BulkSendJob job = client.GetBulkSendJob(bulkSendJobInfos.Items[0]);
+                BulkSendJobInfo jobInfo = job.JobInfo;
+                string creator = jobInfo.IsCreator ? "by me" : "by another user";
+                Console.WriteLine($"BulkSendJob: {jobInfo.BulkSendJobId} (Total: {jobInfo.Total}) Created {creator} on {jobInfo.CreatedAt}");
+
+                // List its Signature Requests
+                foreach (var result in job.Items)
+                {
+                    Console.WriteLine("└ Signature request: " + result.SignatureRequestId);
+                }
+            }
+
             // Send signature request
             var request = new SignatureRequest();
             request.Title = "NDA with Acme Co.";
