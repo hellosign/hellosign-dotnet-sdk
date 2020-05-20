@@ -68,7 +68,9 @@ namespace HelloSign
 
         /// <summary>
         /// Default constructor with no authentication.
-        /// Limited to unauthenticated calls only.
+        ///
+        /// Limited to unauthenticated calls only unless <see cref="UseApiKeyAuthentication"/>
+        /// or <see cref="UseOAuth2Authentication"/> is subsequently called.
         /// </summary>
         public Client()
         {
@@ -91,8 +93,29 @@ namespace HelloSign
         /// <param name="apiKey">Your HelloSign account API key.</param>
         public Client(string apiKey) : this()
         {
+            this.UseApiKeyAuthentication(apiKey);
+        }
+
+        /// <summary>
+        /// Use an API Key to authenticate future requests.
+        /// See: https://app.hellosign.com/api/documentation#Authentication
+        /// </summary>
+        /// <param name="apiKey">Your HelloSign account API key.</param>
+        public void UseApiKeyAuthentication(string apiKey)
+        {
             this.apiKey = apiKey;
             client.Authenticator = new RestSharp.Authenticators.HttpBasicAuthenticator(apiKey, "");
+        }
+
+        /// <summary>
+        /// Use an OAuth 2.0 Access Token to authenticate future requests.
+        /// See: https://app.hellosign.com/api/oauthWalkthrough
+        /// </summary>
+        /// <see href="https://app.hellosign.com/api/oauthWalkthrough"></see>
+        /// <param name="accessToken"></param>
+        public void UseOAuth2Authentication(string accessToken)
+        {
+            client.Authenticator = new RestSharp.Authenticators.OAuth2AuthorizationRequestHeaderAuthenticator(accessToken, "Bearer");
         }
 
         private void HandleErrors(IRestResponse response)
