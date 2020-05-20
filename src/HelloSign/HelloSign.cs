@@ -734,7 +734,9 @@ namespace HelloSign
         }
 
         /// <summary>
-        /// Remove the specified Signature Request.
+        /// Remove the specified Signature Request from this account.
+        ///
+        /// Note: The Signature Request will still be available to other participants.
         /// </summary>
         /// <param name="signatureRequestId"></param>
         public void RemoveSignatureRequest(string signatureRequestId)
