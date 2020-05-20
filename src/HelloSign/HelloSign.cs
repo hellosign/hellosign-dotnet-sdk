@@ -734,6 +734,21 @@ namespace HelloSign
         }
 
         /// <summary>
+        /// Remove the specified Signature Request from this account.
+        ///
+        /// Note: The Signature Request will still be available to other participants.
+        /// </summary>
+        /// <param name="signatureRequestId"></param>
+        public void RemoveSignatureRequest(string signatureRequestId)
+        {
+            RequireAuthentication();
+
+            var request = new RestRequest("signature_request/remove/{id}", Method.POST);
+            request.AddUrlSegment("id", signatureRequestId);
+            Execute(request);
+        }
+
+        /// <summary>
         /// Download a Signature Request as a merged PDF (or a ZIP of unmerged
         /// PDFs) and get the byte array.
         /// </summary>
@@ -848,7 +863,7 @@ namespace HelloSign
                 throw new ArgumentException("Specify accountId OR emailAddress, but not both");
             }
 
-            var request = new RestRequest("template/{action}_user/{id}");
+            var request = new RestRequest("template/{action}_user/{id}", Method.POST);
             request.AddUrlSegment("action", (isGrant) ? "add" : "remove");
             request.AddUrlSegment("id", templateId);
             if (accountId != null)
