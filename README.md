@@ -26,9 +26,12 @@ using HelloSign;
 Create a client object:
 
 ```C#
-var client = new Client("ACCOUNT API KEY HERE"); // Preferred
-// Or...
-var client = new Client("EMAIL ADDRESS HERE", "PASSWORD HERE"); // Not preferred
+// Using your account's API Key
+var client = new Client("ACCOUNT API KEY HERE");
+
+// Or, using an OAuth 2.0 Access Token:
+var client = new Client();
+client.UseOAuth2Authentication("OAUTH ACCESS TOKEN HERE");
 ```
 
 ### Error Handling
