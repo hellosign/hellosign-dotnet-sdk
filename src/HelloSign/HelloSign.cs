@@ -1461,7 +1461,7 @@ namespace HelloSign
 
         #endregion
 
-        #region Bulk Send Job Method
+        #region Bulk Send Job Methods
 
         /// <summary>
         /// Get a single Bulk Send Job, including a page of its Signature Requests.
