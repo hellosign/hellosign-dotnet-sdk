@@ -34,6 +34,8 @@ namespace HelloSign
         public int file { get; set; }
         public int page { get; set; }
         public string validation_type { get; set; }
+        public string validation_custom_regex { get; set; }
+        public string validation_custom_regex_format_label { get; set; }
 
         public FormField() { }
 
@@ -51,7 +53,9 @@ namespace HelloSign
         /// <param name="required">Whether the signer is required to fill out this field.</param>
         /// <param name="signer">Index of the signer this field is assigned to, starting from 0.</param>
         /// <param name="validationType">Optional validation rule for use with text fields. See FormField.ValidationType* constants.</param>
-        public FormField(string apiId, string type, int page, int x, int y, int width, int height, bool required, int signer, string validationType = null)
+        /// <param name="validationCustomRegex">Optional validation custom regular expression to validate text fields. e.g. A[0-9]{3}</param>
+        /// <param name="validationCustomRegexFormatLabel">Optional validation custom format label to display as a placeholder in text fields. e.g. A000</param>
+        public FormField(string apiId, string type, int page, int x, int y, int width, int height, bool required, int signer, string validationType = null, string validationCustomRegex = null, string validationCustomRegexFormatLabel = null)
         {
             this.api_id = apiId;
             this.type = type;
@@ -63,6 +67,8 @@ namespace HelloSign
             this.required = required;
             this.signer = signer;
             this.validation_type = validationType;
+            this.validation_custom_regex = validationCustomRegex;
+            this.validation_custom_regex_format_label = validationCustomRegexFormatLabel;
         }
     }
 }
