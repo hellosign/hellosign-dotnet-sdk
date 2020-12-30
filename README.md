@@ -243,6 +243,7 @@ foreach (var result in allRequests)
 ```
 
 If you want to add an additional filter for `account_id`, you can add this line:
+
 ```C#
 client.AdditionalParameters.Add("account_id", "ACCOUNT_ID_HERE");
 ```
@@ -291,7 +292,7 @@ Console.WriteLine("The download URL is: " + url.FileUrl);
 Console.WriteLine("The URL expires at: " + url.ExpiresAt);
 ```
 
-#### Release a Signature Request
+#### Release an On-Hold Signature Request
 
 ```C#
 client.ReleaseSignatureRequest("SIGNATURE REQUEST ID HERE");
