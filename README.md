@@ -342,6 +342,10 @@ Console.WriteLine("Embedded Unclaimed Draft w/ Template, Signature Request ID: "
 Console.WriteLine("Claim URL: " + response.ClaimUrl);
 ```
 
+#### Edit & resend Unclaimed Draft
+
+Not implemented
+
 ### Template Methods
 
 #### Get Template details
@@ -408,6 +412,10 @@ draft.AddMergeField("Full Name", MergeField.FieldType.Text);
 draft.AddMergeField("Is Registered?", MergeField.FieldType.Checkbox);
 var response = client.CreateEmbeddedTemplateDraft(draft, "CLIENT ID HERE");
 ```
+
+### Reports Methods
+
+Not implemented
 
 ### Team Methods
 
