@@ -324,7 +324,7 @@ draft.AddFile("DOCUMENT 1.pdf");
 draft.AddFile("LEASE.pdf");
 draft.TestMode = true;
 draft.AllowDecline = true;
-var response = client.CreateUnclaimedDraft(udraft, UnclaimedDraft.Type.SendDocument);
+var response = client.CreateUnclaimedDraft(draft, UnclaimedDraft.Type.SendDocument);
 Console.WriteLine("Unclaimed Draft Signature Request ID: " + response.SignatureRequestId);
 Console.WriteLine("Claim URL: " + response.ClaimUrl);
 ```
