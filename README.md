@@ -427,6 +427,17 @@ var team = client.RemoveMemberFromTeam("ACCOUNT ID HERE");
 var team = client.RemoveMemberFromTeam(null, "EMAIL ADDRESS HERE");
 ```
 
+### App Methods
+
+#### Get information about an API app
+
+```C#
+var app = client.GetApiApp(client_id);
+Console.WriteLine("API APP: " + app.ClientId);
+Console.WriteLine("This app is approved: " + app.IsApproved);
+Console.WriteLine("This app has callback URL: " + app.CallbackUrl);
+```
+
 ## Build from Source
 
 ### Windows
