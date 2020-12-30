@@ -123,6 +123,27 @@ Console.WriteLine("New Signature Request ID: " + response.SignatureRequestId);
 
 **Note:** You can optionally pass an API App client ID as a second parameter to SendSignatureRequest.
 
+#### Send Signature Request using files and text tags with custom fields (non-Embedded)
+
+This example uses custom fields and text tags, using the `AdditionalParamaters.add` method:
+
+```C#
+var request = new SignatureRequest();
+request.Title = "Sokovia Accords as discussed";
+request.Subject = "Sokovia Accords - Please Sign";
+request.Message = "Please sign ASAP";
+request.AddSigner("tony@starkindustries.com", "Anthony Stark");
+request.AddSigner("steverogers_1918@aol.com", "Steven Rogers");
+request.AddCc("shield@shield.org");
+request.AddFile("sokovia_accords.PDF");
+client.AdditionalParameters.Add("custom_fields", "[{\"name\": \"Address\", \"value\": \"123 Main Street\"}, {\"name\": \"Phone\", \"value\": \"555-5555\"}]");
+request.UseTextTags = true;
+request.HideTextTags = true;
+request.TestMode = true;
+var response = client.SendSignatureRequest(request);
+Console.WriteLine("New Signature Request ID: " + response.SignatureRequestId);
+```
+
 #### Send Signature Request using files and form fields (non-Embedded)
 
 ```C#
