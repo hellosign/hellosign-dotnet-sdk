@@ -460,7 +460,12 @@ Console.WriteLine("This API app was just created: " + cresponse.ClientId);
 Console.WriteLine("App name: " + cresponse.Name);
 ```
 
+#### Delete an API app
 
+```C#
+client.DeleteApiApp("CLIENT_ID_HERE");
+Console.WriteLine("API app was just deleted!");
+```
 
 ## Build from Source
 
