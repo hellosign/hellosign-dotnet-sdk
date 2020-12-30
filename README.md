@@ -173,7 +173,7 @@ request.Subject = "Purchase Order";
 request.Message = "Glad we could come to an agreement.";
 request.AddSigner("Client", "george@example.com", "George");
 request.AddCc("Accounting", "accounting@hellosign.com");
-request.CustomFields.Add("Cost", "$20,000");
+request.AddCustomField("Cost", "$20,000");
 request.TestMode = true;
 var response = client.SendSignatureRequest(request);
 Console.WriteLine("New Template Signature Request ID: " + response.SignatureRequestId);
