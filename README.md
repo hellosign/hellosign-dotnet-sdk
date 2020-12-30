@@ -328,6 +328,20 @@ Console.WriteLine("Embedded Unclaimed Draft Signature Request ID: " + response.S
 Console.WriteLine("Claim URL: " + response.ClaimUrl);
 ```
 
+#### Create Embedded Unclaimed Draft with a template
+
+```C#
+var request = new TemplateSignatureRequest();
+request.AddTemplate("TEMPLATE ID HERE");
+request.RequesterEmailAddress = "REQUESTER EMAIL HERE";
+request.TestMode = true;
+request.AddSigner("Client", "CLIENT EMAIL", "CLIENT NAME");
+request.AddSigner("Witness", "WITNESS EMAIL", "WITNESS NAME");
+var response = client.CreateUnclaimedDraft(request, myClientId);
+Console.WriteLine("Embedded Unclaimed Draft w/ Template, Signature Request ID: " + response.SignatureRequestId);
+Console.WriteLine("Claim URL: " + response.ClaimUrl);
+```
+
 ### Template Methods
 
 #### Get Template details
