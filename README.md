@@ -222,6 +222,31 @@ var request = client.GetSignatureRequest("SIGNATURE REQUEST ID HERE");
 Console.WriteLine("Signature Request title: " + request.Title);
 ```
 
+#### List Signature Requests
+
+```C#
+var allRequests = client.ListSignatureRequests();
+Console.WriteLine("Found this many signature requests: " + allRequests.NumResults);
+foreach (var result in allRequests)
+{
+    Console.WriteLine("Signature request: " + result.SignatureRequestId);
+
+    if (result.IsComplete) == true)
+    {
+        Console.WriteLine("Signature request is complete.");
+    }
+    else
+    {
+        Console.WriteLine("Signature request is not complete");
+    }
+}
+```
+
+If you want to add an additional filter for `account_id`, you can add this line:
+```C#
+client.AdditionalParameters.Add("account_id", "ACCOUNT_ID_HERE");
+```
+
 #### Cancel a Signature Request
 
 ```C#
