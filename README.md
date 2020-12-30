@@ -438,6 +438,18 @@ Console.WriteLine("This app is approved: " + app.IsApproved);
 Console.WriteLine("This app has callback URL: " + app.CallbackUrl);
 ```
 
+#### List all API apps
+
+```C#
+var apiApps = client.ListApiApps();
+Console.WriteLine("Found this many API apps: " + apiApps.NumResults);
+foreach (var result in apiApps)
+    {
+        Console.WriteLine("API app: " + result.Name + " (" + result.ClientId + ")");
+    }
+```
+
+
 ## Build from Source
 
 ### Windows
