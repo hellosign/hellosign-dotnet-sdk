@@ -88,7 +88,7 @@ Console.WriteLine("My Account ID is: " + account.AccountId);
 #### Update your Account Callback URL
 
 ```C#
-var account = client.UpdateAccount("https://example.com/hellosign.asp");
+var account = client.UpdateAccount(new Uri("https://example.com/hellosign.asp"));
 Console.WriteLine("Now my Callback URL is: " + account.CallbackUrl);
 ```
 
