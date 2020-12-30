@@ -414,17 +414,17 @@ var team = client.DeleteTeam();
 #### Add a member to your Team
 
 ```C#
-var team = AddMemberToTeam("ACCOUNT ID HERE");
+var team = client.AddMemberToTeam("ACCOUNT ID HERE");
 // Or...
-var team = AddMemberToTeam(null, "EMAIL ADDRESS HERE");
+var team = client.AddMemberToTeam(null, "EMAIL ADDRESS HERE");
 ```
 
 #### Remove a member from your Team
 
 ```C#
-var team = RemoveMemberFromTeam("ACCOUNT ID HERE");
+var team = client.RemoveMemberFromTeam("ACCOUNT ID HERE");
 // Or...
-var team = RemoveMemberFromTeam(null, "EMAIL ADDRESS HERE");
+var team = client.RemoveMemberFromTeam(null, "EMAIL ADDRESS HERE");
 ```
 
 ## Build from Source
