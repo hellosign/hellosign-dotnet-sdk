@@ -449,6 +449,18 @@ foreach (var result in apiApps)
     }
 ```
 
+#### Create a new API app
+
+```C#
+var capp = new ApiApp();
+capp.Name = "App for Production";
+capp.Domain = "yourwebsite.com";
+var cresponse = client.CreateApiApp(capp);
+Console.WriteLine("This API app was just created: " + cresponse.ClientId);
+Console.WriteLine("App name: " + cresponse.Name);
+```
+
+
 
 ## Build from Source
 
