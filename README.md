@@ -316,7 +316,17 @@ Console.WriteLine("Editing URL for HelloSign.open(): " + response.EditUrl);
 
 ### Unclaimed Draft Methods (for Embedded Requesting)
 
-Not implemented
+#### Create Embedded Unclaimed Draft with a file
+
+```C#
+var draft = new SignatureRequest();
+draft.AddFile("DOCUMENT A.pdf");
+draft.RequesterEmailAddress = "EMAIL HERE";
+draft.TestMode = true;
+var response = client.CreateUnclaimedDraft(draft, myClientId);
+Console.WriteLine("Embedded Unclaimed Draft Signature Request ID: " + response.SignatureRequestId);
+Console.WriteLine("Claim URL: " + response.ClaimUrl);
+```
 
 ### Template Methods
 
