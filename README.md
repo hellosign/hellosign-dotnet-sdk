@@ -88,7 +88,7 @@ Console.WriteLine("My Account ID is: " + account.AccountId);
 #### Update your Account Callback URL
 
 ```C#
-var account = client.UpdateAccount("https://example.com/hellosign.asp");
+var account = client.UpdateAccount(new Uri("https://example.com/hellosign.asp"));
 Console.WriteLine("Now my Callback URL is: " + account.CallbackUrl);
 ```
 
@@ -123,6 +123,27 @@ Console.WriteLine("New Signature Request ID: " + response.SignatureRequestId);
 
 **Note:** You can optionally pass an API App client ID as a second parameter to SendSignatureRequest.
 
+#### Send Signature Request using files and text tags with custom fields (non-Embedded)
+
+This example uses custom fields and text tags, using the `AdditionalParamaters.add` method:
+
+```C#
+var request = new SignatureRequest();
+request.Title = "Sokovia Accords as discussed";
+request.Subject = "Sokovia Accords - Please Sign";
+request.Message = "Please sign ASAP";
+request.AddSigner("tony@starkindustries.com", "Anthony Stark");
+request.AddSigner("steverogers_1918@aol.com", "Steven Rogers");
+request.AddCc("shield@shield.org");
+request.AddFile("sokovia_accords.PDF");
+client.AdditionalParameters.Add("custom_fields", "[{\"name\": \"Address\", \"value\": \"123 Main Street\"}, {\"name\": \"Phone\", \"value\": \"555-5555\"}]");
+request.UseTextTags = true;
+request.HideTextTags = true;
+request.TestMode = true;
+var response = client.SendSignatureRequest(request);
+Console.WriteLine("New Signature Request ID: " + response.SignatureRequestId);
+```
+
 #### Send Signature Request using files and form fields (non-Embedded)
 
 ```C#
@@ -152,7 +173,7 @@ request.Subject = "Purchase Order";
 request.Message = "Glad we could come to an agreement.";
 request.AddSigner("Client", "george@example.com", "George");
 request.AddCc("Accounting", "accounting@hellosign.com");
-request.CustomFields.Add("Cost", "$20,000");
+request.AddCustomField("Cost", "$20,000");
 request.TestMode = true;
 var response = client.SendSignatureRequest(request);
 Console.WriteLine("New Template Signature Request ID: " + response.SignatureRequestId);
@@ -201,6 +222,32 @@ var request = client.GetSignatureRequest("SIGNATURE REQUEST ID HERE");
 Console.WriteLine("Signature Request title: " + request.Title);
 ```
 
+#### List Signature Requests
+
+```C#
+var allRequests = client.ListSignatureRequests();
+Console.WriteLine("Found this many signature requests: " + allRequests.NumResults);
+foreach (var result in allRequests)
+{
+    Console.WriteLine("Signature request: " + result.SignatureRequestId);
+
+    if (result.IsComplete) == true)
+    {
+        Console.WriteLine("Signature request is complete.");
+    }
+    else
+    {
+        Console.WriteLine("Signature request is not complete");
+    }
+}
+```
+
+If you want to add an additional filter for `account_id`, you can add this line:
+
+```C#
+client.AdditionalParameters.Add("account_id", "ACCOUNT_ID_HERE");
+```
+
 #### Cancel a Signature Request
 
 ```C#
@@ -245,7 +292,7 @@ Console.WriteLine("The download URL is: " + url.FileUrl);
 Console.WriteLine("The URL expires at: " + url.ExpiresAt);
 ```
 
-#### Release a Signature Request
+#### Release an On-Hold Signature Request
 
 ```C#
 client.ReleaseSignatureRequest("SIGNATURE REQUEST ID HERE");
@@ -268,6 +315,47 @@ Console.WriteLine("Editing URL for HelloSign.open(): " + response.EditUrl);
 ```
 
 ### Unclaimed Draft Methods (for Embedded Requesting)
+
+#### Create Unclaimed Draft with a file (non-Embedded)
+
+```C#
+var draft = new SignatureRequest();
+draft.AddFile("DOCUMENT 1.pdf");
+draft.AddFile("LEASE.pdf");
+draft.TestMode = true;
+draft.AllowDecline = true;
+var response = client.CreateUnclaimedDraft(draft, UnclaimedDraft.Type.SendDocument);
+Console.WriteLine("Unclaimed Draft Signature Request ID: " + response.SignatureRequestId);
+Console.WriteLine("Claim URL: " + response.ClaimUrl);
+```
+
+#### Create Embedded Unclaimed Draft with a file
+
+```C#
+var draft = new SignatureRequest();
+draft.AddFile("DOCUMENT A.pdf");
+draft.RequesterEmailAddress = "EMAIL HERE";
+draft.TestMode = true;
+var response = client.CreateUnclaimedDraft(draft, myClientId);
+Console.WriteLine("Embedded Unclaimed Draft Signature Request ID: " + response.SignatureRequestId);
+Console.WriteLine("Claim URL: " + response.ClaimUrl);
+```
+
+#### Create Embedded Unclaimed Draft with a template
+
+```C#
+var request = new TemplateSignatureRequest();
+request.AddTemplate("TEMPLATE ID HERE");
+request.RequesterEmailAddress = "REQUESTER EMAIL HERE";
+request.TestMode = true;
+request.AddSigner("Client", "CLIENT EMAIL", "CLIENT NAME");
+request.AddSigner("Witness", "WITNESS EMAIL", "WITNESS NAME");
+var response = client.CreateUnclaimedDraft(request, myClientId);
+Console.WriteLine("Embedded Unclaimed Draft w/ Template, Signature Request ID: " + response.SignatureRequestId);
+Console.WriteLine("Claim URL: " + response.ClaimUrl);
+```
+
+#### Edit & resend Unclaimed Draft
 
 Not implemented
 
@@ -338,6 +426,10 @@ draft.AddMergeField("Is Registered?", MergeField.FieldType.Checkbox);
 var response = client.CreateEmbeddedTemplateDraft(draft, "CLIENT ID HERE");
 ```
 
+### Reports Methods
+
+Not implemented
+
 ### Team Methods
 
 #### Get your Team details
@@ -367,17 +459,57 @@ var team = client.DeleteTeam();
 #### Add a member to your Team
 
 ```C#
-var team = AddMemberToTeam("ACCOUNT ID HERE");
+var team = client.AddMemberToTeam("ACCOUNT ID HERE");
 // Or...
-var team = AddMemberToTeam(null, "EMAIL ADDRESS HERE");
+var team = client.AddMemberToTeam(null, "EMAIL ADDRESS HERE");
 ```
 
 #### Remove a member from your Team
 
 ```C#
-var team = RemoveMemberFromTeam("ACCOUNT ID HERE");
+var team = client.RemoveMemberFromTeam("ACCOUNT ID HERE");
 // Or...
-var team = RemoveMemberFromTeam(null, "EMAIL ADDRESS HERE");
+var team = client.RemoveMemberFromTeam(null, "EMAIL ADDRESS HERE");
+```
+
+### App Methods
+
+#### Get information about an API app
+
+```C#
+var app = client.GetApiApp(client_id);
+Console.WriteLine("API APP: " + app.ClientId);
+Console.WriteLine("This app is approved: " + app.IsApproved);
+Console.WriteLine("This app has callback URL: " + app.CallbackUrl);
+```
+
+#### List all API apps
+
+```C#
+var apiApps = client.ListApiApps();
+Console.WriteLine("Found this many API apps: " + apiApps.NumResults);
+foreach (var result in apiApps)
+    {
+        Console.WriteLine("API app: " + result.Name + " (" + result.ClientId + ")");
+    }
+```
+
+#### Create a new API app
+
+```C#
+var capp = new ApiApp();
+capp.Name = "App for Production";
+capp.Domain = "yourwebsite.com";
+var cresponse = client.CreateApiApp(capp);
+Console.WriteLine("This API app was just created: " + cresponse.ClientId);
+Console.WriteLine("App name: " + cresponse.Name);
+```
+
+#### Delete an API app
+
+```C#
+client.DeleteApiApp("CLIENT_ID_HERE");
+Console.WriteLine("API app was just deleted!");
 ```
 
 ## Build from Source
