@@ -15,6 +15,7 @@ namespace HelloSign
         public string Message { get; set; }
         public bool TestMode { get; set; }
         public Dictionary<String, String> Metadata { get; set; }
+        public DateTime CreatedAt { get; set; }
         public bool IsComplete { get; set; }
         public bool HasError { get; set; }
         public List<CustomField> CustomFields { get; set; }
