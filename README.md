@@ -428,7 +428,14 @@ var response = client.CreateEmbeddedTemplateDraft(draft, "CLIENT ID HERE");
 
 ### Reports Methods
 
-Not implemented
+```C#
+var reportRequest = new Report();
+reportRequest.StartDate = DateTime.Now.AddYears(-1);
+reportRequest.EndDate = DateTime.Now;
+reportRequest.ReportType = "user_activity, document_status";
+var reportResponse = client.GetReport(reportRequest);
+Console.WriteLine($"Status for Report ({reportResponse.ReportType}) between {reportResponse.StartDate} - {reportResponse.EndDate}: {reportResponse.Success}");
+```
 
 ### Team Methods
 
