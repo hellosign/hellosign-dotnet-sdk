@@ -1563,5 +1563,36 @@ namespace HelloSign
         }
 
         #endregion
+
+        #region Reports
+
+        /// <summary>
+        /// Get user activity and/or document status report(s) in defined time window
+        /// </summary>
+        /// <param name="startDate">The start date of the report data in MM/DD/YYYY format (inclusive date)</param>
+        /// <param name="endDate">The end date of the report data in MM/DD/YYYY format (inclusive date)</param>
+        /// <param name="reportTypes">The type of the report(s) you are requesting</param>
+        /// <returns>The Report object</returns>
+        public Report GetReport(Report report)
+        {
+            RequireAuthentication();
+
+            var request = new RestRequest("get_report");
+            request.AddQueryParameter("start_date", report.StartDate.ToString("MM/dd/yyyy"));
+            request.AddQueryParameter("end_date", report.EndDate.ToString("MM/dd/yyyy"));
+
+            // Add Report Types
+            var reportTypes = report.ReportType.Split(',');
+            int i = 0;
+            foreach (var reportType in reportTypes)
+            {
+                request.AddQueryParameter(String.Format("report_type[{0}]", i), reportType.Trim());
+                i++;
+            }
+
+            request.RootElement = "report";
+            return Execute<Report>(request);
+        }
+        #endregion
     }
 }
