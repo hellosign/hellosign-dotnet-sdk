@@ -513,6 +513,7 @@ namespace HelloSign
                 request.AddParameter(prefix + "[name]", signer.Name);
                 if (signer.Order != null) request.AddParameter(prefix + "[order]", signer.Order);
                 if (signer.Pin != null) request.AddParameter(prefix + "[pin]", signer.Pin);
+                if (signer.SmsPhoneNumber != null) request.AddParameter(prefix + "[sms_phone_number]", signer.SmsPhoneNumber);
                 i++;
             }
 
@@ -643,6 +644,7 @@ namespace HelloSign
                 request.AddParameter(prefix + "[name]", signer.Name);
                 if (signer.Order != null) request.AddParameter(prefix + "[order]", signer.Order);
                 if (signer.Pin != null) request.AddParameter(prefix + "[pin]", signer.Pin);
+                if (signer.SmsPhoneNumber != null) request.AddParameter(prefix + "[sms_phone_number]", signer.SmsPhoneNumber);
             }
 
             // Add CCs
@@ -1245,6 +1247,7 @@ namespace HelloSign
                 request.AddParameter(prefix + "[name]", signer.Name);
                 if (signer.Order != null) request.AddParameter(prefix + "[order]", signer.Order);
                 if (signer.Pin != null) request.AddParameter(prefix + "[pin]", signer.Pin);
+                if (signer.SmsPhoneNumber != null) request.AddParameter(prefix + "[sms_phone_number]", signer.SmsPhoneNumber);
                 i++;
             }
 
@@ -1347,6 +1350,7 @@ namespace HelloSign
                 request.AddParameter(prefix + "[name]", signer.Name);
                 if (signer.Order != null) request.AddParameter(prefix + "[order]", signer.Order);
                 if (signer.Pin != null) request.AddParameter(prefix + "[pin]", signer.Pin);
+                if (signer.SmsPhoneNumber != null) request.AddParameter(prefix + "[sms_phone_number]", signer.SmsPhoneNumber);
             }
 
             // Add CCs
