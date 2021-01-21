@@ -40,7 +40,7 @@ namespace HelloSign
         /// <param name="pin"></param>
         public void AddSigner(string role, string emailAddress, string name, int? order = null, string pin = null, string smsPhoneNumber = null)
         {
-            Signers.Add(new Signer(emailAddress, name, order, pin, smsPhoneNumber, role));
+            Signers.Add(new Signer(emailAddress, name, order, pin, role, smsPhoneNumber));
         }
 
         /// <summary>

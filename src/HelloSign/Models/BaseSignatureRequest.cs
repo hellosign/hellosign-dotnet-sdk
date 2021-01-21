@@ -53,7 +53,7 @@ namespace HelloSign
         /// <param name="smsPhoneNumber"></param>
         public void AddSigner(string emailAddress, string name, int? order = null, string pin = null, string smsPhoneNumber = null)
         {
-            Signers.Add(new Signer(emailAddress, name, order, pin, smsPhoneNumber));
+            Signers.Add(new Signer(emailAddress, name, order, pin, null, smsPhoneNumber));
         }
 
         /// <summary>
