@@ -50,9 +50,10 @@ namespace HelloSign
         /// <param name="name"></param>
         /// <param name="order"></param>
         /// <param name="pin"></param>
-        public void AddSigner(string emailAddress, string name, int? order = null, string pin = null)
+        /// <param name="smsPhoneNumber"></param>
+        public void AddSigner(string emailAddress, string name, int? order = null, string pin = null, string smsPhoneNumber = null)
         {
-            Signers.Add(new Signer(emailAddress, name, order, pin));
+            Signers.Add(new Signer(emailAddress, name, order, pin, null, smsPhoneNumber));
         }
 
         /// <summary>
