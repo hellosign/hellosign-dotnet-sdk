@@ -430,7 +430,7 @@ namespace HelloSignTestApp
             reportRequest.StartDate = DateTime.Now.AddYears(-1);
             reportRequest.EndDate = DateTime.Now;
             reportRequest.ReportType = "user_activity, document_status";
-            var reportResponse = client.GetReport(reportRequest);
+            var reportResponse = client.CreateReport(reportRequest);
             Console.WriteLine($"Status for Report ({reportResponse.ReportType}) between {reportResponse.StartDate} - {reportResponse.EndDate}: {reportResponse.Success}");
 
             Console.WriteLine("Press ENTER to exit.");
