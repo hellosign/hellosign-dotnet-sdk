@@ -112,8 +112,8 @@ request.Message = "Please sign this NDA and then we can discuss more. Let me kno
 request.AddSigner("jack@example.com", "Jack");
 request.AddSigner("jill@example.com", "Jill");
 request.AddCc("lawyer@example.com");
-request.AddFile("c:\users\me\My Documents\nda.txt");
-request.AddFile("c:\users\me\My Documents\AppendixA.txt");
+request.AddFile(@"c:\users\me\My Documents\nda.txt");
+request.AddFile(@"c:\users\me\My Documents\AppendixA.txt");
 request.Metadata.Add("custom_id", "1234");
 request.Metadata.Add("custom_text", "NDA #9");
 request.TestMode = true;
@@ -152,7 +152,7 @@ request.Title = "NDA with Acme Co.";
 request.Subject = "The NDA we talked about";
 request.Message = "Please sign this NDA and then we can discuss more. Let me know if you have any questions.";
 request.AddSigner("jack@example.com", "Jack");
-request.AddFile("c:\users\me\My Documents\nda.pdf").WithFields(
+request.AddFile(@"c:\users\me\My Documents\nda.pdf").WithFields(
     //            id      type                     page    x    y    w   h   req signer
     new FormField("chk1", FormField.TypeCheckbox,     1, 140,  72,  36, 36, true,     0),
     new FormField("txt1", FormField.TypeText,         1, 140, 144, 225, 20, true,     0),
@@ -191,8 +191,8 @@ request.Message = "Please sign this NDA and then we can discuss more. Let me kno
 request.AddSigner("jack@example.com", "Jack");
 request.AddSigner("jill@example.com", "Jill");
 request.AddCc("lawyer@example.com");
-request.AddFile("c:\users\me\My Documents\nda.txt");
-request.AddFile("c:\users\me\My Documents\AppendixA.txt");
+request.AddFile(@"c:\users\me\My Documents\nda.txt");
+request.AddFile(@"c:\users\me\My Documents\AppendixA.txt");
 request.Metadata.Add("custom_id", "1234");
 request.Metadata.Add("custom_text", "NDA #9");
 request.TestMode = true;
