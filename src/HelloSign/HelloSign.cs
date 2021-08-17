@@ -545,6 +545,13 @@ namespace HelloSign
                 }
             }
 
+             // Add Custom Fields
+            if (signatureRequest.CustomFields.Count > 0)
+            {
+                // Serialize as JSON string
+                request.AddParameter("custom_fields", JsonConvert.SerializeObject(signatureRequest.CustomFields));
+            }
+            
             // Add Metadata
             foreach (var entry in signatureRequest.Metadata)
             {
