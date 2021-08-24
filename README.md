@@ -40,7 +40,7 @@ Most methods will throw a relevant exception if something goes wrong.
 This includes when our server returns an error message documented [here](https://www.hellosign.com/api/reference#ErrorNames).
 
 You should always be prepared to catch these exceptions and handle them appropriately.
-Refer to HelloSign/Exceptions.cs in this repository for information about the custom exception classes this library defines.
+Refer to [Exceptions.cs](/src/HelloSign/Exceptions.cs) in this repository for information about the custom exception classes this library defines.
 
 #### Warnings
 
