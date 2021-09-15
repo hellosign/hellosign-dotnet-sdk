@@ -37,6 +37,16 @@ namespace HelloSign
         public string validation_custom_regex { get; set; }
         public string validation_custom_regex_format_label { get; set; }
 
+        /// <summary>
+        /// Array of string values representing dropdown values. e.g. "options": ["Option 1","Option 2"]
+        /// </summary>
+        public string[] options { get; set; }
+
+        /// <summary>
+        /// Selected value in options array. Value must exist in array. e.g. "content": "Option 2"
+        /// </summary>
+        public string content { get; set; }
+
         public FormField() { }
 
         /// <summary>
@@ -55,7 +65,7 @@ namespace HelloSign
         /// <param name="validationType">Optional validation rule for use with text fields. See FormField.ValidationType* constants.</param>
         /// <param name="validationCustomRegex">Optional validation custom regular expression to validate text fields. e.g. A[0-9]{3}</param>
         /// <param name="validationCustomRegexFormatLabel">Optional validation custom format label to display as a placeholder in text fields. e.g. A000</param>
-        public FormField(string apiId, string type, int page, int x, int y, int width, int height, bool required, int signer, string validationType = null, string validationCustomRegex = null, string validationCustomRegexFormatLabel = null)
+        public FormField(string apiId, string type, int page, int x, int y, int width, int height, bool required, int signer, string validationType = null, string validationCustomRegex = null, string validationCustomRegexFormatLabel = null, string[] options = null, string content = null)
         {
             this.api_id = apiId;
             this.type = type;
@@ -69,6 +79,8 @@ namespace HelloSign
             this.validation_type = validationType;
             this.validation_custom_regex = validationCustomRegex;
             this.validation_custom_regex_format_label = validationCustomRegexFormatLabel;
+            this.options = options;
+            this.content = content;
         }
     }
 }
