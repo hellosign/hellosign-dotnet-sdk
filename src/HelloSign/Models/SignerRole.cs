@@ -7,5 +7,9 @@
     {
         public string Name { get; set; }
         public int? Order { get; set; }
+
+        public int getOrderInt(){
+            return Order ?? 0;
+        }
     }
 }
