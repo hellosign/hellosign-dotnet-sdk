@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Linq;
 using RestSharp;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Converters;
 
 namespace HelloSign
@@ -50,7 +51,7 @@ namespace HelloSign
 
         private string apiKey;
         private RestClient client;
-        private JsonSerializer deserializer;
+        //private JsonSerializer deserializer;
         private const string defaultHost = "api.hellosign.com";
         public List<Warning> Warnings { get; private set; }
         public string Version { get; private set; }
@@ -81,8 +82,8 @@ namespace HelloSign
 
             // Initialize stuff
             client = new RestClient();
-            client.UserAgent = "hellosign-dotnet-sdk/" + Version;
-            deserializer = new RestSharp.Deserializers.JsonDeserializer();
+            client.AddDefaultHeader("User-Agent", "hellosign-dotnet-sdk/" + Version);
+            //deserializer = new RestSharp.Deserializers.JsonDeserializer();
             Warnings = new List<Warning>();
             SetApiHost(defaultHost);
         }
@@ -115,7 +116,7 @@ namespace HelloSign
         /// <param name="accessToken"></param>
         public void UseOAuth2Authentication(string accessToken)
         {
-            client.Authenticator = new RestSharp.Authenticators.OAuth2AuthorizationRequestHeaderAuthenticator(accessToken, "Bearer");
+            client.Authenticator = new RestSharp.Authenticators.OAuth2.OAuth2AuthorizationRequestHeaderAuthenticator(accessToken, "Bearer");
         }
 
         private void HandleErrors(RestResponse response)
@@ -131,8 +132,8 @@ namespace HelloSign
             if (response.ContentType == "application/json")
             {
                 // Check for an error
-                deserializer.RootElement = "error";
-                var error = deserializer.Deserialize<Error>(response);
+                var jToken = JToken.Parse(response.Content);
+                var error = jToken["error"].ToObject<Error>();
                 if (error.ErrorName != null)
                 {
                     switch (error.ErrorName)
@@ -177,8 +178,7 @@ namespace HelloSign
                 }
 
                 // Look for warnings
-                deserializer.RootElement = "warnings";
-                var warnings = deserializer.Deserialize<List<Warning>>(response);
+                var warnings = jToken["warnings"].ToObject<List<Warning>>();
                 if (warnings[0].WarningName != null)
                 {
                     Warnings.AddRange(warnings);
@@ -234,7 +234,7 @@ namespace HelloSign
         private T Execute<T>(RestRequest request) where T : new()
         {
             InjectAdditionalParameters(request);
-            var response = client.Execute<T>(request);
+            var response = client.ExecuteAsync<T>(request).Result;
             HandleErrors(response);
             return response.Data;
         }
@@ -242,15 +242,15 @@ namespace HelloSign
         private ObjectList<T> ExecuteList<T>(RestRequest request, string arrayKey) where T : new()
         {
             InjectAdditionalParameters(request);
-            var response = client.Execute(request);
+            var response = client.ExecuteAsync(request).Result;
             HandleErrors(response);
 
-            deserializer.RootElement = "list_info";
-            var list = deserializer.Deserialize<ObjectList<T>>(response);
+            var jToken = JToken.Parse(response.Content);
+
+            var list = jToken["list_info"].ToObject<ObjectList<T>>();
 
             // TODO: Check response sanity
-            deserializer.RootElement = arrayKey;
-            var items = deserializer.Deserialize<List<T>>(response);
+            var items = jToken[arrayKey].ToObject<List<T>>();
             list.Items = items;
 
             return list;
@@ -264,7 +264,7 @@ namespace HelloSign
         private RestResponse Execute(RestRequest request)
         {
             InjectAdditionalParameters(request);
-            var response = client.Execute(request);
+            var response = client.ExecuteAsync(request).Result;
             HandleErrors(response);
             return response;
         }
@@ -276,7 +276,7 @@ namespace HelloSign
         /// <param name="host"></param>
         public void SetApiHost(string host)
         {
-            client.BaseUrl = new Uri(String.Format("https://{0}/v3", host));
+            var url = new Uri(String.Format("https://{0}/v3", host));
         }
 
         /// <summary>
@@ -311,7 +311,8 @@ namespace HelloSign
                 default:
                     throw new ArgumentException("Unsupported environment given");
             }
-            client.BaseUrl = new Uri(String.Format("https://api.{0}/v3", domain));
+            client = new RestClient(new Uri(String.Format("https://api.{0}/v3", domain)));
+            // = new Uri(String.Format("https://api.{0}/v3", domain));
         }
 
         /// <summary>
@@ -335,16 +336,12 @@ namespace HelloSign
                 throw new Exception("Event parsing is only supported if you initialize Client with an API key.");
             }
 
-            // Build a fake RestResponse so we can take advantage of the RestSharp Deserializer
-            var fakeResponse = new RestResponse();
-            fakeResponse.Content = data;
-
+            JToken jToken = JToken.Parse(data);
             // Parse the main event body
-            deserializer.RootElement = "event";
-            var callbackEvent = deserializer.Deserialize<Event>(fakeResponse);
-            
+            var callbackEvent = jToken["event"].ToObject<Event>();
+
             // Verify hash integrity
-            var hashInfo = deserializer.Deserialize<EventHashInfo>(fakeResponse);
+            var hashInfo = jToken.ToObject<EventHashInfo>();
             var keyBytes = System.Text.Encoding.ASCII.GetBytes(apiKey);
             var hmac = new System.Security.Cryptography.HMACSHA256(keyBytes);
             var inputBytes = System.Text.Encoding.ASCII.GetBytes(hashInfo.EventTime + hashInfo.EventType);
@@ -363,13 +360,14 @@ namespace HelloSign
                 throw new EventHashException("Event hash does not match expected value; This event may not be genuine. Make sure this API key matches the one on the account generating callbacks.", data);
             }
 
+            
+
             // Parse attached models
-            deserializer.RootElement = "signature_request";
-            callbackEvent.SignatureRequest = deserializer.Deserialize<SignatureRequest>(fakeResponse);
-            deserializer.RootElement = "template";
-            callbackEvent.Template = deserializer.Deserialize<Template>(fakeResponse);
-            deserializer.RootElement = "account";
-            callbackEvent.Account = deserializer.Deserialize<Account>(fakeResponse);
+            callbackEvent.SignatureRequest = jToken["signature_request"].ToObject<SignatureRequest>();
+
+            callbackEvent.Template = jToken["template"].ToObject<Template>();
+
+            callbackEvent.Account = jToken["account"].ToObject<Account>();
 
             return callbackEvent;
         }
@@ -421,8 +419,7 @@ namespace HelloSign
         {
             RequireAuthentication();
 
-            var request = new RestRequest("account", Method.Post);
-            request.AddParameter("callback_url", callbackUrl);
+            var request = new RestRequest("account", Method.Post).AddQueryParameter("callback_url", callbackUrl.ToString());
             request.RootElement = "account";
             return Execute<Account>(request);
         }
@@ -1516,20 +1513,19 @@ namespace HelloSign
 
             // Special twist on ExecuteList
             InjectAdditionalParameters(request);
-            var response = client.Execute(request);
+            //var response = client.Execute(request);
+            var response = client.ExecuteAsync<RestResponse>(request).Result;
+            var jToken = JToken.Parse(response.Content);
             HandleErrors(response);
 
             // Unpack list_info
-            //deserializer.RootElement = "list_info";
-            var job = deserializer.Deserialize<BulkSendJob>(response);
+            var job = jToken["list_info"].ToObject<BulkSendJob>();
 
             // Unpack list of associated SignatureRequests
-            //deserializer.RootElement = "signature_requests";
-            job.Items = deserializer.Deserialize<List<SignatureRequest>>(response);
+            job.Items = jToken["signature_requests"].ToObject<List<SignatureRequest>>();
 
             // Also unpack the BulkSendJobInfo details
-            //deserializer.RootElement = "bulk_send_job";
-            job.JobInfo = deserializer.Deserialize<BulkSendJobInfo>(response);
+            job.JobInfo = jToken["bulk_send_job"].ToObject<BulkSendJobInfo>();
 
             return job;
         }
