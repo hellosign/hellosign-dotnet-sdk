@@ -8,6 +8,8 @@ using RestSharp;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
+using RestSharp.Serializers.Json;
 
 namespace HelloSign
 {
@@ -51,7 +53,6 @@ namespace HelloSign
 
         private string apiKey;
         private RestClient client;
-        //private JsonSerializer deserializer;
         private const string defaultHost = "api.hellosign.com";
         public List<Warning> Warnings { get; private set; }
         public string Version { get; private set; }
@@ -81,19 +82,19 @@ namespace HelloSign
             Version = fvi.ProductVersion;
 
             // Initialize stuff
-            client = new RestClient();
+            client = new RestClient(GetFullHostname(defaultHost));
             client.AddDefaultHeader("User-Agent", "hellosign-dotnet-sdk/" + Version);
-            //deserializer = new RestSharp.Deserializers.JsonDeserializer();
             Warnings = new List<Warning>();
-            SetApiHost(defaultHost);
         }
 
         /// <summary>
         /// Constructor initialized with API key authentication.
         /// </summary>
         /// <param name="apiKey">Your HelloSign account API key.</param>
-        public Client(string apiKey) : this()
+        /// <param name="apiHost">Your HelloSign account API key.</param>
+        public Client(string apiKey, string apiHost) : this()
         {
+            client = new RestClient(GetFullHostname(apiHost));
             this.UseApiKeyAuthentication(apiKey);
         }
 
@@ -133,55 +134,64 @@ namespace HelloSign
             {
                 // Check for an error
                 var jToken = JToken.Parse(response.Content);
-                var error = jToken["error"].ToObject<Error>();
-                if (error.ErrorName != null)
+                var errorToken = jToken["error"];
+                if (errorToken != null)
                 {
-                    switch (error.ErrorName)
+                    var error = errorToken.ToObject<Error>();
+                    if (error.ErrorName != null)
                     {
-                        case "bad_request":
-                            throw new BadRequestException(error.ErrorMsg, error.ErrorName);
-                        case "unauthorized":
-                            throw new UnauthorizedException(error.ErrorMsg, error.ErrorName);
-                        case "payment_required":
-                            throw new PaymentRequiredException(error.ErrorMsg, error.ErrorName);
-                        case "forbidden":
-                            throw new ForbiddenException(error.ErrorMsg, error.ErrorName);
-                        case "not_found":
-                            throw new NotFoundException(error.ErrorMsg, error.ErrorName);
-                        case "conflict":
-                            throw new ConflictException(error.ErrorMsg, error.ErrorName);
-                        case "team_invite_failed":
-                            throw new ForbiddenException(error.ErrorMsg, error.ErrorName);
-                        case "invalid_recipient":
-                            throw new BadRequestException(error.ErrorMsg, error.ErrorName);
-                        case "signature_request_cancel_failed":
-                            throw new BadRequestException(error.ErrorMsg, error.ErrorName);
-                        case "maintenance":
-                            throw new ServiceUnavailableException(error.ErrorMsg, error.ErrorName);
-                        case "deleted":
-                            throw new GoneException(error.ErrorMsg, error.ErrorName);
-                        case "unknown":
-                            throw new UnknownException(error.ErrorMsg, error.ErrorName);
-                        case "method_not_supported":
-                            throw new MethodNotAllowedException(error.ErrorMsg, error.ErrorName);
-                        case "signature_request_invalid":
-                            throw new ErrorException(error.ErrorMsg, error.ErrorName);
-                        case "template_error":
-                            throw new ErrorException(error.ErrorMsg, error.ErrorName);
-                        case "invalid_reminder":
-                            throw new BadRequestException(error.ErrorMsg, error.ErrorName);
-                        case "exceeded_rate":
-                            throw new ExceededRateLimitException(error.ErrorMsg, error.ErrorName);
-                        default:
-                            throw new ErrorException(error.ErrorMsg, error.ErrorName);
+                        switch (error.ErrorName)
+                        {
+                            case "bad_request":
+                                throw new BadRequestException(error.ErrorMsg, error.ErrorName);
+                            case "unauthorized":
+                                throw new UnauthorizedException(error.ErrorMsg, error.ErrorName);
+                            case "payment_required":
+                                throw new PaymentRequiredException(error.ErrorMsg, error.ErrorName);
+                            case "forbidden":
+                                throw new ForbiddenException(error.ErrorMsg, error.ErrorName);
+                            case "not_found":
+                                throw new NotFoundException(error.ErrorMsg, error.ErrorName);
+                            case "conflict":
+                                throw new ConflictException(error.ErrorMsg, error.ErrorName);
+                            case "team_invite_failed":
+                                throw new ForbiddenException(error.ErrorMsg, error.ErrorName);
+                            case "invalid_recipient":
+                                throw new BadRequestException(error.ErrorMsg, error.ErrorName);
+                            case "signature_request_cancel_failed":
+                                throw new BadRequestException(error.ErrorMsg, error.ErrorName);
+                            case "maintenance":
+                                throw new ServiceUnavailableException(error.ErrorMsg, error.ErrorName);
+                            case "deleted":
+                                throw new GoneException(error.ErrorMsg, error.ErrorName);
+                            case "unknown":
+                                throw new UnknownException(error.ErrorMsg, error.ErrorName);
+                            case "method_not_supported":
+                                throw new MethodNotAllowedException(error.ErrorMsg, error.ErrorName);
+                            case "signature_request_invalid":
+                                throw new ErrorException(error.ErrorMsg, error.ErrorName);
+                            case "template_error":
+                                throw new ErrorException(error.ErrorMsg, error.ErrorName);
+                            case "invalid_reminder":
+                                throw new BadRequestException(error.ErrorMsg, error.ErrorName);
+                            case "exceeded_rate":
+                                throw new ExceededRateLimitException(error.ErrorMsg, error.ErrorName);
+                            default:
+                                throw new ErrorException(error.ErrorMsg, error.ErrorName);
+                        }
                     }
                 }
 
+
                 // Look for warnings
-                var warnings = jToken["warnings"].ToObject<List<Warning>>();
-                if (warnings[0].WarningName != null)
+                var warningToken = jToken["warnings"];
+                if(warningToken != null)
                 {
-                    Warnings.AddRange(warnings);
+                    var warnings = warningToken.ToObject<List<Warning>>();
+                    if (warnings[0].WarningName != null)
+                    {
+                        Warnings.AddRange(warnings);
+                    }
                 }
             }
 
@@ -234,9 +244,13 @@ namespace HelloSign
         private T Execute<T>(RestRequest request) where T : new()
         {
             InjectAdditionalParameters(request);
-            var response = client.ExecuteAsync<T>(request).Result;
+            var responseTask =  client.ExecuteAsync(request);
+            var response = responseTask.Result;
             HandleErrors(response);
-            return response.Data;
+            var jToken = JToken.Parse(response.Content);
+            var rootToken = jToken[request.RootElement];
+            var parsedObject = JsonConvert.DeserializeObject<T>(rootToken.ToString(),GetSerializerSettings());
+            return parsedObject;
         }
 
         private ObjectList<T> ExecuteList<T>(RestRequest request, string arrayKey) where T : new()
@@ -245,15 +259,37 @@ namespace HelloSign
             var response = client.ExecuteAsync(request).Result;
             HandleErrors(response);
 
+            var objectList = PopulateObjectList<T>(response, arrayKey);
+            return objectList;
+        }
+
+        private JsonSerializerSettings GetSerializerSettings()
+        {
+            return new JsonSerializerSettings
+            {
+                ContractResolver = new DefaultContractResolver
+                {
+                    NamingStrategy = new SnakeCaseNamingStrategy()
+                },
+                NullValueHandling = NullValueHandling.Ignore
+            };
+        }
+
+        private ObjectList<T> PopulateObjectList<T>(RestResponse response, string arrayKey)
+        {
             var jToken = JToken.Parse(response.Content);
-
-            var list = jToken["list_info"].ToObject<ObjectList<T>>();
-
+            var listToken = jToken["list_info"];
+            var list = new ObjectList<T>();
             // TODO: Check response sanity
-            var items = jToken[arrayKey].ToObject<List<T>>();
+            list.Page = listToken["page"].ToObject<int>();
+            list.NumPages = listToken["num_pages"].ToObject<int>();
+            list.NumResults = listToken["num_results"].ToObject<int>();
+            list.PageSize = listToken["page_size"].ToObject<int>();
+            var itemToken = jToken[arrayKey];
+            var items = JsonConvert.DeserializeObject<List<T>>(itemToken.ToString(), GetSerializerSettings());
             list.Items = items;
-
             return list;
+
         }
 
         /// <summary>
@@ -270,13 +306,12 @@ namespace HelloSign
         }
 
         /// <summary>
-        /// Set the host of the HelloSign API to make calls to.
-        /// Useful only for internal testing purposes; Users should generally not change this.
+        /// Formats a basic hostname into a full hostname
         /// </summary>
         /// <param name="host"></param>
-        public void SetApiHost(string host)
+        public String GetFullHostname(string host)
         {
-            var url = new Uri(String.Format("https://{0}/v3", host));
+            return String.Format("https://{0}/v3", host);
         }
 
         /// <summary>

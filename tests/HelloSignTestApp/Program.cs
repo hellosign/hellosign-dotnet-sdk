@@ -58,8 +58,7 @@ namespace HelloSignTestApp
             Console.WriteLine("Using HelloSign API at host: " + apiHost);
 
             // Client setup
-            var client = new Client(apiKey);
-            client.SetApiHost(apiHost);
+            var client = new Client(apiKey,apiHost);
 
             // Prepare some fake text files for upload
             byte[] file1 = System.Text.Encoding.ASCII.GetBytes("Test document, please sign at the end.");
@@ -79,6 +78,10 @@ namespace HelloSignTestApp
                 throw new Exception("Created account that should already exist: " + newAccount.EmailAddress);
             }
             catch (BadRequestException)
+            {
+                Console.WriteLine("Was successfully blocked from creating a pre-existing account.");
+            }
+            catch (ApplicationException)
             {
                 Console.WriteLine("Was successfully blocked from creating a pre-existing account.");
             }

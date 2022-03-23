@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using RestSharp;
 
 namespace HelloSign
@@ -15,7 +17,10 @@ namespace HelloSign
         public string Message { get; set; }
         public bool TestMode { get; set; }
         public Dictionary<String, String> Metadata { get; set; }
+
+        [JsonConverter(typeof(UnixDateTimeConverter))]
         public DateTime CreatedAt { get; set; }
+
         public bool IsComplete { get; set; }
         public bool HasError { get; set; }
         public List<CustomField> CustomFields { get; set; }

@@ -11,6 +11,18 @@
     <Configuration>Release</Configuration>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>HelloSign.snk</AssemblyOriginatorKeyFile>
+    <Configurations>Debug;Release;Build</Configurations>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Build|AnyCPU' ">
+    <IntermediateOutputPath>obj\Build</IntermediateOutputPath>
+    <DebugType></DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Build</OutputPath>
+    <DefineConstants></DefineConstants>
+    <SignAssembly>false</SignAssembly>
+    <AssemblyOriginatorKeyFile></AssemblyOriginatorKeyFile>
+    <NoWarn></NoWarn>
+    <NoStdLib>true</NoStdLib>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="11.0.1" />
