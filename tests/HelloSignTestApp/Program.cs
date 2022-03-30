@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using HelloSign;
 
 namespace HelloSignTestApp
@@ -27,6 +28,20 @@ namespace HelloSignTestApp
                 {
                     retries--;
                     Console.Write("└ Caught conflict exception: " + e.Message);
+                    if (retries > 0)
+                    {
+                        Console.WriteLine(". Trying again in 2s...");
+                        System.Threading.Thread.Sleep(2000);
+                    }
+                    else
+                    {
+                        Console.WriteLine(". Giving up!");
+                    }
+                }
+                catch(ApplicationException ae)
+                {
+                    retries--;
+                    Console.Write("└ Caught application exception: " + ae.InnerException);
                     if (retries > 0)
                     {
                         Console.WriteLine(". Trying again in 2s...");
@@ -213,10 +228,10 @@ namespace HelloSignTestApp
                     Console.WriteLine("Download URL: " + downloadUrl.FileUrl + " (Expires at: " + downloadUrl.ExpiresAt + ")");
                     break;
                 }
-                catch (Exception e) // Workaround for an API bug
+                catch (ApplicationException ae) // Workaround for an API bug
                 {
                     retries--;
-                    Console.Write("└ Caught an exception: " + e.Message);
+                    Console.Write("└ Caught an exception: " + ae.InnerException.Message);
                     if (retries > 0)
                     {
                         Console.WriteLine(". Trying again in 2s...");
@@ -232,6 +247,7 @@ namespace HelloSignTestApp
             // Download signature request
             Console.WriteLine("Attempting to download PDF...");
             retries = 15;
+            double sleepTime = 2000;
             while (retries > 0)
             {
                 try
@@ -246,8 +262,10 @@ namespace HelloSignTestApp
                     Console.Write("└ Caught conflict exception: " + e.Message);
                     if (retries > 0)
                     {
-                        Console.WriteLine(". Trying again in 2s...");
-                        System.Threading.Thread.Sleep(2000);
+                        var sleepTimeInt = (int)sleepTime;
+                        Console.WriteLine(". Trying again in "+ sleepTimeInt / 1000+"s...");
+                        System.Threading.Thread.Sleep(sleepTimeInt);
+                        sleepTime *= 1.5;
                     }
                     else
                     {
@@ -351,7 +369,7 @@ namespace HelloSignTestApp
             var newApiApp = new ApiApp();
             DateTime.Now.ToShortTimeString();
             newApiApp.Name = "C# SDK Test App - " + DateTime.Now.ToString();
-            newApiApp.Domain = "example.com";
+            newApiApp.setDomain("example.com");
             newApiApp.CallbackUrl = "https://example.com/callback";
             var aResponse = client.CreateApiApp(newApiApp);
             Console.WriteLine("New API App: " + aResponse.Name);
@@ -429,13 +447,27 @@ namespace HelloSignTestApp
             Console.WriteLine("Deleted test API App");
 
             // Get Report
-            var reportRequest = new Report();
-            reportRequest.StartDate = DateTime.Now.AddYears(-1);
-            reportRequest.EndDate = DateTime.Now;
-            reportRequest.ReportType = "user_activity, document_status";
-            var reportResponse = client.CreateReport(reportRequest);
-            Console.WriteLine($"Status for Report ({reportResponse.ReportType}) between {reportResponse.StartDate} - {reportResponse.EndDate}: {reportResponse.Success}");
-
+            try
+            {
+                var reportRequest = new Report();
+                reportRequest.StartDate = DateTime.Now.AddMonths(-10);
+                reportRequest.EndDate = DateTime.Now.AddMonths(-10);
+                reportRequest.ReportType = "user_activity, document_status";
+                var reportResponse = client.CreateReport(reportRequest);
+                Console.WriteLine($"Status for Report ({reportResponse.ReportType}) between {reportResponse.StartDate} - {reportResponse.EndDate}: {reportResponse.Success}");
+            }
+            catch(Exception e)
+            {
+                if(!e.Message.Contains("Reports are not available for Free plan"))
+                {
+                    throw e;
+                }
+                else
+                {
+                    Console.WriteLine($"Plan Error: {e.Message}");
+                }
+            }
+            
             Console.WriteLine("Press ENTER to exit.");
             Console.Read(); // Keeps the output window open
         }

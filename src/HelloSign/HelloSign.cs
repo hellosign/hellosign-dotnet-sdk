@@ -125,7 +125,7 @@ namespace HelloSign
             // If there was an exception getting the response
             if (response.ErrorException != null)
             {
-                const string message = "Error retrieving response.  Check inner details for more info.";
+                string message = $"Error retrieving response: {response.Content}";
                 throw new ApplicationException(message, response.ErrorException);
             }
 
@@ -248,7 +248,11 @@ namespace HelloSign
             var response = responseTask.Result;
             HandleErrors(response);
             var jToken = JToken.Parse(response.Content);
-            var rootToken = jToken[request.RootElement];
+            var rootToken = jToken;
+            if (request.RootElement != null)
+            {
+                rootToken = jToken[request.RootElement];
+            }
             var parsedObject = JsonConvert.DeserializeObject<T>(rootToken.ToString(),GetSerializerSettings());
             return parsedObject;
         }
@@ -1504,7 +1508,7 @@ namespace HelloSign
 
             // Add simple parameters
             request.AddParameter("name", app.Name);
-            request.AddParameter("domain", app.Domain);
+            request.AddParameter("domain", app.getDomain());
             if (app.CallbackUrl != null) request.AddParameter("callback_url", app.CallbackUrl);
 
             // Add OAuth info if present
