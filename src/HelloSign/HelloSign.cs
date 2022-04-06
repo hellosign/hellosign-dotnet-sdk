@@ -187,7 +187,7 @@ namespace HelloSign
                 var warningToken = jToken["warnings"];
                 if(warningToken != null)
                 {
-                    var warnings = warningToken.ToObject<List<Warning>>();
+                    var warnings = JsonConvert.DeserializeObject<List<Warning>>(warningToken.ToString(), GetSerializerSettings());
                     if (warnings[0].WarningName != null)
                     {
                         Warnings.AddRange(warnings);
@@ -1558,10 +1558,20 @@ namespace HelloSign
             HandleErrors(response);
 
             // Unpack list_info
-            var job = jToken["list_info"].ToObject<BulkSendJob>();
+            //var job = jToken["list_info"].ToObject<BulkSendJob>();
 
             // Unpack list of associated SignatureRequests
-            job.Items = jToken["signature_requests"].ToObject<List<SignatureRequest>>();
+            //job.Items = jToken["signature_requests"].ToObject<List<SignatureRequest>>();
+            var listToken = jToken["list_info"];
+            var job = new BulkSendJob();
+            // TODO: Check response sanity
+            job.Page = listToken["page"].ToObject<int>();
+            job.NumPages = listToken["num_pages"].ToObject<int>();
+            job.NumResults = listToken["num_results"].ToObject<int>();
+            job.PageSize = listToken["page_size"].ToObject<int>();
+            var itemToken = jToken["signature_requests"];
+            var items = JsonConvert.DeserializeObject<List<SignatureRequest>>(itemToken.ToString(), GetSerializerSettings());
+            job.Items = items;
 
             // Also unpack the BulkSendJobInfo details
             job.JobInfo = jToken["bulk_send_job"].ToObject<BulkSendJobInfo>();

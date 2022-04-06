@@ -83,6 +83,7 @@ namespace HelloSignTestApp
 
             // Get account
             var account = client.GetAccount();
+
             Console.WriteLine("My Account ID: " + account.AccountId);
             //var account = client.UpdateAccount(new Uri("http://example.com"));
 
