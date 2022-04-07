@@ -7,7 +7,7 @@ namespace HelloSignTestApp
     class Program
     {
         // Configuration
-        const string TEMPLATE_ID = ""; // Your test Template ID goes here (signer role "Client", CC role "Accounting", custom field "Cost")
+        const string TEMPLATE_ID = "d134af0bad716f0c8b12d2705316a90612bda1b0"; // Your test Template ID goes here (signer role "Client", CC role "Accounting", custom field "Cost")
 
         // Helper function for auto-retrying CancelSignatureRequest call
         static void cancelSignatureRequest(Client client, string signatureRequestId)
@@ -295,6 +295,21 @@ namespace HelloSignTestApp
             // Cancel text tags request
             cancelSignatureRequest(client, ttResponse.SignatureRequestId);
 
+            try
+            {
+                var erRequest = new SignatureRequest();
+                ttRequest.Title = "NDA with Acme Co.";
+                ttRequest.Subject = "The NDA we talked about";
+                ttRequest.Message = "Please sign this NDA and then we can discuss more. Let me know if you have any questions.";
+                ttRequest.AddSigner("jackexample.com", "Jack");
+                erRequest.TestMode = true;
+                client.SendSignatureRequest(erRequest);
+            }
+            catch(BadRequestException e)
+            {
+                Console.WriteLine($"Passed error parsing test with: {e.Message}");
+            }
+
             // Send signature request with template
             if (TEMPLATE_ID.Length > 0) {
                 var tRequest = new TemplateSignatureRequest();
@@ -305,10 +320,13 @@ namespace HelloSignTestApp
                 tRequest.AddCc("Accounting", "accounting@example.com");
                 tRequest.AddCustomField("Cost", "$20,000", "Client", true);
                 tRequest.TestMode = true;
-                var tResponse = client.SendSignatureRequest(tRequest);
+                TemplateSignatureRequest tResponse = client.SendSignatureRequest(tRequest);
                 Console.WriteLine("New Template Signature Request ID: " + tResponse.SignatureRequestId);
+                /**
+                 * TODO: Re-Add
                 Console.WriteLine("Custom field 'Cost' value is: " + tResponse.GetCustomField("Cost").Value);
                 Console.WriteLine("Custom field 'Cost' editor is: " + tResponse.GetCustomField("Cost").Editor);
+                */
 
                 // Cancel that signature request
                 cancelSignatureRequest(client, tResponse.SignatureRequestId);

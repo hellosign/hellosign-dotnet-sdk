@@ -137,7 +137,7 @@ namespace HelloSign
                 var errorToken = jToken["error"];
                 if (errorToken != null)
                 {
-                    var error = errorToken.ToObject<Error>();
+                    var error = JsonConvert.DeserializeObject<Error>(errorToken.ToString(), GetSerializerSettings());
                     if (error.ErrorName != null)
                     {
                         switch (error.ErrorName)
@@ -693,7 +693,8 @@ namespace HelloSign
             if (signatureRequest.CustomFields.Count > 0)
             {
                 // Serialize as JSON string
-                request.AddParameter("custom_fields", JsonConvert.SerializeObject(signatureRequest.CustomFields));
+                var cfjson = JsonConvert.SerializeObject(signatureRequest.CustomFields);
+                request.AddParameter("custom_fields", cfjson);
             }
 
             // Add Metadata
