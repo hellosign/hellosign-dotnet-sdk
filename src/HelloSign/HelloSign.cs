@@ -253,8 +253,7 @@ namespace HelloSign
             {
                 rootToken = jToken[request.RootElement];
             }
-            var parsedObject = JsonConvert.DeserializeObject<T>(rootToken.ToString(),GetSerializerSettings());
-            return parsedObject;
+            return JsonConvert.DeserializeObject<T>(rootToken.ToString(),GetSerializerSettings());
         }
 
         private ObjectList<T> ExecuteList<T>(RestRequest request, string arrayKey) where T : new()
@@ -1630,9 +1629,8 @@ namespace HelloSign
             request.AddQueryParameter("end_date", report.EndDate.ToString("MM/dd/yyyy"));
 
             // Add Report Types
-            var reportTypes = report.ReportType.Split(',');
             int i = 0;
-            foreach (var reportType in reportTypes)
+            foreach (var reportType in report.ReportType)
             {
                 request.AddQueryParameter(String.Format("report_type[{0}]", i), reportType.Trim());
                 i++;

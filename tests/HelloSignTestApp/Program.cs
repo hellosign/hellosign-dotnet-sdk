@@ -7,7 +7,7 @@ namespace HelloSignTestApp
     class Program
     {
         // Configuration
-        const string TEMPLATE_ID = "d134af0bad716f0c8b12d2705316a90612bda1b0"; // Your test Template ID goes here (signer role "Client", CC role "Accounting", custom field "Cost")
+        const string TEMPLATE_ID = ""; // Your test Template ID goes here (signer role "Client", CC role "Accounting", custom field "Cost")
 
         // Helper function for auto-retrying CancelSignatureRequest call
         static void cancelSignatureRequest(Client client, string signatureRequestId)
@@ -295,21 +295,6 @@ namespace HelloSignTestApp
             // Cancel text tags request
             cancelSignatureRequest(client, ttResponse.SignatureRequestId);
 
-            try
-            {
-                var erRequest = new SignatureRequest();
-                ttRequest.Title = "NDA with Acme Co.";
-                ttRequest.Subject = "The NDA we talked about";
-                ttRequest.Message = "Please sign this NDA and then we can discuss more. Let me know if you have any questions.";
-                ttRequest.AddSigner("jackexample.com", "Jack");
-                erRequest.TestMode = true;
-                client.SendSignatureRequest(erRequest);
-            }
-            catch(BadRequestException e)
-            {
-                Console.WriteLine($"Passed error parsing test with: {e.Message}");
-            }
-
             // Send signature request with template
             if (TEMPLATE_ID.Length > 0) {
                 var tRequest = new TemplateSignatureRequest();
@@ -322,11 +307,6 @@ namespace HelloSignTestApp
                 tRequest.TestMode = true;
                 TemplateSignatureRequest tResponse = client.SendSignatureRequest(tRequest);
                 Console.WriteLine("New Template Signature Request ID: " + tResponse.SignatureRequestId);
-                /**
-                 * TODO: Re-Add
-                Console.WriteLine("Custom field 'Cost' value is: " + tResponse.GetCustomField("Cost").Value);
-                Console.WriteLine("Custom field 'Cost' editor is: " + tResponse.GetCustomField("Cost").Editor);
-                */
 
                 // Cancel that signature request
                 cancelSignatureRequest(client, tResponse.SignatureRequestId);
@@ -389,6 +369,11 @@ namespace HelloSignTestApp
             DateTime.Now.ToShortTimeString();
             newApiApp.Name = "C# SDK Test App - " + DateTime.Now.ToString();
             newApiApp.setDomain("example.com");
+            var oauth = new Oauth();
+            oauth.Secret = "a08b45tklasdf837fd8fd8a9dsf7ds678vda";
+            oauth.CallbackUrl = "https://example.com/callback";
+            oauth.Scopes = new List<string> { "team_access" };
+            newApiApp.Oauth = oauth;
             newApiApp.CallbackUrl = "https://example.com/callback";
             var aResponse = client.CreateApiApp(newApiApp);
             Console.WriteLine("New API App: " + aResponse.Name);
@@ -471,7 +456,7 @@ namespace HelloSignTestApp
                 var reportRequest = new Report();
                 reportRequest.StartDate = DateTime.Now.AddMonths(-10);
                 reportRequest.EndDate = DateTime.Now.AddMonths(-10);
-                reportRequest.ReportType = "user_activity, document_status";
+                reportRequest.ReportType = new List<string>{ "user_activity", "document_status" };
                 var reportResponse = client.CreateReport(reportRequest);
                 Console.WriteLine($"Status for Report ({reportResponse.ReportType}) between {reportResponse.StartDate} - {reportResponse.EndDate}: {reportResponse.Success}");
             }
