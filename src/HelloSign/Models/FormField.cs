@@ -33,6 +33,7 @@ namespace HelloSign
         public int signer { get; set; }
         public int file { get; set; }
         public int page { get; set; }
+        public string group { get; set; }
         public string validation_type { get; set; }
         public string validation_custom_regex { get; set; }
         public string validation_custom_regex_format_label { get; set; }
