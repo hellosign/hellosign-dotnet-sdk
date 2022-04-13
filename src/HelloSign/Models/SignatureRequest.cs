@@ -23,12 +23,14 @@ namespace HelloSign
         public bool HideTextTags { get; set; }
         public bool AllowReassign { get; set; }
         public List<FormField> FormFieldsPerDocument { get; set; }
+        public List<FieldGroup> FormFieldGroups { get; set; }
 
         public SignatureRequest() : base()
         {
             Ccs = new List<string>();
             Files = new List<FileContainer>();
             FileUrls = new List<string>();
+            FormFieldGroups = new List<FieldGroup>();
         }
 
         /// <summary>
