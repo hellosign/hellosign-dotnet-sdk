@@ -569,6 +569,17 @@ namespace HelloSign
                 request.AddParameter("form_fields_per_document", JsonConvert.SerializeObject(container));
             }
 
+            // add form field groups
+            if (signatureRequest.FormFieldGroups != null && signatureRequest.FormFieldGroups.Any())
+            {
+                Dictionary<string, object> groups = new Dictionary<string, object>();
+                foreach (var group in signatureRequest.FormFieldGroups)
+                {
+                    groups.Add(group.Name, new { group_label = group.Rule.GroupLabel, requirement = group.Rule.Requirement });
+                }
+                request.AddParameter("form_field_groups", JsonConvert.SerializeObject(groups));
+            }
+
             request.RootElement = "signature_request";
             return Execute<SignatureRequest>(request);
         }
