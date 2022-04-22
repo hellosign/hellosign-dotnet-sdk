@@ -22,6 +22,7 @@ namespace HelloSign
         public bool UsePreexistingFields { get; set; }
         public bool HideTextTags { get; set; }
         public bool AllowReassign { get; set; }
+        public bool AllowCcs { get; set; }
         public List<FormField> FormFieldsPerDocument { get; set; }
 
         public SignatureRequest() : base()

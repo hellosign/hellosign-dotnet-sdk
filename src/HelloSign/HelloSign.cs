@@ -502,6 +502,7 @@ namespace HelloSign
             if (signatureRequest.AllowDecline) request.AddParameter("allow_decline", "1");
             if (signatureRequest.SkipMeNow) request.AddParameter("skip_me_now", "1");
             if (signatureRequest.AllowReassign) request.AddParameter("allow_reassign", "1");
+            if (!signatureRequest.AllowCcs) request.AddParameter("allow_ccs", "0");
             if (signatureRequest.RequesterEmailAddress != null) request.AddParameter("requester_email_address", signatureRequest.RequesterEmailAddress);
 
             // Add Signers
