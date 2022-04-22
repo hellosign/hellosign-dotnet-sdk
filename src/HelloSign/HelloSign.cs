@@ -369,17 +369,18 @@ namespace HelloSign
         public Event ParseEvent(string data)
         {
             // Check for API key
-            if (String.IsNullOrEmpty(apiKey))
+            if (String.IsNullOrEmpty(this.apiKey))
             {
                 throw new Exception("Event parsing is only supported if you initialize Client with an API key.");
             }
 
             JToken jToken = JToken.Parse(data);
             // Parse the main event body
-            var callbackEvent = jToken["event"].ToObject<Event>();
+            var eventToken = jToken["event"];
+            var callbackEvent = JsonConvert.DeserializeObject<Event>(eventToken.ToString(), GetSerializerSettings());
 
             // Verify hash integrity
-            var hashInfo = jToken.ToObject<EventHashInfo>();
+            var hashInfo = JsonConvert.DeserializeObject<EventHashInfo>(eventToken.ToString(), GetSerializerSettings());
             var keyBytes = System.Text.Encoding.ASCII.GetBytes(apiKey);
             var hmac = new System.Security.Cryptography.HMACSHA256(keyBytes);
             var inputBytes = System.Text.Encoding.ASCII.GetBytes(hashInfo.EventTime + hashInfo.EventType);
@@ -398,14 +399,12 @@ namespace HelloSign
                 throw new EventHashException("Event hash does not match expected value; This event may not be genuine. Make sure this API key matches the one on the account generating callbacks.", data);
             }
 
-            
-
             // Parse attached models
-            callbackEvent.SignatureRequest = jToken["signature_request"].ToObject<SignatureRequest>();
+            var signatureRequestToken = jToken["signature_request"];
+            callbackEvent.SignatureRequest = JsonConvert.DeserializeObject<SignatureRequest>(signatureRequestToken.ToString(), GetSerializerSettings());
 
-            callbackEvent.Template = jToken["template"].ToObject<Template>();
-
-            callbackEvent.Account = jToken["account"].ToObject<Account>();
+            var templateToken = jToken["template"];
+            callbackEvent.Template = JsonConvert.DeserializeObject<Template>(templateToken.ToString(), GetSerializerSettings());
 
             return callbackEvent;
         }

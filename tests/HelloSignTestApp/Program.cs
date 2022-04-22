@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using HelloSign;
+using Newtonsoft.Json;
 
 namespace HelloSignTestApp
 {
@@ -470,6 +471,30 @@ namespace HelloSignTestApp
                 {
                     Console.WriteLine($"Plan Error: {e.Message}");
                 }
+            }
+
+            // Parse Event
+            var eventTime = 1650571758;
+            var eventType = "account_confirmed";
+            var keyBytes = System.Text.Encoding.ASCII.GetBytes(apiKey);
+            var hmac = new System.Security.Cryptography.HMACSHA256(keyBytes);
+            var inputBytes = System.Text.Encoding.ASCII.GetBytes(eventTime + eventType);
+            var outputBytes = hmac.ComputeHash(inputBytes);
+            var hash = BitConverter.ToString(outputBytes).Replace("-", "").ToLower();
+            
+            Console.WriteLine("Serializing SR");
+            var sR = new SignatureRequest();
+            var serializedSR = JsonConvert.SerializeObject(sR);
+            var testTemplate = new Template();
+            testTemplate.TemplateId = "A9B9C44";
+                        Console.WriteLine("Serializing Template");
+            var serializedTemplate = JsonConvert.SerializeObject(testTemplate);
+            string jsonObject = "{\"event\":{ \"event_time\": "+eventTime+", \"event_type\": \""+eventType+"\",\"event_hash\":\""+hash+"\"}, \"signature_request\":\""+serializedSR+"\", \"template\":\""+serializedTemplate+"\"}";
+            var parsedEvent = client.ParseEvent(jsonObject);
+            if(parsedEvent.EventHash != hash){
+                throw new Exception("Failed to parse Event Json: " + jsonObject);
+            }else{
+                Console.WriteLine("Successfully parsed Event Json");
             }
             
             Console.WriteLine("Press ENTER to exit.");
