@@ -283,6 +283,7 @@ namespace HelloSignTestApp
                 tRequest.AddCc("Accounting", "accounting@example.com");
                 tRequest.AddCustomField("Cost", "$20,000", "Client", true);
                 tRequest.TestMode = true;
+                tRequest.AllowCcs = false;
                 var tResponse = client.SendSignatureRequest(tRequest);
                 Console.WriteLine("New Template Signature Request ID: " + tResponse.SignatureRequestId);
                 Console.WriteLine("Custom field 'Cost' value is: " + tResponse.GetCustomField("Cost").Value);
@@ -382,6 +383,7 @@ namespace HelloSignTestApp
             draft.AddFile(file1, "Agreement.txt");
             draft.AddFile(file2, "Appendix.txt");
             draft.TestMode = true;
+            draft.AllowCcs = false;
             var uResponse = client.CreateUnclaimedDraft(draft, UnclaimedDraft.Type.RequestSignature);
             Console.WriteLine("New Unclaimed Draft Claim URL: " + uResponse.ClaimUrl);
 
@@ -391,6 +393,7 @@ namespace HelloSignTestApp
             eDraft.RequesterEmailAddress = "jack@hellosign.com";
             eDraft.TestMode = true;
             eDraft.HoldRequest = true;
+            eDraft.AllowCcs = false;
             var euResponse = client.CreateUnclaimedDraft(eDraft, clientId);
             Console.WriteLine("New Embedded Unclaimed Draft Claim URL: " + euResponse.ClaimUrl);
 
