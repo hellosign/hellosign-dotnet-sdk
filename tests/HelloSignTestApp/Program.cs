@@ -286,8 +286,6 @@ namespace HelloSignTestApp
                 tRequest.AllowCcs = false;
                 var tResponse = client.SendSignatureRequest(tRequest);
                 Console.WriteLine("New Template Signature Request ID: " + tResponse.SignatureRequestId);
-                Console.WriteLine("Custom field 'Cost' value is: " + tResponse.GetCustomField("Cost").Value);
-                Console.WriteLine("Custom field 'Cost' editor is: " + tResponse.GetCustomField("Cost").Editor);
 
                 // Cancel that signature request
                 cancelSignatureRequest(client, tResponse.SignatureRequestId);
@@ -393,7 +391,6 @@ namespace HelloSignTestApp
             eDraft.RequesterEmailAddress = "jack@hellosign.com";
             eDraft.TestMode = true;
             eDraft.HoldRequest = true;
-            eDraft.AllowCcs = false;
             var euResponse = client.CreateUnclaimedDraft(eDraft, clientId);
             Console.WriteLine("New Embedded Unclaimed Draft Claim URL: " + euResponse.ClaimUrl);
 
