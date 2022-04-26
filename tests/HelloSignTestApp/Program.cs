@@ -481,15 +481,8 @@ namespace HelloSignTestApp
             var inputBytes = System.Text.Encoding.ASCII.GetBytes(eventTime + eventType);
             var outputBytes = hmac.ComputeHash(inputBytes);
             var hash = BitConverter.ToString(outputBytes).Replace("-", "").ToLower();
-            
-            Console.WriteLine("Serializing SR");
-            var sR = new SignatureRequest();
-            var serializedSR = JsonConvert.SerializeObject(sR);
-            var testTemplate = new Template();
-            testTemplate.TemplateId = "A9B9C44";
-                        Console.WriteLine("Serializing Template");
-            var serializedTemplate = JsonConvert.SerializeObject(testTemplate);
-            string jsonObject = "{\"event\":{ \"event_time\": "+eventTime+", \"event_type\": \""+eventType+"\",\"event_hash\":\""+hash+"\"}, \"signature_request\":\""+serializedSR+"\", \"template\":\""+serializedTemplate+"\"}";
+
+            string jsonObject = "{\"event\":{ \"event_time\": "+eventTime+", \"event_type\": \""+eventType+"\",\"event_hash\":\""+hash+"\"}, \"signature_request\":\"{}\", \"template\":\"{}\"}";
             var parsedEvent = client.ParseEvent(jsonObject);
             if(parsedEvent.EventHash != hash){
                 throw new Exception("Failed to parse Event Json: " + jsonObject);
