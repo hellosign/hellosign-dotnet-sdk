@@ -306,7 +306,8 @@ namespace HelloSignTestApp
                 tRequest.AddCc("Accounting", "accounting@example.com");
                 tRequest.AddCustomField("Cost", "$20,000", "Client", true);
                 tRequest.TestMode = true;
-                TemplateSignatureRequest tResponse = client.SendSignatureRequest(tRequest);
+                tRequest.AllowCcs = false;
+                var tResponse = client.SendSignatureRequest(tRequest);
                 Console.WriteLine("New Template Signature Request ID: " + tResponse.SignatureRequestId);
 
                 // Cancel that signature request
@@ -408,6 +409,7 @@ namespace HelloSignTestApp
             draft.AddFile(file1, "Agreement.txt");
             draft.AddFile(file2, "Appendix.txt");
             draft.TestMode = true;
+            draft.AllowCcs = false;
             var uResponse = client.CreateUnclaimedDraft(draft, UnclaimedDraft.Type.RequestSignature);
             Console.WriteLine("New Unclaimed Draft Claim URL: " + uResponse.ClaimUrl);
 

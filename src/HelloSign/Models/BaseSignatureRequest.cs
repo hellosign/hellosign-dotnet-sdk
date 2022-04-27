@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+<<<<<<< HEAD
 using Newtonsoft.Json.Converters;
 using RestSharp;
+=======
+>>>>>>> origin/v3
 
 namespace HelloSign
 {
@@ -37,6 +40,7 @@ namespace HelloSign
         public List<Signature> Signatures { get; set; }
         public List<string> CcEmailAddresses { get; set; }
         public SigningOptions SigningOptions { get; set; }
+        public bool AllowCcs { get; set; }
 
         public List<Signer> Signers = new List<Signer>();
 

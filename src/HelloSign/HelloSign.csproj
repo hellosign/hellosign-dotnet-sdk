@@ -7,7 +7,7 @@
     <Description>Client library for using the HelloSign API</Description>
     <Authors>HelloSign</Authors>
     <!-- NOTE: The version stated here gets reported in the user-agent string for HTTP requests made. -->
-    <Version>1.5.0</Version>
+    <Version>1.5.1</Version>
     <Configuration>Release</Configuration>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>HelloSign.snk</AssemblyOriginatorKeyFile>
