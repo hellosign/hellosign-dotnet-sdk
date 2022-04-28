@@ -978,7 +978,7 @@ namespace HelloSign
             if (draft.Message != null) request.AddParameter("message", draft.Message);
             if (draft.TestMode) request.AddParameter("test_mode", "1");
             if (draft.SkipMeNow) request.AddParameter("skip_me_now", "1");
-            if (!draft.AllowCcs) request.AddParameter("allow_ccs", "0");
+            if (draft.AllowCcs == false) request.AddParameter("allow_ccs", "0");
             if (draft.UsePreexistingFields) request.AddParameter("use_preexisting_fields", "1");
 
             // Add Signer Roles
@@ -1271,7 +1271,7 @@ namespace HelloSign
             if (signatureRequest.AllowDecline) request.AddParameter("allow_decline", "1");
             if (signatureRequest.SkipMeNow) request.AddParameter("skip_me_now", "1");
             if (signatureRequest.HoldRequest) request.AddParameter("hold_request", "1");
-            if (!signatureRequest.AllowCcs) request.AddParameter("allow_ccs", "0");
+            if (signatureRequest.AllowCcs == false) request.AddParameter("allow_ccs", "0");
             if (embedded && signatureRequest.IsForEmbeddedSigning) request.AddParameter("is_for_embedded_signing", "1");
             if (signatureRequest.RequesterEmailAddress != null) request.AddParameter("requester_email_address", signatureRequest.RequesterEmailAddress);
 
