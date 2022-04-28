@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
-<<<<<<< HEAD
 using Newtonsoft.Json.Converters;
-using RestSharp;
-=======
->>>>>>> origin/v3
 
 namespace HelloSign
 {
