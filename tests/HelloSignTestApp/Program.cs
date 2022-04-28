@@ -283,7 +283,6 @@ namespace HelloSignTestApp
                 tRequest.AddCc("Accounting", "accounting@example.com");
                 tRequest.AddCustomField("Cost", "$20,000", "Client", true);
                 tRequest.TestMode = true;
-                tRequest.AllowCcs = false;
                 var tResponse = client.SendSignatureRequest(tRequest);
                 Console.WriteLine("New Template Signature Request ID: " + tResponse.SignatureRequestId);
 
@@ -391,6 +390,7 @@ namespace HelloSignTestApp
             eDraft.RequesterEmailAddress = "jack@hellosign.com";
             eDraft.TestMode = true;
             eDraft.HoldRequest = true;
+            eDraft.AllowCcs = false;
             var euResponse = client.CreateUnclaimedDraft(eDraft, clientId);
             Console.WriteLine("New Embedded Unclaimed Draft Claim URL: " + euResponse.ClaimUrl);
 
@@ -402,6 +402,7 @@ namespace HelloSignTestApp
                 teDraft.AddSigner("Client", "george@example.com", "George");
                 teDraft.AddCc("Accounting", "accounting@example.com");
                 teDraft.TestMode = true;
+                teDraft.AllowCcs = false;
                 var etuResponse = client.CreateUnclaimedDraft(teDraft, clientId);
                 Console.WriteLine("New Embedded Unclaimed Draft with Template Claim URL: " + etuResponse.ClaimUrl);
             }
@@ -418,6 +419,7 @@ namespace HelloSignTestApp
             etDraft.AddCcRole("Manager");
             etDraft.AddMergeField("Full Name", MergeField.FieldType.Text);
             etDraft.AddMergeField("Is Registered?", MergeField.FieldType.Checkbox);
+            etDraft.AllowCcs = false;
             var etResponse = client.CreateEmbeddedTemplateDraft(etDraft, clientId);
             Console.WriteLine("New Embedded Template Draft with ID: " + etResponse.TemplateId);
 
