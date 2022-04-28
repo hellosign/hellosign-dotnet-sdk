@@ -31,7 +31,7 @@ namespace HelloSign
         public List<Signature> Signatures { get; set; }
         public List<string> CcEmailAddresses { get; set; }
         public SigningOptions SigningOptions { get; set; }
-        public bool? AllowCcs { get; set; }
+        public bool? AllowCcs { get; set; } = null;
 
         public List<Signer> Signers = new List<Signer>();
 
@@ -41,7 +41,6 @@ namespace HelloSign
             CustomFields = new List<CustomField>();
             CcEmailAddresses = new List<string>();
             AllowDecline = false;
-            AllowCcs = null;
         }
 
         /// <summary>
