@@ -363,7 +363,7 @@ namespace HelloSign
         public Event ParseEvent(string data)
         {
             // Check for API key
-            if (String.IsNullOrEmpty(this.apiKey))
+            if (String.IsNullOrEmpty(apiKey))
             {
                 throw new Exception("Event parsing is only supported if you initialize Client with an API key.");
             }
@@ -1547,16 +1547,11 @@ namespace HelloSign
 
             // Special twist on ExecuteList
             InjectAdditionalParameters(request);
-            //var response = client.Execute(request);
             var response = client.ExecuteAsync<RestResponse>(request).Result;
             var jToken = JToken.Parse(response.Content);
             HandleErrors(response);
 
-            // Unpack list_info
-            //var job = jToken["list_info"].ToObject<BulkSendJob>();
-
             // Unpack list of associated SignatureRequests
-            //job.Items = jToken["signature_requests"].ToObject<List<SignatureRequest>>();
             var listToken = jToken["list_info"];
             var job = new BulkSendJob();
             // TODO: Check response sanity

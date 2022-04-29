@@ -249,7 +249,6 @@ namespace HelloSignTestApp
             // Download signature request
             Console.WriteLine("Attempting to download PDF...");
             retries = 15;
-            double sleepTime = 2000;
             while (retries > 0)
             {
                 try
@@ -264,10 +263,8 @@ namespace HelloSignTestApp
                     Console.Write("└ Caught conflict exception: " + e.Message);
                     if (retries > 0)
                     {
-                        var sleepTimeInt = (int)sleepTime;
-                        Console.WriteLine(". Trying again in "+ sleepTimeInt / 1000+"s...");
-                        System.Threading.Thread.Sleep(sleepTimeInt);
-                        sleepTime *= 1.5;
+                        Console.WriteLine(". Trying again in 2s...");
+                        System.Threading.Thread.Sleep(2000);
                     }
                     else
                     {
