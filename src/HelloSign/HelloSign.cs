@@ -7,9 +7,7 @@ using System.Linq;
 using RestSharp;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
-using RestSharp.Serializers.Json;
 
 namespace HelloSign
 {
@@ -56,6 +54,14 @@ namespace HelloSign
         private const string defaultHost = "api.hellosign.com";
         public List<Warning> Warnings { get; private set; }
         public string Version { get; private set; }
+        public JsonSerializerSettings SerializerSettings = new JsonSerializerSettings
+            {
+                ContractResolver = new DefaultContractResolver
+                {
+                    NamingStrategy = new SnakeCaseNamingStrategy()
+                },
+                NullValueHandling = NullValueHandling.Ignore
+            };
 
         /// <summary>
         /// Additional request parameters you wish to inject into your API calls.
@@ -137,7 +143,7 @@ namespace HelloSign
                 var errorToken = jToken["error"];
                 if (errorToken != null)
                 {
-                    var error = JsonConvert.DeserializeObject<Error>(errorToken.ToString(), GetSerializerSettings());
+                    var error = JsonConvert.DeserializeObject<Error>(errorToken.ToString(), SerializerSettings);
                     if (error.ErrorName != null)
                     {
                         switch (error.ErrorName)
@@ -187,7 +193,7 @@ namespace HelloSign
                 var warningToken = jToken["warnings"];
                 if(warningToken != null)
                 {
-                    var warnings = JsonConvert.DeserializeObject<List<Warning>>(warningToken.ToString(), GetSerializerSettings());
+                    var warnings = JsonConvert.DeserializeObject<List<Warning>>(warningToken.ToString(), SerializerSettings);
                     if (warnings[0].WarningName != null)
                     {
                         Warnings.AddRange(warnings);
@@ -253,7 +259,7 @@ namespace HelloSign
             {
                 rootToken = jToken[request.RootElement];
             }
-            return JsonConvert.DeserializeObject<T>(rootToken.ToString(),GetSerializerSettings());
+            return JsonConvert.DeserializeObject<T>(rootToken.ToString(),SerializerSettings);
         }
 
         private ObjectList<T> ExecuteList<T>(RestRequest request, string arrayKey) where T : new()
@@ -264,18 +270,6 @@ namespace HelloSign
 
             var objectList = PopulateObjectList<T>(response, arrayKey);
             return objectList;
-        }
-
-        private JsonSerializerSettings GetSerializerSettings()
-        {
-            return new JsonSerializerSettings
-            {
-                ContractResolver = new DefaultContractResolver
-                {
-                    NamingStrategy = new SnakeCaseNamingStrategy()
-                },
-                NullValueHandling = NullValueHandling.Ignore
-            };
         }
 
         private ObjectList<T> PopulateObjectList<T>(RestResponse response, string arrayKey)
@@ -289,7 +283,7 @@ namespace HelloSign
             list.NumResults = listToken["num_results"].ToObject<int>();
             list.PageSize = listToken["page_size"].ToObject<int>();
             var itemToken = jToken[arrayKey];
-            var items = JsonConvert.DeserializeObject<List<T>>(itemToken.ToString(), GetSerializerSettings());
+            var items = JsonConvert.DeserializeObject<List<T>>(itemToken.ToString(), SerializerSettings);
             list.Items = items;
             return list;
 
@@ -377,10 +371,10 @@ namespace HelloSign
             JToken jToken = JToken.Parse(data);
             // Parse the main event body
             var eventToken = jToken["event"];
-            var callbackEvent = JsonConvert.DeserializeObject<Event>(eventToken.ToString(), GetSerializerSettings());
+            var callbackEvent = JsonConvert.DeserializeObject<Event>(eventToken.ToString(), SerializerSettings);
 
             // Verify hash integrity
-            var hashInfo = JsonConvert.DeserializeObject<EventHashInfo>(eventToken.ToString(), GetSerializerSettings());
+            var hashInfo = JsonConvert.DeserializeObject<EventHashInfo>(eventToken.ToString(), SerializerSettings);
             var keyBytes = System.Text.Encoding.ASCII.GetBytes(apiKey);
             var hmac = new System.Security.Cryptography.HMACSHA256(keyBytes);
             var inputBytes = System.Text.Encoding.ASCII.GetBytes(hashInfo.EventTime + hashInfo.EventType);
@@ -401,10 +395,10 @@ namespace HelloSign
 
             // Parse attached models
             var signatureRequestToken = jToken["signature_request"];
-            callbackEvent.SignatureRequest = JsonConvert.DeserializeObject<SignatureRequest>(signatureRequestToken.ToString(), GetSerializerSettings());
+            callbackEvent.SignatureRequest = JsonConvert.DeserializeObject<SignatureRequest>(signatureRequestToken.ToString(), SerializerSettings);
 
             var templateToken = jToken["template"];
-            callbackEvent.Template = JsonConvert.DeserializeObject<Template>(templateToken.ToString(), GetSerializerSettings());
+            callbackEvent.Template = JsonConvert.DeserializeObject<Template>(templateToken.ToString(), SerializerSettings);
 
             return callbackEvent;
         }
@@ -1571,7 +1565,7 @@ namespace HelloSign
             job.NumResults = listToken["num_results"].ToObject<int>();
             job.PageSize = listToken["page_size"].ToObject<int>();
             var itemToken = jToken["signature_requests"];
-            var items = JsonConvert.DeserializeObject<List<SignatureRequest>>(itemToken.ToString(), GetSerializerSettings());
+            var items = JsonConvert.DeserializeObject<List<SignatureRequest>>(itemToken.ToString(), SerializerSettings);
             job.Items = items;
 
             // Also unpack the BulkSendJobInfo details
