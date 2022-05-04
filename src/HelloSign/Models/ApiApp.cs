@@ -11,7 +11,7 @@ namespace HelloSign
         public string ClientId { get; set; }
         public string Name { get; set; }
         private string Domain;
-        private List<string> Domains;
+        public List<string> Domains { get; set; }
         public string CallbackUrl { get; set; }
         public bool? IsApproved { get; set; }
         public Account OwnerAccount { get; set; }

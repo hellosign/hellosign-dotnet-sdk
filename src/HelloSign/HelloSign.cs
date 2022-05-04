@@ -80,7 +80,7 @@ namespace HelloSign
         /// Limited to unauthenticated calls only unless <see cref="UseApiKeyAuthentication"/>
         /// or <see cref="UseOAuth2Authentication"/> is subsequently called.
         /// </summary>
-        public Client()
+        public Client(string apiHost = null)
         {
             // Determine product version
             System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
@@ -88,8 +88,7 @@ namespace HelloSign
             Version = fvi.ProductVersion;
 
             // Initialize stuff
-            client = new RestClient(GetFullHostname(defaultHost));
-            client.AddDefaultHeader("User-Agent", "hellosign-dotnet-sdk/" + Version);
+            setClient(apiHost);
             Warnings = new List<Warning>();
         }
 
@@ -97,11 +96,16 @@ namespace HelloSign
         /// Constructor initialized with API key authentication.
         /// </summary>
         /// <param name="apiKey">Your HelloSign account API key.</param>
-        /// <param name="apiHost">Your HelloSign account API key.</param>
-        public Client(string apiKey, string apiHost) : this()
+        /// <param name="apiHost">The hostname used to connect to HelloSign</param>
+        public Client(string apiKey, string apiHost = null) : this(apiHost)
         {
-            client = new RestClient(GetFullHostname(apiHost));
             this.UseApiKeyAuthentication(apiKey);
+        }
+
+        private void setClient(string apiHost = null)
+        {
+            client = new RestClient(GetFullHostname(apiHost ?? defaultHost));
+            client.AddDefaultHeader("User-Agent", "hellosign-dotnet-sdk/" + Version);
         }
 
         /// <summary>
@@ -126,7 +130,7 @@ namespace HelloSign
             client.Authenticator = new RestSharp.Authenticators.OAuth2.OAuth2AuthorizationRequestHeaderAuthenticator(accessToken, "Bearer");
         }
 
-        private void HandleErrors(RestResponse response)
+        private void HandleErrors(RestResponseBase response)
         {
             // If there was an exception getting the response
             if (response.ErrorException != null)
@@ -272,7 +276,7 @@ namespace HelloSign
             return objectList;
         }
 
-        private ObjectList<T> PopulateObjectList<T>(RestResponse response, string arrayKey)
+        private ObjectList<T> PopulateObjectList<T>(RestResponseBase response, string arrayKey)
         {
             var jToken = JToken.Parse(response.Content);
             var listToken = jToken["list_info"];
@@ -293,8 +297,8 @@ namespace HelloSign
         /// Execute an API call and return nothing.
         /// </summary>
         /// <param name="request">The RestRequest object to execute.</param>
-        /// <returns>The IRestResponse object.</returns>
-        private RestResponse Execute(RestRequest request)
+        /// <returns>The RestResponseBase object.</returns>
+        private RestResponseBase Execute(RestRequest request)
         {
             InjectAdditionalParameters(request);
             var response = client.ExecuteAsync(request).Result;
@@ -343,8 +347,7 @@ namespace HelloSign
                 default:
                     throw new ArgumentException("Unsupported environment given");
             }
-            client = new RestClient(new Uri(String.Format("https://api.{0}/v3", domain)));
-            // = new Uri(String.Format("https://api.{0}/v3", domain));
+            setClient(GetFullHostname(domain));
         }
 
         /// <summary>
@@ -450,7 +453,7 @@ namespace HelloSign
         {
             RequireAuthentication();
 
-            var request = new RestRequest("account", Method.Post).AddQueryParameter("callback_url", callbackUrl.ToString());
+            var request = new RestRequest("account", Method.Post).AddParameter("callback_url", callbackUrl.ToString());
             request.RootElement = "account";
             return Execute<Account>(request);
         }
@@ -492,13 +495,13 @@ namespace HelloSign
             RequireAuthentication();
 
             var request = new RestRequest("signature_request/list");
-            if (page != null)
+            if (page.HasValue)
             {
-                request.AddParameter("page", page ?? 0);
+                request.AddParameter("page", page.Value);
             }
-            if (pageSize != null)
+            if (pageSize.HasValue)
             {
-                request.AddParameter("page_size", pageSize ?? 0);
+                request.AddParameter("page_size", pageSize.Value);
             }
             return ExecuteList<SignatureRequest>(request, "signature_requests");
         }
@@ -889,13 +892,13 @@ namespace HelloSign
             RequireAuthentication();
 
             var request = new RestRequest("template/list");
-            if (page != null)
+            if (page.HasValue)
             {
-                request.AddParameter("page", page ?? 0);
+                request.AddParameter("page", page.Value);
             }
-            if (pageSize != null)
+            if (pageSize.HasValue)
             {
-                request.AddParameter("page_size", pageSize ?? 0);
+                request.AddParameter("page_size", pageSize.Value);
             }
             return ExecuteList<Template>(request, "templates");
         }
@@ -1479,13 +1482,13 @@ namespace HelloSign
             RequireAuthentication();
 
             var request = new RestRequest("api_app/list");
-            if (page != null)
+            if (page.HasValue)
             {
-                request.AddParameter("page", page ?? 0);
+                request.AddParameter("page", page.Value);
             }
-            if (pageSize != null)
+            if (pageSize.HasValue)
             {
-                request.AddParameter("page_size", pageSize ?? 0);
+                request.AddParameter("page_size", pageSize.Value);
             }
             return ExecuteList<ApiApp>(request, "api_apps");
         }
@@ -1547,7 +1550,7 @@ namespace HelloSign
 
             // Special twist on ExecuteList
             InjectAdditionalParameters(request);
-            var response = client.ExecuteAsync<RestResponse>(request).Result;
+            var response = client.ExecuteAsync<RestResponseBase>(request).Result;
             var jToken = JToken.Parse(response.Content);
             HandleErrors(response);
 
@@ -1588,13 +1591,13 @@ namespace HelloSign
             RequireAuthentication();
 
             var request = new RestRequest("bulk_send_job/list");
-            if (page != null)
+            if (page.HasValue)
             {
-                request.AddParameter("page", page ?? 0);
+                request.AddParameter("page", page.Value);
             }
-            if (pageSize != null)
+            if (pageSize.HasValue)
             {
-                request.AddParameter("page_size", pageSize ?? 0);
+                request.AddParameter("page_size", pageSize.Value);
             }
             return ExecuteList<BulkSendJobInfo>(request, "bulk_send_jobs");
         }
