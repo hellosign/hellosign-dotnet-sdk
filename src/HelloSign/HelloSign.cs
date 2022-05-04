@@ -1506,7 +1506,7 @@ namespace HelloSign
 
             // Add simple parameters
             request.AddParameter("name", app.Name);
-            request.AddParameter("domain", app.getDomain());
+            request.AddParameter("domains", JsonConvert.SerializeObject(app.Domains));
             if (app.CallbackUrl != null) request.AddParameter("callback_url", app.CallbackUrl);
 
             // Add OAuth info if present

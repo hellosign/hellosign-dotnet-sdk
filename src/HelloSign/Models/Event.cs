@@ -26,6 +26,10 @@ namespace HelloSign
         /// Related Template, or null if not applicable.
         /// </summary>
         public Template Template { get; set; }
+        /// <summary>
+        /// Related Account, or null if not applicable.
+        /// </summary>
+        public Account Account { get; set; }
     }
 
     public class EventMetadata

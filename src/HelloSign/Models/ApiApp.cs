@@ -10,14 +10,14 @@ namespace HelloSign
     {
         public string ClientId { get; set; }
         public string Name { get; set; }
-        private string Domain;
+        //private string Domain;
         public List<string> Domains { get; set; }
         public string CallbackUrl { get; set; }
         public bool? IsApproved { get; set; }
         public Account OwnerAccount { get; set; }
         public Oauth Oauth { get; set; }
 
-        public void setDomain(string domain)
+        /*public void setDomain(string domain)
         {
             this.Domain = domain;
         }
@@ -35,6 +35,6 @@ namespace HelloSign
         public List<string> getAllDomains()
         {
             return this.Domains;
-        }
+        }*/
     }
 }

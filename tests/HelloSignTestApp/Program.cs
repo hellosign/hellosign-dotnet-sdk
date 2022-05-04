@@ -366,7 +366,7 @@ namespace HelloSignTestApp
             var newApiApp = new ApiApp();
             DateTime.Now.ToShortTimeString();
             newApiApp.Name = "C# SDK Test App - " + DateTime.Now.ToString();
-            newApiApp.setDomain("example.com");
+            newApiApp.Domains = new List<string>() { "example.com" };
             var oauth = new Oauth();
             oauth.Secret = "a08b45tklasdf837fd8fd8a9dsf7ds678vda";
             oauth.CallbackUrl = "https://example.com/callback";
