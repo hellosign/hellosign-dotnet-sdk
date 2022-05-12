@@ -1237,6 +1237,9 @@ namespace HelloSign
             if (signatureRequest.SkipMeNow) request.AddParameter("skip_me_now", "1");
             if (signatureRequest.HoldRequest) request.AddParameter("hold_request", "1");
             if (signatureRequest.AllowCcs == false) request.AddParameter("allow_ccs", "0");
+            if (signatureRequest.ForceSignerRoles) request.AddParameter("force_signer_roles", "1");
+            if (signatureRequest.ForceSubjectMessage) request.AddParameter("force_subject_message", "1");
+            if (signatureRequest.ForceSignerRoles) request.AddParameter("force_signer_page", "1");
             if (embedded && signatureRequest.IsForEmbeddedSigning) request.AddParameter("is_for_embedded_signing", "1");
             if (signatureRequest.RequesterEmailAddress != null) request.AddParameter("requester_email_address", signatureRequest.RequesterEmailAddress);
 
@@ -1332,6 +1335,9 @@ namespace HelloSign
             if (signatureRequest.RequestingRedirectUrl != null) request.AddParameter("requesting_redirect_url", signatureRequest.RequestingRedirectUrl);
             if (signatureRequest.TestMode) request.AddParameter("test_mode", "1");
             if (signatureRequest.IsForEmbeddedSigning) request.AddParameter("is_for_embedded_signing", "1");
+            if (signatureRequest.ForceSignerRoles) request.AddParameter("force_signer_roles", "1");
+            if (signatureRequest.ForceSubjectMessage) request.AddParameter("force_subject_message", "1");
+            if (signatureRequest.ForceSignerRoles) request.AddParameter("force_signer_page", "1");
             if (signatureRequest.SkipMeNow) request.AddParameter("skip_me_now", "1");
             if (signatureRequest.RequesterEmailAddress != null) request.AddParameter("requester_email_address", signatureRequest.RequesterEmailAddress);
 
@@ -1413,7 +1419,7 @@ namespace HelloSign
         /// <param name="skipSignerRoles">If signer roles were already provided, do not prompt the user to edit them.</param>
         /// <param name="skipSubjectMessage">If subject/message were already provided, do not prompt the user to edit them.</param>
         /// <returns></returns>
-        public EmbeddedTemplate GetEditUrl(string templateId, bool skipSignerRoles = false, bool skipSubjectMessage = false, bool testMode = false)
+        public EmbeddedTemplate GetEditUrl(string templateId, bool skipSignerRoles = false, bool skipSubjectMessage = false, bool testMode = false, bool forceSignerRoles = false, bool forceSubjectMessage = false)
         {
             RequireAuthentication();
 
@@ -1422,6 +1428,8 @@ namespace HelloSign
             if (skipSignerRoles) request.AddQueryParameter("skip_signer_roles", "1");
             if (skipSubjectMessage) request.AddQueryParameter("skip_subject_message", "1");
             if (testMode) request.AddQueryParameter("test_mode", "1");
+            if (forceSignerRoles) request.AddQueryParameter("force_signer_roles", "0");
+            if (forceSubjectMessage) request.AddQueryParameter("force_subject_message", "0");
             request.RootElement = "embedded";
             return Execute<EmbeddedTemplate>(request);
         }

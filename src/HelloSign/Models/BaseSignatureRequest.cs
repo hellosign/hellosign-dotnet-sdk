@@ -32,6 +32,9 @@ namespace HelloSign
         public List<string> CcEmailAddresses { get; set; }
         public SigningOptions SigningOptions { get; set; }
         public bool? AllowCcs { get; set; } = null;
+        public bool ForceSignerRoles { get; set; } = false;
+        public bool ForceSubjectMessage { get; set; } = false;
+        public bool ForceSignerPage { get; set; } = false;
 
         public List<Signer> Signers = new List<Signer>();
 
