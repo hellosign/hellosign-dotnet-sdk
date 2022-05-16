@@ -381,6 +381,9 @@ namespace HelloSignTestApp
             draft.AddFile(file2, "Appendix.txt");
             draft.TestMode = true;
             draft.AllowCcs = false;
+            draft.ForceSubjectMessage = true;
+            draft.ForceSignerPage = true;
+            draft.ForceSignerRoles = true;
             var uResponse = client.CreateUnclaimedDraft(draft, UnclaimedDraft.Type.RequestSignature);
             Console.WriteLine("New Unclaimed Draft Claim URL: " + uResponse.ClaimUrl);
 
@@ -391,6 +394,9 @@ namespace HelloSignTestApp
             eDraft.TestMode = true;
             eDraft.HoldRequest = true;
             eDraft.AllowCcs = false;
+            eDraft.ForceSubjectMessage = true;
+            eDraft.ForceSignerPage = true;
+            eDraft.ForceSignerRoles = true;
             var euResponse = client.CreateUnclaimedDraft(eDraft, clientId);
             Console.WriteLine("New Embedded Unclaimed Draft Claim URL: " + euResponse.ClaimUrl);
 
@@ -403,6 +409,9 @@ namespace HelloSignTestApp
                 teDraft.AddCc("Accounting", "accounting@example.com");
                 teDraft.TestMode = true;
                 teDraft.AllowCcs = false;
+                teDraft.ForceSubjectMessage = true;
+                teDraft.ForceSignerPage = true;
+                teDraft.ForceSignerRoles = true;
                 var etuResponse = client.CreateUnclaimedDraft(teDraft, clientId);
                 Console.WriteLine("New Embedded Unclaimed Draft with Template Claim URL: " + etuResponse.ClaimUrl);
             }
@@ -422,6 +431,19 @@ namespace HelloSignTestApp
             etDraft.AllowCcs = false;
             var etResponse = client.CreateEmbeddedTemplateDraft(etDraft, clientId);
             Console.WriteLine("New Embedded Template Draft with ID: " + etResponse.TemplateId);
+
+            // Edit Url
+            if (TEMPLATE_ID.Length > 0)
+            {
+                try
+                {
+                    client.GetEditUrl(etResponse.TemplateId, false, false, true, true, true);
+                }
+                catch(Exception e)
+                {
+                    Console.WriteLine("Error thrown during GetEditUrl, as expected");
+                }
+            }
 
             // Delete the API app we created
             client.DeleteApiApp(clientId);

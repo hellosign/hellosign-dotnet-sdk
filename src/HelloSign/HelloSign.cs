@@ -1239,7 +1239,7 @@ namespace HelloSign
             if (signatureRequest.AllowCcs == false) request.AddParameter("allow_ccs", "0");
             if (signatureRequest.ForceSignerRoles) request.AddParameter("force_signer_roles", "1");
             if (signatureRequest.ForceSubjectMessage) request.AddParameter("force_subject_message", "1");
-            if (signatureRequest.ForceSignerRoles) request.AddParameter("force_signer_page", "1");
+            if (signatureRequest.ForceSignerPage) request.AddParameter("force_signer_page", "1");
             if (embedded && signatureRequest.IsForEmbeddedSigning) request.AddParameter("is_for_embedded_signing", "1");
             if (signatureRequest.RequesterEmailAddress != null) request.AddParameter("requester_email_address", signatureRequest.RequesterEmailAddress);
 
@@ -1337,7 +1337,6 @@ namespace HelloSign
             if (signatureRequest.IsForEmbeddedSigning) request.AddParameter("is_for_embedded_signing", "1");
             if (signatureRequest.ForceSignerRoles) request.AddParameter("force_signer_roles", "1");
             if (signatureRequest.ForceSubjectMessage) request.AddParameter("force_subject_message", "1");
-            if (signatureRequest.ForceSignerRoles) request.AddParameter("force_signer_page", "1");
             if (signatureRequest.SkipMeNow) request.AddParameter("skip_me_now", "1");
             if (signatureRequest.RequesterEmailAddress != null) request.AddParameter("requester_email_address", signatureRequest.RequesterEmailAddress);
 
@@ -1428,8 +1427,8 @@ namespace HelloSign
             if (skipSignerRoles) request.AddQueryParameter("skip_signer_roles", "1");
             if (skipSubjectMessage) request.AddQueryParameter("skip_subject_message", "1");
             if (testMode) request.AddQueryParameter("test_mode", "1");
-            if (forceSignerRoles) request.AddQueryParameter("force_signer_roles", "0");
-            if (forceSubjectMessage) request.AddQueryParameter("force_subject_message", "0");
+            if (forceSignerRoles) request.AddQueryParameter("force_signer_roles", "1");
+            if (forceSubjectMessage) request.AddQueryParameter("force_subject_message", "1");
             request.RootElement = "embedded";
             return Execute<EmbeddedTemplate>(request);
         }
