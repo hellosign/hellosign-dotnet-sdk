@@ -1237,8 +1237,11 @@ namespace HelloSign
             if (signatureRequest.SkipMeNow) request.AddParameter("skip_me_now", "1");
             if (signatureRequest.HoldRequest) request.AddParameter("hold_request", "1");
             if (signatureRequest.AllowCcs == false) request.AddParameter("allow_ccs", "0");
-            if (signatureRequest.ForceSubjectMessage) request.AddParameter("force_subject_message", "1");
-            if (signatureRequest.ForceSignerPage && embedded) request.AddParameter("force_signer_page", "1");
+            if (embedded)
+            {
+                request.AddParameter("force_subject_message", "1");
+                request.AddParameter("force_signer_page", "1");
+            }
             if (embedded && signatureRequest.IsForEmbeddedSigning) request.AddParameter("is_for_embedded_signing", "1");
             if (signatureRequest.RequesterEmailAddress != null) request.AddParameter("requester_email_address", signatureRequest.RequesterEmailAddress);
 

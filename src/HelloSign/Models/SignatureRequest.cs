@@ -23,6 +23,7 @@ namespace HelloSign
         public bool HideTextTags { get; set; }
         public bool AllowReassign { get; set; }
         public List<FormField> FormFieldsPerDocument { get; set; }
+        public bool ForceSignerPage { get; set; } = false;
 
         public SignatureRequest() : base()
         {

@@ -6,7 +6,7 @@ namespace HelloSignTestApp
     class Program
     {
         // Configuration
-        const string TEMPLATE_ID = ""; // Your test Template ID goes here (signer role "Client", CC role "Accounting", custom field "Cost")
+        const string TEMPLATE_ID = "5085204bdf8fb796a349ea72c72ccff90011a772"; // Your test Template ID goes here (signer role "Client", CC role "Accounting", custom field "Cost")
 
         // Helper function for auto-retrying CancelSignatureRequest call
         static void cancelSignatureRequest(Client client, string signatureRequestId)
@@ -383,7 +383,6 @@ namespace HelloSignTestApp
             draft.AllowCcs = false;
             draft.ForceSubjectMessage = true;
             draft.ForceSignerPage = true;
-            draft.ForceSignerRoles = true;
             var uResponse = client.CreateUnclaimedDraft(draft, UnclaimedDraft.Type.RequestSignature);
             Console.WriteLine("New Unclaimed Draft Claim URL: " + uResponse.ClaimUrl);
 
@@ -396,7 +395,6 @@ namespace HelloSignTestApp
             eDraft.AllowCcs = false;
             eDraft.ForceSubjectMessage = true;
             eDraft.ForceSignerPage = true;
-            eDraft.ForceSignerRoles = true;
             var euResponse = client.CreateUnclaimedDraft(eDraft, clientId);
             Console.WriteLine("New Embedded Unclaimed Draft Claim URL: " + euResponse.ClaimUrl);
 
@@ -410,7 +408,6 @@ namespace HelloSignTestApp
                 teDraft.TestMode = true;
                 teDraft.AllowCcs = false;
                 teDraft.ForceSubjectMessage = true;
-                teDraft.ForceSignerPage = true;
                 teDraft.ForceSignerRoles = true;
                 var etuResponse = client.CreateUnclaimedDraft(teDraft, clientId);
                 Console.WriteLine("New Embedded Unclaimed Draft with Template Claim URL: " + etuResponse.ClaimUrl);
