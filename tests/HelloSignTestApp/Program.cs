@@ -6,7 +6,7 @@ namespace HelloSignTestApp
     class Program
     {
         // Configuration
-        const string TEMPLATE_ID = "5085204bdf8fb796a349ea72c72ccff90011a772"; // Your test Template ID goes here (signer role "Client", CC role "Accounting", custom field "Cost")
+        const string TEMPLATE_ID = ""; // Your test Template ID goes here (signer role "Client", CC role "Accounting", custom field "Cost")
 
         // Helper function for auto-retrying CancelSignatureRequest call
         static void cancelSignatureRequest(Client client, string signatureRequestId)
