@@ -11,6 +11,7 @@ namespace HelloSign
     {
         public List<string> TemplateIds { get; private set; }
         public Dictionary<String, String> Ccs { get; set; }
+        public bool ForceSignerRoles { get; set; } = false;
         //public Dictionary<String, String> CustomFields { get; set; }
 
         public TemplateSignatureRequest() : base()
