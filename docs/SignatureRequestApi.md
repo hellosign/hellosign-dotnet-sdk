@@ -639,7 +639,7 @@ catch (ApiException e)
 
 <a name="signaturerequestfiles"></a>
 # **SignatureRequestFiles**
-> FileResponse SignatureRequestFiles (string signatureRequestId, string fileType = null, bool? getUrl = null, bool? getDataUri = null)
+> FileResponse SignatureRequestFiles (string signatureRequestId, string? fileType = null, bool? getUrl = null, bool? getDataUri = null)
 
 Download Files
 
@@ -709,7 +709,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **signatureRequestId** | **string** | The id of the SignatureRequest to retrieve. |  |
-| **fileType** | **string** | Set to `pdf` for a single merged document or `zip` for a collection of individual documents. | [optional] [default to pdf] |
+| **fileType** | **string?** | Set to `pdf` for a single merged document or `zip` for a collection of individual documents. | [optional] [default to pdf] |
 | **getUrl** | **bool?** | If `true`, the response will contain a url link to the file instead. Links are only available for PDFs and have a TTL of 3 days. | [optional] [default to false] |
 | **getDataUri** | **bool?** | If `true`, the response will contain the file as base64 encoded string. Base64 encoding is only available for PDFs. | [optional] [default to false] |
 
@@ -832,7 +832,7 @@ catch (ApiException e)
 
 <a name="signaturerequestlist"></a>
 # **SignatureRequestList**
-> SignatureRequestListResponse SignatureRequestList (string accountId = null, int? page = null, int? pageSize = null, string query = null)
+> SignatureRequestListResponse SignatureRequestList (string? accountId = null, int? page = null, int? pageSize = null, string? query = null)
 
 List Signature Requests
 
@@ -901,10 +901,10 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | Which account to return SignatureRequests for. Must be a team member. Use `all` to indicate all team members. Defaults to your account. | [optional]  |
+| **accountId** | **string?** | Which account to return SignatureRequests for. Must be a team member. Use `all` to indicate all team members. Defaults to your account. | [optional]  |
 | **page** | **int?** | Which page number of the SignatureRequest List to return. Defaults to `1`. | [optional] [default to 1] |
 | **pageSize** | **int?** | Number of objects to be returned per page. Must be between `1` and `100`. Default is `20`. | [optional] [default to 20] |
-| **query** | **string** | String that includes search terms and/or fields to be used to filter the SignatureRequest objects. | [optional]  |
+| **query** | **string?** | String that includes search terms and/or fields to be used to filter the SignatureRequest objects. | [optional]  |
 
 ### Return type
 

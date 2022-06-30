@@ -108,7 +108,7 @@ catch (ApiException e)
 
 <a name="accountget"></a>
 # **AccountGet**
-> AccountGetResponse AccountGet (string accountId = null)
+> AccountGetResponse AccountGet (string? accountId = null)
 
 Get Account
 
@@ -175,7 +175,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | The ID of the Account | [optional]  |
+| **accountId** | **string?** | The ID of the Account | [optional]  |
 
 ### Return type
 

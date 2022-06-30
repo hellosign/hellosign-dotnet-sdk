@@ -155,7 +155,7 @@ namespace Org.HelloSign.Api
         /// <param name="getDataUri">If &#x60;true&#x60;, the response will contain the file as base64 encoded string. Base64 encoding is only available for PDFs. (optional, default to false)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>FileResponse</returns>
-        FileResponse SignatureRequestFiles(string signatureRequestId, string fileType = default(string), bool? getUrl = default(bool?), bool? getDataUri = default(bool?), int operationIndex = 0);
+        FileResponse SignatureRequestFiles(string signatureRequestId, string? fileType = default(string?), bool? getUrl = default(bool?), bool? getDataUri = default(bool?), int operationIndex = 0);
 
         /// <summary>
         /// Download Files
@@ -170,7 +170,7 @@ namespace Org.HelloSign.Api
         /// <param name="getDataUri">If &#x60;true&#x60;, the response will contain the file as base64 encoded string. Base64 encoding is only available for PDFs. (optional, default to false)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of FileResponse</returns>
-        ApiResponse<FileResponse> SignatureRequestFilesWithHttpInfo(string signatureRequestId, string fileType = default(string), bool? getUrl = default(bool?), bool? getDataUri = default(bool?), int operationIndex = 0);
+        ApiResponse<FileResponse> SignatureRequestFilesWithHttpInfo(string signatureRequestId, string? fileType = default(string?), bool? getUrl = default(bool?), bool? getDataUri = default(bool?), int operationIndex = 0);
         /// <summary>
         /// Get Signature Request
         /// </summary>
@@ -207,7 +207,7 @@ namespace Org.HelloSign.Api
         /// <param name="query">String that includes search terms and/or fields to be used to filter the SignatureRequest objects. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>SignatureRequestListResponse</returns>
-        SignatureRequestListResponse SignatureRequestList(string accountId = default(string), int? page = default(int?), int? pageSize = default(int?), string query = default(string), int operationIndex = 0);
+        SignatureRequestListResponse SignatureRequestList(string? accountId = default(string?), int? page = default(int?), int? pageSize = default(int?), string? query = default(string?), int operationIndex = 0);
 
         /// <summary>
         /// List Signature Requests
@@ -222,7 +222,7 @@ namespace Org.HelloSign.Api
         /// <param name="query">String that includes search terms and/or fields to be used to filter the SignatureRequest objects. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of SignatureRequestListResponse</returns>
-        ApiResponse<SignatureRequestListResponse> SignatureRequestListWithHttpInfo(string accountId = default(string), int? page = default(int?), int? pageSize = default(int?), string query = default(string), int operationIndex = 0);
+        ApiResponse<SignatureRequestListResponse> SignatureRequestListWithHttpInfo(string? accountId = default(string?), int? page = default(int?), int? pageSize = default(int?), string? query = default(string?), int operationIndex = 0);
         /// <summary>
         /// Release On-Hold Signature Request
         /// </summary>
@@ -513,7 +513,7 @@ namespace Org.HelloSign.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of FileResponse</returns>
-        System.Threading.Tasks.Task<FileResponse> SignatureRequestFilesAsync(string signatureRequestId, string fileType = default(string), bool? getUrl = default(bool?), bool? getDataUri = default(bool?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<FileResponse> SignatureRequestFilesAsync(string signatureRequestId, string? fileType = default(string?), bool? getUrl = default(bool?), bool? getDataUri = default(bool?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// Download Files
@@ -529,7 +529,7 @@ namespace Org.HelloSign.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (FileResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<FileResponse>> SignatureRequestFilesWithHttpInfoAsync(string signatureRequestId, string fileType = default(string), bool? getUrl = default(bool?), bool? getDataUri = default(bool?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<FileResponse>> SignatureRequestFilesWithHttpInfoAsync(string signatureRequestId, string? fileType = default(string?), bool? getUrl = default(bool?), bool? getDataUri = default(bool?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Get Signature Request
         /// </summary>
@@ -569,7 +569,7 @@ namespace Org.HelloSign.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of SignatureRequestListResponse</returns>
-        System.Threading.Tasks.Task<SignatureRequestListResponse> SignatureRequestListAsync(string accountId = default(string), int? page = default(int?), int? pageSize = default(int?), string query = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<SignatureRequestListResponse> SignatureRequestListAsync(string? accountId = default(string?), int? page = default(int?), int? pageSize = default(int?), string? query = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// List Signature Requests
@@ -585,7 +585,7 @@ namespace Org.HelloSign.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SignatureRequestListResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<SignatureRequestListResponse>> SignatureRequestListWithHttpInfoAsync(string accountId = default(string), int? page = default(int?), int? pageSize = default(int?), string query = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<SignatureRequestListResponse>> SignatureRequestListWithHttpInfoAsync(string? accountId = default(string?), int? page = default(int?), int? pageSize = default(int?), string? query = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Release On-Hold Signature Request
         /// </summary>
@@ -1751,7 +1751,7 @@ namespace Org.HelloSign.Api
         /// <param name="getDataUri">If &#x60;true&#x60;, the response will contain the file as base64 encoded string. Base64 encoding is only available for PDFs. (optional, default to false)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>FileResponse</returns>
-        public FileResponse SignatureRequestFiles(string signatureRequestId, string fileType = default(string), bool? getUrl = default(bool?), bool? getDataUri = default(bool?), int operationIndex = 0)
+        public FileResponse SignatureRequestFiles(string signatureRequestId, string? fileType = default(string?), bool? getUrl = default(bool?), bool? getDataUri = default(bool?), int operationIndex = 0)
         {
             Org.HelloSign.Client.ApiResponse<FileResponse> localVarResponse = SignatureRequestFilesWithHttpInfo(signatureRequestId, fileType, getUrl, getDataUri);
             return localVarResponse.Data;
@@ -1767,7 +1767,7 @@ namespace Org.HelloSign.Api
         /// <param name="getDataUri">If &#x60;true&#x60;, the response will contain the file as base64 encoded string. Base64 encoding is only available for PDFs. (optional, default to false)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of FileResponse</returns>
-        public Org.HelloSign.Client.ApiResponse<FileResponse> SignatureRequestFilesWithHttpInfo(string signatureRequestId, string fileType = default(string), bool? getUrl = default(bool?), bool? getDataUri = default(bool?), int operationIndex = 0)
+        public Org.HelloSign.Client.ApiResponse<FileResponse> SignatureRequestFilesWithHttpInfo(string signatureRequestId, string? fileType = default(string?), bool? getUrl = default(bool?), bool? getDataUri = default(bool?), int operationIndex = 0)
         {
             // verify the required parameter 'signatureRequestId' is set
             if (signatureRequestId == null)
@@ -1851,7 +1851,7 @@ namespace Org.HelloSign.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of FileResponse</returns>
-        public async System.Threading.Tasks.Task<FileResponse> SignatureRequestFilesAsync(string signatureRequestId, string fileType = default(string), bool? getUrl = default(bool?), bool? getDataUri = default(bool?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<FileResponse> SignatureRequestFilesAsync(string signatureRequestId, string? fileType = default(string?), bool? getUrl = default(bool?), bool? getDataUri = default(bool?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             Org.HelloSign.Client.ApiResponse<FileResponse> localVarResponse = await SignatureRequestFilesWithHttpInfoAsync(signatureRequestId, fileType, getUrl, getDataUri, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -1868,7 +1868,7 @@ namespace Org.HelloSign.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (FileResponse)</returns>
-        public async System.Threading.Tasks.Task<Org.HelloSign.Client.ApiResponse<FileResponse>> SignatureRequestFilesWithHttpInfoAsync(string signatureRequestId, string fileType = default(string), bool? getUrl = default(bool?), bool? getDataUri = default(bool?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Org.HelloSign.Client.ApiResponse<FileResponse>> SignatureRequestFilesWithHttpInfoAsync(string signatureRequestId, string? fileType = default(string?), bool? getUrl = default(bool?), bool? getDataUri = default(bool?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'signatureRequestId' is set
             if (signatureRequestId == null)
@@ -2121,7 +2121,7 @@ namespace Org.HelloSign.Api
         /// <param name="query">String that includes search terms and/or fields to be used to filter the SignatureRequest objects. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>SignatureRequestListResponse</returns>
-        public SignatureRequestListResponse SignatureRequestList(string accountId = default(string), int? page = default(int?), int? pageSize = default(int?), string query = default(string), int operationIndex = 0)
+        public SignatureRequestListResponse SignatureRequestList(string? accountId = default(string?), int? page = default(int?), int? pageSize = default(int?), string? query = default(string?), int operationIndex = 0)
         {
             Org.HelloSign.Client.ApiResponse<SignatureRequestListResponse> localVarResponse = SignatureRequestListWithHttpInfo(accountId, page, pageSize, query);
             return localVarResponse.Data;
@@ -2137,7 +2137,7 @@ namespace Org.HelloSign.Api
         /// <param name="query">String that includes search terms and/or fields to be used to filter the SignatureRequest objects. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of SignatureRequestListResponse</returns>
-        public Org.HelloSign.Client.ApiResponse<SignatureRequestListResponse> SignatureRequestListWithHttpInfo(string accountId = default(string), int? page = default(int?), int? pageSize = default(int?), string query = default(string), int operationIndex = 0)
+        public Org.HelloSign.Client.ApiResponse<SignatureRequestListResponse> SignatureRequestListWithHttpInfo(string? accountId = default(string?), int? page = default(int?), int? pageSize = default(int?), string? query = default(string?), int operationIndex = 0)
         {
             Org.HelloSign.Client.RequestOptions localVarRequestOptions = new Org.HelloSign.Client.RequestOptions();
 
@@ -2218,7 +2218,7 @@ namespace Org.HelloSign.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of SignatureRequestListResponse</returns>
-        public async System.Threading.Tasks.Task<SignatureRequestListResponse> SignatureRequestListAsync(string accountId = default(string), int? page = default(int?), int? pageSize = default(int?), string query = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<SignatureRequestListResponse> SignatureRequestListAsync(string? accountId = default(string?), int? page = default(int?), int? pageSize = default(int?), string? query = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             Org.HelloSign.Client.ApiResponse<SignatureRequestListResponse> localVarResponse = await SignatureRequestListWithHttpInfoAsync(accountId, page, pageSize, query, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -2235,7 +2235,7 @@ namespace Org.HelloSign.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (SignatureRequestListResponse)</returns>
-        public async System.Threading.Tasks.Task<Org.HelloSign.Client.ApiResponse<SignatureRequestListResponse>> SignatureRequestListWithHttpInfoAsync(string accountId = default(string), int? page = default(int?), int? pageSize = default(int?), string query = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Org.HelloSign.Client.ApiResponse<SignatureRequestListResponse>> SignatureRequestListWithHttpInfoAsync(string? accountId = default(string?), int? page = default(int?), int? pageSize = default(int?), string? query = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
             Org.HelloSign.Client.RequestOptions localVarRequestOptions = new Org.HelloSign.Client.RequestOptions();

@@ -111,7 +111,7 @@ namespace Org.HelloSign.Api
         /// <param name="getDataUri">If &#x60;true&#x60;, the response will contain the file as base64 encoded string. Base64 encoding is only available for PDFs. (optional, default to false)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>FileResponse</returns>
-        FileResponse TemplateFiles(string templateId, string fileType = default(string), bool? getUrl = default(bool?), bool? getDataUri = default(bool?), int operationIndex = 0);
+        FileResponse TemplateFiles(string templateId, string? fileType = default(string?), bool? getUrl = default(bool?), bool? getDataUri = default(bool?), int operationIndex = 0);
 
         /// <summary>
         /// Get Template Files
@@ -126,7 +126,7 @@ namespace Org.HelloSign.Api
         /// <param name="getDataUri">If &#x60;true&#x60;, the response will contain the file as base64 encoded string. Base64 encoding is only available for PDFs. (optional, default to false)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of FileResponse</returns>
-        ApiResponse<FileResponse> TemplateFilesWithHttpInfo(string templateId, string fileType = default(string), bool? getUrl = default(bool?), bool? getDataUri = default(bool?), int operationIndex = 0);
+        ApiResponse<FileResponse> TemplateFilesWithHttpInfo(string templateId, string? fileType = default(string?), bool? getUrl = default(bool?), bool? getDataUri = default(bool?), int operationIndex = 0);
         /// <summary>
         /// Get Template
         /// </summary>
@@ -163,7 +163,7 @@ namespace Org.HelloSign.Api
         /// <param name="query">String that includes search terms and/or fields to be used to filter the Template objects. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>TemplateListResponse</returns>
-        TemplateListResponse TemplateList(string accountId = default(string), int? page = default(int?), int? pageSize = default(int?), string query = default(string), int operationIndex = 0);
+        TemplateListResponse TemplateList(string? accountId = default(string?), int? page = default(int?), int? pageSize = default(int?), string? query = default(string?), int operationIndex = 0);
 
         /// <summary>
         /// List Templates
@@ -178,7 +178,7 @@ namespace Org.HelloSign.Api
         /// <param name="query">String that includes search terms and/or fields to be used to filter the Template objects. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of TemplateListResponse</returns>
-        ApiResponse<TemplateListResponse> TemplateListWithHttpInfo(string accountId = default(string), int? page = default(int?), int? pageSize = default(int?), string query = default(string), int operationIndex = 0);
+        ApiResponse<TemplateListResponse> TemplateListWithHttpInfo(string? accountId = default(string?), int? page = default(int?), int? pageSize = default(int?), string? query = default(string?), int operationIndex = 0);
         /// <summary>
         /// Remove User from Template
         /// </summary>
@@ -329,7 +329,7 @@ namespace Org.HelloSign.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of FileResponse</returns>
-        System.Threading.Tasks.Task<FileResponse> TemplateFilesAsync(string templateId, string fileType = default(string), bool? getUrl = default(bool?), bool? getDataUri = default(bool?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<FileResponse> TemplateFilesAsync(string templateId, string? fileType = default(string?), bool? getUrl = default(bool?), bool? getDataUri = default(bool?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// Get Template Files
@@ -345,7 +345,7 @@ namespace Org.HelloSign.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (FileResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<FileResponse>> TemplateFilesWithHttpInfoAsync(string templateId, string fileType = default(string), bool? getUrl = default(bool?), bool? getDataUri = default(bool?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<FileResponse>> TemplateFilesWithHttpInfoAsync(string templateId, string? fileType = default(string?), bool? getUrl = default(bool?), bool? getDataUri = default(bool?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Get Template
         /// </summary>
@@ -385,7 +385,7 @@ namespace Org.HelloSign.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of TemplateListResponse</returns>
-        System.Threading.Tasks.Task<TemplateListResponse> TemplateListAsync(string accountId = default(string), int? page = default(int?), int? pageSize = default(int?), string query = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<TemplateListResponse> TemplateListAsync(string? accountId = default(string?), int? page = default(int?), int? pageSize = default(int?), string? query = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// List Templates
@@ -401,7 +401,7 @@ namespace Org.HelloSign.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (TemplateListResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<TemplateListResponse>> TemplateListWithHttpInfoAsync(string accountId = default(string), int? page = default(int?), int? pageSize = default(int?), string query = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<TemplateListResponse>> TemplateListWithHttpInfoAsync(string? accountId = default(string?), int? page = default(int?), int? pageSize = default(int?), string? query = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Remove User from Template
         /// </summary>
@@ -1133,7 +1133,7 @@ namespace Org.HelloSign.Api
         /// <param name="getDataUri">If &#x60;true&#x60;, the response will contain the file as base64 encoded string. Base64 encoding is only available for PDFs. (optional, default to false)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>FileResponse</returns>
-        public FileResponse TemplateFiles(string templateId, string fileType = default(string), bool? getUrl = default(bool?), bool? getDataUri = default(bool?), int operationIndex = 0)
+        public FileResponse TemplateFiles(string templateId, string? fileType = default(string?), bool? getUrl = default(bool?), bool? getDataUri = default(bool?), int operationIndex = 0)
         {
             Org.HelloSign.Client.ApiResponse<FileResponse> localVarResponse = TemplateFilesWithHttpInfo(templateId, fileType, getUrl, getDataUri);
             return localVarResponse.Data;
@@ -1149,7 +1149,7 @@ namespace Org.HelloSign.Api
         /// <param name="getDataUri">If &#x60;true&#x60;, the response will contain the file as base64 encoded string. Base64 encoding is only available for PDFs. (optional, default to false)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of FileResponse</returns>
-        public Org.HelloSign.Client.ApiResponse<FileResponse> TemplateFilesWithHttpInfo(string templateId, string fileType = default(string), bool? getUrl = default(bool?), bool? getDataUri = default(bool?), int operationIndex = 0)
+        public Org.HelloSign.Client.ApiResponse<FileResponse> TemplateFilesWithHttpInfo(string templateId, string? fileType = default(string?), bool? getUrl = default(bool?), bool? getDataUri = default(bool?), int operationIndex = 0)
         {
             // verify the required parameter 'templateId' is set
             if (templateId == null)
@@ -1233,7 +1233,7 @@ namespace Org.HelloSign.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of FileResponse</returns>
-        public async System.Threading.Tasks.Task<FileResponse> TemplateFilesAsync(string templateId, string fileType = default(string), bool? getUrl = default(bool?), bool? getDataUri = default(bool?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<FileResponse> TemplateFilesAsync(string templateId, string? fileType = default(string?), bool? getUrl = default(bool?), bool? getDataUri = default(bool?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             Org.HelloSign.Client.ApiResponse<FileResponse> localVarResponse = await TemplateFilesWithHttpInfoAsync(templateId, fileType, getUrl, getDataUri, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -1250,7 +1250,7 @@ namespace Org.HelloSign.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (FileResponse)</returns>
-        public async System.Threading.Tasks.Task<Org.HelloSign.Client.ApiResponse<FileResponse>> TemplateFilesWithHttpInfoAsync(string templateId, string fileType = default(string), bool? getUrl = default(bool?), bool? getDataUri = default(bool?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Org.HelloSign.Client.ApiResponse<FileResponse>> TemplateFilesWithHttpInfoAsync(string templateId, string? fileType = default(string?), bool? getUrl = default(bool?), bool? getDataUri = default(bool?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'templateId' is set
             if (templateId == null)
@@ -1503,7 +1503,7 @@ namespace Org.HelloSign.Api
         /// <param name="query">String that includes search terms and/or fields to be used to filter the Template objects. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>TemplateListResponse</returns>
-        public TemplateListResponse TemplateList(string accountId = default(string), int? page = default(int?), int? pageSize = default(int?), string query = default(string), int operationIndex = 0)
+        public TemplateListResponse TemplateList(string? accountId = default(string?), int? page = default(int?), int? pageSize = default(int?), string? query = default(string?), int operationIndex = 0)
         {
             Org.HelloSign.Client.ApiResponse<TemplateListResponse> localVarResponse = TemplateListWithHttpInfo(accountId, page, pageSize, query);
             return localVarResponse.Data;
@@ -1519,7 +1519,7 @@ namespace Org.HelloSign.Api
         /// <param name="query">String that includes search terms and/or fields to be used to filter the Template objects. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of TemplateListResponse</returns>
-        public Org.HelloSign.Client.ApiResponse<TemplateListResponse> TemplateListWithHttpInfo(string accountId = default(string), int? page = default(int?), int? pageSize = default(int?), string query = default(string), int operationIndex = 0)
+        public Org.HelloSign.Client.ApiResponse<TemplateListResponse> TemplateListWithHttpInfo(string? accountId = default(string?), int? page = default(int?), int? pageSize = default(int?), string? query = default(string?), int operationIndex = 0)
         {
             Org.HelloSign.Client.RequestOptions localVarRequestOptions = new Org.HelloSign.Client.RequestOptions();
 
@@ -1600,7 +1600,7 @@ namespace Org.HelloSign.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of TemplateListResponse</returns>
-        public async System.Threading.Tasks.Task<TemplateListResponse> TemplateListAsync(string accountId = default(string), int? page = default(int?), int? pageSize = default(int?), string query = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<TemplateListResponse> TemplateListAsync(string? accountId = default(string?), int? page = default(int?), int? pageSize = default(int?), string? query = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             Org.HelloSign.Client.ApiResponse<TemplateListResponse> localVarResponse = await TemplateListWithHttpInfoAsync(accountId, page, pageSize, query, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -1617,7 +1617,7 @@ namespace Org.HelloSign.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (TemplateListResponse)</returns>
-        public async System.Threading.Tasks.Task<Org.HelloSign.Client.ApiResponse<TemplateListResponse>> TemplateListWithHttpInfoAsync(string accountId = default(string), int? page = default(int?), int? pageSize = default(int?), string query = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Org.HelloSign.Client.ApiResponse<TemplateListResponse>> TemplateListWithHttpInfoAsync(string? accountId = default(string?), int? page = default(int?), int? pageSize = default(int?), string? query = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
             Org.HelloSign.Client.RequestOptions localVarRequestOptions = new Org.HelloSign.Client.RequestOptions();

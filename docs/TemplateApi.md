@@ -336,7 +336,7 @@ void (empty response body)
 
 <a name="templatefiles"></a>
 # **TemplateFiles**
-> FileResponse TemplateFiles (string templateId, string fileType = null, bool? getUrl = null, bool? getDataUri = null)
+> FileResponse TemplateFiles (string templateId, string? fileType = null, bool? getUrl = null, bool? getDataUri = null)
 
 Get Template Files
 
@@ -406,7 +406,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **templateId** | **string** | The id of the template files to retrieve. |  |
-| **fileType** | **string** | Set to `pdf` for a single merged document or `zip` for a collection of individual documents. | [optional]  |
+| **fileType** | **string?** | Set to `pdf` for a single merged document or `zip` for a collection of individual documents. | [optional]  |
 | **getUrl** | **bool?** | If `true`, the response will contain a url link to the file instead. Links are only available for PDFs and have a TTL of 3 days. | [optional] [default to false] |
 | **getDataUri** | **bool?** | If `true`, the response will contain the file as base64 encoded string. Base64 encoding is only available for PDFs. | [optional] [default to false] |
 
@@ -529,7 +529,7 @@ catch (ApiException e)
 
 <a name="templatelist"></a>
 # **TemplateList**
-> TemplateListResponse TemplateList (string accountId = null, int? page = null, int? pageSize = null, string query = null)
+> TemplateListResponse TemplateList (string? accountId = null, int? page = null, int? pageSize = null, string? query = null)
 
 List Templates
 
@@ -598,10 +598,10 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string** | Which account to return Templates for. Must be a team member. Use `all` to indicate all team members. Defaults to your account. | [optional]  |
+| **accountId** | **string?** | Which account to return Templates for. Must be a team member. Use `all` to indicate all team members. Defaults to your account. | [optional]  |
 | **page** | **int?** | Which page number of the Template List to return. Defaults to `1`. | [optional] [default to 1] |
 | **pageSize** | **int?** | Number of objects to be returned per page. Must be between `1` and `100`. Default is `20`. | [optional] [default to 20] |
-| **query** | **string** | String that includes search terms and/or fields to be used to filter the Template objects. | [optional]  |
+| **query** | **string?** | String that includes search terms and/or fields to be used to filter the Template objects. | [optional]  |
 
 ### Return type
 

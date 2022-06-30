@@ -5,7 +5,7 @@ additionalProperties:
   packageVersion: 1.0.0
   sortModelPropertiesByRequiredFlag: true
   optionalEmitDefaultValues: true
-  targetFramework: netcoreapp3.1
+  targetFramework: net6.0
   packageGuid: "{F8C8232D-7020-4603-8E04-18D060AE530B}"
 globalProperties:
   apiTests: false

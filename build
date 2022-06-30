@@ -8,7 +8,7 @@ WORKINGDIR="/app/csharp"
 
 docker run --rm \
   -v "${PWD}/:/local" \
-  openapitools/openapi-generator-cli:v5.3.0 generate \
+  openapitools/openapi-generator-cli:v6.0.0 generate \
     -i "/local/oas/openapi-sdk.yaml" \
     -c "/local/openapi-config.yaml" \
     -t "/local/templates" \

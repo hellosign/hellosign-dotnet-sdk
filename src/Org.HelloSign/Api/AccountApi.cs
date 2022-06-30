@@ -60,7 +60,7 @@ namespace Org.HelloSign.Api
         /// <param name="accountId">The ID of the Account (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>AccountGetResponse</returns>
-        AccountGetResponse AccountGet(string accountId = default(string), int operationIndex = 0);
+        AccountGetResponse AccountGet(string? accountId = default(string?), int operationIndex = 0);
 
         /// <summary>
         /// Get Account
@@ -72,7 +72,7 @@ namespace Org.HelloSign.Api
         /// <param name="accountId">The ID of the Account (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of AccountGetResponse</returns>
-        ApiResponse<AccountGetResponse> AccountGetWithHttpInfo(string accountId = default(string), int operationIndex = 0);
+        ApiResponse<AccountGetResponse> AccountGetWithHttpInfo(string? accountId = default(string?), int operationIndex = 0);
         /// <summary>
         /// Update Account
         /// </summary>
@@ -164,7 +164,7 @@ namespace Org.HelloSign.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of AccountGetResponse</returns>
-        System.Threading.Tasks.Task<AccountGetResponse> AccountGetAsync(string accountId = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<AccountGetResponse> AccountGetAsync(string? accountId = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// Get Account
@@ -177,7 +177,7 @@ namespace Org.HelloSign.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (AccountGetResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<AccountGetResponse>> AccountGetWithHttpInfoAsync(string accountId = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<AccountGetResponse>> AccountGetWithHttpInfoAsync(string? accountId = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Update Account
         /// </summary>
@@ -537,7 +537,7 @@ namespace Org.HelloSign.Api
         /// <param name="accountId">The ID of the Account (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>AccountGetResponse</returns>
-        public AccountGetResponse AccountGet(string accountId = default(string), int operationIndex = 0)
+        public AccountGetResponse AccountGet(string? accountId = default(string?), int operationIndex = 0)
         {
             Org.HelloSign.Client.ApiResponse<AccountGetResponse> localVarResponse = AccountGetWithHttpInfo(accountId);
             return localVarResponse.Data;
@@ -550,7 +550,7 @@ namespace Org.HelloSign.Api
         /// <param name="accountId">The ID of the Account (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of AccountGetResponse</returns>
-        public Org.HelloSign.Client.ApiResponse<AccountGetResponse> AccountGetWithHttpInfo(string accountId = default(string), int operationIndex = 0)
+        public Org.HelloSign.Client.ApiResponse<AccountGetResponse> AccountGetWithHttpInfo(string? accountId = default(string?), int operationIndex = 0)
         {
             Org.HelloSign.Client.RequestOptions localVarRequestOptions = new Org.HelloSign.Client.RequestOptions();
 
@@ -616,7 +616,7 @@ namespace Org.HelloSign.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of AccountGetResponse</returns>
-        public async System.Threading.Tasks.Task<AccountGetResponse> AccountGetAsync(string accountId = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<AccountGetResponse> AccountGetAsync(string? accountId = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             Org.HelloSign.Client.ApiResponse<AccountGetResponse> localVarResponse = await AccountGetWithHttpInfoAsync(accountId, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -630,7 +630,7 @@ namespace Org.HelloSign.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (AccountGetResponse)</returns>
-        public async System.Threading.Tasks.Task<Org.HelloSign.Client.ApiResponse<AccountGetResponse>> AccountGetWithHttpInfoAsync(string accountId = default(string), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Org.HelloSign.Client.ApiResponse<AccountGetResponse>> AccountGetWithHttpInfoAsync(string? accountId = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
             Org.HelloSign.Client.RequestOptions localVarRequestOptions = new Org.HelloSign.Client.RequestOptions();
