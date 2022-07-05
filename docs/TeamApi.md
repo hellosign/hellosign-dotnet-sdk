@@ -13,7 +13,7 @@ All URIs are relative to *https://api.hellosign.com/v3*
 
 <a name="teamaddmember"></a>
 # **TeamAddMember**
-> TeamGetResponse TeamAddMember (TeamAddMemberRequest teamAddMemberRequest)
+> TeamGetResponse TeamAddMember (TeamAddMemberRequest teamAddMemberRequest, string? teamId = null)
 
 Add User to Team
 
@@ -67,7 +67,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Add User to Team
-    ApiResponse<TeamGetResponse> response = apiInstance.TeamAddMemberWithHttpInfo(teamAddMemberRequest);
+    ApiResponse<TeamGetResponse> response = apiInstance.TeamAddMemberWithHttpInfo(teamAddMemberRequest, teamId);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -85,6 +85,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **teamAddMemberRequest** | [**TeamAddMemberRequest**](TeamAddMemberRequest.md) |  |  |
+| **teamId** | **string?** | The id of the team. | [optional]  |
 
 ### Return type
 

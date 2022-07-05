@@ -15,9 +15,9 @@ Name | Type | Description | Notes
 **ApiId** | **string** |  The unique ID for this field.  | [optional] 
 **Group** | **string** |  The name of the group this field is in. If this field is not a group, this defaults to `null`.  | [optional] 
 **AvgTextLength** | [**TemplateResponseFieldAvgTextLength**](TemplateResponseFieldAvgTextLength.md) |    | [optional] 
-**IsMultiline** | **string** |  Whether this form field is multiline text.  | [optional] 
+**IsMultiline** | **bool?** |  Whether this form field is multiline text.  | [optional] 
 **OriginalFontSize** | **int?** |  Original font size used in this form field&#39;s text.  | [optional] 
-**FontFamily** | **int?** |  Font family used in this form field&#39;s text.  | [optional] 
+**FontFamily** | **string** |  Font family used in this form field&#39;s text.  | [optional] 
 **NamedFormFields** | **Object** |  _t__TemplateResponseDocumentCustomField::NAMED_FORM_FIELDS  | [optional] 
 **ReusableFormId** | **string** |    | [optional] 
 

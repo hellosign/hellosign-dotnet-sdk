@@ -85,7 +85,7 @@ namespace Org.HelloSign.Model
         /// <param name="fontFamily">Font family used in this form field&#39;s text..</param>
         /// <param name="namedFormFields">_t__TemplateResponseDocumentCustomField::NAMED_FORM_FIELDS.</param>
         /// <param name="reusableFormId">reusableFormId.</param>
-        public TemplateResponseDocumentCustomField(string name = default(string), TypeEnum? type = default(TypeEnum?), string signer = default(string), int x = default(int), int y = default(int), int width = default(int), int height = default(int), bool required = default(bool), string apiId = default(string), string group = default(string), TemplateResponseFieldAvgTextLength avgTextLength = default(TemplateResponseFieldAvgTextLength), string isMultiline = default(string), int? originalFontSize = default(int?), int? fontFamily = default(int?), Object namedFormFields = default(Object), string reusableFormId = default(string))
+        public TemplateResponseDocumentCustomField(string name = default(string), TypeEnum? type = default(TypeEnum?), string signer = default(string), int x = default(int), int y = default(int), int width = default(int), int height = default(int), bool required = default(bool), string apiId = default(string), string group = default(string), TemplateResponseFieldAvgTextLength avgTextLength = default(TemplateResponseFieldAvgTextLength), bool? isMultiline = default(bool?), int? originalFontSize = default(int?), string fontFamily = default(string), Object namedFormFields = default(Object), string reusableFormId = default(string))
         {
             
             this.Name = name;
@@ -180,7 +180,7 @@ namespace Org.HelloSign.Model
         /// </summary>
         /// <value>Whether this form field is multiline text.</value>
         [DataMember(Name = "isMultiline", EmitDefaultValue = true)]
-        public string IsMultiline { get; set; }
+        public bool? IsMultiline { get; set; }
 
         /// <summary>
         /// Original font size used in this form field&#39;s text.
@@ -194,7 +194,7 @@ namespace Org.HelloSign.Model
         /// </summary>
         /// <value>Font family used in this form field&#39;s text.</value>
         [DataMember(Name = "fontFamily", EmitDefaultValue = true)]
-        public int? FontFamily { get; set; }
+        public string FontFamily { get; set; }
 
         /// <summary>
         /// _t__TemplateResponseDocumentCustomField::NAMED_FORM_FIELDS
@@ -477,7 +477,7 @@ namespace Org.HelloSign.Model
             types.Add(new OpenApiType(){
                 Name = "isMultiline",
                 Property = "IsMultiline",
-                Type = "string",
+                Type = "bool?",
                 Value = IsMultiline,
             });
             types.Add(new OpenApiType(){
@@ -489,7 +489,7 @@ namespace Org.HelloSign.Model
             types.Add(new OpenApiType(){
                 Name = "fontFamily",
                 Property = "FontFamily",
-                Type = "int?",
+                Type = "string",
                 Value = FontFamily,
             });
             types.Add(new OpenApiType(){

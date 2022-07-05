@@ -35,9 +35,10 @@ namespace Org.HelloSign.Api
         /// </remarks>
         /// <exception cref="Org.HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="teamAddMemberRequest"></param>
+        /// <param name="teamId">The id of the team. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>TeamGetResponse</returns>
-        TeamGetResponse TeamAddMember(TeamAddMemberRequest teamAddMemberRequest, int operationIndex = 0);
+        TeamGetResponse TeamAddMember(TeamAddMemberRequest teamAddMemberRequest, string? teamId = default(string?), int operationIndex = 0);
 
         /// <summary>
         /// Add User to Team
@@ -47,9 +48,10 @@ namespace Org.HelloSign.Api
         /// </remarks>
         /// <exception cref="Org.HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="teamAddMemberRequest"></param>
+        /// <param name="teamId">The id of the team. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of TeamGetResponse</returns>
-        ApiResponse<TeamGetResponse> TeamAddMemberWithHttpInfo(TeamAddMemberRequest teamAddMemberRequest, int operationIndex = 0);
+        ApiResponse<TeamGetResponse> TeamAddMemberWithHttpInfo(TeamAddMemberRequest teamAddMemberRequest, string? teamId = default(string?), int operationIndex = 0);
         /// <summary>
         /// Create Team
         /// </summary>
@@ -178,10 +180,11 @@ namespace Org.HelloSign.Api
         /// </remarks>
         /// <exception cref="Org.HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="teamAddMemberRequest"></param>
+        /// <param name="teamId">The id of the team. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of TeamGetResponse</returns>
-        System.Threading.Tasks.Task<TeamGetResponse> TeamAddMemberAsync(TeamAddMemberRequest teamAddMemberRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<TeamGetResponse> TeamAddMemberAsync(TeamAddMemberRequest teamAddMemberRequest, string? teamId = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// Add User to Team
@@ -191,10 +194,11 @@ namespace Org.HelloSign.Api
         /// </remarks>
         /// <exception cref="Org.HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="teamAddMemberRequest"></param>
+        /// <param name="teamId">The id of the team. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (TeamGetResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<TeamGetResponse>> TeamAddMemberWithHttpInfoAsync(TeamAddMemberRequest teamAddMemberRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<TeamGetResponse>> TeamAddMemberWithHttpInfoAsync(TeamAddMemberRequest teamAddMemberRequest, string? teamId = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Create Team
         /// </summary>
@@ -441,11 +445,12 @@ namespace Org.HelloSign.Api
         /// </summary>
         /// <exception cref="Org.HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="teamAddMemberRequest"></param>
+        /// <param name="teamId">The id of the team. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>TeamGetResponse</returns>
-        public TeamGetResponse TeamAddMember(TeamAddMemberRequest teamAddMemberRequest, int operationIndex = 0)
+        public TeamGetResponse TeamAddMember(TeamAddMemberRequest teamAddMemberRequest, string? teamId = default(string?), int operationIndex = 0)
         {
-            Org.HelloSign.Client.ApiResponse<TeamGetResponse> localVarResponse = TeamAddMemberWithHttpInfo(teamAddMemberRequest);
+            Org.HelloSign.Client.ApiResponse<TeamGetResponse> localVarResponse = TeamAddMemberWithHttpInfo(teamAddMemberRequest, teamId);
             return localVarResponse.Data;
         }
 
@@ -454,9 +459,10 @@ namespace Org.HelloSign.Api
         /// </summary>
         /// <exception cref="Org.HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="teamAddMemberRequest"></param>
+        /// <param name="teamId">The id of the team. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of TeamGetResponse</returns>
-        public Org.HelloSign.Client.ApiResponse<TeamGetResponse> TeamAddMemberWithHttpInfo(TeamAddMemberRequest teamAddMemberRequest, int operationIndex = 0)
+        public Org.HelloSign.Client.ApiResponse<TeamGetResponse> TeamAddMemberWithHttpInfo(TeamAddMemberRequest teamAddMemberRequest, string? teamId = default(string?), int operationIndex = 0)
         {
             // verify the required parameter 'teamAddMemberRequest' is set
             if (teamAddMemberRequest == null)
@@ -495,6 +501,10 @@ namespace Org.HelloSign.Api
                 localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
             }
 
+            if (teamId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Org.HelloSign.Client.ClientUtils.ParameterToMultiMap("", "team_id", teamId));
+            }
             localVarRequestOptions.Operation = "TeamApi.TeamAddMember";
             localVarRequestOptions.OperationIndex = operationIndex;
 
@@ -530,12 +540,13 @@ namespace Org.HelloSign.Api
         /// </summary>
         /// <exception cref="Org.HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="teamAddMemberRequest"></param>
+        /// <param name="teamId">The id of the team. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of TeamGetResponse</returns>
-        public async System.Threading.Tasks.Task<TeamGetResponse> TeamAddMemberAsync(TeamAddMemberRequest teamAddMemberRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<TeamGetResponse> TeamAddMemberAsync(TeamAddMemberRequest teamAddMemberRequest, string? teamId = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            Org.HelloSign.Client.ApiResponse<TeamGetResponse> localVarResponse = await TeamAddMemberWithHttpInfoAsync(teamAddMemberRequest, operationIndex, cancellationToken).ConfigureAwait(false);
+            Org.HelloSign.Client.ApiResponse<TeamGetResponse> localVarResponse = await TeamAddMemberWithHttpInfoAsync(teamAddMemberRequest, teamId, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -544,10 +555,11 @@ namespace Org.HelloSign.Api
         /// </summary>
         /// <exception cref="Org.HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="teamAddMemberRequest"></param>
+        /// <param name="teamId">The id of the team. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (TeamGetResponse)</returns>
-        public async System.Threading.Tasks.Task<Org.HelloSign.Client.ApiResponse<TeamGetResponse>> TeamAddMemberWithHttpInfoAsync(TeamAddMemberRequest teamAddMemberRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Org.HelloSign.Client.ApiResponse<TeamGetResponse>> TeamAddMemberWithHttpInfoAsync(TeamAddMemberRequest teamAddMemberRequest, string? teamId = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'teamAddMemberRequest' is set
             if (teamAddMemberRequest == null)
@@ -587,6 +599,10 @@ namespace Org.HelloSign.Api
                 localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
             }
 
+            if (teamId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Org.HelloSign.Client.ClientUtils.ParameterToMultiMap("", "team_id", teamId));
+            }
             localVarRequestOptions.Operation = "TeamApi.TeamAddMember";
             localVarRequestOptions.OperationIndex = operationIndex;
 
