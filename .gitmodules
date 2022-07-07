@@ -1,4 +1,4 @@
 [submodule "oas"]
     path = oas
-    url = git@github.com:hellosign/openapi.git
+    url = git@github.com:fenghao-chen/openapi.git
     branch = dotnet
