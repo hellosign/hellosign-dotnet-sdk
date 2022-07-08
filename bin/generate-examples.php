@@ -261,8 +261,12 @@ class GenerateExamples
 $generate = new GenerateExamples(
     Yaml::parse(file_get_contents(__DIR__ . '/../oas/openapi-sdk.yaml')),
     ['C#'],
-    [__DIR__ . '/../docs/Api', __DIR__ . '/../docs/Model'],
+    [__DIR__ . '/../docs'],
     [__DIR__ . '/../README.md'],
+    [
+        '```[[SubFormFieldsPerDocumentBase]]```'
+        => '[```[[SubFormFieldsPerDocumentBase]]```](SubFormFieldsPerDocumentBase.md)',
+    ]
 );
 $generate->setUseSnakeCase(false);
 
