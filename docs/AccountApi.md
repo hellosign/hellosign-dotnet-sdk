@@ -19,43 +19,7 @@ Creates a new HelloSign Account that is associated with the specified `email_add
 
 ### Example
 ```csharp
-using System;
-
-using Org.HelloSign.Api;
-using Org.HelloSign.Client;
-using Org.HelloSign.Model;
-
-public class Example
-{
-    public static void Main()
-    {
-        var config = new Configuration();
-        // Configure HTTP basic authorization: api_key
-        config.Username = "YOUR_API_KEY";
-
-        // or, configure Bearer (JWT) authorization: oauth2
-        // config.AccessToken = "YOUR_BEARER_TOKEN";
-
-        var apiInstance = new AccountApi(config);
-
-        var data = new AccountCreateRequest(
-            emailAddress: "newuser@hellosign.com"
-        );
-
-        try
-        {
-            var result = apiInstance.AccountCreate(data);
-            Console.WriteLine(result);
-        }
-        catch (ApiException e)
-        {
-            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
-            Console.WriteLine("Status Code: " + e.ErrorCode);
-            Console.WriteLine(e.StackTrace);
-        }
-    }
-}
-
+REPLACE_ME_WITH_EXAMPLE_FOR__AccountCreate_C#_CODE
 ```
 
 #### Using the AccountCreateWithHttpInfo variant
@@ -116,39 +80,7 @@ Returns the properties and settings of your Account.
 
 ### Example
 ```csharp
-using System;
-
-using Org.HelloSign.Api;
-using Org.HelloSign.Client;
-using Org.HelloSign.Model;
-
-public class Example
-{
-    public static void Main()
-    {
-        var config = new Configuration();
-        // Configure HTTP basic authorization: api_key
-        config.Username = "YOUR_API_KEY";
-
-        // or, configure Bearer (JWT) authorization: oauth2
-        // config.AccessToken = "YOUR_BEARER_TOKEN";
-
-        var apiInstance = new AccountApi(config);
-
-        try
-        {
-            var result = apiInstance.AccountGet();
-            Console.WriteLine(result);
-        }
-        catch (ApiException e)
-        {
-            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
-            Console.WriteLine("Status Code: " + e.ErrorCode);
-            Console.WriteLine(e.StackTrace);
-        }
-    }
-}
-
+REPLACE_ME_WITH_EXAMPLE_FOR__AccountGet_C#_CODE
 ```
 
 #### Using the AccountGetWithHttpInfo variant
@@ -209,43 +141,7 @@ Updates the properties and settings of your Account. Currently only allows for u
 
 ### Example
 ```csharp
-using System;
-
-using Org.HelloSign.Api;
-using Org.HelloSign.Client;
-using Org.HelloSign.Model;
-
-public class Example
-{
-    public static void Main()
-    {
-        var config = new Configuration();
-        // Configure HTTP basic authorization: api_key
-        config.Username = "YOUR_API_KEY";
-
-        // or, configure Bearer (JWT) authorization: oauth2
-        // config.AccessToken = "YOUR_BEARER_TOKEN";
-
-        var apiInstance = new AccountApi(config);
-
-        var data = new AccountUpdateRequest(
-            callbackUrl: "https://www.example.com/callback"
-        );
-
-        try
-        {
-            var result = apiInstance.AccountUpdate(data);
-            Console.WriteLine(result);
-        }
-        catch (ApiException e)
-        {
-            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
-            Console.WriteLine("Status Code: " + e.ErrorCode);
-            Console.WriteLine(e.StackTrace);
-        }
-    }
-}
-
+REPLACE_ME_WITH_EXAMPLE_FOR__AccountUpdate_C#_CODE
 ```
 
 #### Using the AccountUpdateWithHttpInfo variant
@@ -306,43 +202,7 @@ Verifies whether an HelloSign Account exists for the given email address.
 
 ### Example
 ```csharp
-using System;
-
-using Org.HelloSign.Api;
-using Org.HelloSign.Client;
-using Org.HelloSign.Model;
-
-public class Example
-{
-    public static void Main()
-    {
-        var config = new Configuration();
-        // Configure HTTP basic authorization: api_key
-        config.Username = "YOUR_API_KEY";
-
-        // or, configure Bearer (JWT) authorization: oauth2
-        // config.AccessToken = "YOUR_BEARER_TOKEN";
-
-        var apiInstance = new AccountApi(config);
-
-        var data = new AccountVerifyRequest(
-            emailAddress: "some_user@hellosign.com"
-        );
-
-        try
-        {
-            var result = apiInstance.AccountVerify(data);
-            Console.WriteLine(result);
-        }
-        catch (ApiException e)
-        {
-            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
-            Console.WriteLine("Status Code: " + e.ErrorCode);
-            Console.WriteLine(e.StackTrace);
-        }
-    }
-}
-
+REPLACE_ME_WITH_EXAMPLE_FOR__AccountVerify_C#_CODE
 ```
 
 #### Using the AccountVerifyWithHttpInfo variant

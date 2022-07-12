@@ -21,6 +21,7 @@ using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
+using JsonSubTypes;
 using System.ComponentModel.DataAnnotations;
 using OpenAPIDateConverter = Org.HelloSign.Client.OpenAPIDateConverter;
 
@@ -30,79 +31,28 @@ namespace Org.HelloSign.Model
     /// An array of form field objects containing the name, value, and type of each textbox or checkmark field filled in by the signers.
     /// </summary>
     [DataContract(Name = "SignatureRequestResponseData")]
+    [JsonConverter(typeof(JsonSubtypes), "Type")]
+    [JsonSubtypes.KnownSubType(typeof(SignatureRequestResponseDataValueCheckbox), "SignatureRequestResponseDataValueCheckbox")]
+    [JsonSubtypes.KnownSubType(typeof(SignatureRequestResponseDataValueCheckboxMerge), "SignatureRequestResponseDataValueCheckboxMerge")]
+    [JsonSubtypes.KnownSubType(typeof(SignatureRequestResponseDataValueDateSigned), "SignatureRequestResponseDataValueDateSigned")]
+    [JsonSubtypes.KnownSubType(typeof(SignatureRequestResponseDataValueDropdown), "SignatureRequestResponseDataValueDropdown")]
+    [JsonSubtypes.KnownSubType(typeof(SignatureRequestResponseDataValueInitials), "SignatureRequestResponseDataValueInitials")]
+    [JsonSubtypes.KnownSubType(typeof(SignatureRequestResponseDataValueRadio), "SignatureRequestResponseDataValueRadio")]
+    [JsonSubtypes.KnownSubType(typeof(SignatureRequestResponseDataValueSignature), "SignatureRequestResponseDataValueSignature")]
+    [JsonSubtypes.KnownSubType(typeof(SignatureRequestResponseDataValueText), "SignatureRequestResponseDataValueText")]
+    [JsonSubtypes.KnownSubType(typeof(SignatureRequestResponseDataValueTextMerge), "SignatureRequestResponseDataValueTextMerge")]
+    [JsonSubtypes.KnownSubType(typeof(SignatureRequestResponseDataValueCheckbox), "checkbox")]
+    [JsonSubtypes.KnownSubType(typeof(SignatureRequestResponseDataValueCheckboxMerge), "checkbox-merge")]
+    [JsonSubtypes.KnownSubType(typeof(SignatureRequestResponseDataValueDateSigned), "date_signed")]
+    [JsonSubtypes.KnownSubType(typeof(SignatureRequestResponseDataValueDropdown), "dropdown")]
+    [JsonSubtypes.KnownSubType(typeof(SignatureRequestResponseDataValueInitials), "initials")]
+    [JsonSubtypes.KnownSubType(typeof(SignatureRequestResponseDataValueRadio), "radio")]
+    [JsonSubtypes.KnownSubType(typeof(SignatureRequestResponseDataValueSignature), "signature")]
+    [JsonSubtypes.KnownSubType(typeof(SignatureRequestResponseDataValueText), "text")]
+    [JsonSubtypes.KnownSubType(typeof(SignatureRequestResponseDataValueTextMerge), "text-merge")]
     [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
     public partial class SignatureRequestResponseData : IOpenApiTyped, IEquatable<SignatureRequestResponseData>, IValidatableObject
     {
-        /// <summary>
-        /// - &#x60;text&#x60;: A text input field - &#x60;checkbox&#x60;: A yes/no checkbox - &#x60;date_signed&#x60;: A date - &#x60;dropdown&#x60;: An input field for dropdowns - &#x60;initials&#x60;: An input field for initials - &#x60;radio&#x60;: An input field for radios - &#x60;signature&#x60;: A signature input field - &#x60;text-merge&#x60;: A text field that has default text set by the api - &#x60;checkbox-merge&#x60;: A checkbox field that has default value set by the api
-        /// </summary>
-        /// <value>- &#x60;text&#x60;: A text input field - &#x60;checkbox&#x60;: A yes/no checkbox - &#x60;date_signed&#x60;: A date - &#x60;dropdown&#x60;: An input field for dropdowns - &#x60;initials&#x60;: An input field for initials - &#x60;radio&#x60;: An input field for radios - &#x60;signature&#x60;: A signature input field - &#x60;text-merge&#x60;: A text field that has default text set by the api - &#x60;checkbox-merge&#x60;: A checkbox field that has default value set by the api</value>
-        [JsonConverter(typeof(StringEnumConverter))]
-        public enum TypeEnum
-        {
-            /// <summary>
-            /// Enum Text for value: text
-            /// </summary>
-            [EnumMember(Value = "text")]
-            Text = 1,
-
-            /// <summary>
-            /// Enum Checkbox for value: checkbox
-            /// </summary>
-            [EnumMember(Value = "checkbox")]
-            Checkbox = 2,
-
-            /// <summary>
-            /// Enum DateSigned for value: date_signed
-            /// </summary>
-            [EnumMember(Value = "date_signed")]
-            DateSigned = 3,
-
-            /// <summary>
-            /// Enum Dropdown for value: dropdown
-            /// </summary>
-            [EnumMember(Value = "dropdown")]
-            Dropdown = 4,
-
-            /// <summary>
-            /// Enum Initials for value: initials
-            /// </summary>
-            [EnumMember(Value = "initials")]
-            Initials = 5,
-
-            /// <summary>
-            /// Enum Radio for value: radio
-            /// </summary>
-            [EnumMember(Value = "radio")]
-            Radio = 6,
-
-            /// <summary>
-            /// Enum Signature for value: signature
-            /// </summary>
-            [EnumMember(Value = "signature")]
-            Signature = 7,
-
-            /// <summary>
-            /// Enum TextMerge for value: text-merge
-            /// </summary>
-            [EnumMember(Value = "text-merge")]
-            TextMerge = 8,
-
-            /// <summary>
-            /// Enum CheckboxMerge for value: checkbox-merge
-            /// </summary>
-            [EnumMember(Value = "checkbox-merge")]
-            CheckboxMerge = 9
-
-        }
-
-
-        /// <summary>
-        /// - &#x60;text&#x60;: A text input field - &#x60;checkbox&#x60;: A yes/no checkbox - &#x60;date_signed&#x60;: A date - &#x60;dropdown&#x60;: An input field for dropdowns - &#x60;initials&#x60;: An input field for initials - &#x60;radio&#x60;: An input field for radios - &#x60;signature&#x60;: A signature input field - &#x60;text-merge&#x60;: A text field that has default text set by the api - &#x60;checkbox-merge&#x60;: A checkbox field that has default value set by the api
-        /// </summary>
-        /// <value>- &#x60;text&#x60;: A text input field - &#x60;checkbox&#x60;: A yes/no checkbox - &#x60;date_signed&#x60;: A date - &#x60;dropdown&#x60;: An input field for dropdowns - &#x60;initials&#x60;: An input field for initials - &#x60;radio&#x60;: An input field for radios - &#x60;signature&#x60;: A signature input field - &#x60;text-merge&#x60;: A text field that has default text set by the api - &#x60;checkbox-merge&#x60;: A checkbox field that has default value set by the api</value>
-        [DataMember(Name = "type", EmitDefaultValue = true)]
-        public TypeEnum? Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="SignatureRequestResponseData" /> class.
         /// </summary>
@@ -114,18 +64,14 @@ namespace Org.HelloSign.Model
         /// <param name="apiId">The unique ID for this field..</param>
         /// <param name="signatureId">The ID of the signature to which this response is linked..</param>
         /// <param name="name">The name of the form field..</param>
-        /// <param name="value">The value of the form field..</param>
         /// <param name="required">A boolean value denoting if this field is required..</param>
-        /// <param name="type">- &#x60;text&#x60;: A text input field - &#x60;checkbox&#x60;: A yes/no checkbox - &#x60;date_signed&#x60;: A date - &#x60;dropdown&#x60;: An input field for dropdowns - &#x60;initials&#x60;: An input field for initials - &#x60;radio&#x60;: An input field for radios - &#x60;signature&#x60;: A signature input field - &#x60;text-merge&#x60;: A text field that has default text set by the api - &#x60;checkbox-merge&#x60;: A checkbox field that has default value set by the api.</param>
-        public SignatureRequestResponseData(string apiId = default(string), string signatureId = default(string), string name = default(string), string value = default(string), bool required = default(bool), TypeEnum? type = default(TypeEnum?))
+        public SignatureRequestResponseData(string apiId = default(string), string signatureId = default(string), string name = default(string), bool required = default(bool))
         {
             
             this.ApiId = apiId;
             this.SignatureId = signatureId;
             this.Name = name;
-            this.Value = value;
             this.Required = required;
-            this.Type = type;
         }
 
         /// <summary>
@@ -150,13 +96,6 @@ namespace Org.HelloSign.Model
         public string Name { get; set; }
 
         /// <summary>
-        /// The value of the form field.
-        /// </summary>
-        /// <value>The value of the form field.</value>
-        [DataMember(Name = "value", EmitDefaultValue = true)]
-        public string Value { get; set; }
-
-        /// <summary>
         /// A boolean value denoting if this field is required.
         /// </summary>
         /// <value>A boolean value denoting if this field is required.</value>
@@ -174,9 +113,7 @@ namespace Org.HelloSign.Model
             sb.Append("  ApiId: ").Append(ApiId).Append("\n");
             sb.Append("  SignatureId: ").Append(SignatureId).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
-            sb.Append("  Value: ").Append(Value).Append("\n");
             sb.Append("  Required: ").Append(Required).Append("\n");
-            sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -228,17 +165,8 @@ namespace Org.HelloSign.Model
                     this.Name.Equals(input.Name))
                 ) && 
                 (
-                    this.Value == input.Value ||
-                    (this.Value != null &&
-                    this.Value.Equals(input.Value))
-                ) && 
-                (
                     this.Required == input.Required ||
                     this.Required.Equals(input.Required)
-                ) && 
-                (
-                    this.Type == input.Type ||
-                    this.Type.Equals(input.Type)
                 );
         }
 
@@ -263,12 +191,7 @@ namespace Org.HelloSign.Model
                 {
                     hashCode = (hashCode * 59) + this.Name.GetHashCode();
                 }
-                if (this.Value != null)
-                {
-                    hashCode = (hashCode * 59) + this.Value.GetHashCode();
-                }
                 hashCode = (hashCode * 59) + this.Required.GetHashCode();
-                hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 return hashCode;
             }
         }
@@ -295,22 +218,10 @@ namespace Org.HelloSign.Model
                 Value = Name,
             });
             types.Add(new OpenApiType(){
-                Name = "value",
-                Property = "Value",
-                Type = "string",
-                Value = Value,
-            });
-            types.Add(new OpenApiType(){
                 Name = "required",
                 Property = "Required",
                 Type = "bool",
                 Value = Required,
-            });
-            types.Add(new OpenApiType(){
-                Name = "type",
-                Property = "Type",
-                Type = "string",
-                Value = Type,
             });
 
             return types;
@@ -322,6 +233,16 @@ namespace Org.HelloSign.Model
         /// <param name="validationContext">Validation context</param>
         /// <returns>Validation Result</returns>
         public IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> Validate(ValidationContext validationContext)
+        {
+            return this.BaseValidate(validationContext);
+        }
+
+        /// <summary>
+        /// To validate all properties of the instance
+        /// </summary>
+        /// <param name="validationContext">Validation context</param>
+        /// <returns>Validation Result</returns>
+        protected IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> BaseValidate(ValidationContext validationContext)
         {
             yield break;
         }

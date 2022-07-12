@@ -8,7 +8,10 @@ All URIs are relative to *https://api.hellosign.com/v3*
 | [**TeamCreate**](TeamApi.md#teamcreate) | **POST** /team/create | Create Team |
 | [**TeamDelete**](TeamApi.md#teamdelete) | **DELETE** /team/destroy | Delete Team |
 | [**TeamGet**](TeamApi.md#teamget) | **GET** /team | Get Team |
+| [**TeamInfo**](TeamApi.md#teaminfo) | **GET** /team/info | Get Team Info |
+| [**TeamMembers**](TeamApi.md#teammembers) | **GET** /team/members/{team_id} | List Team Members |
 | [**TeamRemoveMember**](TeamApi.md#teamremovemember) | **POST** /team/remove_member | Remove User from Team |
+| [**TeamSubTeams**](TeamApi.md#teamsubteams) | **GET** /team/sub_teams/{team_id} | List Sub Teams |
 | [**TeamUpdate**](TeamApi.md#teamupdate) | **PUT** /team | Update Team |
 
 <a name="teamaddmember"></a>
@@ -21,43 +24,7 @@ Invites a user (specified using the `email_address` parameter) to your Team. If 
 
 ### Example
 ```csharp
-using System;
-using System.Collections.Generic;
-using Org.HelloSign.Api;
-using Org.HelloSign.Client;
-using Org.HelloSign.Model;
-
-public class Example
-{
-    public static void Main()
-    {
-        var config = new Configuration();
-        // Configure HTTP basic authorization: api_key
-        config.Username = "YOUR_API_KEY";
-
-        // or, configure Bearer (JWT) authorization: oauth2
-        // config.AccessToken = "YOUR_BEARER_TOKEN";
-
-        var apiInstance = new TeamApi(config);
-
-        var data = new TeamAddMemberRequest(
-            emailAddress: "george@example.com"
-        );
-
-        try
-        {
-            var result = apiInstance.TeamAddMember(data);
-            Console.WriteLine(result);
-        }
-        catch (ApiException e)
-        {
-            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
-            Console.WriteLine("Status Code: " + e.ErrorCode);
-            Console.WriteLine(e.StackTrace);
-        }
-    }
-}
-
+REPLACE_ME_WITH_EXAMPLE_FOR__TeamAddMember_C#_CODE
 ```
 
 #### Using the TeamAddMemberWithHttpInfo variant
@@ -119,43 +86,7 @@ Creates a new Team and makes you a member. You must not currently belong to a Te
 
 ### Example
 ```csharp
-using System;
-using System.Collections.Generic;
-using Org.HelloSign.Api;
-using Org.HelloSign.Client;
-using Org.HelloSign.Model;
-
-public class Example
-{
-    public static void Main()
-    {
-        var config = new Configuration();
-        // Configure HTTP basic authorization: api_key
-        config.Username = "YOUR_API_KEY";
-
-        // or, configure Bearer (JWT) authorization: oauth2
-        // config.AccessToken = "YOUR_BEARER_TOKEN";
-
-        var apiInstance = new TeamApi(config);
-
-        var data = new TeamCreateRequest(
-            name: "New Team Name"
-        );
-
-        try
-        {
-            var result = apiInstance.TeamCreate(data);
-            Console.WriteLine(result);
-        }
-        catch (ApiException e)
-        {
-            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
-            Console.WriteLine("Status Code: " + e.ErrorCode);
-            Console.WriteLine(e.StackTrace);
-        }
-    }
-}
-
+REPLACE_ME_WITH_EXAMPLE_FOR__TeamCreate_C#_CODE
 ```
 
 #### Using the TeamCreateWithHttpInfo variant
@@ -216,38 +147,7 @@ Deletes your Team. Can only be invoked when you have a Team with only one member
 
 ### Example
 ```csharp
-using System;
-using System.Collections.Generic;
-using Org.HelloSign.Api;
-using Org.HelloSign.Client;
-using Org.HelloSign.Model;
-
-public class Example
-{
-    public static void Main()
-    {
-        var config = new Configuration();
-        // Configure HTTP basic authorization: api_key
-        config.Username = "YOUR_API_KEY";
-
-        // or, configure Bearer (JWT) authorization: oauth2
-        // config.AccessToken = "YOUR_BEARER_TOKEN";
-
-        var apiInstance = new TeamApi(config);
-
-        try
-        {
-            apiInstance.TeamDelete();
-        }
-        catch (ApiException e)
-        {
-            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
-            Console.WriteLine("Status Code: " + e.ErrorCode);
-            Console.WriteLine(e.StackTrace);
-        }
-    }
-}
-
+REPLACE_ME_WITH_EXAMPLE_FOR__TeamDelete_C#_CODE
 ```
 
 #### Using the TeamDeleteWithHttpInfo variant
@@ -301,39 +201,7 @@ Returns information about your Team as well as a list of its members. If you do 
 
 ### Example
 ```csharp
-using System;
-using System.Collections.Generic;
-using Org.HelloSign.Api;
-using Org.HelloSign.Client;
-using Org.HelloSign.Model;
-
-public class Example
-{
-    public static void Main()
-    {
-        var config = new Configuration();
-        // Configure HTTP basic authorization: api_key
-        config.Username = "YOUR_API_KEY";
-
-        // or, configure Bearer (JWT) authorization: oauth2
-        // config.AccessToken = "YOUR_BEARER_TOKEN";
-
-        var apiInstance = new TeamApi(config);
-
-        try
-        {
-            var result = apiInstance.TeamGet();
-            Console.WriteLine(result);
-        }
-        catch (ApiException e)
-        {
-            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
-            Console.WriteLine("Status Code: " + e.ErrorCode);
-            Console.WriteLine(e.StackTrace);
-        }
-    }
-}
-
+REPLACE_ME_WITH_EXAMPLE_FOR__TeamGet_C#_CODE
 ```
 
 #### Using the TeamGetWithHttpInfo variant
@@ -380,6 +248,130 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a name="teaminfo"></a>
+# **TeamInfo**
+> TeamGetInfoResponse TeamInfo (string? teamId = null)
+
+Get Team Info
+
+Provides information about a team.
+
+### Example
+```csharp
+REPLACE_ME_WITH_EXAMPLE_FOR__TeamInfo_C#_CODE
+```
+
+#### Using the TeamInfoWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Get Team Info
+    ApiResponse<TeamGetInfoResponse> response = apiInstance.TeamInfoWithHttpInfo(teamId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling TeamApi.TeamInfoWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **teamId** | **string?** | The id of the team. | [optional]  |
+
+### Return type
+
+[**TeamGetInfoResponse**](TeamGetInfoResponse.md)
+
+### Authorization
+
+[api_key](../README.md#api_key), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | successful operation |  -  |
+| **4XX** | failed_operation |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="teammembers"></a>
+# **TeamMembers**
+> TeamMembersResponse TeamMembers (string teamId, int? page = null, int? pageSize = null)
+
+List Team Members
+
+Provides a paginated list of members (and their roles) that belong to a given team.
+
+### Example
+```csharp
+REPLACE_ME_WITH_EXAMPLE_FOR__TeamMembers_C#_CODE
+```
+
+#### Using the TeamMembersWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List Team Members
+    ApiResponse<TeamMembersResponse> response = apiInstance.TeamMembersWithHttpInfo(teamId, page, pageSize);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling TeamApi.TeamMembersWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **teamId** | **string** | The id of the team that a member list is being requested from. |  |
+| **page** | **int?** | Which page number of the team member list to return. Defaults to `1`. | [optional] [default to 1] |
+| **pageSize** | **int?** | Number of objects to be returned per page. Must be between `1` and `100`. Default is `20`. | [optional] [default to 20] |
+
+### Return type
+
+[**TeamMembersResponse**](TeamMembersResponse.md)
+
+### Authorization
+
+[api_key](../README.md#api_key), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | successful operation |  -  |
+| **4XX** | failed_operation |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a name="teamremovemember"></a>
 # **TeamRemoveMember**
 > TeamGetResponse TeamRemoveMember (TeamRemoveMemberRequest teamRemoveMemberRequest)
@@ -390,44 +382,7 @@ Removes the provided user Account from your Team. If the Account had an outstand
 
 ### Example
 ```csharp
-using System;
-using System.Collections.Generic;
-using Org.HelloSign.Api;
-using Org.HelloSign.Client;
-using Org.HelloSign.Model;
-
-public class Example
-{
-    public static void Main()
-    {
-        var config = new Configuration();
-        // Configure HTTP basic authorization: api_key
-        config.Username = "YOUR_API_KEY";
-
-        // or, configure Bearer (JWT) authorization: oauth2
-        // config.AccessToken = "YOUR_BEARER_TOKEN";
-
-        var apiInstance = new TeamApi(config);
-
-        var data = new TeamRemoveMemberRequest(
-            emailAddress: "teammate@hellosign.com",
-            newOwnerEmailAddress: "new_teammate@hellosign.com"
-        );
-
-        try
-        {
-            var result = apiInstance.TeamRemoveMember(data);
-            Console.WriteLine(result);
-        }
-        catch (ApiException e)
-        {
-            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
-            Console.WriteLine("Status Code: " + e.ErrorCode);
-            Console.WriteLine(e.StackTrace);
-        }
-    }
-}
-
+REPLACE_ME_WITH_EXAMPLE_FOR__TeamRemoveMember_C#_CODE
 ```
 
 #### Using the TeamRemoveMemberWithHttpInfo variant
@@ -478,6 +433,69 @@ catch (ApiException e)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a name="teamsubteams"></a>
+# **TeamSubTeams**
+> TeamSubTeamsResponse TeamSubTeams (string teamId, int? page = null, int? pageSize = null)
+
+List Sub Teams
+
+Provides a paginated list of sub teams that belong to a given team.
+
+### Example
+```csharp
+REPLACE_ME_WITH_EXAMPLE_FOR__TeamSubTeams_C#_CODE
+```
+
+#### Using the TeamSubTeamsWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List Sub Teams
+    ApiResponse<TeamSubTeamsResponse> response = apiInstance.TeamSubTeamsWithHttpInfo(teamId, page, pageSize);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling TeamApi.TeamSubTeamsWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **teamId** | **string** | The id of the parent Team. |  |
+| **page** | **int?** | Which page number of the SubTeam List to return. Defaults to `1`. | [optional] [default to 1] |
+| **pageSize** | **int?** | Number of objects to be returned per page. Must be between `1` and `100`. Default is `20`. | [optional] [default to 20] |
+
+### Return type
+
+[**TeamSubTeamsResponse**](TeamSubTeamsResponse.md)
+
+### Authorization
+
+[api_key](../README.md#api_key), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | successful operation |  -  |
+| **4XX** | failed_operation |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a name="teamupdate"></a>
 # **TeamUpdate**
 > TeamGetResponse TeamUpdate (TeamUpdateRequest teamUpdateRequest)
@@ -488,43 +506,7 @@ Updates the name of your Team.
 
 ### Example
 ```csharp
-using System;
-using System.Collections.Generic;
-using Org.HelloSign.Api;
-using Org.HelloSign.Client;
-using Org.HelloSign.Model;
-
-public class Example
-{
-    public static void Main()
-    {
-        var config = new Configuration();
-        // Configure HTTP basic authorization: api_key
-        config.Username = "YOUR_API_KEY";
-
-        // or, configure Bearer (JWT) authorization: oauth2
-        // config.AccessToken = "YOUR_BEARER_TOKEN";
-
-        var apiInstance = new TeamApi(config);
-
-        var data = new TeamUpdateRequest(
-            name: "New Team Name"
-        );
-
-        try
-        {
-            var result = apiInstance.TeamUpdate(data);
-            Console.WriteLine(result);
-        }
-        catch (ApiException e)
-        {
-            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
-            Console.WriteLine("Status Code: " + e.ErrorCode);
-            Console.WriteLine(e.StackTrace);
-        }
-    }
-}
-
+REPLACE_ME_WITH_EXAMPLE_FOR__TeamUpdate_C#_CODE
 ```
 
 #### Using the TeamUpdateWithHttpInfo variant

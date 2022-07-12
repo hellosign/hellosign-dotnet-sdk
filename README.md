@@ -72,43 +72,7 @@ c.Proxy = webProxy;
 
 
 ```csharp
-using System;
-
-using Org.HelloSign.Api;
-using Org.HelloSign.Client;
-using Org.HelloSign.Model;
-
-public class Example
-{
-    public static void Main()
-    {
-        var config = new Configuration();
-        // Configure HTTP basic authorization: api_key
-        config.Username = "YOUR_API_KEY";
-
-        // or, configure Bearer (JWT) authorization: oauth2
-        // config.AccessToken = "YOUR_BEARER_TOKEN";
-
-        var apiInstance = new AccountApi(config);
-
-        var data = new AccountCreateRequest(
-            emailAddress: "newuser@hellosign.com"
-        );
-
-        try
-        {
-            var result = apiInstance.AccountCreate(data);
-            Console.WriteLine(result);
-        }
-        catch (ApiException e)
-        {
-            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
-            Console.WriteLine("Status Code: " + e.ErrorCode);
-            Console.WriteLine(e.StackTrace);
-        }
-    }
-}
-
+REPLACE_ME_WITH_EXAMPLE_FOR__AccountCreate_C#_CODE
 ```
 
 
@@ -154,7 +118,10 @@ Class | Method | HTTP request | Description
 *TeamApi* | [**TeamCreate**](docs/TeamApi.md#teamcreate) | **POST** /team/create | Create Team
 *TeamApi* | [**TeamDelete**](docs/TeamApi.md#teamdelete) | **DELETE** /team/destroy | Delete Team
 *TeamApi* | [**TeamGet**](docs/TeamApi.md#teamget) | **GET** /team | Get Team
+*TeamApi* | [**TeamInfo**](docs/TeamApi.md#teaminfo) | **GET** /team/info | Get Team Info
+*TeamApi* | [**TeamMembers**](docs/TeamApi.md#teammembers) | **GET** /team/members/{team_id} | List Team Members
 *TeamApi* | [**TeamRemoveMember**](docs/TeamApi.md#teamremovemember) | **POST** /team/remove_member | Remove User from Team
+*TeamApi* | [**TeamSubTeams**](docs/TeamApi.md#teamsubteams) | **GET** /team/sub_teams/{team_id} | List Sub Teams
 *TeamApi* | [**TeamUpdate**](docs/TeamApi.md#teamupdate) | **PUT** /team | Update Team
 *TemplateApi* | [**TemplateAddUser**](docs/TemplateApi.md#templateadduser) | **POST** /template/add_user/{template_id} | Add User to Template
 *TemplateApi* | [**TemplateCreateEmbeddedDraft**](docs/TemplateApi.md#templatecreateembeddeddraft) | **POST** /template/create_embedded_draft | Create Embedded Template Draft
@@ -234,6 +201,25 @@ Class | Method | HTTP request | Description
  - [Model.SignatureRequestResponseCustomFieldTextAllOf](docs/SignatureRequestResponseCustomFieldTextAllOf.md)
  - [Model.SignatureRequestResponseCustomFieldTypeEnum](docs/SignatureRequestResponseCustomFieldTypeEnum.md)
  - [Model.SignatureRequestResponseData](docs/SignatureRequestResponseData.md)
+ - [Model.SignatureRequestResponseDataTypeEnum](docs/SignatureRequestResponseDataTypeEnum.md)
+ - [Model.SignatureRequestResponseDataValueCheckbox](docs/SignatureRequestResponseDataValueCheckbox.md)
+ - [Model.SignatureRequestResponseDataValueCheckboxAllOf](docs/SignatureRequestResponseDataValueCheckboxAllOf.md)
+ - [Model.SignatureRequestResponseDataValueCheckboxMerge](docs/SignatureRequestResponseDataValueCheckboxMerge.md)
+ - [Model.SignatureRequestResponseDataValueCheckboxMergeAllOf](docs/SignatureRequestResponseDataValueCheckboxMergeAllOf.md)
+ - [Model.SignatureRequestResponseDataValueDateSigned](docs/SignatureRequestResponseDataValueDateSigned.md)
+ - [Model.SignatureRequestResponseDataValueDateSignedAllOf](docs/SignatureRequestResponseDataValueDateSignedAllOf.md)
+ - [Model.SignatureRequestResponseDataValueDropdown](docs/SignatureRequestResponseDataValueDropdown.md)
+ - [Model.SignatureRequestResponseDataValueDropdownAllOf](docs/SignatureRequestResponseDataValueDropdownAllOf.md)
+ - [Model.SignatureRequestResponseDataValueInitials](docs/SignatureRequestResponseDataValueInitials.md)
+ - [Model.SignatureRequestResponseDataValueInitialsAllOf](docs/SignatureRequestResponseDataValueInitialsAllOf.md)
+ - [Model.SignatureRequestResponseDataValueRadio](docs/SignatureRequestResponseDataValueRadio.md)
+ - [Model.SignatureRequestResponseDataValueRadioAllOf](docs/SignatureRequestResponseDataValueRadioAllOf.md)
+ - [Model.SignatureRequestResponseDataValueSignature](docs/SignatureRequestResponseDataValueSignature.md)
+ - [Model.SignatureRequestResponseDataValueSignatureAllOf](docs/SignatureRequestResponseDataValueSignatureAllOf.md)
+ - [Model.SignatureRequestResponseDataValueText](docs/SignatureRequestResponseDataValueText.md)
+ - [Model.SignatureRequestResponseDataValueTextAllOf](docs/SignatureRequestResponseDataValueTextAllOf.md)
+ - [Model.SignatureRequestResponseDataValueTextMerge](docs/SignatureRequestResponseDataValueTextMerge.md)
+ - [Model.SignatureRequestResponseDataValueTextMergeAllOf](docs/SignatureRequestResponseDataValueTextMergeAllOf.md)
  - [Model.SignatureRequestResponseSignatures](docs/SignatureRequestResponseSignatures.md)
  - [Model.SignatureRequestSendRequest](docs/SignatureRequestSendRequest.md)
  - [Model.SignatureRequestSendWithTemplateRequest](docs/SignatureRequestSendWithTemplateRequest.md)
@@ -277,15 +263,22 @@ Class | Method | HTTP request | Description
  - [Model.SubSignatureRequestSigner](docs/SubSignatureRequestSigner.md)
  - [Model.SubSignatureRequestTemplateSigner](docs/SubSignatureRequestTemplateSigner.md)
  - [Model.SubSigningOptions](docs/SubSigningOptions.md)
+ - [Model.SubTeamResponse](docs/SubTeamResponse.md)
  - [Model.SubTemplateRole](docs/SubTemplateRole.md)
  - [Model.SubUnclaimedDraftSigner](docs/SubUnclaimedDraftSigner.md)
  - [Model.SubUnclaimedDraftTemplateSigner](docs/SubUnclaimedDraftTemplateSigner.md)
  - [Model.SubWhiteLabelingOptions](docs/SubWhiteLabelingOptions.md)
  - [Model.TeamAddMemberRequest](docs/TeamAddMemberRequest.md)
  - [Model.TeamCreateRequest](docs/TeamCreateRequest.md)
+ - [Model.TeamGetInfoResponse](docs/TeamGetInfoResponse.md)
  - [Model.TeamGetResponse](docs/TeamGetResponse.md)
+ - [Model.TeamInfoResponse](docs/TeamInfoResponse.md)
+ - [Model.TeamMemberResponse](docs/TeamMemberResponse.md)
+ - [Model.TeamMembersResponse](docs/TeamMembersResponse.md)
+ - [Model.TeamParentResponse](docs/TeamParentResponse.md)
  - [Model.TeamRemoveMemberRequest](docs/TeamRemoveMemberRequest.md)
  - [Model.TeamResponse](docs/TeamResponse.md)
+ - [Model.TeamSubTeamsResponse](docs/TeamSubTeamsResponse.md)
  - [Model.TeamUpdateRequest](docs/TeamUpdateRequest.md)
  - [Model.TemplateAddUserRequest](docs/TemplateAddUserRequest.md)
  - [Model.TemplateCreateEmbeddedDraftRequest](docs/TemplateCreateEmbeddedDraftRequest.md)

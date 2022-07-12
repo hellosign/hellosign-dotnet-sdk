@@ -23,45 +23,7 @@ Gives the specified Account access to the specified Template. The specified Acco
 
 ### Example
 ```csharp
-using System;
-using System.Collections.Generic;
-using Org.HelloSign.Api;
-using Org.HelloSign.Client;
-using Org.HelloSign.Model;
-
-public class Example
-{
-    public static void Main()
-    {
-        var config = new Configuration();
-        // Configure HTTP basic authorization: api_key
-        config.Username = "YOUR_API_KEY";
-
-        // or, configure Bearer (JWT) authorization: oauth2
-        // config.AccessToken = "YOUR_BEARER_TOKEN";
-
-        var apiInstance = new TemplateApi(config);
-
-        var templateId = "f57db65d3f933b5316d398057a36176831451a35";
-
-        var data = new TemplateAddUserRequest(
-            emailAddress: "george@hellosign.com"
-        );
-
-        try
-        {
-            var result = apiInstance.TemplateAddUser(templateId, data);
-            Console.WriteLine(result);
-        }
-        catch (ApiException e)
-        {
-            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
-            Console.WriteLine("Status Code: " + e.ErrorCode);
-            Console.WriteLine(e.StackTrace);
-        }
-    }
-}
-
+REPLACE_ME_WITH_EXAMPLE_FOR__TemplateAddUser_C#_CODE
 ```
 
 #### Using the TemplateAddUserWithHttpInfo variant
@@ -123,76 +85,7 @@ The first step in an embedded template workflow. Creates a draft template that c
 
 ### Example
 ```csharp
-using System;
-using System.Collections.Generic;
-using Org.HelloSign.Api;
-using Org.HelloSign.Client;
-using Org.HelloSign.Model;
-
-public class Example
-{
-    public static void Main()
-    {
-        var config = new Configuration();
-        // Configure HTTP basic authorization: api_key
-        config.Username = "YOUR_API_KEY";
-
-        // or, configure Bearer (JWT) authorization: oauth2
-        // config.AccessToken = "YOUR_BEARER_TOKEN";
-
-        var apiInstance = new TemplateApi(config);
-
-        var role1 = new SubTemplateRole(
-            name: "Client",
-            order: 0
-        );
-
-        var role2 = new SubTemplateRole(
-            name: "Witness",
-            order: 1
-        );
-
-        var mergeField1 = new SubMergeField(
-            name: "Full Name",
-            type: SubMergeField.TypeEnum.Text
-        );
-
-        var mergeField2 = new SubMergeField(
-            name: "Is Registered?",
-            type: SubMergeField.TypeEnum.Checkbox
-        );
-
-        var subFieldOptions = new SubFieldOptions(
-            dateFormat: SubFieldOptions.DateFormatEnum.DDMMYYYY
-        );
-
-        var data = new TemplateCreateEmbeddedDraftRequest(
-            clientId: "37dee8d8440c66d54cfa05d92c160882",
-            fileUrl: new List<string>(){"https://app.hellosign.com/docs/example_signature_request.pdf"},
-            title: "Test Template",
-            subject: "Please sign this document",
-            message: "For your approval",
-            signerRoles: new List<SubTemplateRole>(){role1, role2},
-            ccRoles: new List<string>(){"Manager"},
-            mergeFields: new List<SubMergeField>(){mergeField1, mergeField2},
-            fieldOptions: subFieldOptions,
-            testMode: true
-        );
-
-        try
-        {
-            var result = apiInstance.TemplateCreateEmbeddedDraft(data);
-            Console.WriteLine(result);
-        }
-        catch (ApiException e)
-        {
-            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
-            Console.WriteLine("Status Code: " + e.ErrorCode);
-            Console.WriteLine(e.StackTrace);
-        }
-    }
-}
-
+REPLACE_ME_WITH_EXAMPLE_FOR__TemplateCreateEmbeddedDraft_C#_CODE
 ```
 
 #### Using the TemplateCreateEmbeddedDraftWithHttpInfo variant
@@ -253,40 +146,7 @@ Completely deletes the template specified from the account.
 
 ### Example
 ```csharp
-using System;
-using System.Collections.Generic;
-using Org.HelloSign.Api;
-using Org.HelloSign.Client;
-using Org.HelloSign.Model;
-
-public class Example
-{
-    public static void Main()
-    {
-        var config = new Configuration();
-        // Configure HTTP basic authorization: api_key
-        config.Username = "YOUR_API_KEY";
-
-        // or, configure Bearer (JWT) authorization: oauth2
-        // config.AccessToken = "YOUR_BEARER_TOKEN";
-
-        var apiInstance = new TemplateApi(config);
-
-        var templateId = "f57db65d3f933b5316d398057a36176831451a35";
-
-        try
-        {
-            apiInstance.TemplateDelete(templateId);
-        }
-        catch (ApiException e)
-        {
-            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
-            Console.WriteLine("Status Code: " + e.ErrorCode);
-            Console.WriteLine(e.StackTrace);
-        }
-    }
-}
-
+REPLACE_ME_WITH_EXAMPLE_FOR__TemplateDelete_C#_CODE
 ```
 
 #### Using the TemplateDeleteWithHttpInfo variant
@@ -344,41 +204,7 @@ Obtain a copy of the current documents specified by the `template_id` parameter.
 
 ### Example
 ```csharp
-using System;
-using System.Collections.Generic;
-using Org.HelloSign.Api;
-using Org.HelloSign.Client;
-using Org.HelloSign.Model;
-
-public class Example
-{
-    public static void Main()
-    {
-        var config = new Configuration();
-        // Configure HTTP basic authorization: api_key
-        config.Username = "YOUR_API_KEY";
-
-        // or, configure Bearer (JWT) authorization: oauth2
-        // config.AccessToken = "YOUR_BEARER_TOKEN";
-
-        var apiInstance = new TemplateApi(config);
-
-        var templateId = "f57db65d3f933b5316d398057a36176831451a35";
-
-        try
-        {
-            var result = apiInstance.TemplateFiles(templateId, "pdf", false, false);
-            Console.WriteLine(result);
-        }
-        catch (ApiException e)
-        {
-            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
-            Console.WriteLine("Status Code: " + e.ErrorCode);
-            Console.WriteLine(e.StackTrace);
-        }
-    }
-}
-
+REPLACE_ME_WITH_EXAMPLE_FOR__TemplateFiles_C#_CODE
 ```
 
 #### Using the TemplateFilesWithHttpInfo variant
@@ -442,41 +268,7 @@ Returns the Template specified by the `id` parameter.
 
 ### Example
 ```csharp
-using System;
-using System.Collections.Generic;
-using Org.HelloSign.Api;
-using Org.HelloSign.Client;
-using Org.HelloSign.Model;
-
-public class Example
-{
-    public static void Main()
-    {
-        var config = new Configuration();
-        // Configure HTTP basic authorization: api_key
-        config.Username = "YOUR_API_KEY";
-
-        // or, configure Bearer (JWT) authorization: oauth2
-        // config.AccessToken = "YOUR_BEARER_TOKEN";
-
-        var apiInstance = new TemplateApi(config);
-
-        var templateId = "f57db65d3f933b5316d398057a36176831451a35";
-
-        try
-        {
-            var result = apiInstance.TemplateGet(templateId);
-            Console.WriteLine(result);
-        }
-        catch (ApiException e)
-        {
-            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
-            Console.WriteLine("Status Code: " + e.ErrorCode);
-            Console.WriteLine(e.StackTrace);
-        }
-    }
-}
-
+REPLACE_ME_WITH_EXAMPLE_FOR__TemplateGet_C#_CODE
 ```
 
 #### Using the TemplateGetWithHttpInfo variant
@@ -537,41 +329,7 @@ Returns a list of the Templates that are accessible by you.  Take a look at our 
 
 ### Example
 ```csharp
-using System;
-using System.Collections.Generic;
-using Org.HelloSign.Api;
-using Org.HelloSign.Client;
-using Org.HelloSign.Model;
-
-public class Example
-{
-    public static void Main()
-    {
-        var config = new Configuration();
-        // Configure HTTP basic authorization: api_key
-        config.Username = "YOUR_API_KEY";
-
-        // or, configure Bearer (JWT) authorization: oauth2
-        // config.AccessToken = "YOUR_BEARER_TOKEN";
-
-        var apiInstance = new TemplateApi(config);
-
-        var accountId = "f57db65d3f933b5316d398057a36176831451a35";
-
-        try
-        {
-            var result = apiInstance.TemplateList(accountId, 1, 20, null);
-            Console.WriteLine(result);
-        }
-        catch (ApiException e)
-        {
-            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
-            Console.WriteLine("Status Code: " + e.ErrorCode);
-            Console.WriteLine(e.StackTrace);
-        }
-    }
-}
-
+REPLACE_ME_WITH_EXAMPLE_FOR__TemplateList_C#_CODE
 ```
 
 #### Using the TemplateListWithHttpInfo variant
@@ -635,45 +393,7 @@ Removes the specified Account's access to the specified Template.
 
 ### Example
 ```csharp
-using System;
-using System.Collections.Generic;
-using Org.HelloSign.Api;
-using Org.HelloSign.Client;
-using Org.HelloSign.Model;
-
-public class Example
-{
-    public static void Main()
-    {
-        var config = new Configuration();
-        // Configure HTTP basic authorization: api_key
-        config.Username = "YOUR_API_KEY";
-
-        // or, configure Bearer (JWT) authorization: oauth2
-        // config.AccessToken = "YOUR_BEARER_TOKEN";
-
-        var apiInstance = new TemplateApi(config);
-
-        var data = new TemplateRemoveUserRequest(
-            emailAddress: "george@hellosign.com"
-        );
-
-        var templateId = "21f920ec2b7f4b6bb64d3ed79f26303843046536";
-
-        try
-        {
-            var result = apiInstance.TemplateRemoveUser(templateId, data);
-            Console.WriteLine(result);
-        }
-        catch (ApiException e)
-        {
-            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
-            Console.WriteLine("Status Code: " + e.ErrorCode);
-            Console.WriteLine(e.StackTrace);
-        }
-    }
-}
-
+REPLACE_ME_WITH_EXAMPLE_FOR__TemplateRemoveUser_C#_CODE
 ```
 
 #### Using the TemplateRemoveUserWithHttpInfo variant
@@ -735,45 +455,7 @@ Overlays a new file with the overlay of an existing template. The new file(s) mu
 
 ### Example
 ```csharp
-using System;
-using System.Collections.Generic;
-using Org.HelloSign.Api;
-using Org.HelloSign.Client;
-using Org.HelloSign.Model;
-
-public class Example
-{
-    public static void Main()
-    {
-        var config = new Configuration();
-        // Configure HTTP basic authorization: api_key
-        config.Username = "YOUR_API_KEY";
-
-        // or, configure Bearer (JWT) authorization: oauth2
-        // config.AccessToken = "YOUR_BEARER_TOKEN";
-
-        var apiInstance = new TemplateApi(config);
-
-        var data = new TemplateUpdateFilesRequest(
-            fileUrl: new List<string>(){"https://app.hellosign.com/docs/example_signature_request.pdf"}
-        );
-
-        var templateId = "21f920ec2b7f4b6bb64d3ed79f26303843046536";
-
-        try
-        {
-            var result = apiInstance.TemplateUpdateFiles(templateId, data);
-            Console.WriteLine(result);
-        }
-        catch (ApiException e)
-        {
-            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
-            Console.WriteLine("Status Code: " + e.ErrorCode);
-            Console.WriteLine(e.StackTrace);
-        }
-    }
-}
-
+REPLACE_ME_WITH_EXAMPLE_FOR__TemplateUpdateFiles_C#_CODE
 ```
 
 #### Using the TemplateUpdateFilesWithHttpInfo variant

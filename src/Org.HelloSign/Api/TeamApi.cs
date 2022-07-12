@@ -118,6 +118,56 @@ namespace Org.HelloSign.Api
         /// <returns>ApiResponse of TeamGetResponse</returns>
         ApiResponse<TeamGetResponse> TeamGetWithHttpInfo(int operationIndex = 0);
         /// <summary>
+        /// Get Team Info
+        /// </summary>
+        /// <remarks>
+        /// Provides information about a team.
+        /// </remarks>
+        /// <exception cref="Org.HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="teamId">The id of the team. (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>TeamGetInfoResponse</returns>
+        TeamGetInfoResponse TeamInfo(string? teamId = default(string?), int operationIndex = 0);
+
+        /// <summary>
+        /// Get Team Info
+        /// </summary>
+        /// <remarks>
+        /// Provides information about a team.
+        /// </remarks>
+        /// <exception cref="Org.HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="teamId">The id of the team. (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>ApiResponse of TeamGetInfoResponse</returns>
+        ApiResponse<TeamGetInfoResponse> TeamInfoWithHttpInfo(string? teamId = default(string?), int operationIndex = 0);
+        /// <summary>
+        /// List Team Members
+        /// </summary>
+        /// <remarks>
+        /// Provides a paginated list of members (and their roles) that belong to a given team.
+        /// </remarks>
+        /// <exception cref="Org.HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="teamId">The id of the team that a member list is being requested from.</param>
+        /// <param name="page">Which page number of the team member list to return. Defaults to &#x60;1&#x60;. (optional, default to 1)</param>
+        /// <param name="pageSize">Number of objects to be returned per page. Must be between &#x60;1&#x60; and &#x60;100&#x60;. Default is &#x60;20&#x60;. (optional, default to 20)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>TeamMembersResponse</returns>
+        TeamMembersResponse TeamMembers(string teamId, int? page = default(int?), int? pageSize = default(int?), int operationIndex = 0);
+
+        /// <summary>
+        /// List Team Members
+        /// </summary>
+        /// <remarks>
+        /// Provides a paginated list of members (and their roles) that belong to a given team.
+        /// </remarks>
+        /// <exception cref="Org.HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="teamId">The id of the team that a member list is being requested from.</param>
+        /// <param name="page">Which page number of the team member list to return. Defaults to &#x60;1&#x60;. (optional, default to 1)</param>
+        /// <param name="pageSize">Number of objects to be returned per page. Must be between &#x60;1&#x60; and &#x60;100&#x60;. Default is &#x60;20&#x60;. (optional, default to 20)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>ApiResponse of TeamMembersResponse</returns>
+        ApiResponse<TeamMembersResponse> TeamMembersWithHttpInfo(string teamId, int? page = default(int?), int? pageSize = default(int?), int operationIndex = 0);
+        /// <summary>
         /// Remove User from Team
         /// </summary>
         /// <remarks>
@@ -140,6 +190,33 @@ namespace Org.HelloSign.Api
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of TeamGetResponse</returns>
         ApiResponse<TeamGetResponse> TeamRemoveMemberWithHttpInfo(TeamRemoveMemberRequest teamRemoveMemberRequest, int operationIndex = 0);
+        /// <summary>
+        /// List Sub Teams
+        /// </summary>
+        /// <remarks>
+        /// Provides a paginated list of sub teams that belong to a given team.
+        /// </remarks>
+        /// <exception cref="Org.HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="teamId">The id of the parent Team.</param>
+        /// <param name="page">Which page number of the SubTeam List to return. Defaults to &#x60;1&#x60;. (optional, default to 1)</param>
+        /// <param name="pageSize">Number of objects to be returned per page. Must be between &#x60;1&#x60; and &#x60;100&#x60;. Default is &#x60;20&#x60;. (optional, default to 20)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>TeamSubTeamsResponse</returns>
+        TeamSubTeamsResponse TeamSubTeams(string teamId, int? page = default(int?), int? pageSize = default(int?), int operationIndex = 0);
+
+        /// <summary>
+        /// List Sub Teams
+        /// </summary>
+        /// <remarks>
+        /// Provides a paginated list of sub teams that belong to a given team.
+        /// </remarks>
+        /// <exception cref="Org.HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="teamId">The id of the parent Team.</param>
+        /// <param name="page">Which page number of the SubTeam List to return. Defaults to &#x60;1&#x60;. (optional, default to 1)</param>
+        /// <param name="pageSize">Number of objects to be returned per page. Must be between &#x60;1&#x60; and &#x60;100&#x60;. Default is &#x60;20&#x60;. (optional, default to 20)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>ApiResponse of TeamSubTeamsResponse</returns>
+        ApiResponse<TeamSubTeamsResponse> TeamSubTeamsWithHttpInfo(string teamId, int? page = default(int?), int? pageSize = default(int?), int operationIndex = 0);
         /// <summary>
         /// Update Team
         /// </summary>
@@ -271,6 +348,60 @@ namespace Org.HelloSign.Api
         /// <returns>Task of ApiResponse (TeamGetResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<TeamGetResponse>> TeamGetWithHttpInfoAsync(int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
+        /// Get Team Info
+        /// </summary>
+        /// <remarks>
+        /// Provides information about a team.
+        /// </remarks>
+        /// <exception cref="Org.HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="teamId">The id of the team. (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of TeamGetInfoResponse</returns>
+        System.Threading.Tasks.Task<TeamGetInfoResponse> TeamInfoAsync(string? teamId = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <summary>
+        /// Get Team Info
+        /// </summary>
+        /// <remarks>
+        /// Provides information about a team.
+        /// </remarks>
+        /// <exception cref="Org.HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="teamId">The id of the team. (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (TeamGetInfoResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<TeamGetInfoResponse>> TeamInfoWithHttpInfoAsync(string? teamId = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <summary>
+        /// List Team Members
+        /// </summary>
+        /// <remarks>
+        /// Provides a paginated list of members (and their roles) that belong to a given team.
+        /// </remarks>
+        /// <exception cref="Org.HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="teamId">The id of the team that a member list is being requested from.</param>
+        /// <param name="page">Which page number of the team member list to return. Defaults to &#x60;1&#x60;. (optional, default to 1)</param>
+        /// <param name="pageSize">Number of objects to be returned per page. Must be between &#x60;1&#x60; and &#x60;100&#x60;. Default is &#x60;20&#x60;. (optional, default to 20)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of TeamMembersResponse</returns>
+        System.Threading.Tasks.Task<TeamMembersResponse> TeamMembersAsync(string teamId, int? page = default(int?), int? pageSize = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <summary>
+        /// List Team Members
+        /// </summary>
+        /// <remarks>
+        /// Provides a paginated list of members (and their roles) that belong to a given team.
+        /// </remarks>
+        /// <exception cref="Org.HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="teamId">The id of the team that a member list is being requested from.</param>
+        /// <param name="page">Which page number of the team member list to return. Defaults to &#x60;1&#x60;. (optional, default to 1)</param>
+        /// <param name="pageSize">Number of objects to be returned per page. Must be between &#x60;1&#x60; and &#x60;100&#x60;. Default is &#x60;20&#x60;. (optional, default to 20)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (TeamMembersResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<TeamMembersResponse>> TeamMembersWithHttpInfoAsync(string teamId, int? page = default(int?), int? pageSize = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <summary>
         /// Remove User from Team
         /// </summary>
         /// <remarks>
@@ -295,6 +426,35 @@ namespace Org.HelloSign.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (TeamGetResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<TeamGetResponse>> TeamRemoveMemberWithHttpInfoAsync(TeamRemoveMemberRequest teamRemoveMemberRequest, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <summary>
+        /// List Sub Teams
+        /// </summary>
+        /// <remarks>
+        /// Provides a paginated list of sub teams that belong to a given team.
+        /// </remarks>
+        /// <exception cref="Org.HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="teamId">The id of the parent Team.</param>
+        /// <param name="page">Which page number of the SubTeam List to return. Defaults to &#x60;1&#x60;. (optional, default to 1)</param>
+        /// <param name="pageSize">Number of objects to be returned per page. Must be between &#x60;1&#x60; and &#x60;100&#x60;. Default is &#x60;20&#x60;. (optional, default to 20)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of TeamSubTeamsResponse</returns>
+        System.Threading.Tasks.Task<TeamSubTeamsResponse> TeamSubTeamsAsync(string teamId, int? page = default(int?), int? pageSize = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <summary>
+        /// List Sub Teams
+        /// </summary>
+        /// <remarks>
+        /// Provides a paginated list of sub teams that belong to a given team.
+        /// </remarks>
+        /// <exception cref="Org.HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="teamId">The id of the parent Team.</param>
+        /// <param name="page">Which page number of the SubTeam List to return. Defaults to &#x60;1&#x60;. (optional, default to 1)</param>
+        /// <param name="pageSize">Number of objects to be returned per page. Must be between &#x60;1&#x60; and &#x60;100&#x60;. Default is &#x60;20&#x60;. (optional, default to 20)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (TeamSubTeamsResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<TeamSubTeamsResponse>> TeamSubTeamsWithHttpInfoAsync(string teamId, int? page = default(int?), int? pageSize = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Update Team
         /// </summary>
@@ -1113,6 +1273,358 @@ namespace Org.HelloSign.Api
         }
 
         /// <summary>
+        /// Get Team Info Provides information about a team.
+        /// </summary>
+        /// <exception cref="Org.HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="teamId">The id of the team. (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>TeamGetInfoResponse</returns>
+        public TeamGetInfoResponse TeamInfo(string? teamId = default(string?), int operationIndex = 0)
+        {
+            Org.HelloSign.Client.ApiResponse<TeamGetInfoResponse> localVarResponse = TeamInfoWithHttpInfo(teamId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get Team Info Provides information about a team.
+        /// </summary>
+        /// <exception cref="Org.HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="teamId">The id of the team. (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>ApiResponse of TeamGetInfoResponse</returns>
+        public Org.HelloSign.Client.ApiResponse<TeamGetInfoResponse> TeamInfoWithHttpInfo(string? teamId = default(string?), int operationIndex = 0)
+        {
+            Org.HelloSign.Client.RequestOptions localVarRequestOptions = new Org.HelloSign.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+            var localVarContentType = Org.HelloSign.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = Org.HelloSign.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+            if (teamId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Org.HelloSign.Client.ClientUtils.ParameterToMultiMap("", "team_id", teamId));
+            }
+            localVarRequestOptions.Operation = "TeamApi.TeamInfo";
+            localVarRequestOptions.OperationIndex = operationIndex;
+
+            // authentication (api_key) required
+            // http basic authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.Username) || !string.IsNullOrEmpty(this.Configuration.Password) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Basic " + Org.HelloSign.Client.ClientUtils.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password));
+            }
+            // authentication (oauth2) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<TeamGetInfoResponse>("/team/info", localVarRequestOptions, this.Configuration);
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("TeamInfo", localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get Team Info Provides information about a team.
+        /// </summary>
+        /// <exception cref="Org.HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="teamId">The id of the team. (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of TeamGetInfoResponse</returns>
+        public async System.Threading.Tasks.Task<TeamGetInfoResponse> TeamInfoAsync(string? teamId = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            Org.HelloSign.Client.ApiResponse<TeamGetInfoResponse> localVarResponse = await TeamInfoWithHttpInfoAsync(teamId, operationIndex, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get Team Info Provides information about a team.
+        /// </summary>
+        /// <exception cref="Org.HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="teamId">The id of the team. (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (TeamGetInfoResponse)</returns>
+        public async System.Threading.Tasks.Task<Org.HelloSign.Client.ApiResponse<TeamGetInfoResponse>> TeamInfoWithHttpInfoAsync(string? teamId = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+
+            Org.HelloSign.Client.RequestOptions localVarRequestOptions = new Org.HelloSign.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            var localVarContentType = Org.HelloSign.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = Org.HelloSign.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+            if (teamId != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Org.HelloSign.Client.ClientUtils.ParameterToMultiMap("", "team_id", teamId));
+            }
+            localVarRequestOptions.Operation = "TeamApi.TeamInfo";
+            localVarRequestOptions.OperationIndex = operationIndex;
+
+            // authentication (api_key) required
+            // http basic authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.Username) || !string.IsNullOrEmpty(this.Configuration.Password) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Basic " + Org.HelloSign.Client.ClientUtils.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password));
+            }
+            // authentication (oauth2) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = await this.AsynchronousClient.GetAsync<TeamGetInfoResponse>("/team/info", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("TeamInfo", localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List Team Members Provides a paginated list of members (and their roles) that belong to a given team.
+        /// </summary>
+        /// <exception cref="Org.HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="teamId">The id of the team that a member list is being requested from.</param>
+        /// <param name="page">Which page number of the team member list to return. Defaults to &#x60;1&#x60;. (optional, default to 1)</param>
+        /// <param name="pageSize">Number of objects to be returned per page. Must be between &#x60;1&#x60; and &#x60;100&#x60;. Default is &#x60;20&#x60;. (optional, default to 20)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>TeamMembersResponse</returns>
+        public TeamMembersResponse TeamMembers(string teamId, int? page = default(int?), int? pageSize = default(int?), int operationIndex = 0)
+        {
+            Org.HelloSign.Client.ApiResponse<TeamMembersResponse> localVarResponse = TeamMembersWithHttpInfo(teamId, page, pageSize);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List Team Members Provides a paginated list of members (and their roles) that belong to a given team.
+        /// </summary>
+        /// <exception cref="Org.HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="teamId">The id of the team that a member list is being requested from.</param>
+        /// <param name="page">Which page number of the team member list to return. Defaults to &#x60;1&#x60;. (optional, default to 1)</param>
+        /// <param name="pageSize">Number of objects to be returned per page. Must be between &#x60;1&#x60; and &#x60;100&#x60;. Default is &#x60;20&#x60;. (optional, default to 20)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>ApiResponse of TeamMembersResponse</returns>
+        public Org.HelloSign.Client.ApiResponse<TeamMembersResponse> TeamMembersWithHttpInfo(string teamId, int? page = default(int?), int? pageSize = default(int?), int operationIndex = 0)
+        {
+            // verify the required parameter 'teamId' is set
+            if (teamId == null)
+            {
+                throw new Org.HelloSign.Client.ApiException(400, "Missing required parameter 'teamId' when calling TeamApi->TeamMembers");
+            }
+
+            Org.HelloSign.Client.RequestOptions localVarRequestOptions = new Org.HelloSign.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+            var localVarContentType = Org.HelloSign.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = Org.HelloSign.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+            localVarRequestOptions.PathParameters.Add("team_id", Org.HelloSign.Client.ClientUtils.ParameterToString(teamId)); // path parameter
+            if (page != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Org.HelloSign.Client.ClientUtils.ParameterToMultiMap("", "page", page));
+            }
+            if (pageSize != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Org.HelloSign.Client.ClientUtils.ParameterToMultiMap("", "page_size", pageSize));
+            }
+            localVarRequestOptions.Operation = "TeamApi.TeamMembers";
+            localVarRequestOptions.OperationIndex = operationIndex;
+
+            // authentication (api_key) required
+            // http basic authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.Username) || !string.IsNullOrEmpty(this.Configuration.Password) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Basic " + Org.HelloSign.Client.ClientUtils.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password));
+            }
+            // authentication (oauth2) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<TeamMembersResponse>("/team/members/{team_id}", localVarRequestOptions, this.Configuration);
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("TeamMembers", localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List Team Members Provides a paginated list of members (and their roles) that belong to a given team.
+        /// </summary>
+        /// <exception cref="Org.HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="teamId">The id of the team that a member list is being requested from.</param>
+        /// <param name="page">Which page number of the team member list to return. Defaults to &#x60;1&#x60;. (optional, default to 1)</param>
+        /// <param name="pageSize">Number of objects to be returned per page. Must be between &#x60;1&#x60; and &#x60;100&#x60;. Default is &#x60;20&#x60;. (optional, default to 20)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of TeamMembersResponse</returns>
+        public async System.Threading.Tasks.Task<TeamMembersResponse> TeamMembersAsync(string teamId, int? page = default(int?), int? pageSize = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            Org.HelloSign.Client.ApiResponse<TeamMembersResponse> localVarResponse = await TeamMembersWithHttpInfoAsync(teamId, page, pageSize, operationIndex, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List Team Members Provides a paginated list of members (and their roles) that belong to a given team.
+        /// </summary>
+        /// <exception cref="Org.HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="teamId">The id of the team that a member list is being requested from.</param>
+        /// <param name="page">Which page number of the team member list to return. Defaults to &#x60;1&#x60;. (optional, default to 1)</param>
+        /// <param name="pageSize">Number of objects to be returned per page. Must be between &#x60;1&#x60; and &#x60;100&#x60;. Default is &#x60;20&#x60;. (optional, default to 20)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (TeamMembersResponse)</returns>
+        public async System.Threading.Tasks.Task<Org.HelloSign.Client.ApiResponse<TeamMembersResponse>> TeamMembersWithHttpInfoAsync(string teamId, int? page = default(int?), int? pageSize = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'teamId' is set
+            if (teamId == null)
+            {
+                throw new Org.HelloSign.Client.ApiException(400, "Missing required parameter 'teamId' when calling TeamApi->TeamMembers");
+            }
+
+
+            Org.HelloSign.Client.RequestOptions localVarRequestOptions = new Org.HelloSign.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            var localVarContentType = Org.HelloSign.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = Org.HelloSign.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+            localVarRequestOptions.PathParameters.Add("team_id", Org.HelloSign.Client.ClientUtils.ParameterToString(teamId)); // path parameter
+            if (page != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Org.HelloSign.Client.ClientUtils.ParameterToMultiMap("", "page", page));
+            }
+            if (pageSize != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Org.HelloSign.Client.ClientUtils.ParameterToMultiMap("", "page_size", pageSize));
+            }
+            localVarRequestOptions.Operation = "TeamApi.TeamMembers";
+            localVarRequestOptions.OperationIndex = operationIndex;
+
+            // authentication (api_key) required
+            // http basic authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.Username) || !string.IsNullOrEmpty(this.Configuration.Password) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Basic " + Org.HelloSign.Client.ClientUtils.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password));
+            }
+            // authentication (oauth2) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = await this.AsynchronousClient.GetAsync<TeamMembersResponse>("/team/members/{team_id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("TeamMembers", localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
         /// Remove User from Team Removes the provided user Account from your Team. If the Account had an outstanding invitation to your Team, the invitation will be expired. If you choose to transfer documents from the removed Account to an Account provided in the &#x60;new_owner_email_address&#x60; parameter (available only for Enterprise plans), the response status code will be 201, which indicates that your request has been queued but not fully executed.
         /// </summary>
         /// <exception cref="Org.HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
@@ -1285,6 +1797,197 @@ namespace Org.HelloSign.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("TeamRemoveMember", localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List Sub Teams Provides a paginated list of sub teams that belong to a given team.
+        /// </summary>
+        /// <exception cref="Org.HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="teamId">The id of the parent Team.</param>
+        /// <param name="page">Which page number of the SubTeam List to return. Defaults to &#x60;1&#x60;. (optional, default to 1)</param>
+        /// <param name="pageSize">Number of objects to be returned per page. Must be between &#x60;1&#x60; and &#x60;100&#x60;. Default is &#x60;20&#x60;. (optional, default to 20)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>TeamSubTeamsResponse</returns>
+        public TeamSubTeamsResponse TeamSubTeams(string teamId, int? page = default(int?), int? pageSize = default(int?), int operationIndex = 0)
+        {
+            Org.HelloSign.Client.ApiResponse<TeamSubTeamsResponse> localVarResponse = TeamSubTeamsWithHttpInfo(teamId, page, pageSize);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List Sub Teams Provides a paginated list of sub teams that belong to a given team.
+        /// </summary>
+        /// <exception cref="Org.HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="teamId">The id of the parent Team.</param>
+        /// <param name="page">Which page number of the SubTeam List to return. Defaults to &#x60;1&#x60;. (optional, default to 1)</param>
+        /// <param name="pageSize">Number of objects to be returned per page. Must be between &#x60;1&#x60; and &#x60;100&#x60;. Default is &#x60;20&#x60;. (optional, default to 20)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>ApiResponse of TeamSubTeamsResponse</returns>
+        public Org.HelloSign.Client.ApiResponse<TeamSubTeamsResponse> TeamSubTeamsWithHttpInfo(string teamId, int? page = default(int?), int? pageSize = default(int?), int operationIndex = 0)
+        {
+            // verify the required parameter 'teamId' is set
+            if (teamId == null)
+            {
+                throw new Org.HelloSign.Client.ApiException(400, "Missing required parameter 'teamId' when calling TeamApi->TeamSubTeams");
+            }
+
+            Org.HelloSign.Client.RequestOptions localVarRequestOptions = new Org.HelloSign.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+            var localVarContentType = Org.HelloSign.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = Org.HelloSign.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+            localVarRequestOptions.PathParameters.Add("team_id", Org.HelloSign.Client.ClientUtils.ParameterToString(teamId)); // path parameter
+            if (page != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Org.HelloSign.Client.ClientUtils.ParameterToMultiMap("", "page", page));
+            }
+            if (pageSize != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Org.HelloSign.Client.ClientUtils.ParameterToMultiMap("", "page_size", pageSize));
+            }
+            localVarRequestOptions.Operation = "TeamApi.TeamSubTeams";
+            localVarRequestOptions.OperationIndex = operationIndex;
+
+            // authentication (api_key) required
+            // http basic authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.Username) || !string.IsNullOrEmpty(this.Configuration.Password) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Basic " + Org.HelloSign.Client.ClientUtils.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password));
+            }
+            // authentication (oauth2) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<TeamSubTeamsResponse>("/team/sub_teams/{team_id}", localVarRequestOptions, this.Configuration);
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("TeamSubTeams", localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List Sub Teams Provides a paginated list of sub teams that belong to a given team.
+        /// </summary>
+        /// <exception cref="Org.HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="teamId">The id of the parent Team.</param>
+        /// <param name="page">Which page number of the SubTeam List to return. Defaults to &#x60;1&#x60;. (optional, default to 1)</param>
+        /// <param name="pageSize">Number of objects to be returned per page. Must be between &#x60;1&#x60; and &#x60;100&#x60;. Default is &#x60;20&#x60;. (optional, default to 20)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of TeamSubTeamsResponse</returns>
+        public async System.Threading.Tasks.Task<TeamSubTeamsResponse> TeamSubTeamsAsync(string teamId, int? page = default(int?), int? pageSize = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            Org.HelloSign.Client.ApiResponse<TeamSubTeamsResponse> localVarResponse = await TeamSubTeamsWithHttpInfoAsync(teamId, page, pageSize, operationIndex, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List Sub Teams Provides a paginated list of sub teams that belong to a given team.
+        /// </summary>
+        /// <exception cref="Org.HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="teamId">The id of the parent Team.</param>
+        /// <param name="page">Which page number of the SubTeam List to return. Defaults to &#x60;1&#x60;. (optional, default to 1)</param>
+        /// <param name="pageSize">Number of objects to be returned per page. Must be between &#x60;1&#x60; and &#x60;100&#x60;. Default is &#x60;20&#x60;. (optional, default to 20)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (TeamSubTeamsResponse)</returns>
+        public async System.Threading.Tasks.Task<Org.HelloSign.Client.ApiResponse<TeamSubTeamsResponse>> TeamSubTeamsWithHttpInfoAsync(string teamId, int? page = default(int?), int? pageSize = default(int?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'teamId' is set
+            if (teamId == null)
+            {
+                throw new Org.HelloSign.Client.ApiException(400, "Missing required parameter 'teamId' when calling TeamApi->TeamSubTeams");
+            }
+
+
+            Org.HelloSign.Client.RequestOptions localVarRequestOptions = new Org.HelloSign.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            var localVarContentType = Org.HelloSign.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = Org.HelloSign.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+            localVarRequestOptions.PathParameters.Add("team_id", Org.HelloSign.Client.ClientUtils.ParameterToString(teamId)); // path parameter
+            if (page != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Org.HelloSign.Client.ClientUtils.ParameterToMultiMap("", "page", page));
+            }
+            if (pageSize != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Org.HelloSign.Client.ClientUtils.ParameterToMultiMap("", "page_size", pageSize));
+            }
+            localVarRequestOptions.Operation = "TeamApi.TeamSubTeams";
+            localVarRequestOptions.OperationIndex = operationIndex;
+
+            // authentication (api_key) required
+            // http basic authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.Username) || !string.IsNullOrEmpty(this.Configuration.Password) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Basic " + Org.HelloSign.Client.ClientUtils.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password));
+            }
+            // authentication (oauth2) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = await this.AsynchronousClient.GetAsync<TeamSubTeamsResponse>("/team/sub_teams/{team_id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("TeamSubTeams", localVarResponse);
                 if (_exception != null)
                 {
                     throw _exception;
