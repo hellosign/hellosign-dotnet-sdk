@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+# Warning: You should run this from rootless Docker (or Podman, or other)
+
+set -e
+DIR=$(cd `dirname $0` && pwd)
+ROOT_DIR="${DIR}/.."
+WORKINGDIR="/app/dotnet"
+
+docker run --rm \
+  -v "${PWD}:${WORKINGDIR}" \
+  -w "${WORKINGDIR}" \
+  mcr.microsoft.com/dotnet/sdk:6.0 "$@"
