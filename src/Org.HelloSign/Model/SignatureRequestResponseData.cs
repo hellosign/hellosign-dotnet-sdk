@@ -65,13 +65,15 @@ namespace Org.HelloSign.Model
         /// <param name="signatureId">The ID of the signature to which this response is linked..</param>
         /// <param name="name">The name of the form field..</param>
         /// <param name="required">A boolean value denoting if this field is required..</param>
-        public SignatureRequestResponseData(string apiId = default(string), string signatureId = default(string), string name = default(string), bool required = default(bool))
+        /// <param name="type">TEST DESCRIPTION.</param>
+        public SignatureRequestResponseData(string apiId = default(string), string signatureId = default(string), string name = default(string), bool required = default(bool), string type = default(string))
         {
             
             this.ApiId = apiId;
             this.SignatureId = signatureId;
             this.Name = name;
             this.Required = required;
+            this.Type = type;
         }
 
         /// <summary>
@@ -103,6 +105,13 @@ namespace Org.HelloSign.Model
         public bool Required { get; set; }
 
         /// <summary>
+        /// TEST DESCRIPTION
+        /// </summary>
+        /// <value>TEST DESCRIPTION</value>
+        [DataMember(Name = "type", EmitDefaultValue = true)]
+        public string Type { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -114,6 +123,7 @@ namespace Org.HelloSign.Model
             sb.Append("  SignatureId: ").Append(SignatureId).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Required: ").Append(Required).Append("\n");
+            sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -167,6 +177,11 @@ namespace Org.HelloSign.Model
                 (
                     this.Required == input.Required ||
                     this.Required.Equals(input.Required)
+                ) && 
+                (
+                    this.Type == input.Type ||
+                    (this.Type != null &&
+                    this.Type.Equals(input.Type))
                 );
         }
 
@@ -192,6 +207,10 @@ namespace Org.HelloSign.Model
                     hashCode = (hashCode * 59) + this.Name.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.Required.GetHashCode();
+                if (this.Type != null)
+                {
+                    hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                }
                 return hashCode;
             }
         }
@@ -222,6 +241,12 @@ namespace Org.HelloSign.Model
                 Property = "Required",
                 Type = "bool",
                 Value = Required,
+            });
+            types.Add(new OpenApiType(){
+                Name = "type",
+                Property = "Type",
+                Type = "string",
+                Value = Type,
             });
 
             return types;
