@@ -54,7 +54,7 @@ namespace Org.HelloSign.Model
         /// <param name="ccRoles">An array of the designated CC roles that must be specified when sending a SignatureRequest using this Template..</param>
         /// <param name="documents">An array describing each document associated with this Template. Includes form field data for each document..</param>
         /// <param name="customFields">An array of Custom Field objects..</param>
-        /// <param name="namedFormFields">Use \&quot;form_fields\&quot; under the \&quot;documents\&quot; array instead..</param>
+        /// <param name="namedFormFields">Deprecated. Use &#x60;form_fields&#x60; inside the [documents](https://developers.hellosign.com/api/reference/operation/templateGet/#!c&#x3D;200&amp;path&#x3D;template/documents&amp;t&#x3D;response) array instead..</param>
         /// <param name="accounts">An array of the Accounts that can use this Template..</param>
         public TemplateResponse(string templateId = default(string), string title = default(string), string message = default(string), int updatedAt = default(int), bool? isEmbedded = default(bool?), bool? isCreator = default(bool?), bool? canEdit = default(bool?), bool? isLocked = default(bool?), Object metadata = default(Object), List<TemplateResponseSignerRole> signerRoles = default(List<TemplateResponseSignerRole>), List<TemplateResponseCCRole> ccRoles = default(List<TemplateResponseCCRole>), List<TemplateResponseDocument> documents = default(List<TemplateResponseDocument>), List<TemplateResponseCustomField> customFields = default(List<TemplateResponseCustomField>), List<TemplateResponseNamedFormField> namedFormFields = default(List<TemplateResponseNamedFormField>), List<TemplateResponseAccount> accounts = default(List<TemplateResponseAccount>))
         {
@@ -168,9 +168,9 @@ namespace Org.HelloSign.Model
         public List<TemplateResponseCustomField> CustomFields { get; set; }
 
         /// <summary>
-        /// Use \&quot;form_fields\&quot; under the \&quot;documents\&quot; array instead.
+        /// Deprecated. Use &#x60;form_fields&#x60; inside the [documents](https://developers.hellosign.com/api/reference/operation/templateGet/#!c&#x3D;200&amp;path&#x3D;template/documents&amp;t&#x3D;response) array instead.
         /// </summary>
-        /// <value>Use \&quot;form_fields\&quot; under the \&quot;documents\&quot; array instead.</value>
+        /// <value>Deprecated. Use &#x60;form_fields&#x60; inside the [documents](https://developers.hellosign.com/api/reference/operation/templateGet/#!c&#x3D;200&amp;path&#x3D;template/documents&amp;t&#x3D;response) array instead.</value>
         [DataMember(Name = "named_form_fields", EmitDefaultValue = true)]
         [Obsolete]
         public List<TemplateResponseNamedFormField> NamedFormFields { get; set; }

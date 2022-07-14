@@ -264,7 +264,7 @@ catch (ApiException e)
 
 Get Template
 
-Returns the Template specified by the `id` parameter.
+Returns the Template specified by the `template_id` parameter.
 
 ### Example
 ```csharp
