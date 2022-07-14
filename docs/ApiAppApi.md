@@ -20,7 +20,66 @@ Creates a new API App.
 
 ### Example
 ```csharp
-REPLACE_ME_WITH_EXAMPLE_FOR__ApiAppCreate_C#_CODE
+using System;
+using System.Collections.Generic;
+using System.IO;
+using Org.HelloSign.Api;
+using Org.HelloSign.Client;
+using Org.HelloSign.Model;
+
+public class Example
+{
+    public static void Main()
+    {
+        var config = new Configuration();
+        // Configure HTTP basic authorization: api_key
+        config.Username = "YOUR_API_KEY";
+
+        // or, configure Bearer (JWT) authorization: oauth2
+        // config.AccessToken = "YOUR_BEARER_TOKEN";
+
+        var apiInstance = new ApiAppApi(config);
+
+        var oauth = new SubOAuth(
+            callbackUrl: "https://example.com/oauth",
+            scopes: new List<SubOAuth.ScopesEnum>() {
+                SubOAuth.ScopesEnum.BasicAccountInfo,
+                SubOAuth.ScopesEnum.RequestSignature
+            }
+        );
+
+        var whiteLabelingOptions = new SubWhiteLabelingOptions(
+            primaryButtonColor: "#00b3e6",
+            primaryButtonTextColor: "#ffffff"
+        );
+
+        var customLogoFile = new FileStream(
+            "CustomLogoFile.png",
+            FileMode.Open
+        );
+
+        var data = new ApiAppCreateRequest(
+            name: "My Production App",
+            domains: new List<string>(){"example.com"},
+            oauth: oauth,
+            whiteLabelingOptions: whiteLabelingOptions,
+            customLogoFile: customLogoFile
+        );
+
+        try
+        {
+            var result = apiInstance.ApiAppCreate(data);
+            Console.WriteLine(result);
+        }
+        catch (ApiException e)
+        {
+            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
+            Console.WriteLine("Status Code: " + e.ErrorCode);
+            Console.WriteLine(e.StackTrace);
+        }
+    }
+}
+
 ```
 
 #### Using the ApiAppCreateWithHttpInfo variant
@@ -81,7 +140,41 @@ Deletes an API App. Can only be invoked for apps you own.
 
 ### Example
 ```csharp
-REPLACE_ME_WITH_EXAMPLE_FOR__ApiAppDelete_C#_CODE
+using System;
+using System.Collections.Generic;
+using System.IO;
+using Org.HelloSign.Api;
+using Org.HelloSign.Client;
+using Org.HelloSign.Model;
+
+public class Example
+{
+    public static void Main()
+    {
+        var config = new Configuration();
+        // Configure HTTP basic authorization: api_key
+        config.Username = "YOUR_API_KEY";
+
+        // or, configure Bearer (JWT) authorization: oauth2
+        // config.AccessToken = "YOUR_BEARER_TOKEN";
+
+        var apiInstance = new ApiAppApi(config);
+
+        var clientId = "0dd3b823a682527788c4e40cb7b6f7e9";
+
+        try
+        {
+            apiInstance.ApiAppDelete(clientId);
+        }
+        catch (ApiException e)
+        {
+            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
+            Console.WriteLine("Status Code: " + e.ErrorCode);
+            Console.WriteLine(e.StackTrace);
+        }
+    }
+}
+
 ```
 
 #### Using the ApiAppDeleteWithHttpInfo variant
@@ -139,7 +232,41 @@ Returns an object with information about an API App.
 
 ### Example
 ```csharp
-REPLACE_ME_WITH_EXAMPLE_FOR__ApiAppGet_C#_CODE
+using System;
+
+using Org.HelloSign.Api;
+using Org.HelloSign.Client;
+using Org.HelloSign.Model;
+
+public class Example
+{
+    public static void Main()
+    {
+        var config = new Configuration();
+        // Configure HTTP basic authorization: api_key
+        config.Username = "YOUR_API_KEY";
+
+        // or, configure Bearer (JWT) authorization: oauth2
+        // config.AccessToken = "YOUR_BEARER_TOKEN";
+
+        var apiInstance = new AccountApi(config);
+
+        var clientId = "0dd3b823a682527788c4e40cb7b6f7e9";
+
+        try
+        {
+            var result = apiInstance.AccountGet(clientId);
+            Console.WriteLine(result);
+        }
+        catch (ApiException e)
+        {
+            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
+            Console.WriteLine("Status Code: " + e.ErrorCode);
+            Console.WriteLine(e.StackTrace);
+        }
+    }
+}
+
 ```
 
 #### Using the ApiAppGetWithHttpInfo variant
@@ -200,7 +327,42 @@ Returns a list of API Apps that are accessible by you. If you are on a team with
 
 ### Example
 ```csharp
-REPLACE_ME_WITH_EXAMPLE_FOR__ApiAppList_C#_CODE
+using System;
+
+using Org.HelloSign.Api;
+using Org.HelloSign.Client;
+using Org.HelloSign.Model;
+
+public class Example
+{
+    public static void Main()
+    {
+        var config = new Configuration();
+        // Configure HTTP basic authorization: api_key
+        config.Username = "YOUR_API_KEY";
+
+        // or, configure Bearer (JWT) authorization: oauth2
+        // config.AccessToken = "YOUR_BEARER_TOKEN";
+
+        var apiInstance = new ApiAppApi(config);
+
+        var page = 1;
+        var pageSize = 2;
+
+        try
+        {
+            var result = apiInstance.ApiAppList(page, pageSize);
+            Console.WriteLine(result);
+        }
+        catch (ApiException e)
+        {
+            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
+            Console.WriteLine("Status Code: " + e.ErrorCode);
+            Console.WriteLine(e.StackTrace);
+        }
+    }
+}
+
 ```
 
 #### Using the ApiAppListWithHttpInfo variant
@@ -262,7 +424,68 @@ Updates an existing API App. Can only be invoked for apps you own. Only the fiel
 
 ### Example
 ```csharp
-REPLACE_ME_WITH_EXAMPLE_FOR__ApiAppUpdate_C#_CODE
+using System;
+using System.Collections.Generic;
+using System.IO;
+using Org.HelloSign.Api;
+using Org.HelloSign.Client;
+using Org.HelloSign.Model;
+
+public class Example
+{
+    public static void Main()
+    {
+        var config = new Configuration();
+        // Configure HTTP basic authorization: api_key
+        config.Username = "YOUR_API_KEY";
+
+        // or, configure Bearer (JWT) authorization: oauth2
+        // config.AccessToken = "YOUR_BEARER_TOKEN";
+
+        var apiInstance = new ApiAppApi(config);
+
+        var oauth = new SubOAuth(
+            callbackUrl: "https://example.com/oauth",
+            scopes: new List<SubOAuth.ScopesEnum>() {
+                SubOAuth.ScopesEnum.BasicAccountInfo,
+                SubOAuth.ScopesEnum.RequestSignature
+            }
+        );
+
+        var whiteLabelingOptions = new SubWhiteLabelingOptions(
+            primaryButtonColor: "#00b3e6",
+            primaryButtonTextColor: "#ffffff"
+        );
+
+        var customLogoFile = new FileStream(
+            "CustomLogoFile.png",
+            FileMode.Open
+        );
+
+        var data = new ApiAppUpdateRequest(
+            name: "My Production App",
+            domains: new List<string>(){"example.com"},
+            oauth: oauth,
+            whiteLabelingOptions: whiteLabelingOptions,
+            customLogoFile: customLogoFile
+        );
+
+        var clientId = "0dd3b823a682527788c4e40cb7b6f7e9";
+
+        try
+        {
+            var result = apiInstance.ApiAppUpdate(clientId, data);
+            Console.WriteLine(result);
+        }
+        catch (ApiException e)
+        {
+            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
+            Console.WriteLine("Status Code: " + e.ErrorCode);
+            Console.WriteLine(e.StackTrace);
+        }
+    }
+}
+
 ```
 
 #### Using the ApiAppUpdateWithHttpInfo variant

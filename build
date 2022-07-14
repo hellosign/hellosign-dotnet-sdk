@@ -26,6 +26,18 @@ cp -r "${PWD}/oas/examples/"*.cs "${PWD}/examples/"
 printf "Adding examples to Docs ...\n"
 bash "${PWD}/bin/php" ./bin/generate-examples.php
 
+printf "Replacing strings ...\n"
+docker run --rm \
+  -v "${PWD}:${WORKINGDIR}" \
+  -w "${WORKINGDIR}" \
+  perl bash ./bin/replace
+
+printf "Scanning for prohibited keywords ...\n"
+docker run --rm \
+  -v "${PWD}:${WORKINGDIR}" \
+  -w "${WORKINGDIR}" \
+  perl bash ./bin/scan_for
+
 printf "Running tests ...\n"
 bash "${PWD}/bin/dotnet" dotnet test src/Org.HelloSign.Test/
 
