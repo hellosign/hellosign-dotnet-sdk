@@ -83,7 +83,7 @@ namespace Org.HelloSign.Model
         /// <param name="isMultiline">Whether this form field is multiline text..</param>
         /// <param name="originalFontSize">Original font size used in this form field&#39;s text..</param>
         /// <param name="fontFamily">Font family used in this form field&#39;s text..</param>
-        /// <param name="namedFormFields">_t__TemplateResponseDocumentCustomField::NAMED_FORM_FIELDS.</param>
+        /// <param name="namedFormFields">Deprecated. Use &#x60;form_fields&#x60; inside the [documents](https://developers.hellosign.com/api/reference/operation/templateGet/#!c&#x3D;200&amp;path&#x3D;template/documents&amp;t&#x3D;response) array instead..</param>
         /// <param name="reusableFormId">reusableFormId.</param>
         public TemplateResponseDocumentCustomField(string name = default(string), TypeEnum? type = default(TypeEnum?), string signer = default(string), int x = default(int), int y = default(int), int width = default(int), int height = default(int), bool required = default(bool), string apiId = default(string), string group = default(string), TemplateResponseFieldAvgTextLength avgTextLength = default(TemplateResponseFieldAvgTextLength), bool? isMultiline = default(bool?), int? originalFontSize = default(int?), string fontFamily = default(string), Object namedFormFields = default(Object), string reusableFormId = default(string))
         {
@@ -197,9 +197,9 @@ namespace Org.HelloSign.Model
         public string FontFamily { get; set; }
 
         /// <summary>
-        /// _t__TemplateResponseDocumentCustomField::NAMED_FORM_FIELDS
+        /// Deprecated. Use &#x60;form_fields&#x60; inside the [documents](https://developers.hellosign.com/api/reference/operation/templateGet/#!c&#x3D;200&amp;path&#x3D;template/documents&amp;t&#x3D;response) array instead.
         /// </summary>
-        /// <value>_t__TemplateResponseDocumentCustomField::NAMED_FORM_FIELDS</value>
+        /// <value>Deprecated. Use &#x60;form_fields&#x60; inside the [documents](https://developers.hellosign.com/api/reference/operation/templateGet/#!c&#x3D;200&amp;path&#x3D;template/documents&amp;t&#x3D;response) array instead.</value>
         [DataMember(Name = "named_form_fields", EmitDefaultValue = true)]
         [Obsolete]
         public Object NamedFormFields { get; set; }

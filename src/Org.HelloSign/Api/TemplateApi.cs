@@ -131,7 +131,7 @@ namespace Org.HelloSign.Api
         /// Get Template
         /// </summary>
         /// <remarks>
-        /// Returns the Template specified by the &#x60;id&#x60; parameter.
+        /// Returns the Template specified by the &#x60;template_id&#x60; parameter.
         /// </remarks>
         /// <exception cref="Org.HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateId">The id of the Template to retrieve.</param>
@@ -143,7 +143,7 @@ namespace Org.HelloSign.Api
         /// Get Template
         /// </summary>
         /// <remarks>
-        /// Returns the Template specified by the &#x60;id&#x60; parameter.
+        /// Returns the Template specified by the &#x60;template_id&#x60; parameter.
         /// </remarks>
         /// <exception cref="Org.HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateId">The id of the Template to retrieve.</param>
@@ -350,7 +350,7 @@ namespace Org.HelloSign.Api
         /// Get Template
         /// </summary>
         /// <remarks>
-        /// Returns the Template specified by the &#x60;id&#x60; parameter.
+        /// Returns the Template specified by the &#x60;template_id&#x60; parameter.
         /// </remarks>
         /// <exception cref="Org.HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateId">The id of the Template to retrieve.</param>
@@ -363,7 +363,7 @@ namespace Org.HelloSign.Api
         /// Get Template
         /// </summary>
         /// <remarks>
-        /// Returns the Template specified by the &#x60;id&#x60; parameter.
+        /// Returns the Template specified by the &#x60;template_id&#x60; parameter.
         /// </remarks>
         /// <exception cref="Org.HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateId">The id of the Template to retrieve.</param>
@@ -1327,7 +1327,7 @@ namespace Org.HelloSign.Api
         }
 
         /// <summary>
-        /// Get Template Returns the Template specified by the &#x60;id&#x60; parameter.
+        /// Get Template Returns the Template specified by the &#x60;template_id&#x60; parameter.
         /// </summary>
         /// <exception cref="Org.HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateId">The id of the Template to retrieve.</param>
@@ -1340,7 +1340,7 @@ namespace Org.HelloSign.Api
         }
 
         /// <summary>
-        /// Get Template Returns the Template specified by the &#x60;id&#x60; parameter.
+        /// Get Template Returns the Template specified by the &#x60;template_id&#x60; parameter.
         /// </summary>
         /// <exception cref="Org.HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateId">The id of the Template to retrieve.</param>
@@ -1408,7 +1408,7 @@ namespace Org.HelloSign.Api
         }
 
         /// <summary>
-        /// Get Template Returns the Template specified by the &#x60;id&#x60; parameter.
+        /// Get Template Returns the Template specified by the &#x60;template_id&#x60; parameter.
         /// </summary>
         /// <exception cref="Org.HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateId">The id of the Template to retrieve.</param>
@@ -1422,7 +1422,7 @@ namespace Org.HelloSign.Api
         }
 
         /// <summary>
-        /// Get Template Returns the Template specified by the &#x60;id&#x60; parameter.
+        /// Get Template Returns the Template specified by the &#x60;template_id&#x60; parameter.
         /// </summary>
         /// <exception cref="Org.HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateId">The id of the Template to retrieve.</param>

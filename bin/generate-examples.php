@@ -252,7 +252,7 @@ class GenerateExamples
     ): string {
         $operationId = $this->useSnakeCase
             ? strtolower(preg_replace('/(?<!^)[A-Z]/', '_$0', $operationId))
-            : $operationId;
+            : ucfirst($operationId);
 
         return "REPLACE_ME_WITH_EXAMPLE_FOR__{$operationId}_{$language}_CODE";
     }
