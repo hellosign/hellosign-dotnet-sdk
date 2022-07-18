@@ -6,7 +6,7 @@ ROOT_DIR="${DIR}/.."
 
 scan_for () {
   SEARCH_STRING=$1
-  SCAN_TARGETS=( "docs" "src/Api" "src/Model" "README.md" )
+  SCAN_TARGETS=( "docs" "src/Org.HelloSign/Api" "src/Org.HelloSign/Model" "README.md" )
 
   printf "Scanning for '${SEARCH_STRING}': "
 
@@ -25,7 +25,6 @@ scan_for () {
 }
 
 scan_for "allof"
-scan_for "oneof"
 scan_for "REPLACE_ME_WITH_DESCRIPTION"
 scan_for "REPLACE_ME_WITH_EXAMPLE_FOR"
 printf "\n"

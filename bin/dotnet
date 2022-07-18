@@ -8,6 +8,7 @@ ROOT_DIR="${DIR}/.."
 WORKINGDIR="/app/dotnet"
 
 docker run --rm \
-  -v "${PWD}:${WORKINGDIR}" \
+  -v "${ROOT_DIR}:${WORKINGDIR}" \
   -w "${WORKINGDIR}" \
+  -u root:root \
   mcr.microsoft.com/dotnet/sdk:6.0 "$@"

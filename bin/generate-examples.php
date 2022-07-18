@@ -263,10 +263,6 @@ $generate = new GenerateExamples(
     ['C#'],
     [__DIR__ . '/../docs'],
     [__DIR__ . '/../README.md'],
-    [
-        '```[[SubFormFieldsPerDocumentBase]]```'
-        => '[```[[SubFormFieldsPerDocumentBase]]```](SubFormFieldsPerDocumentBase.md)',
-    ]
 );
 $generate->setUseSnakeCase(false);
 

@@ -5,7 +5,7 @@
 set -e
 DIR=$(cd `dirname $0` && pwd)
 ROOT_DIR="${DIR}/.."
-WORKINGDIR="/app/php"
+WORKINGDIR="/app/dotnet"
 
 docker run --rm \
   -v "${ROOT_DIR}:${WORKINGDIR}" \
