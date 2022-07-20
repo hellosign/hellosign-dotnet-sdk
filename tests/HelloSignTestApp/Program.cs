@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using HelloSign;
+using Newtonsoft.Json;
 
 namespace HelloSignTestApp
 {
@@ -37,6 +39,20 @@ namespace HelloSignTestApp
                         Console.WriteLine(". Giving up!");
                     }
                 }
+                catch(ApplicationException ae)
+                {
+                    retries--;
+                    Console.Write("└ Caught application exception: " + ae.InnerException);
+                    if (retries > 0)
+                    {
+                        Console.WriteLine(". Trying again in 2s...");
+                        System.Threading.Thread.Sleep(2000);
+                    }
+                    else
+                    {
+                        Console.WriteLine(". Giving up!");
+                    }
+                }
             }
         }
 
@@ -58,8 +74,7 @@ namespace HelloSignTestApp
             Console.WriteLine("Using HelloSign API at host: " + apiHost);
 
             // Client setup
-            var client = new Client(apiKey);
-            client.SetApiHost(apiHost);
+            var client = new Client(apiKey,apiHost);
 
             // Prepare some fake text files for upload
             byte[] file1 = System.Text.Encoding.ASCII.GetBytes("Test document, please sign at the end.");
@@ -69,6 +84,7 @@ namespace HelloSignTestApp
 
             // Get account
             var account = client.GetAccount();
+
             Console.WriteLine("My Account ID: " + account.AccountId);
             //var account = client.UpdateAccount(new Uri("http://example.com"));
 
@@ -79,6 +95,10 @@ namespace HelloSignTestApp
                 throw new Exception("Created account that should already exist: " + newAccount.EmailAddress);
             }
             catch (BadRequestException)
+            {
+                Console.WriteLine("Was successfully blocked from creating a pre-existing account.");
+            }
+            catch (ApplicationException)
             {
                 Console.WriteLine("Was successfully blocked from creating a pre-existing account.");
             }
@@ -210,10 +230,10 @@ namespace HelloSignTestApp
                     Console.WriteLine("Download URL: " + downloadUrl.FileUrl + " (Expires at: " + downloadUrl.ExpiresAt + ")");
                     break;
                 }
-                catch (Exception e) // Workaround for an API bug
+                catch (ApplicationException ae) // Workaround for an API bug
                 {
                     retries--;
-                    Console.Write("└ Caught an exception: " + e.Message);
+                    Console.Write("└ Caught an exception: " + ae.InnerException.Message);
                     if (retries > 0)
                     {
                         Console.WriteLine(". Trying again in 2s...");
@@ -346,7 +366,12 @@ namespace HelloSignTestApp
             var newApiApp = new ApiApp();
             DateTime.Now.ToShortTimeString();
             newApiApp.Name = "C# SDK Test App - " + DateTime.Now.ToString();
-            newApiApp.Domain = "example.com";
+            newApiApp.Domains = new List<string>() { "example.com" };
+            var oauth = new Oauth();
+            oauth.Secret = "a08b45tklasdf837fd8fd8a9dsf7ds678vda";
+            oauth.CallbackUrl = "https://example.com/callback";
+            oauth.Scopes = new List<string> { "team_access" };
+            newApiApp.Oauth = oauth;
             newApiApp.CallbackUrl = "https://example.com/callback";
             var aResponse = client.CreateApiApp(newApiApp);
             Console.WriteLine("New API App: " + aResponse.Name);
@@ -447,13 +472,44 @@ namespace HelloSignTestApp
             Console.WriteLine("Deleted test API App");
 
             // Get Report
-            var reportRequest = new Report();
-            reportRequest.StartDate = DateTime.Now.AddYears(-1);
-            reportRequest.EndDate = DateTime.Now;
-            reportRequest.ReportType = "user_activity, document_status";
-            var reportResponse = client.CreateReport(reportRequest);
-            Console.WriteLine($"Status for Report ({reportResponse.ReportType}) between {reportResponse.StartDate} - {reportResponse.EndDate}: {reportResponse.Success}");
+            try
+            {
+                var reportRequest = new Report();
+                reportRequest.StartDate = DateTime.Now.AddMonths(-10);
+                reportRequest.EndDate = DateTime.Now.AddMonths(-10);
+                reportRequest.ReportType = new List<string>{ "user_activity", "document_status" };
+                var reportResponse = client.CreateReport(reportRequest);
+                Console.WriteLine($"Status for Report ({reportResponse.ReportType}) between {reportResponse.StartDate} - {reportResponse.EndDate}: {reportResponse.Success}");
+            }
+            catch(Exception e)
+            {
+                if(!e.Message.Contains("Reports are not available for Free plan"))
+                {
+                    throw e;
+                }
+                else
+                {
+                    Console.WriteLine($"Plan Error: {e.Message}");
+                }
+            }
 
+            // Parse Event
+            var eventTime = 1650571758;
+            var eventType = "account_confirmed";
+            var keyBytes = System.Text.Encoding.ASCII.GetBytes(apiKey);
+            var hmac = new System.Security.Cryptography.HMACSHA256(keyBytes);
+            var inputBytes = System.Text.Encoding.ASCII.GetBytes(eventTime + eventType);
+            var outputBytes = hmac.ComputeHash(inputBytes);
+            var hash = BitConverter.ToString(outputBytes).Replace("-", "").ToLower();
+
+            string jsonObject = "{\"event\":{ \"event_time\": "+eventTime+", \"event_type\": \""+eventType+"\",\"event_hash\":\""+hash+"\"}, \"signature_request\":\"{}\", \"template\":\"{}\"}";
+            var parsedEvent = client.ParseEvent(jsonObject);
+            if(parsedEvent.EventHash != hash){
+                throw new Exception("Failed to parse Event Json: " + jsonObject);
+            }else{
+                Console.WriteLine("Successfully parsed Event Json");
+            }
+            
             Console.WriteLine("Press ENTER to exit.");
             Console.Read(); // Keeps the output window open
         }

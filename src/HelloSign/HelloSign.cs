@@ -6,7 +6,8 @@ using System.Diagnostics;
 using System.Linq;
 using RestSharp;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Serialization;
 
 namespace HelloSign
 {
@@ -50,10 +51,17 @@ namespace HelloSign
 
         private string apiKey;
         private RestClient client;
-        private RestSharp.Deserializers.JsonDeserializer deserializer;
         private const string defaultHost = "api.hellosign.com";
         public List<Warning> Warnings { get; private set; }
         public string Version { get; private set; }
+        public JsonSerializerSettings SerializerSettings = new JsonSerializerSettings
+            {
+                ContractResolver = new DefaultContractResolver
+                {
+                    NamingStrategy = new SnakeCaseNamingStrategy()
+                },
+                NullValueHandling = NullValueHandling.Ignore
+            };
 
         /// <summary>
         /// Additional request parameters you wish to inject into your API calls.
@@ -72,7 +80,7 @@ namespace HelloSign
         /// Limited to unauthenticated calls only unless <see cref="UseApiKeyAuthentication"/>
         /// or <see cref="UseOAuth2Authentication"/> is subsequently called.
         /// </summary>
-        public Client()
+        public Client(string apiHost = null)
         {
             // Determine product version
             System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
@@ -80,20 +88,24 @@ namespace HelloSign
             Version = fvi.ProductVersion;
 
             // Initialize stuff
-            client = new RestClient();
-            client.UserAgent = "hellosign-dotnet-sdk/" + Version;
-            deserializer = new RestSharp.Deserializers.JsonDeserializer();
+            setClient(apiHost);
             Warnings = new List<Warning>();
-            SetApiHost(defaultHost);
         }
 
         /// <summary>
         /// Constructor initialized with API key authentication.
         /// </summary>
         /// <param name="apiKey">Your HelloSign account API key.</param>
-        public Client(string apiKey) : this()
+        /// <param name="apiHost">The hostname used to connect to HelloSign</param>
+        public Client(string apiKey, string apiHost = null) : this(apiHost)
         {
             this.UseApiKeyAuthentication(apiKey);
+        }
+
+        private void setClient(string apiHost = null)
+        {
+            client = new RestClient(GetFullHostname(apiHost ?? defaultHost));
+            client.AddDefaultHeader("User-Agent", "hellosign-dotnet-sdk/" + Version);
         }
 
         /// <summary>
@@ -115,15 +127,15 @@ namespace HelloSign
         /// <param name="accessToken"></param>
         public void UseOAuth2Authentication(string accessToken)
         {
-            client.Authenticator = new RestSharp.Authenticators.OAuth2AuthorizationRequestHeaderAuthenticator(accessToken, "Bearer");
+            client.Authenticator = new RestSharp.Authenticators.OAuth2.OAuth2AuthorizationRequestHeaderAuthenticator(accessToken, "Bearer");
         }
 
-        private void HandleErrors(IRestResponse response)
+        private void HandleErrors(RestResponseBase response)
         {
             // If there was an exception getting the response
             if (response.ErrorException != null)
             {
-                const string message = "Error retrieving response.  Check inner details for more info.";
+                string message = $"Error retrieving response: {response.Content}";
                 throw new ApplicationException(message, response.ErrorException);
             }
 
@@ -131,57 +143,65 @@ namespace HelloSign
             if (response.ContentType == "application/json")
             {
                 // Check for an error
-                deserializer.RootElement = "error";
-                var error = deserializer.Deserialize<Error>(response);
-                if (error.ErrorName != null)
+                var jToken = JToken.Parse(response.Content);
+                var errorToken = jToken["error"];
+                if (errorToken != null)
                 {
-                    switch (error.ErrorName)
+                    var error = JsonConvert.DeserializeObject<Error>(errorToken.ToString(), SerializerSettings);
+                    if (error.ErrorName != null)
                     {
-                        case "bad_request":
-                            throw new BadRequestException(error.ErrorMsg, error.ErrorName);
-                        case "unauthorized":
-                            throw new UnauthorizedException(error.ErrorMsg, error.ErrorName);
-                        case "payment_required":
-                            throw new PaymentRequiredException(error.ErrorMsg, error.ErrorName);
-                        case "forbidden":
-                            throw new ForbiddenException(error.ErrorMsg, error.ErrorName);
-                        case "not_found":
-                            throw new NotFoundException(error.ErrorMsg, error.ErrorName);
-                        case "conflict":
-                            throw new ConflictException(error.ErrorMsg, error.ErrorName);
-                        case "team_invite_failed":
-                            throw new ForbiddenException(error.ErrorMsg, error.ErrorName);
-                        case "invalid_recipient":
-                            throw new BadRequestException(error.ErrorMsg, error.ErrorName);
-                        case "signature_request_cancel_failed":
-                            throw new BadRequestException(error.ErrorMsg, error.ErrorName);
-                        case "maintenance":
-                            throw new ServiceUnavailableException(error.ErrorMsg, error.ErrorName);
-                        case "deleted":
-                            throw new GoneException(error.ErrorMsg, error.ErrorName);
-                        case "unknown":
-                            throw new UnknownException(error.ErrorMsg, error.ErrorName);
-                        case "method_not_supported":
-                            throw new MethodNotAllowedException(error.ErrorMsg, error.ErrorName);
-                        case "signature_request_invalid":
-                            throw new ErrorException(error.ErrorMsg, error.ErrorName);
-                        case "template_error":
-                            throw new ErrorException(error.ErrorMsg, error.ErrorName);
-                        case "invalid_reminder":
-                            throw new BadRequestException(error.ErrorMsg, error.ErrorName);
-                        case "exceeded_rate":
-                            throw new ExceededRateLimitException(error.ErrorMsg, error.ErrorName);
-                        default:
-                            throw new ErrorException(error.ErrorMsg, error.ErrorName);
+                        switch (error.ErrorName)
+                        {
+                            case "bad_request":
+                                throw new BadRequestException(error.ErrorMsg, error.ErrorName);
+                            case "unauthorized":
+                                throw new UnauthorizedException(error.ErrorMsg, error.ErrorName);
+                            case "payment_required":
+                                throw new PaymentRequiredException(error.ErrorMsg, error.ErrorName);
+                            case "forbidden":
+                                throw new ForbiddenException(error.ErrorMsg, error.ErrorName);
+                            case "not_found":
+                                throw new NotFoundException(error.ErrorMsg, error.ErrorName);
+                            case "conflict":
+                                throw new ConflictException(error.ErrorMsg, error.ErrorName);
+                            case "team_invite_failed":
+                                throw new ForbiddenException(error.ErrorMsg, error.ErrorName);
+                            case "invalid_recipient":
+                                throw new BadRequestException(error.ErrorMsg, error.ErrorName);
+                            case "signature_request_cancel_failed":
+                                throw new BadRequestException(error.ErrorMsg, error.ErrorName);
+                            case "maintenance":
+                                throw new ServiceUnavailableException(error.ErrorMsg, error.ErrorName);
+                            case "deleted":
+                                throw new GoneException(error.ErrorMsg, error.ErrorName);
+                            case "unknown":
+                                throw new UnknownException(error.ErrorMsg, error.ErrorName);
+                            case "method_not_supported":
+                                throw new MethodNotAllowedException(error.ErrorMsg, error.ErrorName);
+                            case "signature_request_invalid":
+                                throw new ErrorException(error.ErrorMsg, error.ErrorName);
+                            case "template_error":
+                                throw new ErrorException(error.ErrorMsg, error.ErrorName);
+                            case "invalid_reminder":
+                                throw new BadRequestException(error.ErrorMsg, error.ErrorName);
+                            case "exceeded_rate":
+                                throw new ExceededRateLimitException(error.ErrorMsg, error.ErrorName);
+                            default:
+                                throw new ErrorException(error.ErrorMsg, error.ErrorName);
+                        }
                     }
                 }
 
+
                 // Look for warnings
-                deserializer.RootElement = "warnings";
-                var warnings = deserializer.Deserialize<List<Warning>>(response);
-                if (warnings[0].WarningName != null)
+                var warningToken = jToken["warnings"];
+                if(warningToken != null)
                 {
-                    Warnings.AddRange(warnings);
+                    var warnings = JsonConvert.DeserializeObject<List<Warning>>(warningToken.ToString(), SerializerSettings);
+                    if (warnings[0].WarningName != null)
+                    {
+                        Warnings.AddRange(warnings);
+                    }
                 }
             }
 
@@ -234,49 +254,65 @@ namespace HelloSign
         private T Execute<T>(RestRequest request) where T : new()
         {
             InjectAdditionalParameters(request);
-            var response = client.Execute<T>(request);
+            var responseTask =  client.ExecuteAsync(request);
+            var response = responseTask.Result;
             HandleErrors(response);
-            return response.Data;
+            var jToken = JToken.Parse(response.Content);
+            var rootToken = jToken;
+            if (request.RootElement != null)
+            {
+                rootToken = jToken[request.RootElement];
+            }
+            return JsonConvert.DeserializeObject<T>(rootToken.ToString(),SerializerSettings);
         }
 
         private ObjectList<T> ExecuteList<T>(RestRequest request, string arrayKey) where T : new()
         {
             InjectAdditionalParameters(request);
-            var response = client.Execute(request);
+            var response = client.ExecuteAsync(request).Result;
             HandleErrors(response);
 
-            deserializer.RootElement = "list_info";
-            var list = deserializer.Deserialize<ObjectList<T>>(response);
+            var objectList = PopulateObjectList<T>(response, arrayKey);
+            return objectList;
+        }
 
+        private ObjectList<T> PopulateObjectList<T>(RestResponseBase response, string arrayKey)
+        {
+            var jToken = JToken.Parse(response.Content);
+            var listToken = jToken["list_info"];
+            var list = new ObjectList<T>();
             // TODO: Check response sanity
-            deserializer.RootElement = arrayKey;
-            var items = deserializer.Deserialize<List<T>>(response);
+            list.Page = listToken["page"].ToObject<int>();
+            list.NumPages = listToken["num_pages"].ToObject<int>();
+            list.NumResults = listToken["num_results"].ToObject<int>();
+            list.PageSize = listToken["page_size"].ToObject<int>();
+            var itemToken = jToken[arrayKey];
+            var items = JsonConvert.DeserializeObject<List<T>>(itemToken.ToString(), SerializerSettings);
             list.Items = items;
-
             return list;
+
         }
 
         /// <summary>
         /// Execute an API call and return nothing.
         /// </summary>
         /// <param name="request">The RestRequest object to execute.</param>
-        /// <returns>The IRestResponse object.</returns>
-        private IRestResponse Execute(RestRequest request)
+        /// <returns>The RestResponseBase object.</returns>
+        private RestResponseBase Execute(RestRequest request)
         {
             InjectAdditionalParameters(request);
-            var response = client.Execute(request);
+            var response = client.ExecuteAsync(request).Result;
             HandleErrors(response);
             return response;
         }
 
         /// <summary>
-        /// Set the host of the HelloSign API to make calls to.
-        /// Useful only for internal testing purposes; Users should generally not change this.
+        /// Formats a basic hostname into a full hostname
         /// </summary>
         /// <param name="host"></param>
-        public void SetApiHost(string host)
+        public String GetFullHostname(string host)
         {
-            client.BaseUrl = new Uri(String.Format("https://{0}/v3", host));
+            return String.Format("https://{0}/v3", host);
         }
 
         /// <summary>
@@ -311,7 +347,7 @@ namespace HelloSign
                 default:
                     throw new ArgumentException("Unsupported environment given");
             }
-            client.BaseUrl = new Uri(String.Format("https://api.{0}/v3", domain));
+            setClient(GetFullHostname(domain));
         }
 
         /// <summary>
@@ -335,16 +371,13 @@ namespace HelloSign
                 throw new Exception("Event parsing is only supported if you initialize Client with an API key.");
             }
 
-            // Build a fake RestResponse so we can take advantage of the RestSharp Deserializer
-            var fakeResponse = new RestResponse();
-            fakeResponse.Content = data;
-
+            JToken jToken = JToken.Parse(data);
             // Parse the main event body
-            deserializer.RootElement = "event";
-            var callbackEvent = deserializer.Deserialize<Event>(fakeResponse);
-            
+            var eventToken = jToken["event"];
+            var callbackEvent = JsonConvert.DeserializeObject<Event>(eventToken.ToString(), SerializerSettings);
+
             // Verify hash integrity
-            var hashInfo = deserializer.Deserialize<EventHashInfo>(fakeResponse);
+            var hashInfo = JsonConvert.DeserializeObject<EventHashInfo>(eventToken.ToString(), SerializerSettings);
             var keyBytes = System.Text.Encoding.ASCII.GetBytes(apiKey);
             var hmac = new System.Security.Cryptography.HMACSHA256(keyBytes);
             var inputBytes = System.Text.Encoding.ASCII.GetBytes(hashInfo.EventTime + hashInfo.EventType);
@@ -364,12 +397,11 @@ namespace HelloSign
             }
 
             // Parse attached models
-            deserializer.RootElement = "signature_request";
-            callbackEvent.SignatureRequest = deserializer.Deserialize<SignatureRequest>(fakeResponse);
-            deserializer.RootElement = "template";
-            callbackEvent.Template = deserializer.Deserialize<Template>(fakeResponse);
-            deserializer.RootElement = "account";
-            callbackEvent.Account = deserializer.Deserialize<Account>(fakeResponse);
+            var signatureRequestToken = jToken["signature_request"];
+            callbackEvent.SignatureRequest = JsonConvert.DeserializeObject<SignatureRequest>(signatureRequestToken.ToString(), SerializerSettings);
+
+            var templateToken = jToken["template"];
+            callbackEvent.Template = JsonConvert.DeserializeObject<Template>(templateToken.ToString(), SerializerSettings);
 
             return callbackEvent;
         }
@@ -393,7 +425,7 @@ namespace HelloSign
                 throw new ArgumentException("email_address is required");
             }
 
-            var request = new RestRequest("account/create", Method.POST);
+            var request = new RestRequest("account/create", Method.Post);
             request.AddParameter("email_address", emailAddress);
             request.RootElement = "account";
             return Execute<Account>(request);
@@ -421,8 +453,7 @@ namespace HelloSign
         {
             RequireAuthentication();
 
-            var request = new RestRequest("account", Method.POST);
-            request.AddParameter("callback_url", callbackUrl);
+            var request = new RestRequest("account", Method.Post).AddParameter("callback_url", callbackUrl.ToString());
             request.RootElement = "account";
             return Execute<Account>(request);
         }
@@ -434,7 +465,7 @@ namespace HelloSign
                 throw new ArgumentException("email_address is required");
             }
 
-            var request = new RestRequest("account/verify", Method.POST);
+            var request = new RestRequest("account/verify", Method.Post);
             request.AddParameter("email_address", emailAddress);
             request.RootElement = "account";
             return Execute<Account>(request);
@@ -464,13 +495,13 @@ namespace HelloSign
             RequireAuthentication();
 
             var request = new RestRequest("signature_request/list");
-            if (page != null)
+            if (page.HasValue)
             {
-                request.AddParameter("page", page);
+                request.AddParameter("page", page.Value);
             }
-            if (pageSize != null)
+            if (pageSize.HasValue)
             {
-                request.AddParameter("page_size", pageSize);
+                request.AddParameter("page_size", pageSize.Value);
             }
             return ExecuteList<SignatureRequest>(request, "signature_requests");
         }
@@ -488,7 +519,7 @@ namespace HelloSign
 
             // Setup request
             var endpoint = (isEmbedded) ? "signature_request/create_embedded" : "signature_request/send";
-            var request = new RestRequest(endpoint, Method.POST);
+            var request = new RestRequest(endpoint, Method.Post);
 
             // Add simple parameters
             if (clientId != null) request.AddParameter("client_id", clientId);
@@ -511,7 +542,7 @@ namespace HelloSign
                 string prefix = String.Format("signers[{0}]", i);
                 request.AddParameter(prefix + "[email_address]", signer.EmailAddress);
                 request.AddParameter(prefix + "[name]", signer.Name);
-                if (signer.Order != null) request.AddParameter(prefix + "[order]", signer.Order);
+                if (signer.Order != null) request.AddParameter(prefix + "[order]", signer.getOrderInt());
                 if (signer.Pin != null) request.AddParameter(prefix + "[pin]", signer.Pin);
                 if (signer.SmsPhoneNumber != null) request.AddParameter(prefix + "[sms_phone_number]", signer.SmsPhoneNumber);
                 i++;
@@ -615,7 +646,7 @@ namespace HelloSign
 
             // Setup request
             var endpoint = (isEmbedded) ? "signature_request/create_embedded_with_template" : "signature_request/send_with_template";
-            var request = new RestRequest(endpoint, Method.POST);
+            var request = new RestRequest(endpoint, Method.Post);
 
             // Add simple parameters
             if (clientId != null) request.AddParameter("client_id", clientId);
@@ -642,7 +673,7 @@ namespace HelloSign
                 string prefix = String.Format("signers[{0}]", signer.Role); // TODO: Escape characters in key
                 request.AddParameter(prefix + "[email_address]", signer.EmailAddress);
                 request.AddParameter(prefix + "[name]", signer.Name);
-                if (signer.Order != null) request.AddParameter(prefix + "[order]", signer.Order);
+                if (signer.Order != null) request.AddParameter(prefix + "[order]", signer.getOrderInt());
                 if (signer.Pin != null) request.AddParameter(prefix + "[pin]", signer.Pin);
                 if (signer.SmsPhoneNumber != null) request.AddParameter(prefix + "[sms_phone_number]", signer.SmsPhoneNumber);
             }
@@ -657,7 +688,8 @@ namespace HelloSign
             if (signatureRequest.CustomFields.Count > 0)
             {
                 // Serialize as JSON string
-                request.AddParameter("custom_fields", JsonConvert.SerializeObject(signatureRequest.CustomFields));
+                var cfjson = JsonConvert.SerializeObject(signatureRequest.CustomFields);
+                request.AddParameter("custom_fields", cfjson);
             }
 
             // Add Metadata
@@ -716,7 +748,7 @@ namespace HelloSign
         {
             RequireAuthentication();
 
-            var request = new RestRequest("signature_request/remind/{id}", Method.POST);
+            var request = new RestRequest("signature_request/remind/{id}", Method.Post);
             request.AddUrlSegment("id", signatureRequestId);
             request.AddParameter("email_address", emailAddress);
             if (name != null) {
@@ -737,7 +769,7 @@ namespace HelloSign
         {
             RequireAuthentication();
 
-            var request = new RestRequest("signature_request/update/{id}", Method.POST);
+            var request = new RestRequest("signature_request/update/{id}", Method.Post);
             request.AddUrlSegment("id", signatureRequestId);
             request.AddParameter("signature_id", signatureId);
             request.AddParameter("email_address", emailAddress);
@@ -753,7 +785,7 @@ namespace HelloSign
         {
             RequireAuthentication();
 
-            var request = new RestRequest("signature_request/cancel/{id}", Method.POST);
+            var request = new RestRequest("signature_request/cancel/{id}", Method.Post);
             request.AddUrlSegment("id", signatureRequestId);
             Execute(request);
         }
@@ -768,7 +800,7 @@ namespace HelloSign
         {
             RequireAuthentication();
 
-            var request = new RestRequest("signature_request/remove/{id}", Method.POST);
+            var request = new RestRequest("signature_request/remove/{id}", Method.Post);
             request.AddUrlSegment("id", signatureRequestId);
             Execute(request);
         }
@@ -831,7 +863,7 @@ namespace HelloSign
         {
             RequireAuthentication();
 
-            var request = new RestRequest("signature_request/release_hold/{id}", Method.POST);
+            var request = new RestRequest("signature_request/release_hold/{id}", Method.Post);
             request.AddUrlSegment("id", signatureRequestId);
             return Execute<SignatureRequest>(request);
         }
@@ -860,13 +892,13 @@ namespace HelloSign
             RequireAuthentication();
 
             var request = new RestRequest("template/list");
-            if (page != null)
+            if (page.HasValue)
             {
-                request.AddParameter("page", page);
+                request.AddParameter("page", page.Value);
             }
-            if (pageSize != null)
+            if (pageSize.HasValue)
             {
-                request.AddParameter("page_size", pageSize);
+                request.AddParameter("page_size", pageSize.Value);
             }
             return ExecuteList<Template>(request, "templates");
         }
@@ -888,7 +920,7 @@ namespace HelloSign
                 throw new ArgumentException("Specify accountId OR emailAddress, but not both");
             }
 
-            var request = new RestRequest("template/{action}_user/{id}", Method.POST);
+            var request = new RestRequest("template/{action}_user/{id}", Method.Post);
             request.AddUrlSegment("action", (isGrant) ? "add" : "remove");
             request.AddUrlSegment("id", templateId);
             if (accountId != null)
@@ -934,7 +966,7 @@ namespace HelloSign
             RequireAuthentication();
 
             // Set up request
-            var request = new RestRequest("template/create_embedded_draft", Method.POST);
+            var request = new RestRequest("template/create_embedded_draft", Method.Post);
 
             // Add simple parameters
             if (clientId != null) request.AddParameter("client_id", clientId);
@@ -952,7 +984,7 @@ namespace HelloSign
             {
                 string prefix = String.Format("signer_roles[{0}]", i);
                 request.AddParameter(prefix + "[name]", role.Name);
-                if (role.Order != null) request.AddParameter(prefix + "[order]", role.Order);
+                if (role.Order != null) request.AddParameter(prefix + "[order]", role.getOrderInt());
                 i++;
             }
 
@@ -1008,7 +1040,7 @@ namespace HelloSign
         {
             RequireAuthentication();
 
-            var request = new RestRequest("template/delete/{id}", Method.POST);
+            var request = new RestRequest("template/delete/{id}", Method.Post);
             request.AddUrlSegment("id", templateId);
             Execute(request);
         }
@@ -1090,7 +1122,7 @@ namespace HelloSign
         {
             RequireAuthentication();
 
-            var request = new RestRequest("team/create", Method.POST);
+            var request = new RestRequest("team/create", Method.Post);
             request.AddParameter("name", name);
             request.RootElement = "team";
             return Execute<Team>(request);
@@ -1118,7 +1150,7 @@ namespace HelloSign
         {
             RequireAuthentication();
 
-            var request = new RestRequest("team/destroy", Method.POST);
+            var request = new RestRequest("team/destroy", Method.Post);
             Execute(request);
         }
 
@@ -1138,7 +1170,7 @@ namespace HelloSign
                 throw new ArgumentException("Specify accountId OR emailAddress, but not both");
             }
 
-            var request = new RestRequest("team/{action}_member", Method.POST);
+            var request = new RestRequest("team/{action}_member", Method.Post);
             request.AddUrlSegment("action", (isAdd) ? "add" : "remove");
             if (accountId != null)
                 request.AddParameter("account_id", accountId);
@@ -1202,7 +1234,7 @@ namespace HelloSign
 
             // Setup request
             var endpoint = (embedded) ? "unclaimed_draft/create_embedded" : "unclaimed_draft/create";
-            var request = new RestRequest(endpoint, Method.POST);
+            var request = new RestRequest(endpoint, Method.Post);
 
             if (embedded)
             {
@@ -1252,7 +1284,7 @@ namespace HelloSign
                 string prefix = String.Format("signers[{0}]", i);
                 request.AddParameter(prefix + "[email_address]", signer.EmailAddress);
                 request.AddParameter(prefix + "[name]", signer.Name);
-                if (signer.Order != null) request.AddParameter(prefix + "[order]", signer.Order);
+                if (signer.Order != null) request.AddParameter(prefix + "[order]", signer.getOrderInt());
                 if (signer.Pin != null) request.AddParameter(prefix + "[pin]", signer.Pin);
                 i++;
             }
@@ -1326,7 +1358,7 @@ namespace HelloSign
 
             // Setup request
             var endpoint = "unclaimed_draft/create_embedded_with_template";
-            var request = new RestRequest(endpoint, Method.POST);
+            var request = new RestRequest(endpoint, Method.Post);
 
             // Add simple parameters
             request.AddParameter("client_id", clientId);
@@ -1356,7 +1388,7 @@ namespace HelloSign
                 string prefix = String.Format("signers[{0}]", signer.Role); // TODO: Escape characters in key
                 request.AddParameter(prefix + "[email_address]", signer.EmailAddress);
                 request.AddParameter(prefix + "[name]", signer.Name);
-                if (signer.Order != null) request.AddParameter(prefix + "[order]", signer.Order);
+                if (signer.Order != null) request.AddParameter(prefix + "[order]", signer.getOrderInt());
                 if (signer.Pin != null) request.AddParameter(prefix + "[pin]", signer.Pin);
             }
 
@@ -1462,13 +1494,13 @@ namespace HelloSign
             RequireAuthentication();
 
             var request = new RestRequest("api_app/list");
-            if (page != null)
+            if (page.HasValue)
             {
-                request.AddParameter("page", page);
+                request.AddParameter("page", page.Value);
             }
-            if (pageSize != null)
+            if (pageSize.HasValue)
             {
-                request.AddParameter("page_size", pageSize);
+                request.AddParameter("page_size", pageSize.Value);
             }
             return ExecuteList<ApiApp>(request, "api_apps");
         }
@@ -1482,11 +1514,11 @@ namespace HelloSign
         {
             RequireAuthentication();
 
-            var request = new RestRequest("api_app", Method.POST);
+            var request = new RestRequest("api_app", Method.Post);
 
             // Add simple parameters
             request.AddParameter("name", app.Name);
-            request.AddParameter("domain", app.Domain);
+            request.AddParameter("domains", JsonConvert.SerializeObject(app.Domains));
             if (app.CallbackUrl != null) request.AddParameter("callback_url", app.CallbackUrl);
 
             // Add OAuth info if present
@@ -1508,7 +1540,7 @@ namespace HelloSign
         {
             RequireAuthentication();
 
-            var request = new RestRequest("api_app/{id}", Method.DELETE);
+            var request = new RestRequest("api_app/{id}", Method.Delete);
             request.AddUrlSegment("id", clientId);
             Execute(request);
         }
@@ -1530,20 +1562,24 @@ namespace HelloSign
 
             // Special twist on ExecuteList
             InjectAdditionalParameters(request);
-            var response = client.Execute(request);
+            var response = client.ExecuteAsync<RestResponseBase>(request).Result;
+            var jToken = JToken.Parse(response.Content);
             HandleErrors(response);
 
-            // Unpack list_info
-            deserializer.RootElement = "list_info";
-            var job = deserializer.Deserialize<BulkSendJob>(response);
-
             // Unpack list of associated SignatureRequests
-            deserializer.RootElement = "signature_requests";
-            job.Items = deserializer.Deserialize<List<SignatureRequest>>(response);
+            var listToken = jToken["list_info"];
+            var job = new BulkSendJob();
+            // TODO: Check response sanity
+            job.Page = listToken["page"].ToObject<int>();
+            job.NumPages = listToken["num_pages"].ToObject<int>();
+            job.NumResults = listToken["num_results"].ToObject<int>();
+            job.PageSize = listToken["page_size"].ToObject<int>();
+            var itemToken = jToken["signature_requests"];
+            var items = JsonConvert.DeserializeObject<List<SignatureRequest>>(itemToken.ToString(), SerializerSettings);
+            job.Items = items;
 
             // Also unpack the BulkSendJobInfo details
-            deserializer.RootElement = "bulk_send_job";
-            job.JobInfo = deserializer.Deserialize<BulkSendJobInfo>(response);
+            job.JobInfo = jToken["bulk_send_job"].ToObject<BulkSendJobInfo>();
 
             return job;
         }
@@ -1567,13 +1603,13 @@ namespace HelloSign
             RequireAuthentication();
 
             var request = new RestRequest("bulk_send_job/list");
-            if (page != null)
+            if (page.HasValue)
             {
-                request.AddParameter("page", page);
+                request.AddParameter("page", page.Value);
             }
-            if (pageSize != null)
+            if (pageSize.HasValue)
             {
-                request.AddParameter("page_size", pageSize);
+                request.AddParameter("page_size", pageSize.Value);
             }
             return ExecuteList<BulkSendJobInfo>(request, "bulk_send_jobs");
         }
@@ -1593,14 +1629,13 @@ namespace HelloSign
         {
             RequireAuthentication();
 
-            var request = new RestRequest("report/create", Method.POST);
+            var request = new RestRequest("report/create", Method.Post);
             request.AddQueryParameter("start_date", report.StartDate.ToString("MM/dd/yyyy"));
             request.AddQueryParameter("end_date", report.EndDate.ToString("MM/dd/yyyy"));
 
             // Add Report Types
-            var reportTypes = report.ReportType.Split(',');
             int i = 0;
-            foreach (var reportType in reportTypes)
+            foreach (var reportType in report.ReportType)
             {
                 request.AddQueryParameter(String.Format("report_type[{0}]", i), reportType.Trim());
                 i++;

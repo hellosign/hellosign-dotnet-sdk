@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace HelloSign
 {
@@ -25,6 +26,6 @@ namespace HelloSign
         /// <summary>
         /// The type of the report you are requesting
         /// </summary>
-        public string ReportType { get; set; }
+        public List<string> ReportType { get; set; }
     }
 }

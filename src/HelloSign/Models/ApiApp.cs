@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace HelloSign
 {
@@ -9,7 +10,7 @@ namespace HelloSign
     {
         public string ClientId { get; set; }
         public string Name { get; set; }
-        public string Domain { get; set; }
+        public List<string> Domains { get; set; }
         public string CallbackUrl { get; set; }
         public bool? IsApproved { get; set; }
         public Account OwnerAccount { get; set; }

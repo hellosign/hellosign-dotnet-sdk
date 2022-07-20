@@ -160,7 +160,7 @@ namespace HelloSign
             }
             else if (Writer != null)
             {
-                request.AddFile(name, Writer, Filename, ContentLength, ContentType);
+                request.AddFile(name,Filename);
             }
             else if (Bytes != null)
             {

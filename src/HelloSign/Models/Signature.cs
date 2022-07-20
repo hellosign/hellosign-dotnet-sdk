@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace HelloSign
 {
@@ -15,9 +17,16 @@ namespace HelloSign
         public string SignerRole { get; set; }
         public int? Order { get; set; }
         public string StatusCode { get; set; }
+
+        [JsonConverter(typeof(UnixDateTimeConverter))]
         public DateTime SignedAt { get; set; }
+
+        [JsonConverter(typeof(UnixDateTimeConverter))]
         public DateTime LastViewedAt { get; set; }
+
+        [JsonConverter(typeof(UnixDateTimeConverter))]
         public DateTime LastRemindedAt { get; set; }
+
         public bool HasPin { get; set; }
         public string DeclineReason { get; set; }
         public string Error { get; set; }

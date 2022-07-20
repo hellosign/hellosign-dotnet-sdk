@@ -1,4 +1,6 @@
 using System;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace HelloSign
 {
@@ -22,6 +24,7 @@ namespace HelloSign
         /// <summary>
         /// Time that the BulkSendJob was created.
         /// </summary>
+        [JsonConverter(typeof(UnixDateTimeConverter))]
         public DateTime CreatedAt { get; set; }
     }
 }

@@ -11,9 +11,19 @@
     <Configuration>Release</Configuration>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>HelloSign.snk</AssemblyOriginatorKeyFile>
+    <Configurations>Build;Debug;Release</Configurations>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Build|AnyCPU' ">
+    <IntermediateOutputPath>obj\Release\netstandard2.0</IntermediateOutputPath>
+    <DebugType></DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release\netstandard2.0</OutputPath>
+    <DefineConstants></DefineConstants>
+    <NoWarn></NoWarn>
+    <NoStdLib>true</NoStdLib>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="11.0.1" />
-    <PackageReference Include="RestSharp" Version="[106.0.0,106.5.4]" />
+    <PackageReference Include="RestSharp" Version="107.3.0" />
   </ItemGroup>
 </Project>
