@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net50;net60;</TargetFrameworks>
-    <TargetFrameworks Condition="'$(OS)' != 'Windows_NT'">netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.1;net48;</TargetFrameworks>
+    <TargetFrameworks Condition="'$(OS)' != 'Windows_NT'">netstandard2.1</TargetFrameworks>
     <RepositoryUrl>https://github.com/hellosign/hellosign-dotnet-sdk.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <Description>Client library for using the HelloSign API</Description>
@@ -14,10 +14,10 @@
     <Configurations>Build;Debug;Release</Configurations>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Build|AnyCPU' ">
-    <IntermediateOutputPath>obj\Release\netstandard2.0</IntermediateOutputPath>
+    <IntermediateOutputPath>obj\Release\netstandard2.1</IntermediateOutputPath>
     <DebugType></DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Release\netstandard2.0</OutputPath>
+    <OutputPath>bin\Release\netstandard2.1</OutputPath>
     <DefineConstants></DefineConstants>
     <NoWarn></NoWarn>
     <NoStdLib>true</NoStdLib>
