@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net452;;</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;net50;;</TargetFrameworks>
     <TargetFrameworks Condition="'$(OS)' != 'Windows_NT'">netstandard2.0</TargetFrameworks>
     <RepositoryUrl>https://github.com/hellosign/hellosign-dotnet-sdk.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
