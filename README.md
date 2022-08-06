@@ -231,7 +231,7 @@ foreach (var result in allRequests)
 {
     Console.WriteLine("Signature request: " + result.SignatureRequestId);
 
-    if (result.IsComplete) == true)
+    if (result.IsComplete)
     {
         Console.WriteLine("Signature request is complete.");
     }
