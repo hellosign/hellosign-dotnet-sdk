@@ -5,7 +5,7 @@ namespace Sample_App.common
 {
     public class ConfigurationFactory
     {
-        public ConfigurationFactory()
+        private ConfigurationFactory()
         {
         }
 

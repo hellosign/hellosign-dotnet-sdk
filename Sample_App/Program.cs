@@ -11,11 +11,26 @@ namespace Sample_App
     {
         static void Main(string[] args)
         {
-            var user = new User("Bill","Bill@example.com");
-            Configuration config = ConfigurationFactory.GetConfiguration("api.dev-hellosign.com", "3cff3c94bb8c35dba564cbd25cdfe4f848f96512629f9766b6743f927b30a199");
+            var user = new User("Bill","Bill@example.com", UserRole.CLIENT);
+            var signers = new List<User>() { user };
+            var domain = Environment.GetEnvironmentVariable("DOMAIN"); 
+            var apikey = Environment.GetEnvironmentVariable("APIKEY");
+
+            Configuration config = ConfigurationFactory.GetConfiguration(domain, apikey);
             var client = new HelloSignClient(config);
-            var contract = client.sendNDAContract("Project: Blue Harvest", new List<User>(){ user });
-            Console.WriteLine("Successfully created contract with Id " + contract.contractId);
+
+            NDAContract NDAContract = (NDAContract)ContractFactory.GetContract(ContractFactory.ContractType.NDA, signers);
+            NDAContract.projectName = "Project: Blue Harvest";
+
+            var SentNDAContract = client.sendContract(NDAContract);
+
+            Console.WriteLine("Successfully sent NDA contract with Id " + SentNDAContract.contractId);
+
+            EmploymentContract employmentContract = (EmploymentContract)ContractFactory.GetContract(ContractFactory.ContractType.Employment, signers);
+            employmentContract.templateIds = new List<string>() { "7ecb2813364582e7e7e263fcb8cab20b53f6d04b" };
+
+            var SentEmploymentContract = client.sendContract(employmentContract);
+            Console.WriteLine("Successfully sent Employment contract with Id " + SentNDAContract.contractId);
         }
     }
 }

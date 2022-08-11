@@ -10,15 +10,16 @@ namespace Sample_App.model
     {
         private const string REQUEST_TITLE = "Non-Disclosure Agreement";
         private const string LEGAL_EMAIL = "lawyer@legal.com";
-        private string projectName { get; }
+        private List<string> FILES =  new() { "nda_contract.pdf" };
+        public string projectName { get; set; }
         public string requestMessage { get; set; }
-        public string contractId { get; set; }
-        public List<System.IO.Stream> files {get; set;}
-        private FileInterface fileInterface;
         public NDAContract(string projectName, List<User> requestedSigners) : base(requestedSigners)
         {
             this.projectName = projectName;
-            fileInterface = new FileInterface();
+        }
+
+        public NDAContract(List<User> requestedSigners) : base(requestedSigners)
+        {
         }
 
         public override string GetMessage()
@@ -36,14 +37,13 @@ namespace Sample_App.model
             return REQUEST_TITLE;
         }
 
-        public SignatureRequestSendRequest GetSignatureRequestSendRequest()
+        public override SignatureRequestSendRequest GetSignatureRequest()
         {
             List<SubSignatureRequestSigner> signers = requestedSigners.Select(signer => new SubSignatureRequestSigner(signer.name, signer.emailAddress)).ToList();
             var request = new SignatureRequestSendRequest(signers: signers);
             request.AllowDecline = true;
             request.CcEmailAddresses = new List<string>() { LEGAL_EMAIL };
-            List<string> filenames = new List<string>() { "nda_contract.pdf"};
-            List<System.IO.Stream> files = filenames.Select(filename => fileInterface.OpenLocalFile(filename)).ToList();
+            List<System.IO.Stream> files = FILES.Select(filename => FileInterface.OpenLocalFile(filename)).ToList();
             request.File = files;
             request.Message = GetMessage();
             request.Subject = GetSubject();
@@ -52,14 +52,19 @@ namespace Sample_App.model
             return request;
         }
 
-        public Email GetSentEmail()
+        public override Email GetSentEmail()
         {
             var email = new Email();
             email.fromAddress = "donotreply@test.com";
             email.toAddress = "engineers@test.com";
             email.subject = "NDA Contract sent to " + String.Join(", ", requestedSigners.Select(a => a.name));
-            email.message = "NDA Contract " + contractId + " sent " + String.Join(", ", requestedSigners.Select(a => a.name + " (" + a.emailAddress + ")"));
+            email.message = "NDA Contract " + contractId + " sent to " + String.Join(", ", requestedSigners.Select(a => a.name + " (" + a.emailAddress + ")"));
             return email;
+        }
+
+        public override bool HasTemplate()
+        {
+            return false;
         }
     }
 }

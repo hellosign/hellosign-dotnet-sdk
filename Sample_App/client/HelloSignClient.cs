@@ -2,6 +2,7 @@
 using Sample_App.model;
 using Org.HelloSign.Api;
 using Org.HelloSign.Client;
+using Org.HelloSign.Model;
 
 namespace Sample_App.client
 {
@@ -13,10 +14,29 @@ namespace Sample_App.client
             this.SignatureRequestApi = new SignatureRequestApi(config);
         }
 
-        public NDAContract sendNDAContract(string projectName, List<User> signers)
+        public BaseContract sendContract(BaseContract contract)
         {
-            var contract = new NDAContract(projectName,signers);
-            var response = SignatureRequestApi.SignatureRequestSend(contract.GetSignatureRequestSendRequest());
+            if (contract.HasTemplate())
+            {
+                return sendTemplateContract(contract);
+            }
+            else
+            {
+                return sendBasicContract(contract);
+            }
+        }
+
+        private BaseContract sendBasicContract(BaseContract contract)
+        {
+            var response = SignatureRequestApi.SignatureRequestSend((SignatureRequestSendRequest)contract.GetSignatureRequest());
+            contract.contractId = response.SignatureRequest.SignatureRequestId;
+            EmailClient.sendEmail(contract.GetSentEmail());
+            return contract;
+        }
+
+        private BaseContract sendTemplateContract(BaseContract contract)
+        {
+            var response = SignatureRequestApi.SignatureRequestSendWithTemplate((SignatureRequestSendWithTemplateRequest)contract.GetSignatureRequest()); //.SignatureRequestSend((SignatureRequestSendRequest)contract.GetSignatureRequest());
             contract.contractId = response.SignatureRequest.SignatureRequestId;
             EmailClient.sendEmail(contract.GetSentEmail());
             return contract;
