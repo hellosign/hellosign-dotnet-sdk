@@ -276,6 +276,16 @@ namespace Org.HelloSign.Client
                     continue;
                 }
 
+                if (item.Value is string or int)
+                {
+                    requestOptions.FormParameters.Add(
+                        item.Name,
+                        item.Value.ToString()
+                    );
+                    
+                    continue;
+                }
+
                 if (item.Value is List<Stream> streams)
                 {
                     for (var i = 0; i < streams.Count; i++)
