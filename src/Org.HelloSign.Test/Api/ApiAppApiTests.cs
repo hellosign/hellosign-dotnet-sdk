@@ -137,7 +137,7 @@ namespace Org.HelloSign.Test.Api
             ).Value?.ToString();
 
             Assert.Equal("[\"domain1.com\",\"domain2.com\"]", resultDomains);
-            Assert.Equal("\"My name is\"", resultName);
+            Assert.Equal("My name is", resultName);
             Assert.Equal("{\"scopes\":[\"template_access\"],\"callback_url\":\"https://oauth-callback.test\"}", resultOauth);
         }
     }
