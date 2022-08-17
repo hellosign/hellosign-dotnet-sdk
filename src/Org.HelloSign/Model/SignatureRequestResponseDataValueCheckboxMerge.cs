@@ -42,7 +42,7 @@ namespace Org.HelloSign.Model
     [JsonSubtypes.KnownSubType(typeof(SignatureRequestResponseDataValueText), "text")]
     [JsonSubtypes.KnownSubType(typeof(SignatureRequestResponseDataValueTextMerge), "text-merge")]
     [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
-    public partial class SignatureRequestResponseDataValueCheckboxMerge : SignatureRequestResponseData, IOpenApiTyped, IEquatable<SignatureRequestResponseDataValueCheckboxMerge>, IValidatableObject
+    public partial class SignatureRequestResponseDataValueCheckboxMerge : SignatureRequestResponseDataBase, IOpenApiTyped, IEquatable<SignatureRequestResponseDataValueCheckboxMerge>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SignatureRequestResponseDataValueCheckboxMerge" /> class.

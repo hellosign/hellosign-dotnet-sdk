@@ -63,7 +63,7 @@ namespace Org.HelloSign.Model
         /// <param name="attachments">Signer attachments..</param>
         /// <param name="responseData">An array of form field objects containing the name, value, and type of each textbox or checkmark field filled in by the signers..</param>
         /// <param name="signatures">An array of signature objects, 1 for each signer..</param>
-        public SignatureRequestResponse(bool? testMode = false, string signatureRequestId = default(string), string requesterEmailAddress = default(string), string title = default(string), string originalTitle = default(string), string subject = default(string), string message = default(string), Object metadata = default(Object), int createdAt = default(int), bool isComplete = default(bool), bool isDeclined = default(bool), bool hasError = default(bool), string filesUrl = default(string), string signingUrl = default(string), string detailsUrl = default(string), List<string> ccEmailAddresses = default(List<string>), string signingRedirectUrl = default(string), List<string> templateIds = default(List<string>), List<SignatureRequestResponseCustomFieldBase> customFields = default(List<SignatureRequestResponseCustomFieldBase>), List<SignatureRequestResponseAttachment> attachments = default(List<SignatureRequestResponseAttachment>), List<SignatureRequestResponseData> responseData = default(List<SignatureRequestResponseData>), List<SignatureRequestResponseSignatures> signatures = default(List<SignatureRequestResponseSignatures>))
+        public SignatureRequestResponse(bool? testMode = false, string signatureRequestId = default(string), string requesterEmailAddress = default(string), string title = default(string), string originalTitle = default(string), string subject = default(string), string message = default(string), Object metadata = default(Object), int createdAt = default(int), bool isComplete = default(bool), bool isDeclined = default(bool), bool hasError = default(bool), string filesUrl = default(string), string signingUrl = default(string), string detailsUrl = default(string), List<string> ccEmailAddresses = default(List<string>), string signingRedirectUrl = default(string), List<string> templateIds = default(List<string>), List<SignatureRequestResponseCustomFieldBase> customFields = default(List<SignatureRequestResponseCustomFieldBase>), List<SignatureRequestResponseAttachment> attachments = default(List<SignatureRequestResponseAttachment>), List<SignatureRequestResponseDataBase> responseData = default(List<SignatureRequestResponseDataBase>), List<SignatureRequestResponseSignatures> signatures = default(List<SignatureRequestResponseSignatures>))
         {
             
             // use default value if no "testMode" provided
@@ -236,7 +236,7 @@ namespace Org.HelloSign.Model
         /// </summary>
         /// <value>An array of form field objects containing the name, value, and type of each textbox or checkmark field filled in by the signers.</value>
         [DataMember(Name = "response_data", EmitDefaultValue = true)]
-        public List<SignatureRequestResponseData> ResponseData { get; set; }
+        public List<SignatureRequestResponseDataBase> ResponseData { get; set; }
 
         /// <summary>
         /// An array of signature objects, 1 for each signer.
@@ -639,7 +639,7 @@ namespace Org.HelloSign.Model
             types.Add(new OpenApiType(){
                 Name = "response_data",
                 Property = "ResponseData",
-                Type = "List<SignatureRequestResponseData>",
+                Type = "List<SignatureRequestResponseDataBase>",
                 Value = ResponseData,
             });
             types.Add(new OpenApiType(){

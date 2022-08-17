@@ -233,7 +233,7 @@ Class | Method | HTTP request | Description
  - [Model.SignatureRequestResponseCustomFieldCheckbox](docs/SignatureRequestResponseCustomFieldCheckbox.md)
  - [Model.SignatureRequestResponseCustomFieldText](docs/SignatureRequestResponseCustomFieldText.md)
  - [Model.SignatureRequestResponseCustomFieldTypeEnum](docs/SignatureRequestResponseCustomFieldTypeEnum.md)
- - [Model.SignatureRequestResponseData](docs/SignatureRequestResponseData.md)
+ - [Model.SignatureRequestResponseDataBase](docs/SignatureRequestResponseDataBase.md)
  - [Model.SignatureRequestResponseDataTypeEnum](docs/SignatureRequestResponseDataTypeEnum.md)
  - [Model.SignatureRequestResponseDataValueCheckbox](docs/SignatureRequestResponseDataValueCheckbox.md)
  - [Model.SignatureRequestResponseDataValueCheckboxMerge](docs/SignatureRequestResponseDataValueCheckboxMerge.md)

@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.SignatureRequestResponseData
+# Org.HelloSign.Model.SignatureRequestResponseDataBase
 An array of form field objects containing the name, value, and type of each textbox or checkmark field filled in by the signers.
 
 ## Properties

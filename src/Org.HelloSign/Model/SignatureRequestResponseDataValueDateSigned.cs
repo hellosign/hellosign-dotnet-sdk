@@ -42,7 +42,7 @@ namespace Org.HelloSign.Model
     [JsonSubtypes.KnownSubType(typeof(SignatureRequestResponseDataValueText), "text")]
     [JsonSubtypes.KnownSubType(typeof(SignatureRequestResponseDataValueTextMerge), "text-merge")]
     [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
-    public partial class SignatureRequestResponseDataValueDateSigned : SignatureRequestResponseData, IOpenApiTyped, IEquatable<SignatureRequestResponseDataValueDateSigned>, IValidatableObject
+    public partial class SignatureRequestResponseDataValueDateSigned : SignatureRequestResponseDataBase, IOpenApiTyped, IEquatable<SignatureRequestResponseDataValueDateSigned>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SignatureRequestResponseDataValueDateSigned" /> class.

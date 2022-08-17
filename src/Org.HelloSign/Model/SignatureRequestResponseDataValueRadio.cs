@@ -42,7 +42,7 @@ namespace Org.HelloSign.Model
     [JsonSubtypes.KnownSubType(typeof(SignatureRequestResponseDataValueText), "text")]
     [JsonSubtypes.KnownSubType(typeof(SignatureRequestResponseDataValueTextMerge), "text-merge")]
     [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
-    public partial class SignatureRequestResponseDataValueRadio : SignatureRequestResponseData, IOpenApiTyped, IEquatable<SignatureRequestResponseDataValueRadio>, IValidatableObject
+    public partial class SignatureRequestResponseDataValueRadio : SignatureRequestResponseDataBase, IOpenApiTyped, IEquatable<SignatureRequestResponseDataValueRadio>, IValidatableObject
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="SignatureRequestResponseDataValueRadio" /> class.

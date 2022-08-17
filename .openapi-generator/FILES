@@ -66,7 +66,7 @@ docs/SignatureRequestResponseCustomFieldBase.md
 docs/SignatureRequestResponseCustomFieldCheckbox.md
 docs/SignatureRequestResponseCustomFieldText.md
 docs/SignatureRequestResponseCustomFieldTypeEnum.md
-docs/SignatureRequestResponseData.md
+docs/SignatureRequestResponseDataBase.md
 docs/SignatureRequestResponseDataTypeEnum.md
 docs/SignatureRequestResponseDataValueCheckbox.md
 docs/SignatureRequestResponseDataValueCheckboxMerge.md
@@ -245,7 +245,7 @@ src/Org.HelloSign/Model/SignatureRequestResponseCustomFieldBase.cs
 src/Org.HelloSign/Model/SignatureRequestResponseCustomFieldCheckbox.cs
 src/Org.HelloSign/Model/SignatureRequestResponseCustomFieldText.cs
 src/Org.HelloSign/Model/SignatureRequestResponseCustomFieldTypeEnum.cs
-src/Org.HelloSign/Model/SignatureRequestResponseData.cs
+src/Org.HelloSign/Model/SignatureRequestResponseDataBase.cs
 src/Org.HelloSign/Model/SignatureRequestResponseDataTypeEnum.cs
 src/Org.HelloSign/Model/SignatureRequestResponseDataValueCheckbox.cs
 src/Org.HelloSign/Model/SignatureRequestResponseDataValueCheckboxMerge.cs
