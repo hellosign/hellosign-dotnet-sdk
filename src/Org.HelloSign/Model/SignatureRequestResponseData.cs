@@ -65,7 +65,7 @@ namespace Org.HelloSign.Model
         /// <param name="signatureId">The ID of the signature to which this response is linked..</param>
         /// <param name="name">The name of the form field..</param>
         /// <param name="required">A boolean value denoting if this field is required..</param>
-        /// <param name="type">TEST DESCRIPTION.</param>
+        /// <param name="type">type.</param>
         public SignatureRequestResponseData(string apiId = default(string), string signatureId = default(string), string name = default(string), bool required = default(bool), string type = default(string))
         {
             
@@ -105,9 +105,8 @@ namespace Org.HelloSign.Model
         public bool Required { get; set; }
 
         /// <summary>
-        /// TEST DESCRIPTION
+        /// Gets or Sets Type
         /// </summary>
-        /// <value>TEST DESCRIPTION</value>
         [DataMember(Name = "type", EmitDefaultValue = true)]
         public string Type { get; set; }
 

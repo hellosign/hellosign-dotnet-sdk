@@ -282,8 +282,8 @@ namespace Org.HelloSign.Client
                         item.Name,
                         item.Value.ToString()
                     );
-                    
-                    continue;
+
+                    continue; 
                 }
 
                 if (item.Value is List<Stream> streams)
