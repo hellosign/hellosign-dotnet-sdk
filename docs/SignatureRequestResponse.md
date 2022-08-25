@@ -25,7 +25,7 @@ Name | Type | Description | Notes
 **TemplateIds** | **List&lt;string&gt;** |  Templates IDs used in this SignatureRequest (if any).  | [optional] 
 **CustomFields** | [**List&lt;SignatureRequestResponseCustomFieldBase&gt;**](SignatureRequestResponseCustomFieldBase.md) |  An array of Custom Field objects containing the name and type of each custom field.<br><br>* Text Field uses `SignatureRequestResponseCustomFieldText`<br>* Checkbox Field uses `SignatureRequestResponseCustomFieldCheckbox`  | [optional] 
 **Attachments** | [**List&lt;SignatureRequestResponseAttachment&gt;**](SignatureRequestResponseAttachment.md) |  Signer attachments.  | [optional] 
-**ResponseData** | [**List&lt;SignatureRequestResponseData&gt;**](SignatureRequestResponseData.md) |  An array of form field objects containing the name, value, and type of each textbox or checkmark field filled in by the signers.  | [optional] 
+**ResponseData** | [**List&lt;SignatureRequestResponseDataBase&gt;**](SignatureRequestResponseDataBase.md) |  An array of form field objects containing the name, value, and type of each textbox or checkmark field filled in by the signers.  | [optional] 
 **Signatures** | [**List&lt;SignatureRequestResponseSignatures&gt;**](SignatureRequestResponseSignatures.md) |  An array of signature objects, 1 for each signer.  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

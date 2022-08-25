@@ -30,7 +30,7 @@ namespace Org.HelloSign.Model
     /// <summary>
     /// An array of form field objects containing the name, value, and type of each textbox or checkmark field filled in by the signers.
     /// </summary>
-    [DataContract(Name = "SignatureRequestResponseData")]
+    [DataContract(Name = "SignatureRequestResponseDataBase")]
     [JsonConverter(typeof(JsonSubtypes), "Type")]
     [JsonSubtypes.KnownSubType(typeof(SignatureRequestResponseDataValueCheckbox), "SignatureRequestResponseDataValueCheckbox")]
     [JsonSubtypes.KnownSubType(typeof(SignatureRequestResponseDataValueCheckboxMerge), "SignatureRequestResponseDataValueCheckboxMerge")]
@@ -51,22 +51,22 @@ namespace Org.HelloSign.Model
     [JsonSubtypes.KnownSubType(typeof(SignatureRequestResponseDataValueText), "text")]
     [JsonSubtypes.KnownSubType(typeof(SignatureRequestResponseDataValueTextMerge), "text-merge")]
     [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
-    public partial class SignatureRequestResponseData : IOpenApiTyped, IEquatable<SignatureRequestResponseData>, IValidatableObject
+    public partial class SignatureRequestResponseDataBase : IOpenApiTyped, IEquatable<SignatureRequestResponseDataBase>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="SignatureRequestResponseData" /> class.
+        /// Initializes a new instance of the <see cref="SignatureRequestResponseDataBase" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected SignatureRequestResponseData() { }
+        protected SignatureRequestResponseDataBase() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="SignatureRequestResponseData" /> class.
+        /// Initializes a new instance of the <see cref="SignatureRequestResponseDataBase" /> class.
         /// </summary>
         /// <param name="apiId">The unique ID for this field..</param>
         /// <param name="signatureId">The ID of the signature to which this response is linked..</param>
         /// <param name="name">The name of the form field..</param>
         /// <param name="required">A boolean value denoting if this field is required..</param>
-        /// <param name="type">TEST DESCRIPTION.</param>
-        public SignatureRequestResponseData(string apiId = default(string), string signatureId = default(string), string name = default(string), bool required = default(bool), string type = default(string))
+        /// <param name="type">type.</param>
+        public SignatureRequestResponseDataBase(string apiId = default(string), string signatureId = default(string), string name = default(string), bool required = default(bool), string type = default(string))
         {
             
             this.ApiId = apiId;
@@ -105,9 +105,8 @@ namespace Org.HelloSign.Model
         public bool Required { get; set; }
 
         /// <summary>
-        /// TEST DESCRIPTION
+        /// Gets or Sets Type
         /// </summary>
-        /// <value>TEST DESCRIPTION</value>
         [DataMember(Name = "type", EmitDefaultValue = true)]
         public string Type { get; set; }
 
@@ -118,7 +117,7 @@ namespace Org.HelloSign.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class SignatureRequestResponseData {\n");
+            sb.Append("class SignatureRequestResponseDataBase {\n");
             sb.Append("  ApiId: ").Append(ApiId).Append("\n");
             sb.Append("  SignatureId: ").Append(SignatureId).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
@@ -144,15 +143,15 @@ namespace Org.HelloSign.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as SignatureRequestResponseData);
+            return this.Equals(input as SignatureRequestResponseDataBase);
         }
 
         /// <summary>
-        /// Returns true if SignatureRequestResponseData instances are equal
+        /// Returns true if SignatureRequestResponseDataBase instances are equal
         /// </summary>
-        /// <param name="input">Instance of SignatureRequestResponseData to be compared</param>
+        /// <param name="input">Instance of SignatureRequestResponseDataBase to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(SignatureRequestResponseData input)
+        public bool Equals(SignatureRequestResponseDataBase input)
         {
             if (input == null)
             {
