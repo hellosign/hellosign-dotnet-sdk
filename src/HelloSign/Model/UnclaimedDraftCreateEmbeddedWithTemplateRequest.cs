@@ -69,7 +69,8 @@ namespace HelloSign.Model
         /// <param name="templateIds">Use &#x60;template_ids&#x60; to create a SignatureRequest from one or more templates, in the order in which the templates will be used. (required).</param>
         /// <param name="testMode">Whether this is a test, the signature request created from this draft will not be legally binding if set to &#x60;true&#x60;. Defaults to &#x60;false&#x60;. (default to false).</param>
         /// <param name="title">The title you want to assign to the SignatureRequest..</param>
-        public UnclaimedDraftCreateEmbeddedWithTemplateRequest(bool allowDecline = false, bool allowReassign = false, List<SubCC> ccs = default(List<SubCC>), string clientId = default(string), List<SubCustomField> customFields = default(List<SubCustomField>), SubEditorOptions editorOptions = default(SubEditorOptions), SubFieldOptions fieldOptions = default(SubFieldOptions), List<System.IO.Stream> file = default(List<System.IO.Stream>), List<string> fileUrl = default(List<string>), bool forceSignerRoles = false, bool forceSubjectMessage = false, bool holdRequest = false, bool isForEmbeddedSigning = false, string message = default(string), Dictionary<string, Object> metadata = default(Dictionary<string, Object>), bool previewOnly = false, string requesterEmailAddress = default(string), string requestingRedirectUrl = default(string), bool showPreview = false, bool showProgressStepper = true, List<SubUnclaimedDraftTemplateSigner> signers = default(List<SubUnclaimedDraftTemplateSigner>), SubSigningOptions signingOptions = default(SubSigningOptions), string signingRedirectUrl = default(string), bool skipMeNow = false, string subject = default(string), List<string> templateIds = default(List<string>), bool testMode = false, string title = default(string))
+        /// <param name="populateAutoFillFields">Controls whether [auto fill fields](https://faq.hellosign.com/hc/en-us/articles/360051467511-Auto-Fill-Fields) can automatically populate a signer&#39;s information during signing.    ⚠️ **Note** ⚠️: Keep your signer&#39;s information safe by ensuring that the _signer on your signature request is the intended party_ before using this feature. (default to false).</param>
+        public UnclaimedDraftCreateEmbeddedWithTemplateRequest(bool allowDecline = false, bool allowReassign = false, List<SubCC> ccs = default(List<SubCC>), string clientId = default(string), List<SubCustomField> customFields = default(List<SubCustomField>), SubEditorOptions editorOptions = default(SubEditorOptions), SubFieldOptions fieldOptions = default(SubFieldOptions), List<System.IO.Stream> file = default(List<System.IO.Stream>), List<string> fileUrl = default(List<string>), bool forceSignerRoles = false, bool forceSubjectMessage = false, bool holdRequest = false, bool isForEmbeddedSigning = false, string message = default(string), Dictionary<string, Object> metadata = default(Dictionary<string, Object>), bool previewOnly = false, string requesterEmailAddress = default(string), string requestingRedirectUrl = default(string), bool showPreview = false, bool showProgressStepper = true, List<SubUnclaimedDraftTemplateSigner> signers = default(List<SubUnclaimedDraftTemplateSigner>), SubSigningOptions signingOptions = default(SubSigningOptions), string signingRedirectUrl = default(string), bool skipMeNow = false, string subject = default(string), List<string> templateIds = default(List<string>), bool testMode = false, string title = default(string), bool populateAutoFillFields = false)
         {
             
             // to ensure "clientId" is required (not null)
@@ -115,6 +116,7 @@ namespace HelloSign.Model
             this.Subject = subject;
             this.TestMode = testMode;
             this.Title = title;
+            this.PopulateAutoFillFields = populateAutoFillFields;
         }
 
         /// <summary>
@@ -311,6 +313,13 @@ namespace HelloSign.Model
         public string Title { get; set; }
 
         /// <summary>
+        /// Controls whether [auto fill fields](https://faq.hellosign.com/hc/en-us/articles/360051467511-Auto-Fill-Fields) can automatically populate a signer&#39;s information during signing.    ⚠️ **Note** ⚠️: Keep your signer&#39;s information safe by ensuring that the _signer on your signature request is the intended party_ before using this feature.
+        /// </summary>
+        /// <value>Controls whether [auto fill fields](https://faq.hellosign.com/hc/en-us/articles/360051467511-Auto-Fill-Fields) can automatically populate a signer&#39;s information during signing.    ⚠️ **Note** ⚠️: Keep your signer&#39;s information safe by ensuring that the _signer on your signature request is the intended party_ before using this feature.</value>
+        [DataMember(Name = "populate_auto_fill_fields", EmitDefaultValue = true)]
+        public bool PopulateAutoFillFields { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -346,6 +355,7 @@ namespace HelloSign.Model
             sb.Append("  Subject: ").Append(Subject).Append("\n");
             sb.Append("  TestMode: ").Append(TestMode).Append("\n");
             sb.Append("  Title: ").Append(Title).Append("\n");
+            sb.Append("  PopulateAutoFillFields: ").Append(PopulateAutoFillFields).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -516,6 +526,10 @@ namespace HelloSign.Model
                     this.Title == input.Title ||
                     (this.Title != null &&
                     this.Title.Equals(input.Title))
+                ) && 
+                (
+                    this.PopulateAutoFillFields == input.PopulateAutoFillFields ||
+                    this.PopulateAutoFillFields.Equals(input.PopulateAutoFillFields)
                 );
         }
 
@@ -607,6 +621,7 @@ namespace HelloSign.Model
                 {
                     hashCode = (hashCode * 59) + this.Title.GetHashCode();
                 }
+                hashCode = (hashCode * 59) + this.PopulateAutoFillFields.GetHashCode();
                 return hashCode;
             }
         }
@@ -781,6 +796,12 @@ namespace HelloSign.Model
                 Property = "Title",
                 Type = "string",
                 Value = Title,
+            });
+            types.Add(new OpenApiType(){
+                Name = "populate_auto_fill_fields",
+                Property = "PopulateAutoFillFields",
+                Type = "bool",
+                Value = PopulateAutoFillFields,
             });
 
             return types;

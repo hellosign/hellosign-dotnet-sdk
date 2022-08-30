@@ -19,6 +19,7 @@ Name | Type | Description | Notes
 **Subject** | **string** |  The subject in the email that will be sent to the signers.  | [optional] 
 **TestMode** | **bool** |  Whether this is a test, the signature request will not be legally binding if set to `true`. Defaults to `false`.  | [optional] [default to false]
 **Title** | **string** |  The title you want to assign to the SignatureRequest.  | [optional] 
+**PopulateAutoFillFields** | **bool** |  Controls whether [auto fill fields](https://faq.hellosign.com/hc/en-us/articles/360051467511-Auto-Fill-Fields) can automatically populate a signer&#39;s information during signing.  <br><br>⚠️ **Note** ⚠️: Keep your signer&#39;s information safe by ensuring that the _signer on your signature request is the intended party_ before using this feature.  | [optional] [default to false]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
