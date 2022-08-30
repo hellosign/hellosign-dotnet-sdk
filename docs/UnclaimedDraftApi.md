@@ -1,4 +1,4 @@
-# Org.HelloSign.Api.UnclaimedDraftApi
+# HelloSign.Api.UnclaimedDraftApi
 
 All URIs are relative to *https://api.hellosign.com/v3*
 

@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.SubFieldOptions
+# HelloSign.Model.SubFieldOptions
 This allows the requester to specify field options for a signature request.
 
 ## Properties

@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.SubFormFieldRuleTrigger
+# HelloSign.Model.SubFormFieldRuleTrigger
 
 ## Properties
 

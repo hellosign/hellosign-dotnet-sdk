@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.SignatureRequestResponseCustomFieldBase
+# HelloSign.Model.SignatureRequestResponseCustomFieldBase
 An array of Custom Field objects containing the name and type of each custom field.  * Text Field uses `SignatureRequestResponseCustomFieldText` * Checkbox Field uses `SignatureRequestResponseCustomFieldCheckbox`
 
 ## Properties

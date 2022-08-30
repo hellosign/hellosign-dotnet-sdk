@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.TemplateResponseCustomField
+# HelloSign.Model.TemplateResponseCustomField
 
 ## Properties
 

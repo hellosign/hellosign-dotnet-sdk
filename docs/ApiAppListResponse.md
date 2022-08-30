@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.ApiAppListResponse
+# HelloSign.Model.ApiAppListResponse
 
 ## Properties
 

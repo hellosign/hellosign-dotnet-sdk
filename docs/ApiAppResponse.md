@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.ApiAppResponse
+# HelloSign.Model.ApiAppResponse
 Contains information about an API App.
 
 ## Properties

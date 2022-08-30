@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.SubFormFieldsPerDocumentRadio
+# HelloSign.Model.SubFormFieldsPerDocumentRadio
 This class extends `SubFormFieldsPerDocumentBase`.
 
 ## Properties

@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.TemplateResponseDocumentFormField
+# HelloSign.Model.TemplateResponseDocumentFormField
 
 ## Properties
 

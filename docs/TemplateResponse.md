@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.TemplateResponse
+# HelloSign.Model.TemplateResponse
 Contains information about the templates you and your team have created.
 
 ## Properties

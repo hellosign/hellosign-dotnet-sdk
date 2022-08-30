@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.TemplateCreateEmbeddedDraftRequest
+# HelloSign.Model.TemplateCreateEmbeddedDraftRequest
 
 ## Properties
 

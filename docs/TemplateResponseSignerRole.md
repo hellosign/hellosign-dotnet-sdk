@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.TemplateResponseSignerRole
+# HelloSign.Model.TemplateResponseSignerRole
 
 ## Properties
 

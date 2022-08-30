@@ -1,4 +1,4 @@
-# Org.HelloSign - the C# library for the HelloSign API
+# HelloSign - the C# library for the HelloSign API
 
 HelloSign v3 API
 
@@ -38,9 +38,9 @@ Run the following command to generate the DLL
 
 Then include the DLL (under the `bin` folder) in the C# project, and use the namespaces:
 ```csharp
-using Org.HelloSign.Api;
-using Org.HelloSign.Client;
-using Org.HelloSign.Model;
+using HelloSign.Api;
+using HelloSign.Client;
+using HelloSign.Model;
 ```
 <a name="packaging"></a>
 ## Packaging
@@ -50,7 +50,7 @@ A `.nuspec` is included with the project. You can follow the Nuget quickstart to
 This `.nuspec` uses placeholders from the `.csproj`, so build the `.csproj` directly:
 
 ```
-nuget pack -Build -OutputDirectory out Org.HelloSign.csproj
+nuget pack -Build -OutputDirectory out HelloSign.csproj
 ```
 
 Then, publish to a [local feed](https://docs.microsoft.com/en-us/nuget/hosting-packages/local-feeds) or [other host](https://docs.microsoft.com/en-us/nuget/hosting-packages/overview) and consume the new package via Nuget as usual.

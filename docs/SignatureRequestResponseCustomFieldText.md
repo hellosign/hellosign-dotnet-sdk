@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.SignatureRequestResponseCustomFieldText
+# HelloSign.Model.SignatureRequestResponseCustomFieldText
 This class extends `SignatureRequestResponseCustomFieldBase`.
 
 ## Properties

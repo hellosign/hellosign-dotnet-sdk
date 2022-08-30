@@ -1,7 +1,7 @@
 generatorName: csharp-netcore
 additionalProperties:
-  clientPackage: Org.HelloSign.Api
-  packageName: Org.HelloSign
+  clientPackage: HelloSign.Api
+  packageName: HelloSign
   packageVersion: 1.0.0
   sortModelPropertiesByRequiredFlag: true
   optionalEmitDefaultValues: true

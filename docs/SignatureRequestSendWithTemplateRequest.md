@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.SignatureRequestSendWithTemplateRequest
+# HelloSign.Model.SignatureRequestSendWithTemplateRequest
 
 ## Properties
 

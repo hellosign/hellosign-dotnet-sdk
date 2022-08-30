@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.SubOAuth
+# HelloSign.Model.SubOAuth
 OAuth related parameters.
 
 ## Properties

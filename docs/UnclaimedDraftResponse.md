@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.UnclaimedDraftResponse
+# HelloSign.Model.UnclaimedDraftResponse
 A group of documents that a user can take ownership of via the claim URL.
 
 ## Properties

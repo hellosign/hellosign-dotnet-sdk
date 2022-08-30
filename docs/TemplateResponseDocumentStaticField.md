@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.TemplateResponseDocumentStaticField
+# HelloSign.Model.TemplateResponseDocumentStaticField
 
 ## Properties
 

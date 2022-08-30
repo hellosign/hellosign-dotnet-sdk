@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.TeamParentResponse
+# HelloSign.Model.TeamParentResponse
 Information about the parent team if a team has one, set to `null` otherwise.
 
 ## Properties

@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.SignatureRequestBulkCreateEmbeddedWithTemplateRequest
+# HelloSign.Model.SignatureRequestBulkCreateEmbeddedWithTemplateRequest
 Calls SignatureRequestBulkSendWithTemplate in controller
 
 ## Properties

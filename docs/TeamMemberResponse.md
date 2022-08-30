@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.TeamMemberResponse
+# HelloSign.Model.TeamMemberResponse
 
 ## Properties
 

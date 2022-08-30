@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.AccountResponseQuotas
+# HelloSign.Model.AccountResponseQuotas
 Details concerning remaining monthly quotas.
 
 ## Properties

@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.SignatureRequestResponseDataValueDateSigned
+# HelloSign.Model.SignatureRequestResponseDataValueDateSigned
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.ApiAppResponseOptions
+# HelloSign.Model.ApiAppResponseOptions
 An object with options that override account settings.
 
 ## Properties

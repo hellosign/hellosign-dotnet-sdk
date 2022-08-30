@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.EventCallbackRequestEventMetadata
+# HelloSign.Model.EventCallbackRequestEventMetadata
 Specific metadata about the event.
 
 ## Properties

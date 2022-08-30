@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.FileResponse
+# HelloSign.Model.FileResponse
 
 ## Properties
 

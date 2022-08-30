@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.SignatureRequestResponseSignatures
+# HelloSign.Model.SignatureRequestResponseSignatures
 An array of signature objects, 1 for each signer.
 
 ## Properties

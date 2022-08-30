@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.SignatureRequestResponseDataValueCheckboxMerge
+# HelloSign.Model.SignatureRequestResponseDataValueCheckboxMerge
 
 ## Properties
 

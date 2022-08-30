@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.OAuthTokenResponse
+# HelloSign.Model.OAuthTokenResponse
 
 ## Properties
 

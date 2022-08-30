@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.TemplateGetResponse
+# HelloSign.Model.TemplateGetResponse
 
 ## Properties
 

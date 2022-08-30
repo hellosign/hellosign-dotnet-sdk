@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.SignatureRequestResponseAttachment
+# HelloSign.Model.SignatureRequestResponseAttachment
 Signer attachments.
 
 ## Properties

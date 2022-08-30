@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.EmbeddedSignUrlResponse
+# HelloSign.Model.EmbeddedSignUrlResponse
 
 ## Properties
 

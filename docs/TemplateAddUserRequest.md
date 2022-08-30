@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.TemplateAddUserRequest
+# HelloSign.Model.TemplateAddUserRequest
 
 ## Properties
 

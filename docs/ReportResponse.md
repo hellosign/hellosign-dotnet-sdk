@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.ReportResponse
+# HelloSign.Model.ReportResponse
 Contains information about the report request.
 
 ## Properties

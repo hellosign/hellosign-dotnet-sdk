@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.TemplateRemoveUserRequest
+# HelloSign.Model.TemplateRemoveUserRequest
 
 ## Properties
 

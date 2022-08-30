@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.SubFormFieldsPerDocumentCheckboxMerge
+# HelloSign.Model.SubFormFieldsPerDocumentCheckboxMerge
 This class extends `SubFormFieldsPerDocumentBase`.
 
 ## Properties

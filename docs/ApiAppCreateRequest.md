@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.ApiAppCreateRequest
+# HelloSign.Model.ApiAppCreateRequest
 
 ## Properties
 

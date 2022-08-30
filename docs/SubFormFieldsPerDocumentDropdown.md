@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.SubFormFieldsPerDocumentDropdown
+# HelloSign.Model.SubFormFieldsPerDocumentDropdown
 This class extends `SubFormFieldsPerDocumentBase`.
 
 ## Properties

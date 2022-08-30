@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.SignatureRequestResponseCustomFieldTypeEnum
+# HelloSign.Model.SignatureRequestResponseCustomFieldTypeEnum
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.TeamRemoveMemberRequest
+# HelloSign.Model.TeamRemoveMemberRequest
 
 ## Properties
 

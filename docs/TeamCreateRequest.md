@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.TeamCreateRequest
+# HelloSign.Model.TeamCreateRequest
 
 ## Properties
 

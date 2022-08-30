@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.SignatureRequestResponseDataValueInitials
+# HelloSign.Model.SignatureRequestResponseDataValueInitials
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.SignatureRequestResponseDataValueTextMerge
+# HelloSign.Model.SignatureRequestResponseDataValueTextMerge
 
 ## Properties
 

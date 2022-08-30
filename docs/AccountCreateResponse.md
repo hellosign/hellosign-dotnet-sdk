@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.AccountCreateResponse
+# HelloSign.Model.AccountCreateResponse
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.SubTemplateRole
+# HelloSign.Model.SubTemplateRole
 
 ## Properties
 

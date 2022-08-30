@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.EmbeddedEditUrlResponse
+# HelloSign.Model.EmbeddedEditUrlResponse
 
 ## Properties
 

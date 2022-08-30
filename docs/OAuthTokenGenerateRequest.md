@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.OAuthTokenGenerateRequest
+# HelloSign.Model.OAuthTokenGenerateRequest
 
 ## Properties
 

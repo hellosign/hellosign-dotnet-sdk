@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.SubMergeField
+# HelloSign.Model.SubMergeField
 
 ## Properties
 

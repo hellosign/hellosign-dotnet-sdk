@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.SubFormFieldsPerDocumentText
+# HelloSign.Model.SubFormFieldsPerDocumentText
 This class extends `SubFormFieldsPerDocumentBase`.
 
 ## Properties

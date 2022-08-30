@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.EmbeddedSignUrlResponseEmbedded
+# HelloSign.Model.EmbeddedSignUrlResponseEmbedded
 An object that contains necessary information to set up embedded signing.
 
 ## Properties
