@@ -1,14 +1,13 @@
 {{>partial_header}}
 
 using System;
-using HelloSign.Model;
+using Org.HelloSign.Model;
 
 namespace {{packageName}}.Client
 {
     /// <summary>
     /// API Exception
     /// </summary>
-    [Serializable()]
     {{>visibility}} class ApiException : Exception
     {
         /// <summary>
