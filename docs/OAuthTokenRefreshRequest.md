@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.OAuthTokenRefreshRequest
+# HelloSign.Model.OAuthTokenRefreshRequest
 
 ## Properties
 

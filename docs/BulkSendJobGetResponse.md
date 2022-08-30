@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.BulkSendJobGetResponse
+# HelloSign.Model.BulkSendJobGetResponse
 
 ## Properties
 

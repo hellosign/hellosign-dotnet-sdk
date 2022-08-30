@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.AccountUpdateRequest
+# HelloSign.Model.AccountUpdateRequest
 
 ## Properties
 

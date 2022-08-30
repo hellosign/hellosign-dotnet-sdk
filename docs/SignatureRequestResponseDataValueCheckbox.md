@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.SignatureRequestResponseDataValueCheckbox
+# HelloSign.Model.SignatureRequestResponseDataValueCheckbox
 
 ## Properties
 

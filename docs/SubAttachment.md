@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.SubAttachment
+# HelloSign.Model.SubAttachment
 
 ## Properties
 

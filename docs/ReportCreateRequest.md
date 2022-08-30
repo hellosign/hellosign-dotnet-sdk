@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.ReportCreateRequest
+# HelloSign.Model.ReportCreateRequest
 
 ## Properties
 

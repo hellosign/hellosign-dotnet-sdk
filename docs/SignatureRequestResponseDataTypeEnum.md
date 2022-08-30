@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.SignatureRequestResponseDataTypeEnum
+# HelloSign.Model.SignatureRequestResponseDataTypeEnum
 
 ## Properties
 

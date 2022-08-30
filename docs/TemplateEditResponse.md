@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.TemplateEditResponse
+# HelloSign.Model.TemplateEditResponse
 
 ## Properties
 

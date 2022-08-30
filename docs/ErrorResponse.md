@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.ErrorResponse
+# HelloSign.Model.ErrorResponse
 
 ## Properties
 

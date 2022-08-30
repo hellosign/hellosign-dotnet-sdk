@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.SubFormFieldsPerDocumentCheckbox
+# HelloSign.Model.SubFormFieldsPerDocumentCheckbox
 This class extends `SubFormFieldsPerDocumentBase`.
 
 ## Properties

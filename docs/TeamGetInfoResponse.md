@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.TeamGetInfoResponse
+# HelloSign.Model.TeamGetInfoResponse
 
 ## Properties
 

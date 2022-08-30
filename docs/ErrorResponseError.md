@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.ErrorResponseError
+# HelloSign.Model.ErrorResponseError
 Contains information about an error that occurred.
 
 ## Properties

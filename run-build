@@ -39,6 +39,6 @@ docker run --rm \
   perl bash ./bin/scan_for
 
 printf "Running tests ...\n"
-bash "${PWD}/bin/dotnet" dotnet test src/Org.HelloSign.Test/
+bash "${PWD}/bin/dotnet" dotnet test src/HelloSign.Test/
 
 printf "Success!\n"

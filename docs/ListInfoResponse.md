@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.ListInfoResponse
+# HelloSign.Model.ListInfoResponse
 Contains pagination information about the data returned.
 
 ## Properties

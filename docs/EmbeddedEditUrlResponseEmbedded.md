@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.EmbeddedEditUrlResponseEmbedded
+# HelloSign.Model.EmbeddedEditUrlResponseEmbedded
 An embedded template object.
 
 ## Properties

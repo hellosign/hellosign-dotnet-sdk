@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.SubBulkSignerList
+# HelloSign.Model.SubBulkSignerList
 
 ## Properties
 

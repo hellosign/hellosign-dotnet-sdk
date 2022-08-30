@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.TeamResponse
+# HelloSign.Model.TeamResponse
 Contains information about your team and its members
 
 ## Properties

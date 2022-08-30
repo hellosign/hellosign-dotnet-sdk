@@ -1,8 +1,15 @@
 generatorName: csharp-netcore
 additionalProperties:
-  clientPackage: Org.HelloSign.Api
-  packageName: Org.HelloSign
-  packageVersion: 1.0.0
+  clientPackage: HelloSign.Api
+  packageName: HelloSign
+  packageAuthors: HelloSign
+  packageCompany: HelloSign
+  packageDescription: Client library for using the HelloSign API
+  packageVersion: 6.0.0-beta.2
+  packageTitle: HelloSign .Net SDK
+  gitHost: github.com
+  gitUserId: hellosign
+  gitRepoId: hellosign-dotnet-sdk
   sortModelPropertiesByRequiredFlag: true
   optionalEmitDefaultValues: true
   targetFramework: net6.0

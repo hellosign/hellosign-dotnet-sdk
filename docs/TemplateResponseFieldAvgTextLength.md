@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.TemplateResponseFieldAvgTextLength
+# HelloSign.Model.TemplateResponseFieldAvgTextLength
 Average text length in this field.
 
 ## Properties

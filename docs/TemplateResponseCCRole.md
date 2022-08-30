@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.TemplateResponseCCRole
+# HelloSign.Model.TemplateResponseCCRole
 
 ## Properties
 

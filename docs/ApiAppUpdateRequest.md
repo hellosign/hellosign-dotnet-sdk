@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.ApiAppUpdateRequest
+# HelloSign.Model.ApiAppUpdateRequest
 
 ## Properties
 

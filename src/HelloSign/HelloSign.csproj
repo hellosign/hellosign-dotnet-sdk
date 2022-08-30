@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo><!-- setting GenerateAssemblyInfo to false causes this bug https://github.com/dotnet/project-system/issues/3934 -->
+    <TargetFramework>net6.0</TargetFramework>
+    <AssemblyName>HelloSign</AssemblyName>
+    <PackageId>HelloSign</PackageId>
+    <OutputType>Library</OutputType>
+    <Authors>HelloSign</Authors>
+    <Company>HelloSign</Company>
+    <AssemblyTitle>HelloSign .Net SDK</AssemblyTitle>
+    <Description>Client library for using the HelloSign API</Description>
+    <RootNamespace>HelloSign</RootNamespace>
+    <Version>6.0.0-beta.2</Version>
+    <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\HelloSign.xml</DocumentationFile>
+    <RepositoryUrl>https://github.com/hellosign/hellosign-dotnet-sdk.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageReleaseNotes>Minor update</PackageReleaseNotes>
+    <Nullable>annotations</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="JsonSubTypes" Version="1.8.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="RestSharp" Version="106.13.0" />
+    <PackageReference Include="Polly" Version="7.2.3" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
+  </ItemGroup>
+
+</Project>

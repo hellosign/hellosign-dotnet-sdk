@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.SubFormFieldRule
+# HelloSign.Model.SubFormFieldRule
 
 ## Properties
 

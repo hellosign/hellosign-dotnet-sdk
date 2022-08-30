@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.SubBulkSignerListCustomField
+# HelloSign.Model.SubBulkSignerListCustomField
 
 ## Properties
 

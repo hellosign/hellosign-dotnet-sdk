@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.SignatureRequestResponse
+# HelloSign.Model.SignatureRequestResponse
 Contains information about a signature request.
 
 ## Properties

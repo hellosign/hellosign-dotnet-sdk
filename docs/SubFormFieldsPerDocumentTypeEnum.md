@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.SubFormFieldsPerDocumentTypeEnum
+# HelloSign.Model.SubFormFieldsPerDocumentTypeEnum
 
 ## Properties
 

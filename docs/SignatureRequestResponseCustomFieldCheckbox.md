@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.SignatureRequestResponseCustomFieldCheckbox
+# HelloSign.Model.SignatureRequestResponseCustomFieldCheckbox
 This class extends `SignatureRequestResponseCustomFieldBase`.
 
 ## Properties

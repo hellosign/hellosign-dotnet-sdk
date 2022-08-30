@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.UnclaimedDraftCreateResponse
+# HelloSign.Model.UnclaimedDraftCreateResponse
 
 ## Properties
 

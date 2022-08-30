@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.SubCC
+# HelloSign.Model.SubCC
 
 ## Properties
 

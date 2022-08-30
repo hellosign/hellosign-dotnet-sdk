@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.EventCallbackAccountRequest
+# HelloSign.Model.EventCallbackAccountRequest
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.AccountVerifyRequest
+# HelloSign.Model.AccountVerifyRequest
 
 ## Properties
 

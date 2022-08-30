@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.WarningResponse
+# HelloSign.Model.WarningResponse
 A list of warnings.
 
 ## Properties

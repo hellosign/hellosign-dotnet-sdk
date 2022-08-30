@@ -1,4 +1,4 @@
-# Org.HelloSign.Api.TeamApi
+# HelloSign.Api.TeamApi
 
 All URIs are relative to *https://api.hellosign.com/v3*
 

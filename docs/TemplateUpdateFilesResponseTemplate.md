@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.TemplateUpdateFilesResponseTemplate
+# HelloSign.Model.TemplateUpdateFilesResponseTemplate
 Contains template id
 
 ## Properties

@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.SubFormFieldsPerDocumentTextMerge
+# HelloSign.Model.SubFormFieldsPerDocumentTextMerge
 This class extends `SubFormFieldsPerDocumentBase`.
 
 ## Properties

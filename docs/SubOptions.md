@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.SubOptions
+# HelloSign.Model.SubOptions
 Additional options supported by API App.
 
 ## Properties

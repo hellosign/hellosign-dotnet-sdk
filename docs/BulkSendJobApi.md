@@ -1,4 +1,4 @@
-# Org.HelloSign.Api.BulkSendJobApi
+# HelloSign.Api.BulkSendJobApi
 
 All URIs are relative to *https://api.hellosign.com/v3*
 

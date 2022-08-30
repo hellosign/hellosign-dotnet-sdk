@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.ApiAppResponseWhiteLabelingOptions
+# HelloSign.Model.ApiAppResponseWhiteLabelingOptions
 An object with options to customize the app's signer page
 
 ## Properties

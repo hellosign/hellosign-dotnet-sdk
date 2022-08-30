@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.EventCallbackApiAppRequestPayload
+# HelloSign.Model.EventCallbackApiAppRequestPayload
 
 ## Properties
 

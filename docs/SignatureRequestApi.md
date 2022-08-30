@@ -1,4 +1,4 @@
-# Org.HelloSign.Api.SignatureRequestApi
+# HelloSign.Api.SignatureRequestApi
 
 All URIs are relative to *https://api.hellosign.com/v3*
 

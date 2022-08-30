@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.SignatureRequestResponseDataValueDropdown
+# HelloSign.Model.SignatureRequestResponseDataValueDropdown
 
 ## Properties
 

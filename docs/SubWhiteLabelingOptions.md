@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.SubWhiteLabelingOptions
+# HelloSign.Model.SubWhiteLabelingOptions
 An array of elements and values serialized to a string, to be used to customize the app's signer page. (Only applies to some API plans)  Take a look at our [white labeling guide](/api/reference/white-labeling/) to learn more.
 
 ## Properties

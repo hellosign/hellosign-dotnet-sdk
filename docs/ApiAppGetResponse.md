@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.ApiAppGetResponse
+# HelloSign.Model.ApiAppGetResponse
 
 ## Properties
 

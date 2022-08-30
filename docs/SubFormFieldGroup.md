@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.SubFormFieldGroup
+# HelloSign.Model.SubFormFieldGroup
 
 ## Properties
 

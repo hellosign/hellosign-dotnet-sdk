@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.SubUnclaimedDraftSigner
+# HelloSign.Model.SubUnclaimedDraftSigner
 
 ## Properties
 

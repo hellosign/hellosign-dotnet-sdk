@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.TemplateUpdateFilesRequest
+# HelloSign.Model.TemplateUpdateFilesRequest
 
 ## Properties
 

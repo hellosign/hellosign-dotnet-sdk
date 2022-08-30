@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.SignatureRequestResponseDataValueRadio
+# HelloSign.Model.SignatureRequestResponseDataValueRadio
 
 ## Properties
 

@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.SignatureRequestUpdateRequest
+# HelloSign.Model.SignatureRequestUpdateRequest
 
 ## Properties
 

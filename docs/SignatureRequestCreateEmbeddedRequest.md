@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.SignatureRequestCreateEmbeddedRequest
+# HelloSign.Model.SignatureRequestCreateEmbeddedRequest
 Calls SignatureRequestSend in controller
 
 ## Properties

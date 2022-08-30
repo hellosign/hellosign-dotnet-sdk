@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.SubFormFieldsPerDocumentHyperlink
+# HelloSign.Model.SubFormFieldsPerDocumentHyperlink
 This class extends `SubFormFieldsPerDocumentBase`.
 
 ## Properties

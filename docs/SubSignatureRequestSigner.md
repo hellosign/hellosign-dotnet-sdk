@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.SubSignatureRequestSigner
+# HelloSign.Model.SubSignatureRequestSigner
 
 ## Properties
 

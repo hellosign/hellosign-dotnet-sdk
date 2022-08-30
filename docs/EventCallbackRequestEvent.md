@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.EventCallbackRequestEvent
+# HelloSign.Model.EventCallbackRequestEvent
 Basic information about the event that occurred.
 
 ## Properties

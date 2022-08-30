@@ -1,4 +1,4 @@
-# Org.HelloSign.Model.ApiAppResponseOwnerAccount
+# HelloSign.Model.ApiAppResponseOwnerAccount
 An object describing the app's owner
 
 ## Properties
