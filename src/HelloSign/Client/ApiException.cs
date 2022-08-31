@@ -17,7 +17,6 @@ namespace HelloSign.Client
     /// <summary>
     /// API Exception
     /// </summary>
-    [Serializable()]
     public class ApiException : Exception
     {
         /// <summary>

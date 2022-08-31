@@ -34,6 +34,46 @@ namespace HelloSign.Model
     public partial class TeamAddMemberRequest : IOpenApiTyped, IEquatable<TeamAddMemberRequest>, IValidatableObject
     {
         /// <summary>
+        /// A role member will take in a new Team.  **Note**: This parameter is used only if &#x60;team_id&#x60; is provided.
+        /// </summary>
+        /// <value>A role member will take in a new Team.  **Note**: This parameter is used only if &#x60;team_id&#x60; is provided.</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum RoleEnum
+        {
+            /// <summary>
+            /// Enum Member for value: Member
+            /// </summary>
+            [EnumMember(Value = "Member")]
+            Member = 1,
+
+            /// <summary>
+            /// Enum Developer for value: Developer
+            /// </summary>
+            [EnumMember(Value = "Developer")]
+            Developer = 2,
+
+            /// <summary>
+            /// Enum TeamManager for value: Team Manager
+            /// </summary>
+            [EnumMember(Value = "Team Manager")]
+            TeamManager = 3,
+
+            /// <summary>
+            /// Enum Admin for value: Admin
+            /// </summary>
+            [EnumMember(Value = "Admin")]
+            Admin = 4
+
+        }
+
+
+        /// <summary>
+        /// A role member will take in a new Team.  **Note**: This parameter is used only if &#x60;team_id&#x60; is provided.
+        /// </summary>
+        /// <value>A role member will take in a new Team.  **Note**: This parameter is used only if &#x60;team_id&#x60; is provided.</value>
+        [DataMember(Name = "role", EmitDefaultValue = true)]
+        public RoleEnum? Role { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="TeamAddMemberRequest" /> class.
         /// </summary>
         [JsonConstructorAttribute]
@@ -43,11 +83,13 @@ namespace HelloSign.Model
         /// </summary>
         /// <param name="accountId">&#x60;account_id&#x60; or &#x60;email_address&#x60; is required. If both are provided, the account id prevails.   Account id of the user to invite to your Team..</param>
         /// <param name="emailAddress">&#x60;account_id&#x60; or &#x60;email_address&#x60; is required, If both are provided, the account id prevails.   Email address of the user to invite to your Team..</param>
-        public TeamAddMemberRequest(string accountId = default(string), string emailAddress = default(string))
+        /// <param name="role">A role member will take in a new Team.  **Note**: This parameter is used only if &#x60;team_id&#x60; is provided..</param>
+        public TeamAddMemberRequest(string accountId = default(string), string emailAddress = default(string), RoleEnum? role = default(RoleEnum?))
         {
             
             this.AccountId = accountId;
             this.EmailAddress = emailAddress;
+            this.Role = role;
         }
 
         /// <summary>
@@ -74,6 +116,7 @@ namespace HelloSign.Model
             sb.Append("class TeamAddMemberRequest {\n");
             sb.Append("  AccountId: ").Append(AccountId).Append("\n");
             sb.Append("  EmailAddress: ").Append(EmailAddress).Append("\n");
+            sb.Append("  Role: ").Append(Role).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -118,6 +161,10 @@ namespace HelloSign.Model
                     this.EmailAddress == input.EmailAddress ||
                     (this.EmailAddress != null &&
                     this.EmailAddress.Equals(input.EmailAddress))
+                ) && 
+                (
+                    this.Role == input.Role ||
+                    this.Role.Equals(input.Role)
                 );
         }
 
@@ -138,6 +185,7 @@ namespace HelloSign.Model
                 {
                     hashCode = (hashCode * 59) + this.EmailAddress.GetHashCode();
                 }
+                hashCode = (hashCode * 59) + this.Role.GetHashCode();
                 return hashCode;
             }
         }
@@ -156,6 +204,12 @@ namespace HelloSign.Model
                 Property = "EmailAddress",
                 Type = "string",
                 Value = EmailAddress,
+            });
+            types.Add(new OpenApiType(){
+                Name = "role",
+                Property = "Role",
+                Type = "string",
+                Value = Role,
             });
 
             return types;
