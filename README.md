@@ -78,7 +78,7 @@ The HelloSign .NET SDK **beta/pre-release** can be installed using the NuGet pac
 
 You can follow the NuGet quickstart to [create](https://docs.microsoft.com/en-us/nuget/quickstart/create-and-publish-a-package-using-the-dotnet-cli) and [publish](https://docs.microsoft.com/en-us/nuget/quickstart/create-and-publish-a-package-using-the-dotnet-cli#publish-the-package) the package via the dotnet CLI. Or, you can [create](https://docs.microsoft.com/en-us/nuget/quickstart/create-and-publish-a-package-using-visual-studio?tabs=netcore-cli) and [publish](https://docs.microsoft.com/en-us/nuget/quickstart/create-and-publish-a-package-using-visual-studio?tabs=netcore-cli#publish-the-package) using Visual Studio.
 
-Alternatively, the .nupkg can be published to a [local feed](https://docs.microsoft.com/en-us/nuget/hosting-packages/local-feeds) or [other host](https://docs.microsoft.com/en-us/nuget/hosting-packages/overview) and consumed the new package via NuGet as usual.
+Alternatively, the .nupkg can be published to a [local feed](https://docs.microsoft.com/en-us/nuget/hosting-packages/local-feeds) or [other host](https://docs.microsoft.com/en-us/nuget/hosting-packages/overview) and consumed via NuGet as usual.
 
 To use the API client with a HTTP proxy, setup a `System.Net.WebProxy`
 ```csharp
