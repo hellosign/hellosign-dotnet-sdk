@@ -36,11 +36,6 @@ namespace HelloSign.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="TeamCreateRequest" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected TeamCreateRequest() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="TeamCreateRequest" /> class.
-        /// </summary>
         /// <param name="name">The name of your Team. (default to &quot;Untitled Team&quot;).</param>
         public TeamCreateRequest(string name = "Untitled Team")
         {

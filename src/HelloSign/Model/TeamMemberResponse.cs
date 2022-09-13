@@ -36,11 +36,6 @@ namespace HelloSign.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="TeamMemberResponse" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected TeamMemberResponse() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="TeamMemberResponse" /> class.
-        /// </summary>
         /// <param name="accountId">Account id of the team member..</param>
         /// <param name="emailAddress">Email address of the team member..</param>
         /// <param name="role">The specific role a member has on the team..</param>

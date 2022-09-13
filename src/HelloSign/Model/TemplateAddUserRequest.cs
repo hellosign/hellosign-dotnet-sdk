@@ -36,11 +36,6 @@ namespace HelloSign.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="TemplateAddUserRequest" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected TemplateAddUserRequest() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="TemplateAddUserRequest" /> class.
-        /// </summary>
         /// <param name="accountId">The id of the Account to give access to the Template. &lt;b&gt;Note&lt;/b&gt; The account id prevails if email address is also provided..</param>
         /// <param name="emailAddress">The email address of the Account to give access to the Template. &lt;b&gt;Note&lt;/b&gt; The account id prevails if it is also provided..</param>
         /// <param name="skipNotification">If set to &#x60;true&#x60;, the user does not receive an email notification when a template has been shared with them. Defaults to &#x60;false&#x60;. (default to false).</param>

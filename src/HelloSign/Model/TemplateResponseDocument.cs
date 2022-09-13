@@ -36,11 +36,6 @@ namespace HelloSign.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="TemplateResponseDocument" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected TemplateResponseDocument() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="TemplateResponseDocument" /> class.
-        /// </summary>
         /// <param name="name">Name of the associated file..</param>
         /// <param name="index">Document ordering, the lowest index is displayed first and the highest last (0-based indexing)..</param>
         /// <param name="fieldGroups">An array of Form Field Group objects..</param>

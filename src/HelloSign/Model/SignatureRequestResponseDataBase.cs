@@ -56,11 +56,6 @@ namespace HelloSign.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="SignatureRequestResponseDataBase" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected SignatureRequestResponseDataBase() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SignatureRequestResponseDataBase" /> class.
-        /// </summary>
         /// <param name="apiId">The unique ID for this field..</param>
         /// <param name="signatureId">The ID of the signature to which this response is linked..</param>
         /// <param name="name">The name of the form field..</param>

@@ -311,6 +311,8 @@ namespace HelloSign.Api
                 localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
             }
 
+            localVarRequestOptions.Data = oAuthTokenGenerateRequest;
+
             localVarRequestOptions.Operation = "OAuthApi.OauthTokenGenerate";
             localVarRequestOptions.OperationIndex = operationIndex;
 
@@ -391,6 +393,8 @@ namespace HelloSign.Api
                 localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
             }
 
+            localVarRequestOptions.Data = oAuthTokenGenerateRequest;
+
             localVarRequestOptions.Operation = "OAuthApi.OauthTokenGenerate";
             localVarRequestOptions.OperationIndex = operationIndex;
 
@@ -468,6 +472,8 @@ namespace HelloSign.Api
             {
                 localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
             }
+
+            localVarRequestOptions.Data = oAuthTokenRefreshRequest;
 
             localVarRequestOptions.Operation = "OAuthApi.OauthTokenRefresh";
             localVarRequestOptions.OperationIndex = operationIndex;
@@ -548,6 +554,8 @@ namespace HelloSign.Api
             {
                 localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
             }
+
+            localVarRequestOptions.Data = oAuthTokenRefreshRequest;
 
             localVarRequestOptions.Operation = "OAuthApi.OauthTokenRefresh";
             localVarRequestOptions.OperationIndex = operationIndex;

@@ -36,11 +36,6 @@ namespace HelloSign.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="TemplateResponse" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected TemplateResponse() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="TemplateResponse" /> class.
-        /// </summary>
         /// <param name="templateId">The id of the Template..</param>
         /// <param name="title">The title of the Template. This will also be the default subject of the message sent to signers when using this Template to send a SignatureRequest. This can be overridden when sending the SignatureRequest..</param>
         /// <param name="message">The default message that will be sent to signers when using this Template to send a SignatureRequest. This can be overridden when sending the SignatureRequest..</param>

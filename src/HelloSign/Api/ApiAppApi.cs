@@ -463,6 +463,8 @@ namespace HelloSign.Api
                 localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
             }
 
+            localVarRequestOptions.Data = apiAppCreateRequest;
+
             localVarRequestOptions.Operation = "ApiAppApi.ApiAppCreate";
             localVarRequestOptions.OperationIndex = operationIndex;
 
@@ -555,6 +557,8 @@ namespace HelloSign.Api
                 localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
             }
 
+            localVarRequestOptions.Data = apiAppCreateRequest;
+
             localVarRequestOptions.Operation = "ApiAppApi.ApiAppCreate";
             localVarRequestOptions.OperationIndex = operationIndex;
 
@@ -636,6 +640,7 @@ namespace HelloSign.Api
             }
 
             localVarRequestOptions.PathParameters.Add("client_id", HelloSign.Client.ClientUtils.ParameterToString(clientId)); // path parameter
+
             localVarRequestOptions.Operation = "ApiAppApi.ApiAppDelete";
             localVarRequestOptions.OperationIndex = operationIndex;
 
@@ -720,6 +725,7 @@ namespace HelloSign.Api
             }
 
             localVarRequestOptions.PathParameters.Add("client_id", HelloSign.Client.ClientUtils.ParameterToString(clientId)); // path parameter
+
             localVarRequestOptions.Operation = "ApiAppApi.ApiAppDelete";
             localVarRequestOptions.OperationIndex = operationIndex;
 
@@ -802,6 +808,7 @@ namespace HelloSign.Api
             }
 
             localVarRequestOptions.PathParameters.Add("client_id", HelloSign.Client.ClientUtils.ParameterToString(clientId)); // path parameter
+
             localVarRequestOptions.Operation = "ApiAppApi.ApiAppGet";
             localVarRequestOptions.OperationIndex = operationIndex;
 
@@ -887,6 +894,7 @@ namespace HelloSign.Api
             }
 
             localVarRequestOptions.PathParameters.Add("client_id", HelloSign.Client.ClientUtils.ParameterToString(clientId)); // path parameter
+
             localVarRequestOptions.Operation = "ApiAppApi.ApiAppGet";
             localVarRequestOptions.OperationIndex = operationIndex;
 
@@ -972,6 +980,7 @@ namespace HelloSign.Api
             {
                 localVarRequestOptions.QueryParameters.Add(HelloSign.Client.ClientUtils.ParameterToMultiMap("", "page_size", pageSize));
             }
+
             localVarRequestOptions.Operation = "ApiAppApi.ApiAppList";
             localVarRequestOptions.OperationIndex = operationIndex;
 
@@ -1060,6 +1069,7 @@ namespace HelloSign.Api
             {
                 localVarRequestOptions.QueryParameters.Add(HelloSign.Client.ClientUtils.ParameterToMultiMap("", "page_size", pageSize));
             }
+
             localVarRequestOptions.Operation = "ApiAppApi.ApiAppList";
             localVarRequestOptions.OperationIndex = operationIndex;
 
@@ -1159,6 +1169,8 @@ namespace HelloSign.Api
             }
 
             localVarRequestOptions.PathParameters.Add("client_id", HelloSign.Client.ClientUtils.ParameterToString(clientId)); // path parameter
+            localVarRequestOptions.Data = apiAppUpdateRequest;
+
             localVarRequestOptions.Operation = "ApiAppApi.ApiAppUpdate";
             localVarRequestOptions.OperationIndex = operationIndex;
 
@@ -1260,6 +1272,8 @@ namespace HelloSign.Api
             }
 
             localVarRequestOptions.PathParameters.Add("client_id", HelloSign.Client.ClientUtils.ParameterToString(clientId)); // path parameter
+            localVarRequestOptions.Data = apiAppUpdateRequest;
+
             localVarRequestOptions.Operation = "ApiAppApi.ApiAppUpdate";
             localVarRequestOptions.OperationIndex = operationIndex;
 

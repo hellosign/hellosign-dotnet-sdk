@@ -36,11 +36,6 @@ namespace HelloSign.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="UnclaimedDraftResponse" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected UnclaimedDraftResponse() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="UnclaimedDraftResponse" /> class.
-        /// </summary>
         /// <param name="signatureRequestId">The ID of the signature request that is represented by this UnclaimedDraft..</param>
         /// <param name="claimUrl">The URL to be used to claim this UnclaimedDraft..</param>
         /// <param name="signingRedirectUrl">The URL you want signers redirected to after they successfully sign..</param>

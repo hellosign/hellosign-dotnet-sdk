@@ -36,11 +36,6 @@ namespace HelloSign.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="EmbeddedEditUrlResponse" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected EmbeddedEditUrlResponse() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="EmbeddedEditUrlResponse" /> class.
-        /// </summary>
         /// <param name="embedded">embedded.</param>
         /// <param name="warnings">A list of warnings..</param>
         public EmbeddedEditUrlResponse(EmbeddedEditUrlResponseEmbedded embedded = default(EmbeddedEditUrlResponseEmbedded), List<WarningResponse> warnings = default(List<WarningResponse>))

@@ -36,11 +36,6 @@ namespace HelloSign.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="SubEditorOptions" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected SubEditorOptions() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SubEditorOptions" /> class.
-        /// </summary>
         /// <param name="allowEditSigners">Allows requesters to edit the list of signers (default to false).</param>
         /// <param name="allowEditDocuments">Allows requesters to edit documents, including delete and add (default to false).</param>
         public SubEditorOptions(bool allowEditSigners = false, bool allowEditDocuments = false)

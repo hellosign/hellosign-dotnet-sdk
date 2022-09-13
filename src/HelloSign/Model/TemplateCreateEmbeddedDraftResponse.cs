@@ -36,11 +36,6 @@ namespace HelloSign.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="TemplateCreateEmbeddedDraftResponse" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected TemplateCreateEmbeddedDraftResponse() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="TemplateCreateEmbeddedDraftResponse" /> class.
-        /// </summary>
         /// <param name="template">template.</param>
         /// <param name="warnings">A list of warnings..</param>
         public TemplateCreateEmbeddedDraftResponse(TemplateCreateEmbeddedDraftResponseTemplate template = default(TemplateCreateEmbeddedDraftResponseTemplate), List<WarningResponse> warnings = default(List<WarningResponse>))

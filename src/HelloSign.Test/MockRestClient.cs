@@ -6,16 +6,16 @@ namespace HelloSign.Test
 {
     public class MockRestClient : RestClient
     {
-        private IRestResponse _response;
+        private RestResponse _response;
 
-        private IRestRequest _request;
+        private RestRequest _request;
 
         public void SetExpectedResponse<T>(
             T data,
             HttpStatusCode statusCode,
             string contentType = "application/json"
         ) {
-            IRestResponse<T> response = new RestResponse<T>();
+            RestResponse<T> response = new RestResponse<T>();
             response.StatusCode = statusCode;
             response.ContentType = contentType;
             response.Data = data;
@@ -24,12 +24,12 @@ namespace HelloSign.Test
             _response = response;
         }
 
-        public IRestResponse GetResponse()
+        public RestResponse GetResponse()
         {
             return _response;
         }
 
-        public IRestRequest GetRequest()
+        public RestRequest GetRequest()
         {
             return _request;
         }
@@ -47,11 +47,11 @@ namespace HelloSign.Test
             _response.Content = error;
         }
 
-        public override IRestResponse<T> Execute<T>(IRestRequest request)
+/*        public override RestResponse Execute(RestRequest request)
         {
             _request = request;
 
-            return _response as IRestResponse<T>;
-        }
+            return _response as RestResponse;
+        }*/
     }
 }

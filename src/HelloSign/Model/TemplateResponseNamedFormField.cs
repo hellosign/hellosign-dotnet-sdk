@@ -36,11 +36,6 @@ namespace HelloSign.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="TemplateResponseNamedFormField" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected TemplateResponseNamedFormField() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="TemplateResponseNamedFormField" /> class.
-        /// </summary>
         /// <param name="name">The name of the Named Form Field..</param>
         /// <param name="type">The type of this Named Form Field. Only &#x60;text&#x60; and &#x60;checkbox&#x60; are currently supported..</param>
         /// <param name="signer">The signer of the Named Form Field..</param>

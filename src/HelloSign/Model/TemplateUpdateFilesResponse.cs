@@ -36,11 +36,6 @@ namespace HelloSign.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="TemplateUpdateFilesResponse" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected TemplateUpdateFilesResponse() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="TemplateUpdateFilesResponse" /> class.
-        /// </summary>
         /// <param name="template">template.</param>
         public TemplateUpdateFilesResponse(TemplateUpdateFilesResponseTemplate template = default(TemplateUpdateFilesResponseTemplate))
         {

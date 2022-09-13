@@ -36,11 +36,6 @@ namespace HelloSign.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="TemplateListResponse" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected TemplateListResponse() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="TemplateListResponse" /> class.
-        /// </summary>
         /// <param name="templates">List of templates that the API caller has access to..</param>
         /// <param name="listInfo">listInfo.</param>
         /// <param name="warnings">A list of warnings..</param>

@@ -36,11 +36,6 @@ namespace HelloSign.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="TeamResponse" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected TeamResponse() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="TeamResponse" /> class.
-        /// </summary>
         /// <param name="name">The name of your Team.</param>
         /// <param name="accounts">accounts.</param>
         /// <param name="invitedAccounts">A list of all Accounts that have an outstanding invitation to join your Team. Note that this response is a subset of the response parameters found in &#x60;GET /account&#x60;..</param>

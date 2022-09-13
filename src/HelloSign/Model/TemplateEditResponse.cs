@@ -36,11 +36,6 @@ namespace HelloSign.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="TemplateEditResponse" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected TemplateEditResponse() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="TemplateEditResponse" /> class.
-        /// </summary>
         /// <param name="templateId">The id of the Template..</param>
         public TemplateEditResponse(string templateId = default(string))
         {

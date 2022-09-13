@@ -47,11 +47,6 @@ namespace HelloSign.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="SignatureRequestResponseDataValueTextMerge" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected SignatureRequestResponseDataValueTextMerge() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SignatureRequestResponseDataValueTextMerge" /> class.
-        /// </summary>
         /// <param name="type">A text field that has default text set by the api (default to &quot;text-merge&quot;).</param>
         /// <param name="value">The value of the form field..</param>
         /// <param name="apiId">The unique ID for this field..</param>
@@ -199,7 +194,7 @@ namespace HelloSign.Model
         /// <returns>Validation Result</returns>
         protected IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> BaseValidate(ValidationContext validationContext)
         {
-            foreach (var x in BaseValidate(validationContext))
+            foreach (var x in base.BaseValidate(validationContext))
             {
                 yield return x;
             }

@@ -36,11 +36,6 @@ namespace HelloSign.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="SignatureRequestResponse" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected SignatureRequestResponse() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SignatureRequestResponse" /> class.
-        /// </summary>
         /// <param name="testMode">Whether this is a test signature request. Test requests have no legal value. Defaults to &#x60;false&#x60;. (default to false).</param>
         /// <param name="signatureRequestId">The id of the SignatureRequest..</param>
         /// <param name="requesterEmailAddress">The email address of the initiator of the SignatureRequest..</param>

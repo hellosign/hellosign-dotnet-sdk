@@ -36,11 +36,6 @@ namespace HelloSign.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="TemplateCreateEmbeddedDraftResponseTemplate" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected TemplateCreateEmbeddedDraftResponseTemplate() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="TemplateCreateEmbeddedDraftResponseTemplate" /> class.
-        /// </summary>
         /// <param name="templateId">The id of the Template..</param>
         /// <param name="editUrl">Link to edit the template..</param>
         /// <param name="expiresAt">When the link expires..</param>

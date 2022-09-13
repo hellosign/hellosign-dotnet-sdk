@@ -36,11 +36,6 @@ namespace HelloSign.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="TemplateRemoveUserRequest" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected TemplateRemoveUserRequest() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="TemplateRemoveUserRequest" /> class.
-        /// </summary>
         /// <param name="accountId">The id or email address of the Account to remove access to the Template. The account id prevails if both are provided..</param>
         /// <param name="emailAddress">The id or email address of the Account to remove access to the Template. The account id prevails if both are provided..</param>
         public TemplateRemoveUserRequest(string accountId = default(string), string emailAddress = default(string))

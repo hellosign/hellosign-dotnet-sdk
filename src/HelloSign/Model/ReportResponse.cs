@@ -64,11 +64,6 @@ namespace HelloSign.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ReportResponse" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected ReportResponse() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ReportResponse" /> class.
-        /// </summary>
         /// <param name="success">A message indicating the requested operation&#39;s success.</param>
         /// <param name="startDate">The (inclusive) start date for the report data in MM/DD/YYYY format..</param>
         /// <param name="endDate">The (inclusive) end date for the report data in MM/DD/YYYY format..</param>

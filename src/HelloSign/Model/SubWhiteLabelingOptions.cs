@@ -62,11 +62,6 @@ namespace HelloSign.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="SubWhiteLabelingOptions" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected SubWhiteLabelingOptions() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SubWhiteLabelingOptions" /> class.
-        /// </summary>
         /// <param name="headerBackgroundColor">headerBackgroundColor (default to &quot;#1A1A1A&quot;).</param>
         /// <param name="legalVersion">legalVersion (default to LegalVersionEnum.Terms1).</param>
         /// <param name="linkColor">linkColor (default to &quot;#00B3E6&quot;).</param>

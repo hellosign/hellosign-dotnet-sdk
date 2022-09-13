@@ -36,11 +36,6 @@ namespace HelloSign.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ApiAppResponse" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected ApiAppResponse() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ApiAppResponse" /> class.
-        /// </summary>
         /// <param name="callbackUrl">The app&#39;s callback URL (for events).</param>
         /// <param name="clientId">The app&#39;s client id.</param>
         /// <param name="createdAt">The time that the app was created.</param>

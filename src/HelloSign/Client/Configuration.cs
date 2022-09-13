@@ -18,8 +18,9 @@ using System.Net;
 using System.Reflection;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
-using Newtonsoft.Json;
+using System.Net.Http;
 using HelloSign.Model;
+
 
 namespace HelloSign.Client
 {
@@ -57,12 +58,12 @@ namespace HelloSign.Client
             {
                 return new ApiException(status,
                     string.Format("Error calling {0}: {1}", methodName, response.RawContent),
-                    JsonConvert.DeserializeObject<ErrorResponse>(response.RawContent), response.Headers);
+                    response.RawContent, response.Headers);
             }
             if (status == 0)
             {
                 return new ApiException(status,
-                    string.Format("Error calling {0}: {1}", methodName, response.ErrorText), JsonConvert.DeserializeObject<ErrorResponse>(response.ErrorText));
+                    string.Format("Error calling {0}: {1}", methodName, response.ErrorText), response.ErrorText);
             }
             return null;
         };
@@ -116,7 +117,7 @@ namespace HelloSign.Client
         public Configuration()
         {
             Proxy = null;
-            UserAgent = "OpenAPI-Generator/6.0.0-beta.2/csharp";
+            UserAgent = WebUtility.UrlEncode("OpenAPI-Generator/6.0.0-beta.2/csharp");
             BasePath = "https://api.hellosign.com/v3";
             DefaultHeaders = new ConcurrentDictionary<string, string>();
             ApiKey = new ConcurrentDictionary<string, string>();

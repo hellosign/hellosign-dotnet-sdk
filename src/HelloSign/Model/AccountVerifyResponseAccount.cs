@@ -36,11 +36,6 @@ namespace HelloSign.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="AccountVerifyResponseAccount" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected AccountVerifyResponseAccount() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="AccountVerifyResponseAccount" /> class.
-        /// </summary>
         /// <param name="emailAddress">The email address associated with the Account..</param>
         public AccountVerifyResponseAccount(string emailAddress = default(string))
         {

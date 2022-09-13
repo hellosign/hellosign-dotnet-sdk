@@ -36,11 +36,6 @@ namespace HelloSign.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="OAuthTokenResponse" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected OAuthTokenResponse() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="OAuthTokenResponse" /> class.
-        /// </summary>
         /// <param name="accessToken">accessToken.</param>
         /// <param name="tokenType">tokenType.</param>
         /// <param name="refreshToken">refreshToken.</param>

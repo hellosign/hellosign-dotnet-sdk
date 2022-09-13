@@ -36,11 +36,6 @@ namespace HelloSign.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="EmbeddedEditUrlResponseEmbedded" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected EmbeddedEditUrlResponseEmbedded() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="EmbeddedEditUrlResponseEmbedded" /> class.
-        /// </summary>
         /// <param name="editUrl">A template url that can be opened in an iFrame..</param>
         /// <param name="expiresAt">The specific time that the the &#x60;edit_url&#x60; link expires, in epoch..</param>
         public EmbeddedEditUrlResponseEmbedded(string editUrl = default(string), int expiresAt = default(int))

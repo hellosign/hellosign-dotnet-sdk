@@ -36,11 +36,6 @@ namespace HelloSign.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="SubTeamResponse" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected SubTeamResponse() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="SubTeamResponse" /> class.
-        /// </summary>
         /// <param name="teamId">The id of a team.</param>
         /// <param name="name">The name of a team.</param>
         public SubTeamResponse(string teamId = default(string), string name = default(string))

@@ -36,11 +36,6 @@ namespace HelloSign.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ApiAppResponseOptions" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected ApiAppResponseOptions() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ApiAppResponseOptions" /> class.
-        /// </summary>
         /// <param name="canInsertEverywhere">Boolean denoting if signers can \&quot;Insert Everywhere\&quot; in one click while signing a document.</param>
         public ApiAppResponseOptions(bool canInsertEverywhere = default(bool))
         {

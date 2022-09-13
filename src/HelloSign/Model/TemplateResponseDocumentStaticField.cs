@@ -36,11 +36,6 @@ namespace HelloSign.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="TemplateResponseDocumentStaticField" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected TemplateResponseDocumentStaticField() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="TemplateResponseDocumentStaticField" /> class.
-        /// </summary>
         /// <param name="name">The name of the static field..</param>
         /// <param name="type">The type of this static field. See [field types](/api/reference/constants/#field-types)..</param>
         /// <param name="signer">The signer of the Static Field..</param>

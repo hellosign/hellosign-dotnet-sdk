@@ -36,11 +36,6 @@ namespace HelloSign.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="AccountCreateResponse" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected AccountCreateResponse() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="AccountCreateResponse" /> class.
-        /// </summary>
         /// <param name="account">account.</param>
         /// <param name="oauthData">oauthData.</param>
         /// <param name="warnings">A list of warnings..</param>
