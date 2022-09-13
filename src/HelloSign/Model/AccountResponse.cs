@@ -49,8 +49,9 @@ namespace HelloSign.Model
         /// <param name="quotas">quotas.</param>
         /// <param name="callbackUrl">The URL that HelloSign events will &#x60;POST&#x60; to..</param>
         /// <param name="roleCode">The membership role for the team..</param>
+        /// <param name="teamId">_t__Account::TEAM_ID.</param>
         /// <param name="locale">The locale used in this Account. Check out the list of [supported locales](/api/reference/constants/#supported-locales) to learn more about the possible values..</param>
-        public AccountResponse(string accountId = default(string), string emailAddress = default(string), bool isLocked = default(bool), bool isPaidHs = default(bool), bool isPaidHf = default(bool), AccountResponseQuotas quotas = default(AccountResponseQuotas), string callbackUrl = default(string), string roleCode = default(string), string locale = default(string))
+        public AccountResponse(string accountId = default(string), string emailAddress = default(string), bool isLocked = default(bool), bool isPaidHs = default(bool), bool isPaidHf = default(bool), AccountResponseQuotas quotas = default(AccountResponseQuotas), string callbackUrl = default(string), string roleCode = default(string), string teamId = default(string), string locale = default(string))
         {
             
             this.AccountId = accountId;
@@ -61,6 +62,7 @@ namespace HelloSign.Model
             this.Quotas = quotas;
             this.CallbackUrl = callbackUrl;
             this.RoleCode = roleCode;
+            this.TeamId = teamId;
             this.Locale = locale;
         }
 
@@ -120,6 +122,13 @@ namespace HelloSign.Model
         public string RoleCode { get; set; }
 
         /// <summary>
+        /// _t__Account::TEAM_ID
+        /// </summary>
+        /// <value>_t__Account::TEAM_ID</value>
+        [DataMember(Name = "team_id", EmitDefaultValue = true)]
+        public string TeamId { get; set; }
+
+        /// <summary>
         /// The locale used in this Account. Check out the list of [supported locales](/api/reference/constants/#supported-locales) to learn more about the possible values.
         /// </summary>
         /// <value>The locale used in this Account. Check out the list of [supported locales](/api/reference/constants/#supported-locales) to learn more about the possible values.</value>
@@ -142,6 +151,7 @@ namespace HelloSign.Model
             sb.Append("  Quotas: ").Append(Quotas).Append("\n");
             sb.Append("  CallbackUrl: ").Append(CallbackUrl).Append("\n");
             sb.Append("  RoleCode: ").Append(RoleCode).Append("\n");
+            sb.Append("  TeamId: ").Append(TeamId).Append("\n");
             sb.Append("  Locale: ").Append(Locale).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -216,6 +226,11 @@ namespace HelloSign.Model
                     this.RoleCode.Equals(input.RoleCode))
                 ) && 
                 (
+                    this.TeamId == input.TeamId ||
+                    (this.TeamId != null &&
+                    this.TeamId.Equals(input.TeamId))
+                ) && 
+                (
                     this.Locale == input.Locale ||
                     (this.Locale != null &&
                     this.Locale.Equals(input.Locale))
@@ -253,6 +268,10 @@ namespace HelloSign.Model
                 if (this.RoleCode != null)
                 {
                     hashCode = (hashCode * 59) + this.RoleCode.GetHashCode();
+                }
+                if (this.TeamId != null)
+                {
+                    hashCode = (hashCode * 59) + this.TeamId.GetHashCode();
                 }
                 if (this.Locale != null)
                 {
@@ -312,6 +331,12 @@ namespace HelloSign.Model
                 Property = "RoleCode",
                 Type = "string",
                 Value = RoleCode,
+            });
+            types.Add(new OpenApiType(){
+                Name = "team_id",
+                Property = "TeamId",
+                Type = "string",
+                Value = TeamId,
             });
             types.Add(new OpenApiType(){
                 Name = "locale",
