@@ -88,13 +88,6 @@ webProxy.Credentials = System.Net.CredentialCache.DefaultCredentials;
 c.Proxy = webProxy;
 ```
 
-<a name="getting-started"></a>
-## Getting Started
-
-```csharp
-REPLACE_ME_WITH_EXAMPLE_FOR__AccountCreate_C#_CODE
-```
-
 <a name="documentation-for-api-endpoints"></a>
 ## Documentation for API Endpoints
 
