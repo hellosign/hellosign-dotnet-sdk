@@ -21,7 +21,7 @@ instantiate the submodule by running the following:
 
 ```shell
 git submodule init
-git submodule update
+git submodule update --remote
 ```
 
 ### Changes to the OAS
@@ -86,6 +86,49 @@ Configuration c = new Configuration();
 System.Net.WebProxy webProxy = new System.Net.WebProxy("http://myProxyUrl:80/");
 webProxy.Credentials = System.Net.CredentialCache.DefaultCredentials;
 c.Proxy = webProxy;
+```
+
+<a name="getting-started"></a>
+## Getting Started
+
+```csharp
+using System;
+
+using HelloSign.Api;
+using HelloSign.Client;
+using HelloSign.Model;
+
+public class Example
+{
+    public static void Main()
+    {
+        var config = new Configuration();
+        // Configure HTTP basic authorization: api_key
+        config.Username = "YOUR_API_KEY";
+
+        // or, configure Bearer (JWT) authorization: oauth2
+        // config.AccessToken = "YOUR_BEARER_TOKEN";
+
+        var apiInstance = new AccountApi(config);
+
+        var data = new AccountCreateRequest(
+            emailAddress: "newuser@hellosign.com"
+        );
+
+        try
+        {
+            var result = apiInstance.AccountCreate(data);
+            Console.WriteLine(result);
+        }
+        catch (ApiException e)
+        {
+            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
+            Console.WriteLine("Status Code: " + e.ErrorCode);
+            Console.WriteLine(e.StackTrace);
+        }
+    }
+}
+
 ```
 
 <a name="documentation-for-api-endpoints"></a>
@@ -171,7 +214,6 @@ Class | Method | HTTP request | Description
  - [Model.ApiAppUpdateRequest](docs/ApiAppUpdateRequest.md)
  - [Model.BulkSendJobGetResponse](docs/BulkSendJobGetResponse.md)
  - [Model.BulkSendJobGetResponseSignatureRequests](docs/BulkSendJobGetResponseSignatureRequests.md)
- - [Model.BulkSendJobGetResponseSignatureRequestsAllOf](docs/BulkSendJobGetResponseSignatureRequestsAllOf.md)
  - [Model.BulkSendJobListResponse](docs/BulkSendJobListResponse.md)
  - [Model.BulkSendJobResponse](docs/BulkSendJobResponse.md)
  - [Model.BulkSendJobSendResponse](docs/BulkSendJobSendResponse.md)
@@ -207,30 +249,19 @@ Class | Method | HTTP request | Description
  - [Model.SignatureRequestResponseAttachment](docs/SignatureRequestResponseAttachment.md)
  - [Model.SignatureRequestResponseCustomFieldBase](docs/SignatureRequestResponseCustomFieldBase.md)
  - [Model.SignatureRequestResponseCustomFieldCheckbox](docs/SignatureRequestResponseCustomFieldCheckbox.md)
- - [Model.SignatureRequestResponseCustomFieldCheckboxAllOf](docs/SignatureRequestResponseCustomFieldCheckboxAllOf.md)
  - [Model.SignatureRequestResponseCustomFieldText](docs/SignatureRequestResponseCustomFieldText.md)
- - [Model.SignatureRequestResponseCustomFieldTextAllOf](docs/SignatureRequestResponseCustomFieldTextAllOf.md)
  - [Model.SignatureRequestResponseCustomFieldTypeEnum](docs/SignatureRequestResponseCustomFieldTypeEnum.md)
  - [Model.SignatureRequestResponseDataBase](docs/SignatureRequestResponseDataBase.md)
  - [Model.SignatureRequestResponseDataTypeEnum](docs/SignatureRequestResponseDataTypeEnum.md)
  - [Model.SignatureRequestResponseDataValueCheckbox](docs/SignatureRequestResponseDataValueCheckbox.md)
- - [Model.SignatureRequestResponseDataValueCheckboxAllOf](docs/SignatureRequestResponseDataValueCheckboxAllOf.md)
  - [Model.SignatureRequestResponseDataValueCheckboxMerge](docs/SignatureRequestResponseDataValueCheckboxMerge.md)
- - [Model.SignatureRequestResponseDataValueCheckboxMergeAllOf](docs/SignatureRequestResponseDataValueCheckboxMergeAllOf.md)
  - [Model.SignatureRequestResponseDataValueDateSigned](docs/SignatureRequestResponseDataValueDateSigned.md)
- - [Model.SignatureRequestResponseDataValueDateSignedAllOf](docs/SignatureRequestResponseDataValueDateSignedAllOf.md)
  - [Model.SignatureRequestResponseDataValueDropdown](docs/SignatureRequestResponseDataValueDropdown.md)
- - [Model.SignatureRequestResponseDataValueDropdownAllOf](docs/SignatureRequestResponseDataValueDropdownAllOf.md)
  - [Model.SignatureRequestResponseDataValueInitials](docs/SignatureRequestResponseDataValueInitials.md)
- - [Model.SignatureRequestResponseDataValueInitialsAllOf](docs/SignatureRequestResponseDataValueInitialsAllOf.md)
  - [Model.SignatureRequestResponseDataValueRadio](docs/SignatureRequestResponseDataValueRadio.md)
- - [Model.SignatureRequestResponseDataValueRadioAllOf](docs/SignatureRequestResponseDataValueRadioAllOf.md)
  - [Model.SignatureRequestResponseDataValueSignature](docs/SignatureRequestResponseDataValueSignature.md)
- - [Model.SignatureRequestResponseDataValueSignatureAllOf](docs/SignatureRequestResponseDataValueSignatureAllOf.md)
  - [Model.SignatureRequestResponseDataValueText](docs/SignatureRequestResponseDataValueText.md)
- - [Model.SignatureRequestResponseDataValueTextAllOf](docs/SignatureRequestResponseDataValueTextAllOf.md)
  - [Model.SignatureRequestResponseDataValueTextMerge](docs/SignatureRequestResponseDataValueTextMerge.md)
- - [Model.SignatureRequestResponseDataValueTextMergeAllOf](docs/SignatureRequestResponseDataValueTextMergeAllOf.md)
  - [Model.SignatureRequestResponseSignatures](docs/SignatureRequestResponseSignatures.md)
  - [Model.SignatureRequestSendRequest](docs/SignatureRequestSendRequest.md)
  - [Model.SignatureRequestSendWithTemplateRequest](docs/SignatureRequestSendWithTemplateRequest.md)
@@ -248,25 +279,15 @@ Class | Method | HTTP request | Description
  - [Model.SubFormFieldRuleTrigger](docs/SubFormFieldRuleTrigger.md)
  - [Model.SubFormFieldsPerDocumentBase](docs/SubFormFieldsPerDocumentBase.md)
  - [Model.SubFormFieldsPerDocumentCheckbox](docs/SubFormFieldsPerDocumentCheckbox.md)
- - [Model.SubFormFieldsPerDocumentCheckboxAllOf](docs/SubFormFieldsPerDocumentCheckboxAllOf.md)
  - [Model.SubFormFieldsPerDocumentCheckboxMerge](docs/SubFormFieldsPerDocumentCheckboxMerge.md)
- - [Model.SubFormFieldsPerDocumentCheckboxMergeAllOf](docs/SubFormFieldsPerDocumentCheckboxMergeAllOf.md)
  - [Model.SubFormFieldsPerDocumentDateSigned](docs/SubFormFieldsPerDocumentDateSigned.md)
- - [Model.SubFormFieldsPerDocumentDateSignedAllOf](docs/SubFormFieldsPerDocumentDateSignedAllOf.md)
  - [Model.SubFormFieldsPerDocumentDropdown](docs/SubFormFieldsPerDocumentDropdown.md)
- - [Model.SubFormFieldsPerDocumentDropdownAllOf](docs/SubFormFieldsPerDocumentDropdownAllOf.md)
  - [Model.SubFormFieldsPerDocumentHyperlink](docs/SubFormFieldsPerDocumentHyperlink.md)
- - [Model.SubFormFieldsPerDocumentHyperlinkAllOf](docs/SubFormFieldsPerDocumentHyperlinkAllOf.md)
  - [Model.SubFormFieldsPerDocumentInitials](docs/SubFormFieldsPerDocumentInitials.md)
- - [Model.SubFormFieldsPerDocumentInitialsAllOf](docs/SubFormFieldsPerDocumentInitialsAllOf.md)
  - [Model.SubFormFieldsPerDocumentRadio](docs/SubFormFieldsPerDocumentRadio.md)
- - [Model.SubFormFieldsPerDocumentRadioAllOf](docs/SubFormFieldsPerDocumentRadioAllOf.md)
  - [Model.SubFormFieldsPerDocumentSignature](docs/SubFormFieldsPerDocumentSignature.md)
- - [Model.SubFormFieldsPerDocumentSignatureAllOf](docs/SubFormFieldsPerDocumentSignatureAllOf.md)
  - [Model.SubFormFieldsPerDocumentText](docs/SubFormFieldsPerDocumentText.md)
- - [Model.SubFormFieldsPerDocumentTextAllOf](docs/SubFormFieldsPerDocumentTextAllOf.md)
  - [Model.SubFormFieldsPerDocumentTextMerge](docs/SubFormFieldsPerDocumentTextMerge.md)
- - [Model.SubFormFieldsPerDocumentTextMergeAllOf](docs/SubFormFieldsPerDocumentTextMergeAllOf.md)
  - [Model.SubFormFieldsPerDocumentTypeEnum](docs/SubFormFieldsPerDocumentTypeEnum.md)
  - [Model.SubMergeField](docs/SubMergeField.md)
  - [Model.SubOAuth](docs/SubOAuth.md)
