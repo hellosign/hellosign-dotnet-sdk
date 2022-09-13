@@ -36,6 +36,11 @@ namespace HelloSign.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="TemplateGetResponse" /> class.
         /// </summary>
+        [JsonConstructorAttribute]
+        protected TemplateGetResponse() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TemplateGetResponse" /> class.
+        /// </summary>
         /// <param name="template">template.</param>
         /// <param name="warnings">A list of warnings..</param>
         public TemplateGetResponse(TemplateResponse template = default(TemplateResponse), List<WarningResponse> warnings = default(List<WarningResponse>))

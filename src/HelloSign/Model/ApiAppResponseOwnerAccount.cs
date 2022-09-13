@@ -36,6 +36,11 @@ namespace HelloSign.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ApiAppResponseOwnerAccount" /> class.
         /// </summary>
+        [JsonConstructorAttribute]
+        protected ApiAppResponseOwnerAccount() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ApiAppResponseOwnerAccount" /> class.
+        /// </summary>
         /// <param name="accountId">The owner account&#39;s ID.</param>
         /// <param name="emailAddress">The owner account&#39;s email address.</param>
         public ApiAppResponseOwnerAccount(string accountId = default(string), string emailAddress = default(string))

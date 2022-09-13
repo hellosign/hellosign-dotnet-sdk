@@ -36,6 +36,11 @@ namespace HelloSign.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="SubOptions" /> class.
         /// </summary>
+        [JsonConstructorAttribute]
+        protected SubOptions() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SubOptions" /> class.
+        /// </summary>
         /// <param name="canInsertEverywhere">Determines if signers can use \&quot;Insert Everywhere\&quot; when signing a document. (default to false).</param>
         public SubOptions(bool canInsertEverywhere = false)
         {

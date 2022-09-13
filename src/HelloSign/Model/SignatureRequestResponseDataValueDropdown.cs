@@ -47,6 +47,11 @@ namespace HelloSign.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="SignatureRequestResponseDataValueDropdown" /> class.
         /// </summary>
+        [JsonConstructorAttribute]
+        protected SignatureRequestResponseDataValueDropdown() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SignatureRequestResponseDataValueDropdown" /> class.
+        /// </summary>
         /// <param name="type">An input field for dropdowns (default to &quot;dropdown&quot;).</param>
         /// <param name="value">The value of the form field..</param>
         /// <param name="apiId">The unique ID for this field..</param>

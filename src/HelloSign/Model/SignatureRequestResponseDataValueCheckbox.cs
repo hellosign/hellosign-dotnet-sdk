@@ -47,6 +47,11 @@ namespace HelloSign.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="SignatureRequestResponseDataValueCheckbox" /> class.
         /// </summary>
+        [JsonConstructorAttribute]
+        protected SignatureRequestResponseDataValueCheckbox() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SignatureRequestResponseDataValueCheckbox" /> class.
+        /// </summary>
         /// <param name="type">A yes/no checkbox (default to &quot;checkbox&quot;).</param>
         /// <param name="value">The value of the form field..</param>
         /// <param name="apiId">The unique ID for this field..</param>

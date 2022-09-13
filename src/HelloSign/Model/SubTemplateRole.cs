@@ -36,6 +36,11 @@ namespace HelloSign.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="SubTemplateRole" /> class.
         /// </summary>
+        [JsonConstructorAttribute]
+        protected SubTemplateRole() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SubTemplateRole" /> class.
+        /// </summary>
         /// <param name="name">The role name of the signer that will be displayed when the template is used to create a signature request..</param>
         /// <param name="order">The order in which this signer role is required to sign..</param>
         public SubTemplateRole(string name = default(string), int? order = default(int?))

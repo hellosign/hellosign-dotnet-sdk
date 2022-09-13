@@ -174,7 +174,10 @@ namespace HelloSign.Client
     {
         private readonly string _baseUrl;
 
-        /// <summary>
+        private readonly RestClient _restClient;
+
+
+    /// <summary>
         /// Specifies the settings on a <see cref="JsonSerializer" /> object.
         /// These settings can be adjusted to accommodate custom serialization rules.
         /// </summary>
@@ -223,6 +226,21 @@ namespace HelloSign.Client
                 throw new ArgumentException("basePath cannot be empty");
 
             _baseUrl = basePath;
+        }
+
+        /// <summary>
+            /// Initializes a new instance of the <see cref="ApiClient" />. This should be used in unit tests only
+            /// </summary>
+        /// <param name="basePath">The target service's base path in URL format.</param>
+        /// <param name="mockClient">Mock client for unit testing purpose </param>
+        /// <exception cref="ArgumentException"></exception>
+        public ApiClient(string basePath, RestClient mockClient)
+        {
+            if (string.IsNullOrEmpty(basePath))
+            throw new ArgumentException("basePath cannot be empty");
+        
+            _baseUrl = basePath;
+            _restClient = mockClient;
         }
 
         /// <summary>
@@ -458,8 +476,11 @@ namespace HelloSign.Client
                 UserAgent = configuration.UserAgent
             };
 
-            RestClient client = new RestClient(clientOptions)
-                .UseSerializer(() => new CustomJsonCodec(SerializerSettings, configuration));
+            RestClient client = _restClient;
+            if (client == null)
+            {
+                client = new RestClient(clientOptions).UseSerializer(() => new CustomJsonCodec(SerializerSettings, configuration));
+            }
 
             InterceptRequest(req);
 

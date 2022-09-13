@@ -36,6 +36,11 @@ namespace HelloSign.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="TemplateResponseSignerRole" /> class.
         /// </summary>
+        [JsonConstructorAttribute]
+        protected TemplateResponseSignerRole() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TemplateResponseSignerRole" /> class.
+        /// </summary>
         /// <param name="name">The name of the Role..</param>
         /// <param name="order">If signer order is assigned this is the 0-based index for this role..</param>
         public TemplateResponseSignerRole(string name = default(string), int order = default(int))

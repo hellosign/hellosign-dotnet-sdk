@@ -104,8 +104,6 @@
         {{/conditionalSerialization}}
         {{/isEnum}}
         {{/vars}}
-    {{#hasRequired}}
-    {{^hasOnlyReadOnly}}
         /// <summary>
         /// Initializes a new instance of the <see cref="{{classname}}" /> class.
         /// </summary>
@@ -119,8 +117,6 @@
             this.AdditionalProperties = new Dictionary<string, object>();
         }
         {{/isAdditionalPropertiesTrue}}
-    {{/hasOnlyReadOnly}}
-    {{/hasRequired}}
         /// <summary>
         /// Initializes a new instance of the <see cref="{{classname}}" /> class.
         /// </summary>

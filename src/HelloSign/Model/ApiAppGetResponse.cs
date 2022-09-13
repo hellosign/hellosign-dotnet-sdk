@@ -36,6 +36,11 @@ namespace HelloSign.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ApiAppGetResponse" /> class.
         /// </summary>
+        [JsonConstructorAttribute]
+        protected ApiAppGetResponse() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ApiAppGetResponse" /> class.
+        /// </summary>
         /// <param name="apiApp">apiApp.</param>
         /// <param name="warnings">A list of warnings..</param>
         public ApiAppGetResponse(ApiAppResponse apiApp = default(ApiAppResponse), List<WarningResponse> warnings = default(List<WarningResponse>))

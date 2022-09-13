@@ -36,6 +36,11 @@ namespace HelloSign.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="AccountResponse" /> class.
         /// </summary>
+        [JsonConstructorAttribute]
+        protected AccountResponse() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AccountResponse" /> class.
+        /// </summary>
         /// <param name="accountId">The ID of the Account.</param>
         /// <param name="emailAddress">The email address associated with the Account..</param>
         /// <param name="isLocked">Returns &#x60;true&#x60; if the user has been locked out of their account by a team admin..</param>

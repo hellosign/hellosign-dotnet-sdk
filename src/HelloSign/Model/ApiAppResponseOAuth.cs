@@ -36,6 +36,11 @@ namespace HelloSign.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ApiAppResponseOAuth" /> class.
         /// </summary>
+        [JsonConstructorAttribute]
+        protected ApiAppResponseOAuth() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ApiAppResponseOAuth" /> class.
+        /// </summary>
         /// <param name="callbackUrl">The app&#39;s OAuth callback URL..</param>
         /// <param name="secret">The app&#39;s OAuth secret, or null if the app does not belong to user..</param>
         /// <param name="scopes">Array of OAuth scopes used by the app..</param>

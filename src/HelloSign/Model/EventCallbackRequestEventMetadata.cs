@@ -36,6 +36,11 @@ namespace HelloSign.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="EventCallbackRequestEventMetadata" /> class.
         /// </summary>
+        [JsonConstructorAttribute]
+        protected EventCallbackRequestEventMetadata() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EventCallbackRequestEventMetadata" /> class.
+        /// </summary>
         /// <param name="relatedSignatureId">Signature ID for a specific signer. Applicable to &#x60;signature_request_signed&#x60; and &#x60;signature_request_viewed&#x60; events..</param>
         /// <param name="reportedForAccountId">Account ID the event was reported for..</param>
         /// <param name="reportedForAppId">App ID the event was reported for..</param>

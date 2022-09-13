@@ -36,6 +36,11 @@ namespace HelloSign.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="EmbeddedSignUrlResponseEmbedded" /> class.
         /// </summary>
+        [JsonConstructorAttribute]
+        protected EmbeddedSignUrlResponseEmbedded() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="EmbeddedSignUrlResponseEmbedded" /> class.
+        /// </summary>
         /// <param name="signUrl">A signature url that can be opened in an iFrame..</param>
         /// <param name="expiresAt">The specific time that the the &#x60;sign_url&#x60; link expires, in epoch..</param>
         public EmbeddedSignUrlResponseEmbedded(string signUrl = default(string), int expiresAt = default(int))

@@ -36,9 +36,10 @@ namespace HelloSign.Test
 
         public string GetRequestContentType()
         {
-            return _request.Parameters.Find(x =>
+            return _request.Parameters.TryFind("Content-Type")?.Value?.ToString();
+            /*return _request.Parameters.Find(x =>
                 x.Name == "Content-Type"
-            ).Value?.ToString();
+            ).Value?.ToString();*/
         }
 
         public void SetError(string error)
@@ -47,7 +48,7 @@ namespace HelloSign.Test
             _response.Content = error;
         }
 
-/*        public override RestResponse Execute(RestRequest request)
+        /*public override RestResponse<T> Execute<T>(RestRequest request)
         {
             _request = request;
 

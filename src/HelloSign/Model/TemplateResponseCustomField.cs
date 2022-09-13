@@ -64,6 +64,11 @@ namespace HelloSign.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="TemplateResponseCustomField" /> class.
         /// </summary>
+        [JsonConstructorAttribute]
+        protected TemplateResponseCustomField() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TemplateResponseCustomField" /> class.
+        /// </summary>
         /// <param name="name">The name of the Custom Field..</param>
         /// <param name="type">The type of this Custom Field. Only &#x60;text&#x60; and &#x60;checkbox&#x60; are currently supported..</param>
         /// <param name="x">The horizontal offset in pixels for this form field..</param>

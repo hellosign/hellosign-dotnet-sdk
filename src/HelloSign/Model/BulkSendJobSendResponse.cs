@@ -36,6 +36,11 @@ namespace HelloSign.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="BulkSendJobSendResponse" /> class.
         /// </summary>
+        [JsonConstructorAttribute]
+        protected BulkSendJobSendResponse() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BulkSendJobSendResponse" /> class.
+        /// </summary>
         /// <param name="bulkSendJob">bulkSendJob.</param>
         /// <param name="warnings">A list of warnings..</param>
         public BulkSendJobSendResponse(BulkSendJobResponse bulkSendJob = default(BulkSendJobResponse), List<WarningResponse> warnings = default(List<WarningResponse>))

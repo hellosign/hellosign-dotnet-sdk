@@ -36,6 +36,11 @@ namespace HelloSign.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="TemplateResponseFieldAvgTextLength" /> class.
         /// </summary>
+        [JsonConstructorAttribute]
+        protected TemplateResponseFieldAvgTextLength() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TemplateResponseFieldAvgTextLength" /> class.
+        /// </summary>
         /// <param name="numLines">Number of lines..</param>
         /// <param name="numCharsPerLine">Number of character per line..</param>
         public TemplateResponseFieldAvgTextLength(int numLines = default(int), int numCharsPerLine = default(int))

@@ -36,6 +36,11 @@ namespace HelloSign.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="AccountResponseQuotas" /> class.
         /// </summary>
+        [JsonConstructorAttribute]
+        protected AccountResponseQuotas() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AccountResponseQuotas" /> class.
+        /// </summary>
         /// <param name="apiSignatureRequestsLeft">API signature requests remaining..</param>
         /// <param name="documentsLeft">Signature requests remaining..</param>
         /// <param name="templatesLeft">API templates remaining..</param>

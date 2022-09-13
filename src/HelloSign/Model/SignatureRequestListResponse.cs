@@ -36,6 +36,11 @@ namespace HelloSign.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="SignatureRequestListResponse" /> class.
         /// </summary>
+        [JsonConstructorAttribute]
+        protected SignatureRequestListResponse() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SignatureRequestListResponse" /> class.
+        /// </summary>
         /// <param name="signatureRequests">Contains information about signature requests..</param>
         /// <param name="listInfo">listInfo.</param>
         /// <param name="warnings">A list of warnings..</param>

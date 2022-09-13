@@ -36,6 +36,11 @@ namespace HelloSign.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="FileResponse" /> class.
         /// </summary>
+        [JsonConstructorAttribute]
+        protected FileResponse() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="FileResponse" /> class.
+        /// </summary>
         /// <param name="fileUrl">URL to the file..</param>
         /// <param name="expiresAt">When the link expires..</param>
         public FileResponse(string fileUrl = default(string), int expiresAt = default(int))

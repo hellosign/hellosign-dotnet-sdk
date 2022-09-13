@@ -36,6 +36,11 @@ namespace HelloSign.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="UnclaimedDraftCreateResponse" /> class.
         /// </summary>
+        [JsonConstructorAttribute]
+        protected UnclaimedDraftCreateResponse() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="UnclaimedDraftCreateResponse" /> class.
+        /// </summary>
         /// <param name="unclaimedDraft">unclaimedDraft.</param>
         /// <param name="warnings">A list of warnings..</param>
         public UnclaimedDraftCreateResponse(UnclaimedDraftResponse unclaimedDraft = default(UnclaimedDraftResponse), List<WarningResponse> warnings = default(List<WarningResponse>))

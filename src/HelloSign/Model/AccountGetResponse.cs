@@ -36,6 +36,11 @@ namespace HelloSign.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="AccountGetResponse" /> class.
         /// </summary>
+        [JsonConstructorAttribute]
+        protected AccountGetResponse() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AccountGetResponse" /> class.
+        /// </summary>
         /// <param name="account">account.</param>
         /// <param name="warnings">A list of warnings..</param>
         public AccountGetResponse(AccountResponse account = default(AccountResponse), List<WarningResponse> warnings = default(List<WarningResponse>))

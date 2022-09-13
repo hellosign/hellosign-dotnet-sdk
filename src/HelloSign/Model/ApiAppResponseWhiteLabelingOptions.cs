@@ -36,6 +36,11 @@ namespace HelloSign.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ApiAppResponseWhiteLabelingOptions" /> class.
         /// </summary>
+        [JsonConstructorAttribute]
+        protected ApiAppResponseWhiteLabelingOptions() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ApiAppResponseWhiteLabelingOptions" /> class.
+        /// </summary>
         /// <param name="headerBackgroundColor">headerBackgroundColor.</param>
         /// <param name="legalVersion">legalVersion.</param>
         /// <param name="linkColor">linkColor.</param>

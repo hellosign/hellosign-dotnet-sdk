@@ -36,6 +36,11 @@ namespace HelloSign.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ReportCreateResponse" /> class.
         /// </summary>
+        [JsonConstructorAttribute]
+        protected ReportCreateResponse() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ReportCreateResponse" /> class.
+        /// </summary>
         /// <param name="report">report.</param>
         /// <param name="warnings">A list of warnings..</param>
         public ReportCreateResponse(ReportResponse report = default(ReportResponse), List<WarningResponse> warnings = default(List<WarningResponse>))

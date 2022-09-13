@@ -36,6 +36,11 @@ namespace HelloSign.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ListInfoResponse" /> class.
         /// </summary>
+        [JsonConstructorAttribute]
+        protected ListInfoResponse() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ListInfoResponse" /> class.
+        /// </summary>
         /// <param name="numPages">Total number of pages available..</param>
         /// <param name="numResults">Total number of objects available..</param>
         /// <param name="page">Number of the page being returned..</param>

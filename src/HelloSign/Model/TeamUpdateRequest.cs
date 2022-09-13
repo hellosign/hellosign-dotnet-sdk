@@ -36,6 +36,11 @@ namespace HelloSign.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="TeamUpdateRequest" /> class.
         /// </summary>
+        [JsonConstructorAttribute]
+        protected TeamUpdateRequest() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TeamUpdateRequest" /> class.
+        /// </summary>
         /// <param name="name">The name of your Team..</param>
         public TeamUpdateRequest(string name = default(string))
         {

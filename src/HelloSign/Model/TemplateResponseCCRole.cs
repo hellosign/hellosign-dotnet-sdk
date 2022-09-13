@@ -36,6 +36,11 @@ namespace HelloSign.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="TemplateResponseCCRole" /> class.
         /// </summary>
+        [JsonConstructorAttribute]
+        protected TemplateResponseCCRole() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TemplateResponseCCRole" /> class.
+        /// </summary>
         /// <param name="name">The name of the Role..</param>
         public TemplateResponseCCRole(string name = default(string))
         {

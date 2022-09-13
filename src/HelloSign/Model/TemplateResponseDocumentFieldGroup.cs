@@ -36,6 +36,11 @@ namespace HelloSign.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="TemplateResponseDocumentFieldGroup" /> class.
         /// </summary>
+        [JsonConstructorAttribute]
+        protected TemplateResponseDocumentFieldGroup() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TemplateResponseDocumentFieldGroup" /> class.
+        /// </summary>
         /// <param name="name">The name of the form field group..</param>
         /// <param name="rule">The rule used to validate checkboxes in the form field group. See [checkbox field grouping](/api/reference/constants/#checkbox-field-grouping)..</param>
         public TemplateResponseDocumentFieldGroup(string name = default(string), string rule = default(string))

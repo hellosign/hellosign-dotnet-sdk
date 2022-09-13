@@ -36,6 +36,11 @@ namespace HelloSign.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="TemplateUpdateFilesRequest" /> class.
         /// </summary>
+        [JsonConstructorAttribute]
+        protected TemplateUpdateFilesRequest() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TemplateUpdateFilesRequest" /> class.
+        /// </summary>
         /// <param name="clientId">Client id of the app you&#39;re using to update this template..</param>
         /// <param name="file">Use &#x60;file[]&#x60; to indicate the uploaded file(s) to use for the template.  This endpoint requires either **file** or **file_url[]**, but not both..</param>
         /// <param name="fileUrl">Use &#x60;file_url[]&#x60; to have HelloSign download the file(s) to use for the template.  This endpoint requires either **file** or **file_url[]**, but not both..</param>

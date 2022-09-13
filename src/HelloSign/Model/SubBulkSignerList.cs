@@ -36,6 +36,11 @@ namespace HelloSign.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="SubBulkSignerList" /> class.
         /// </summary>
+        [JsonConstructorAttribute]
+        protected SubBulkSignerList() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SubBulkSignerList" /> class.
+        /// </summary>
         /// <param name="customFields">An array of custom field values..</param>
         /// <param name="signers">Add Signers to your Templated-based Signature Request. Allows the requester to specify editor options when a preparing a document.  Currently only templates with a single role are supported. All signers must have the same &#x60;role&#x60; value..</param>
         public SubBulkSignerList(List<SubBulkSignerListCustomField> customFields = default(List<SubBulkSignerListCustomField>), List<SubSignatureRequestTemplateSigner> signers = default(List<SubSignatureRequestTemplateSigner>))

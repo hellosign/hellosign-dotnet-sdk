@@ -40,7 +40,7 @@ namespace HelloSign.Test.Api
 
             JToken.DeepEquals(
                 responseData.ToJson(),
-                ex.ErrorContent.ToJson()
+                ex.ErrorContent.ToString()
             );
         }
 

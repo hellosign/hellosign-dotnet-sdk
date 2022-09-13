@@ -36,6 +36,11 @@ namespace HelloSign.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="BulkSendJobResponse" /> class.
         /// </summary>
+        [JsonConstructorAttribute]
+        protected BulkSendJobResponse() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BulkSendJobResponse" /> class.
+        /// </summary>
         /// <param name="bulkSendJobId">The id of the BulkSendJob..</param>
         /// <param name="total">The total amount of Signature Requests queued for sending..</param>
         /// <param name="isCreator">True if you are the owner of this BulkSendJob, false if it&#39;s been shared with you by a team member..</param>

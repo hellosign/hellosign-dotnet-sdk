@@ -124,17 +124,11 @@ namespace HelloSign.Test.Api
 
             var lastRequest = _mock.GetRequest();
 
-            var resultDomains = lastRequest.Parameters.Find(x =>
-                x.Name == "domains"
-            ).Value?.ToString();
+            var resultDomains = lastRequest.Parameters.TryFind("domains")?.Value?.ToString();
 
-            var resultName = lastRequest.Parameters.Find(x =>
-                x.Name == "name"
-            ).Value?.ToString();
+            var resultName = lastRequest.Parameters.TryFind("name")?.Value?.ToString();
 
-            var resultOauth = lastRequest.Parameters.Find(x =>
-                x.Name == "oauth"
-            ).Value?.ToString();
+            var resultOauth = lastRequest.Parameters.TryFind("oauth")?.Value?.ToString();
 
             Assert.Equal("[\"domain1.com\",\"domain2.com\"]", resultDomains);
             Assert.Equal("My name is", resultName);

@@ -36,6 +36,11 @@ namespace HelloSign.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ApiAppUpdateRequest" /> class.
         /// </summary>
+        [JsonConstructorAttribute]
+        protected ApiAppUpdateRequest() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ApiAppUpdateRequest" /> class.
+        /// </summary>
         /// <param name="callbackUrl">The URL at which the API App should receive event callbacks..</param>
         /// <param name="customLogoFile">An image file to use as a custom logo in embedded contexts. (Only applies to some API plans).</param>
         /// <param name="domains">The domain names the ApiApp will be associated with..</param>

@@ -36,6 +36,11 @@ namespace HelloSign.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="TeamSubTeamsResponse" /> class.
         /// </summary>
+        [JsonConstructorAttribute]
+        protected TeamSubTeamsResponse() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TeamSubTeamsResponse" /> class.
+        /// </summary>
         /// <param name="subTeams">Contains a list with sub teams..</param>
         /// <param name="listInfo">listInfo.</param>
         /// <param name="warnings">warnings.</param>

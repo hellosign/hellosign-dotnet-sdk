@@ -47,6 +47,11 @@ namespace HelloSign.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="SignatureRequestResponseDataValueText" /> class.
         /// </summary>
+        [JsonConstructorAttribute]
+        protected SignatureRequestResponseDataValueText() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SignatureRequestResponseDataValueText" /> class.
+        /// </summary>
         /// <param name="type">A text input field (default to &quot;text&quot;).</param>
         /// <param name="value">The value of the form field..</param>
         /// <param name="apiId">The unique ID for this field..</param>

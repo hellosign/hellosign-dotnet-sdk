@@ -47,6 +47,11 @@ namespace HelloSign.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="SignatureRequestResponseDataValueCheckboxMerge" /> class.
         /// </summary>
+        [JsonConstructorAttribute]
+        protected SignatureRequestResponseDataValueCheckboxMerge() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SignatureRequestResponseDataValueCheckboxMerge" /> class.
+        /// </summary>
         /// <param name="type">A checkbox field that has default value set by the api (default to &quot;checkbox-merge&quot;).</param>
         /// <param name="value">The value of the form field..</param>
         /// <param name="apiId">The unique ID for this field..</param>

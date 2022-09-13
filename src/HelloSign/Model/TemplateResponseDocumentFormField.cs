@@ -112,6 +112,11 @@ namespace HelloSign.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="TemplateResponseDocumentFormField" /> class.
         /// </summary>
+        [JsonConstructorAttribute]
+        protected TemplateResponseDocumentFormField() { }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TemplateResponseDocumentFormField" /> class.
+        /// </summary>
         /// <param name="apiId">A unique id for the form field..</param>
         /// <param name="name">The name of the form field..</param>
         /// <param name="type">The type of this form field. See [field types](/api/reference/constants/#field-types)..</param>
