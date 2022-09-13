@@ -4,9 +4,9 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**EmailAddress** | **string** |  The email address of the signer.  | 
-**Name** | **string** |  The name of the signer.  | 
-**Order** | **int?** |  The order the signer is required to sign in.  | [optional] 
+**EmailAddress** | **string** | REPLACE_ME_WITH_DESCRIPTION_BEGIN The email address of the signer. REPLACE_ME_WITH_DESCRIPTION_END | 
+**Name** | **string** | REPLACE_ME_WITH_DESCRIPTION_BEGIN The name of the signer. REPLACE_ME_WITH_DESCRIPTION_END | 
+**Order** | **int?** | REPLACE_ME_WITH_DESCRIPTION_BEGIN The order the signer is required to sign in. REPLACE_ME_WITH_DESCRIPTION_END | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

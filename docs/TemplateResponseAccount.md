@@ -4,12 +4,12 @@
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**AccountId** | **string** |  The id of the Account.  | [optional] 
-**EmailAddress** | **string** |  The email address associated with the Account.  | [optional] 
-**IsLocked** | **bool** |  Returns `true` if the user has been locked out of their account by a team admin.  | [optional] 
-**IsPaidHs** | **bool** |  Returns `true` if the user has a paid HelloSign account.  | [optional] 
-**IsPaidHf** | **bool** |  Returns `true` if the user has a paid HelloFax account.  | [optional] 
-**Quotas** | [**TemplateResponseAccountQuota**](TemplateResponseAccountQuota.md) |    | [optional] 
+**AccountId** | **string** | REPLACE_ME_WITH_DESCRIPTION_BEGIN The id of the Account. REPLACE_ME_WITH_DESCRIPTION_END | [optional] 
+**EmailAddress** | **string** | REPLACE_ME_WITH_DESCRIPTION_BEGIN The email address associated with the Account. REPLACE_ME_WITH_DESCRIPTION_END | [optional] 
+**IsLocked** | **bool** | REPLACE_ME_WITH_DESCRIPTION_BEGIN Returns &#x60;true&#x60; if the user has been locked out of their account by a team admin. REPLACE_ME_WITH_DESCRIPTION_END | [optional] 
+**IsPaidHs** | **bool** | REPLACE_ME_WITH_DESCRIPTION_BEGIN Returns &#x60;true&#x60; if the user has a paid HelloSign account. REPLACE_ME_WITH_DESCRIPTION_END | [optional] 
+**IsPaidHf** | **bool** | REPLACE_ME_WITH_DESCRIPTION_BEGIN Returns &#x60;true&#x60; if the user has a paid HelloFax account. REPLACE_ME_WITH_DESCRIPTION_END | [optional] 
+**Quotas** | [**TemplateResponseAccountQuota**](TemplateResponseAccountQuota.md) | REPLACE_ME_WITH_DESCRIPTION_BEGIN  REPLACE_ME_WITH_DESCRIPTION_END | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

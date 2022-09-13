@@ -5,10 +5,10 @@ Contains pagination information about the data returned.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**NumPages** | **int** |  Total number of pages available.  | [optional] 
-**NumResults** | **int?** |  Total number of objects available.  | [optional] 
-**Page** | **int** |  Number of the page being returned.  | [optional] 
-**PageSize** | **int** |  Objects returned per page.  | [optional] 
+**NumPages** | **int** | REPLACE_ME_WITH_DESCRIPTION_BEGIN Total number of pages available. REPLACE_ME_WITH_DESCRIPTION_END | [optional] 
+**NumResults** | **int?** | REPLACE_ME_WITH_DESCRIPTION_BEGIN Total number of objects available. REPLACE_ME_WITH_DESCRIPTION_END | [optional] 
+**Page** | **int** | REPLACE_ME_WITH_DESCRIPTION_BEGIN Number of the page being returned. REPLACE_ME_WITH_DESCRIPTION_END | [optional] 
+**PageSize** | **int** | REPLACE_ME_WITH_DESCRIPTION_BEGIN Objects returned per page. REPLACE_ME_WITH_DESCRIPTION_END | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

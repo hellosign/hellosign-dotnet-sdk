@@ -5,7 +5,7 @@ Additional options supported by API App.
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**CanInsertEverywhere** | **bool** |  Determines if signers can use &quot;Insert Everywhere&quot; when signing a document.  | [optional] [default to false]
+**CanInsertEverywhere** | **bool** | REPLACE_ME_WITH_DESCRIPTION_BEGIN Determines if signers can use &quot;Insert Everywhere&quot; when signing a document. REPLACE_ME_WITH_DESCRIPTION_END | [optional] [default to false]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
