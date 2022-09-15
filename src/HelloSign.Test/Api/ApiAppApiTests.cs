@@ -11,29 +11,15 @@ namespace HelloSign.Test.Api
 {
     public class ApiAppApiTests
     {
-        private readonly MockRestClient _mock;
-        private readonly ApiAppApi _api;
-
-        public ApiAppApiTests()
-        {
-            _mock = new MockRestClient();
-
-            Configuration config = new Configuration();
-            config.Username = "YOUR_API_KEY";
-
-            var client = new ApiClient(config.BasePath, _mock);
-            _api = new ApiAppApi(client, client, config);
-        }
-
         [Fact]
         public void ApiAppCreateTest()
         {
             var requestData = TestHelper.SerializeFromFile<ApiAppCreateRequest>("ApiAppCreateRequest");
             var responseData = TestHelper.SerializeFromFile<ApiAppGetResponse>("ApiAppGetResponse");
 
-            _mock.SetExpectedResponse(responseData, HttpStatusCode.Accepted);
+            var api = MockRestClientHelper.CreateApi<ApiAppGetResponse, ApiAppApi>(responseData);
 
-            var response = _api.ApiAppCreate(requestData);
+            var response = api.ApiAppCreate(requestData);
 
             JToken.DeepEquals(
                 responseData.ToJson(),
@@ -48,9 +34,9 @@ namespace HelloSign.Test.Api
 
             var responseData = TestHelper.SerializeFromFile<ApiAppGetResponse>("ApiAppGetResponse");
 
-            _mock.SetExpectedResponse(responseData, HttpStatusCode.Accepted);
+            var api = MockRestClientHelper.CreateApi<ApiAppGetResponse, ApiAppApi>(responseData);
 
-            var response = _api.ApiAppGet(clientId);
+            var response = api.ApiAppGet(clientId);
 
             JToken.DeepEquals(
                 responseData.ToJson(),
@@ -66,9 +52,9 @@ namespace HelloSign.Test.Api
             var requestData = TestHelper.SerializeFromFile<ApiAppUpdateRequest>("ApiAppUpdateRequest");
             var responseData = TestHelper.SerializeFromFile<ApiAppGetResponse>("ApiAppGetResponse");
 
-            _mock.SetExpectedResponse(responseData, HttpStatusCode.Accepted);
+            var api = MockRestClientHelper.CreateApi<ApiAppGetResponse, ApiAppApi>(responseData);
 
-            var response = _api.ApiAppUpdate(clientId, requestData);
+            var response = api.ApiAppUpdate(clientId, requestData);
 
             JToken.DeepEquals(
                 responseData.ToJson(),
@@ -89,9 +75,9 @@ namespace HelloSign.Test.Api
 
             var responseData = TestHelper.SerializeFromFile<ApiAppListResponse>("ApiAppListResponse");
 
-            _mock.SetExpectedResponse(responseData, HttpStatusCode.Accepted);
+            var api = MockRestClientHelper.CreateApi<ApiAppListResponse, ApiAppApi>(responseData);
 
-            var response = _api.ApiAppList(page, pageSize);
+            var response = api.ApiAppList(page, pageSize);
 
             JToken.DeepEquals(
                 responseData.ToJson(),
@@ -118,21 +104,22 @@ namespace HelloSign.Test.Api
             );
 
             var responseData = TestHelper.SerializeFromFile<ApiAppGetResponse>("ApiAppGetResponse");
-            _mock.SetExpectedResponse(responseData, HttpStatusCode.Accepted);
 
-            var response = _api.ApiAppCreate(obj);
+            
+            var api = MockRestClientHelper.CreateApiExpectContentContains<ApiAppGetResponse, ApiAppApi>(responseData, 
+                HttpStatusCode.Accepted, 
+                "application/json",
+                "[\"domain1.com\",\"domain2.com\"]",
+                "My name is",
+                "{\"scopes\":[\"template_access\"],\"callback_url\":\"https://oauth-callback.test\"}"
+                );
 
-            var lastRequest = _mock.GetRequest();
-
-            var resultDomains = lastRequest.Parameters.TryFind("domains")?.Value?.ToString();
-
-            var resultName = lastRequest.Parameters.TryFind("name")?.Value?.ToString();
-
-            var resultOauth = lastRequest.Parameters.TryFind("oauth")?.Value?.ToString();
-
-            Assert.Equal("[\"domain1.com\",\"domain2.com\"]", resultDomains);
-            Assert.Equal("My name is", resultName);
-            Assert.Equal("{\"scopes\":[\"template_access\"],\"callback_url\":\"https://oauth-callback.test\"}", resultOauth);
+            var response = api.ApiAppCreate(obj);
+            
+            JToken.DeepEquals(
+                responseData.ToJson(),
+                response.ToJson()
+            );
         }
     }
 }

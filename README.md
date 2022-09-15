@@ -62,9 +62,9 @@ this command.
 <a name="dependencies"></a>
 ## Dependencies
 
-- [RestSharp](https://www.nuget.org/packages/RestSharp) - 106.13.0 or later
-- [Json.NET](https://www.nuget.org/packages/Newtonsoft.Json/) - 12.0.3 or later
-- [JsonSubTypes](https://www.nuget.org/packages/JsonSubTypes/) - 1.8.0 or later
+- [RestSharp](https://www.nuget.org/packages/RestSharp) - 108.0.1 or later
+- [Json.NET](https://www.nuget.org/packages/Newtonsoft.Json/) - 13.0.1 or later
+- [JsonSubTypes](https://www.nuget.org/packages/JsonSubTypes/) - 1.9.0 or later
 - [System.ComponentModel.Annotations](https://www.nuget.org/packages/System.ComponentModel.Annotations) - 5.0.0 or later
 
 <a name="usage"></a>

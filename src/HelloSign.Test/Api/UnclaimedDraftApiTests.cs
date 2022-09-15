@@ -10,29 +10,15 @@ namespace HelloSign.Test.Api
 {
     public class UnclaimedDraftApiTests
     {
-        private readonly MockRestClient _mock;
-        private readonly UnclaimedDraftApi _api;
-
-        public UnclaimedDraftApiTests()
-        {
-            _mock = new MockRestClient();
-
-            Configuration config = new Configuration();
-            config.Username = "YOUR_API_KEY";
-
-            var client = new ApiClient(config.BasePath, _mock);
-            _api = new UnclaimedDraftApi(client, client, config);
-        }
-
         [Fact]
         public void UnclaimedDraftCreateTest()
         {
             var requestData = TestHelper.SerializeFromFile<UnclaimedDraftCreateRequest>("UnclaimedDraftCreateRequest");
             var responseData = TestHelper.SerializeFromFile<UnclaimedDraftCreateResponse>("UnclaimedDraftCreateResponse");
 
-            _mock.SetExpectedResponse(responseData, HttpStatusCode.Accepted);
+            var api = MockRestClientHelper.CreateApi<UnclaimedDraftCreateResponse, UnclaimedDraftApi>(responseData);
 
-            var response = _api.UnclaimedDraftCreate(requestData);
+            var response = api.UnclaimedDraftCreate(requestData);
 
             JToken.DeepEquals(
                 responseData.ToJson(),
@@ -46,9 +32,9 @@ namespace HelloSign.Test.Api
             var requestData = TestHelper.SerializeFromFile<UnclaimedDraftCreateEmbeddedRequest>("UnclaimedDraftCreateEmbeddedRequest");
             var responseData = TestHelper.SerializeFromFile<UnclaimedDraftCreateResponse>("UnclaimedDraftCreateResponse");
 
-            _mock.SetExpectedResponse(responseData, HttpStatusCode.Accepted);
+            var api = MockRestClientHelper.CreateApi<UnclaimedDraftCreateResponse, UnclaimedDraftApi>(responseData);
 
-            var response = _api.UnclaimedDraftCreateEmbedded(requestData);
+            var response = api.UnclaimedDraftCreateEmbedded(requestData);
 
             JToken.DeepEquals(
                 responseData.ToJson(),
@@ -62,9 +48,9 @@ namespace HelloSign.Test.Api
             var requestData = TestHelper.SerializeFromFile<UnclaimedDraftCreateEmbeddedWithTemplateRequest>("UnclaimedDraftCreateEmbeddedWithTemplateRequest");
             var responseData = TestHelper.SerializeFromFile<UnclaimedDraftCreateResponse>("UnclaimedDraftCreateResponse");
 
-            _mock.SetExpectedResponse(responseData, HttpStatusCode.Accepted);
+            var api = MockRestClientHelper.CreateApi<UnclaimedDraftCreateResponse, UnclaimedDraftApi>(responseData);
 
-            var response = _api.UnclaimedDraftCreateEmbeddedWithTemplate(requestData);
+            var response = api.UnclaimedDraftCreateEmbeddedWithTemplate(requestData);
 
             JToken.DeepEquals(
                 responseData.ToJson(),
@@ -80,9 +66,9 @@ namespace HelloSign.Test.Api
             var requestData = TestHelper.SerializeFromFile<UnclaimedDraftEditAndResendRequest>("UnclaimedDraftEditAndResendRequest");
             var responseData = TestHelper.SerializeFromFile<UnclaimedDraftCreateResponse>("UnclaimedDraftCreateResponse");
 
-            _mock.SetExpectedResponse(responseData, HttpStatusCode.Accepted);
+            var api = MockRestClientHelper.CreateApi<UnclaimedDraftCreateResponse, UnclaimedDraftApi>(responseData);
 
-            var response = _api.UnclaimedDraftEditAndResend(signatureRequestId, requestData);
+            var response = api.UnclaimedDraftEditAndResend(signatureRequestId, requestData);
 
             JToken.DeepEquals(
                 responseData.ToJson(),

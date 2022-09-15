@@ -10,29 +10,15 @@ namespace HelloSign.Test.Api
 {
     public class OAuthApiTests
     {
-        private readonly MockRestClient _mock;
-        private readonly OAuthApi _api;
-
-        public OAuthApiTests()
-        {
-            _mock = new MockRestClient();
-
-            Configuration config = new Configuration();
-            config.Username = "YOUR_API_KEY";
-
-            var client = new ApiClient(config.BasePath, _mock);
-            _api = new OAuthApi(client, client, config);
-        }
-
         [Fact]
         public void TokenGenerateTest()
         {
             var requestData = TestHelper.SerializeFromFile<OAuthTokenGenerateRequest>("OAuthTokenGenerateRequest");
             var responseData = TestHelper.SerializeFromFile<OAuthTokenResponse>("OAuthTokenResponse");
 
-            _mock.SetExpectedResponse(responseData, HttpStatusCode.Accepted);
+            var api = MockRestClientHelper.CreateApi<OAuthTokenResponse, OAuthApi>(responseData);
 
-            var response = _api.OauthTokenGenerate(requestData);
+            var response = api.OauthTokenGenerate(requestData);
 
             JToken.DeepEquals(
                 responseData.ToJson(),
@@ -46,9 +32,9 @@ namespace HelloSign.Test.Api
             var requestData = TestHelper.SerializeFromFile<OAuthTokenRefreshRequest>("OAuthTokenRefreshRequest");
             var responseData = TestHelper.SerializeFromFile<OAuthTokenResponse>("OAuthTokenResponse");
 
-            _mock.SetExpectedResponse(responseData, HttpStatusCode.Accepted);
+            var api = MockRestClientHelper.CreateApi<OAuthTokenResponse, OAuthApi>(responseData);
 
-            var response = _api.OauthTokenRefresh(requestData);
+            var response = api.OauthTokenRefresh(requestData);
 
             JToken.DeepEquals(
                 responseData.ToJson(),

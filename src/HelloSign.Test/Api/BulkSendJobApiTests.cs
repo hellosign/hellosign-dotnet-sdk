@@ -10,20 +10,6 @@ namespace HelloSign.Test.Api
 {
     public class BulkSendJobApiTests
     {
-        private readonly MockRestClient _mock;
-        private readonly BulkSendJobApi _api;
-
-        public BulkSendJobApiTests()
-        {
-            _mock = new MockRestClient();
-
-            Configuration config = new Configuration();
-            config.Username = "YOUR_API_KEY";
-
-            var client = new ApiClient(config.BasePath, _mock);
-            _api = new BulkSendJobApi(client, client, config);
-        }
-
         [Fact]
         public void BulkSendJobGetTest()
         {
@@ -31,9 +17,9 @@ namespace HelloSign.Test.Api
 
             var responseData = TestHelper.SerializeFromFile<BulkSendJobGetResponse>("BulkSendJobGetResponse");
 
-            _mock.SetExpectedResponse(responseData, HttpStatusCode.Accepted);
+            var api = MockRestClientHelper.CreateApi<BulkSendJobGetResponse, BulkSendJobApi>(responseData);
 
-            var response = _api.BulkSendJobGet(id);
+            var response = api.BulkSendJobGet(id);
 
             JToken.DeepEquals(
                 responseData.ToJson(),
@@ -49,9 +35,9 @@ namespace HelloSign.Test.Api
 
             var responseData = TestHelper.SerializeFromFile<BulkSendJobListResponse>("BulkSendJobListResponse");
 
-            _mock.SetExpectedResponse(responseData, HttpStatusCode.Accepted);
+            var api = MockRestClientHelper.CreateApi<BulkSendJobListResponse, BulkSendJobApi>(responseData);
 
-            var response = _api.BulkSendJobList(page, pageSize);
+            var response = api.BulkSendJobList(page, pageSize);
 
             JToken.DeepEquals(
                 responseData.ToJson(),

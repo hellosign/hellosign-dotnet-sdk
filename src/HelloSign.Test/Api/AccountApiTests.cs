@@ -10,20 +10,6 @@ namespace HelloSign.Test.Api
 {
     public class AccountApiTests
     {
-        private readonly MockRestClient _mock;
-        private readonly AccountApi _api;
-
-        public AccountApiTests()
-        {
-            _mock = new MockRestClient();
-
-            Configuration config = new Configuration();
-            config.Username = "YOUR_API_KEY";
-
-            var client = new ApiClient(config.BasePath, _mock);
-            _api = new AccountApi(client, client, config);
-        }
-
         [Fact]
         public void HttpCodeRangeTest()
         {
@@ -31,11 +17,10 @@ namespace HelloSign.Test.Api
             var responseData = TestHelper.SerializeFromFile<AccountVerifyResponse>("AccountVerifyResponse");
             var errorData = TestHelper.SerializeFromFile<ErrorResponse>("ErrorResponse");
 
-            _mock.SetExpectedResponse<AccountVerifyResponse>(responseData, HttpStatusCode.BadRequest);
-            _mock.SetError(errorData.ToJson());
+            var api = MockRestClientHelper.CreateApi<ErrorResponse, AccountApi>(errorData, HttpStatusCode.BadRequest);
 
             var ex = Assert.Throws<ApiException>(() =>
-                _api.AccountVerify(requestData)
+                api.AccountVerify(requestData)
             );
 
             JToken.DeepEquals(
@@ -50,9 +35,9 @@ namespace HelloSign.Test.Api
             var requestData = TestHelper.SerializeFromFile<AccountCreateRequest>("AccountCreateRequest");
             var responseData = TestHelper.SerializeFromFile<AccountCreateResponse>("AccountCreateResponse");
 
-            _mock.SetExpectedResponse(responseData, HttpStatusCode.Accepted);
+            var api = MockRestClientHelper.CreateApi<AccountCreateResponse, AccountApi>(responseData);
 
-            var response = _api.AccountCreate(requestData);
+            var response = api.AccountCreate(requestData);
 
             JToken.DeepEquals(
                 responseData.ToJson(),
@@ -65,9 +50,9 @@ namespace HelloSign.Test.Api
         {
             var responseData = TestHelper.SerializeFromFile<AccountGetResponse>("AccountGetResponse");
 
-            _mock.SetExpectedResponse(responseData, HttpStatusCode.Accepted);
+            var api = MockRestClientHelper.CreateApi<AccountGetResponse, AccountApi>(responseData);
 
-            var response = _api.AccountGet();
+            var response = api.AccountGet();
 
             JToken.DeepEquals(
                 responseData.ToJson(),
@@ -81,9 +66,9 @@ namespace HelloSign.Test.Api
             var requestData = TestHelper.SerializeFromFile<AccountUpdateRequest>("AccountUpdateRequest");
             var responseData = TestHelper.SerializeFromFile<AccountGetResponse>("AccountGetResponse");
 
-            _mock.SetExpectedResponse(responseData, HttpStatusCode.Accepted);
+            var api = MockRestClientHelper.CreateApi<AccountGetResponse, AccountApi>(responseData);
 
-            var response = _api.AccountUpdate(requestData);
+            var response = api.AccountUpdate(requestData);
 
             JToken.DeepEquals(
                 responseData.ToJson(),
@@ -97,9 +82,9 @@ namespace HelloSign.Test.Api
             var requestData = TestHelper.SerializeFromFile<AccountVerifyRequest>("AccountVerifyRequest");
             var responseData = TestHelper.SerializeFromFile<AccountVerifyResponse>("AccountVerifyResponse");
 
-            _mock.SetExpectedResponse(responseData, HttpStatusCode.Accepted);
+            var api = MockRestClientHelper.CreateApi<AccountVerifyResponse, AccountApi>(responseData);
 
-            var response = _api.AccountVerify(requestData);
+            var response = api.AccountVerify(requestData);
 
             JToken.DeepEquals(
                 responseData.ToJson(),
