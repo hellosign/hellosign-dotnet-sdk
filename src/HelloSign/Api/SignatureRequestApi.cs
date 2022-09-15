@@ -919,7 +919,6 @@ namespace HelloSign.Api
                 localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
             }
 
-            localVarRequestOptions.Data = signatureRequestBulkCreateEmbeddedWithTemplateRequest;
 
             localVarRequestOptions.Operation = "SignatureRequestApi.SignatureRequestBulkCreateEmbeddedWithTemplate";
             localVarRequestOptions.OperationIndex = operationIndex;
@@ -1093,7 +1092,6 @@ namespace HelloSign.Api
                 localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
             }
 
-            localVarRequestOptions.Data = signatureRequestBulkSendWithTemplateRequest;
 
             localVarRequestOptions.Operation = "SignatureRequestApi.SignatureRequestBulkSendWithTemplate";
             localVarRequestOptions.OperationIndex = operationIndex;
@@ -1446,7 +1444,6 @@ namespace HelloSign.Api
                 localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
             }
 
-            localVarRequestOptions.Data = signatureRequestCreateEmbeddedRequest;
 
             localVarRequestOptions.Operation = "SignatureRequestApi.SignatureRequestCreateEmbedded";
             localVarRequestOptions.OperationIndex = operationIndex;
@@ -1632,7 +1629,6 @@ namespace HelloSign.Api
                 localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
             }
 
-            localVarRequestOptions.Data = signatureRequestCreateEmbeddedWithTemplateRequest;
 
             localVarRequestOptions.Operation = "SignatureRequestApi.SignatureRequestCreateEmbeddedWithTemplate";
             localVarRequestOptions.OperationIndex = operationIndex;
@@ -2569,7 +2565,6 @@ namespace HelloSign.Api
             }
 
             localVarRequestOptions.PathParameters.Add("signature_request_id", HelloSign.Client.ClientUtils.ParameterToString(signatureRequestId)); // path parameter
-            localVarRequestOptions.Data = signatureRequestRemindRequest;
 
             localVarRequestOptions.Operation = "SignatureRequestApi.SignatureRequestRemind";
             localVarRequestOptions.OperationIndex = operationIndex;
@@ -2919,7 +2914,6 @@ namespace HelloSign.Api
                 localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
             }
 
-            localVarRequestOptions.Data = signatureRequestSendRequest;
 
             localVarRequestOptions.Operation = "SignatureRequestApi.SignatureRequestSend";
             localVarRequestOptions.OperationIndex = operationIndex;
@@ -3105,7 +3099,6 @@ namespace HelloSign.Api
                 localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
             }
 
-            localVarRequestOptions.Data = signatureRequestSendWithTemplateRequest;
 
             localVarRequestOptions.Operation = "SignatureRequestApi.SignatureRequestSendWithTemplate";
             localVarRequestOptions.OperationIndex = operationIndex;
@@ -3300,7 +3293,6 @@ namespace HelloSign.Api
             }
 
             localVarRequestOptions.PathParameters.Add("signature_request_id", HelloSign.Client.ClientUtils.ParameterToString(signatureRequestId)); // path parameter
-            localVarRequestOptions.Data = signatureRequestUpdateRequest;
 
             localVarRequestOptions.Operation = "SignatureRequestApi.SignatureRequestUpdate";
             localVarRequestOptions.OperationIndex = operationIndex;

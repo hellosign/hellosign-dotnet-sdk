@@ -407,7 +407,6 @@ namespace HelloSign.Api
                 localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
             }
 
-            localVarRequestOptions.Data = accountCreateRequest;
 
             localVarRequestOptions.Operation = "AccountApi.AccountCreate";
             localVarRequestOptions.OperationIndex = operationIndex;
@@ -756,7 +755,6 @@ namespace HelloSign.Api
                 localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
             }
 
-            localVarRequestOptions.Data = accountUpdateRequest;
 
             localVarRequestOptions.Operation = "AccountApi.AccountUpdate";
             localVarRequestOptions.OperationIndex = operationIndex;
@@ -942,7 +940,6 @@ namespace HelloSign.Api
                 localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
             }
 
-            localVarRequestOptions.Data = accountVerifyRequest;
 
             localVarRequestOptions.Operation = "AccountApi.AccountVerify";
             localVarRequestOptions.OperationIndex = operationIndex;

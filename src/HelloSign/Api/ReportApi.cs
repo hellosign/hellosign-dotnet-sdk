@@ -263,7 +263,6 @@ namespace HelloSign.Api
                 localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
             }
 
-            localVarRequestOptions.Data = reportCreateRequest;
 
             localVarRequestOptions.Operation = "ReportApi.ReportCreate";
             localVarRequestOptions.OperationIndex = operationIndex;

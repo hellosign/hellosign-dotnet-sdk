@@ -665,7 +665,6 @@ namespace HelloSign.Api
             {
                 localVarRequestOptions.QueryParameters.Add(HelloSign.Client.ClientUtils.ParameterToMultiMap("", "team_id", teamId));
             }
-            localVarRequestOptions.Data = teamAddMemberRequest;
 
             localVarRequestOptions.Operation = "TeamApi.TeamAddMember";
             localVarRequestOptions.OperationIndex = operationIndex;
@@ -857,7 +856,6 @@ namespace HelloSign.Api
                 localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
             }
 
-            localVarRequestOptions.Data = teamCreateRequest;
 
             localVarRequestOptions.Operation = "TeamApi.TeamCreate";
             localVarRequestOptions.OperationIndex = operationIndex;
@@ -1699,7 +1697,6 @@ namespace HelloSign.Api
                 localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
             }
 
-            localVarRequestOptions.Data = teamRemoveMemberRequest;
 
             localVarRequestOptions.Operation = "TeamApi.TeamRemoveMember";
             localVarRequestOptions.OperationIndex = operationIndex;
@@ -2078,7 +2075,6 @@ namespace HelloSign.Api
                 localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
             }
 
-            localVarRequestOptions.Data = teamUpdateRequest;
 
             localVarRequestOptions.Operation = "TeamApi.TeamUpdate";
             localVarRequestOptions.OperationIndex = operationIndex;
