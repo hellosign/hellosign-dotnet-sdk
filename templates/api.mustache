@@ -410,9 +410,6 @@ namespace {{packageName}}.{{apiPackage}}
             }
             {{/required}}
             {{/formParams}}
-            {{#bodyParam}}
-            localVarRequestOptions.Data = {{paramName}};
-            {{/bodyParam}}
 
             localVarRequestOptions.Operation = "{{classname}}.{{operationId}}";
             localVarRequestOptions.OperationIndex = operationIndex;
