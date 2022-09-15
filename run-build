@@ -4,7 +4,7 @@
 
 set -e
 
-WORKINGDIR="/app/csharp"
+WORKINGDIR="/app/dotnet"
 
 docker run --rm \
   -v "${PWD}/:/local" \
