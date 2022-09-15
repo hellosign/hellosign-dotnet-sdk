@@ -411,7 +411,6 @@ namespace HelloSign.Api
                 localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
             }
 
-
             localVarRequestOptions.Operation = "UnclaimedDraftApi.UnclaimedDraftCreate";
             localVarRequestOptions.OperationIndex = operationIndex;
 
@@ -504,8 +503,6 @@ namespace HelloSign.Api
                 localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
             }
 
-            localVarRequestOptions.Data = unclaimedDraftCreateRequest;
-
             localVarRequestOptions.Operation = "UnclaimedDraftApi.UnclaimedDraftCreate";
             localVarRequestOptions.OperationIndex = operationIndex;
 
@@ -595,7 +592,6 @@ namespace HelloSign.Api
             {
                 localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
             }
-
 
             localVarRequestOptions.Operation = "UnclaimedDraftApi.UnclaimedDraftCreateEmbedded";
             localVarRequestOptions.OperationIndex = operationIndex;
@@ -689,8 +685,6 @@ namespace HelloSign.Api
                 localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
             }
 
-            localVarRequestOptions.Data = unclaimedDraftCreateEmbeddedRequest;
-
             localVarRequestOptions.Operation = "UnclaimedDraftApi.UnclaimedDraftCreateEmbedded";
             localVarRequestOptions.OperationIndex = operationIndex;
 
@@ -780,7 +774,6 @@ namespace HelloSign.Api
             {
                 localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
             }
-
 
             localVarRequestOptions.Operation = "UnclaimedDraftApi.UnclaimedDraftCreateEmbeddedWithTemplate";
             localVarRequestOptions.OperationIndex = operationIndex;
@@ -873,8 +866,6 @@ namespace HelloSign.Api
             {
                 localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
             }
-
-            localVarRequestOptions.Data = unclaimedDraftCreateEmbeddedWithTemplateRequest;
 
             localVarRequestOptions.Operation = "UnclaimedDraftApi.UnclaimedDraftCreateEmbeddedWithTemplate";
             localVarRequestOptions.OperationIndex = operationIndex;
@@ -975,7 +966,6 @@ namespace HelloSign.Api
             }
 
             localVarRequestOptions.PathParameters.Add("signature_request_id", HelloSign.Client.ClientUtils.ParameterToString(signatureRequestId)); // path parameter
-
             localVarRequestOptions.Operation = "UnclaimedDraftApi.UnclaimedDraftEditAndResend";
             localVarRequestOptions.OperationIndex = operationIndex;
 
@@ -1077,8 +1067,6 @@ namespace HelloSign.Api
             }
 
             localVarRequestOptions.PathParameters.Add("signature_request_id", HelloSign.Client.ClientUtils.ParameterToString(signatureRequestId)); // path parameter
-            localVarRequestOptions.Data = unclaimedDraftEditAndResendRequest;
-
             localVarRequestOptions.Operation = "UnclaimedDraftApi.UnclaimedDraftEditAndResend";
             localVarRequestOptions.OperationIndex = operationIndex;
 

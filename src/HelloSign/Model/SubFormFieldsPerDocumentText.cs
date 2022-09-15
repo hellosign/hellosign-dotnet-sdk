@@ -425,7 +425,7 @@ namespace HelloSign.Model
         /// <returns>Validation Result</returns>
         protected IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> BaseValidate(ValidationContext validationContext)
         {
-            foreach (var x in base.BaseValidate(validationContext))
+            foreach (var x in BaseValidate(validationContext))
             {
                 yield return x;
             }

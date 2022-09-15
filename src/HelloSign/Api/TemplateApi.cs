@@ -644,7 +644,6 @@ namespace HelloSign.Api
             }
 
             localVarRequestOptions.PathParameters.Add("template_id", HelloSign.Client.ClientUtils.ParameterToString(templateId)); // path parameter
-
             localVarRequestOptions.Operation = "TemplateApi.TemplateAddUser";
             localVarRequestOptions.OperationIndex = operationIndex;
 
@@ -746,8 +745,6 @@ namespace HelloSign.Api
             }
 
             localVarRequestOptions.PathParameters.Add("template_id", HelloSign.Client.ClientUtils.ParameterToString(templateId)); // path parameter
-            localVarRequestOptions.Data = templateAddUserRequest;
-
             localVarRequestOptions.Operation = "TemplateApi.TemplateAddUser";
             localVarRequestOptions.OperationIndex = operationIndex;
 
@@ -837,7 +834,6 @@ namespace HelloSign.Api
             {
                 localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
             }
-
 
             localVarRequestOptions.Operation = "TemplateApi.TemplateCreateEmbeddedDraft";
             localVarRequestOptions.OperationIndex = operationIndex;
@@ -931,8 +927,6 @@ namespace HelloSign.Api
                 localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
             }
 
-            localVarRequestOptions.Data = templateCreateEmbeddedDraftRequest;
-
             localVarRequestOptions.Operation = "TemplateApi.TemplateCreateEmbeddedDraft";
             localVarRequestOptions.OperationIndex = operationIndex;
 
@@ -1014,7 +1008,6 @@ namespace HelloSign.Api
             }
 
             localVarRequestOptions.PathParameters.Add("template_id", HelloSign.Client.ClientUtils.ParameterToString(templateId)); // path parameter
-
             localVarRequestOptions.Operation = "TemplateApi.TemplateDelete";
             localVarRequestOptions.OperationIndex = operationIndex;
 
@@ -1099,7 +1092,6 @@ namespace HelloSign.Api
             }
 
             localVarRequestOptions.PathParameters.Add("template_id", HelloSign.Client.ClientUtils.ParameterToString(templateId)); // path parameter
-
             localVarRequestOptions.Operation = "TemplateApi.TemplateDelete";
             localVarRequestOptions.OperationIndex = operationIndex;
 
@@ -1200,7 +1192,6 @@ namespace HelloSign.Api
             {
                 localVarRequestOptions.QueryParameters.Add(HelloSign.Client.ClientUtils.ParameterToMultiMap("", "get_data_uri", getDataUri));
             }
-
             localVarRequestOptions.Operation = "TemplateApi.TemplateFiles";
             localVarRequestOptions.OperationIndex = operationIndex;
 
@@ -1304,7 +1295,6 @@ namespace HelloSign.Api
             {
                 localVarRequestOptions.QueryParameters.Add(HelloSign.Client.ClientUtils.ParameterToMultiMap("", "get_data_uri", getDataUri));
             }
-
             localVarRequestOptions.Operation = "TemplateApi.TemplateFiles";
             localVarRequestOptions.OperationIndex = operationIndex;
 
@@ -1387,7 +1377,6 @@ namespace HelloSign.Api
             }
 
             localVarRequestOptions.PathParameters.Add("template_id", HelloSign.Client.ClientUtils.ParameterToString(templateId)); // path parameter
-
             localVarRequestOptions.Operation = "TemplateApi.TemplateGet";
             localVarRequestOptions.OperationIndex = operationIndex;
 
@@ -1473,7 +1462,6 @@ namespace HelloSign.Api
             }
 
             localVarRequestOptions.PathParameters.Add("template_id", HelloSign.Client.ClientUtils.ParameterToString(templateId)); // path parameter
-
             localVarRequestOptions.Operation = "TemplateApi.TemplateGet";
             localVarRequestOptions.OperationIndex = operationIndex;
 
@@ -1571,7 +1559,6 @@ namespace HelloSign.Api
             {
                 localVarRequestOptions.QueryParameters.Add(HelloSign.Client.ClientUtils.ParameterToMultiMap("", "query", query));
             }
-
             localVarRequestOptions.Operation = "TemplateApi.TemplateList";
             localVarRequestOptions.OperationIndex = operationIndex;
 
@@ -1672,7 +1659,6 @@ namespace HelloSign.Api
             {
                 localVarRequestOptions.QueryParameters.Add(HelloSign.Client.ClientUtils.ParameterToMultiMap("", "query", query));
             }
-
             localVarRequestOptions.Operation = "TemplateApi.TemplateList";
             localVarRequestOptions.OperationIndex = operationIndex;
 
@@ -1772,7 +1758,6 @@ namespace HelloSign.Api
             }
 
             localVarRequestOptions.PathParameters.Add("template_id", HelloSign.Client.ClientUtils.ParameterToString(templateId)); // path parameter
-
             localVarRequestOptions.Operation = "TemplateApi.TemplateRemoveUser";
             localVarRequestOptions.OperationIndex = operationIndex;
 
@@ -1874,8 +1859,6 @@ namespace HelloSign.Api
             }
 
             localVarRequestOptions.PathParameters.Add("template_id", HelloSign.Client.ClientUtils.ParameterToString(templateId)); // path parameter
-            localVarRequestOptions.Data = templateRemoveUserRequest;
-
             localVarRequestOptions.Operation = "TemplateApi.TemplateRemoveUser";
             localVarRequestOptions.OperationIndex = operationIndex;
 
@@ -1975,7 +1958,6 @@ namespace HelloSign.Api
             }
 
             localVarRequestOptions.PathParameters.Add("template_id", HelloSign.Client.ClientUtils.ParameterToString(templateId)); // path parameter
-
             localVarRequestOptions.Operation = "TemplateApi.TemplateUpdateFiles";
             localVarRequestOptions.OperationIndex = operationIndex;
 
@@ -2077,8 +2059,6 @@ namespace HelloSign.Api
             }
 
             localVarRequestOptions.PathParameters.Add("template_id", HelloSign.Client.ClientUtils.ParameterToString(templateId)); // path parameter
-            localVarRequestOptions.Data = templateUpdateFilesRequest;
-
             localVarRequestOptions.Operation = "TemplateApi.TemplateUpdateFiles";
             localVarRequestOptions.OperationIndex = operationIndex;
 

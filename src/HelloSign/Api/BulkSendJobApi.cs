@@ -307,7 +307,6 @@ namespace HelloSign.Api
             }
 
             localVarRequestOptions.PathParameters.Add("bulk_send_job_id", HelloSign.Client.ClientUtils.ParameterToString(bulkSendJobId)); // path parameter
-
             localVarRequestOptions.Operation = "BulkSendJobApi.BulkSendJobGet";
             localVarRequestOptions.OperationIndex = operationIndex;
 
@@ -393,7 +392,6 @@ namespace HelloSign.Api
             }
 
             localVarRequestOptions.PathParameters.Add("bulk_send_job_id", HelloSign.Client.ClientUtils.ParameterToString(bulkSendJobId)); // path parameter
-
             localVarRequestOptions.Operation = "BulkSendJobApi.BulkSendJobGet";
             localVarRequestOptions.OperationIndex = operationIndex;
 
@@ -479,7 +477,6 @@ namespace HelloSign.Api
             {
                 localVarRequestOptions.QueryParameters.Add(HelloSign.Client.ClientUtils.ParameterToMultiMap("", "page_size", pageSize));
             }
-
             localVarRequestOptions.Operation = "BulkSendJobApi.BulkSendJobList";
             localVarRequestOptions.OperationIndex = operationIndex;
 
@@ -568,7 +565,6 @@ namespace HelloSign.Api
             {
                 localVarRequestOptions.QueryParameters.Add(HelloSign.Client.ClientUtils.ParameterToMultiMap("", "page_size", pageSize));
             }
-
             localVarRequestOptions.Operation = "BulkSendJobApi.BulkSendJobList";
             localVarRequestOptions.OperationIndex = operationIndex;
 

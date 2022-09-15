@@ -324,7 +324,6 @@ namespace HelloSign.Api
             }
 
             localVarRequestOptions.PathParameters.Add("template_id", HelloSign.Client.ClientUtils.ParameterToString(templateId)); // path parameter
-
             localVarRequestOptions.Operation = "EmbeddedApi.EmbeddedEditUrl";
             localVarRequestOptions.OperationIndex = operationIndex;
 
@@ -426,8 +425,6 @@ namespace HelloSign.Api
             }
 
             localVarRequestOptions.PathParameters.Add("template_id", HelloSign.Client.ClientUtils.ParameterToString(templateId)); // path parameter
-            localVarRequestOptions.Data = embeddedEditUrlRequest;
-
             localVarRequestOptions.Operation = "EmbeddedApi.EmbeddedEditUrl";
             localVarRequestOptions.OperationIndex = operationIndex;
 
@@ -510,7 +507,6 @@ namespace HelloSign.Api
             }
 
             localVarRequestOptions.PathParameters.Add("signature_id", HelloSign.Client.ClientUtils.ParameterToString(signatureId)); // path parameter
-
             localVarRequestOptions.Operation = "EmbeddedApi.EmbeddedSignUrl";
             localVarRequestOptions.OperationIndex = operationIndex;
 
@@ -596,7 +592,6 @@ namespace HelloSign.Api
             }
 
             localVarRequestOptions.PathParameters.Add("signature_id", HelloSign.Client.ClientUtils.ParameterToString(signatureId)); // path parameter
-
             localVarRequestOptions.Operation = "EmbeddedApi.EmbeddedSignUrl";
             localVarRequestOptions.OperationIndex = operationIndex;
 
