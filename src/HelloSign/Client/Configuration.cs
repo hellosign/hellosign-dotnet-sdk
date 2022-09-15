@@ -18,6 +18,7 @@ using System.Net;
 using System.Reflection;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using Newtonsoft.Json;
 using System.Net.Http;
 using HelloSign.Model;
 
@@ -58,12 +59,12 @@ namespace HelloSign.Client
             {
                 return new ApiException(status,
                     string.Format("Error calling {0}: {1}", methodName, response.RawContent),
-                    response.RawContent, response.Headers);
+                    JsonConvert.DeserializeObject<ErrorResponse>(response.RawContent), response.Headers);
             }
             if (status == 0)
             {
                 return new ApiException(status,
-                    string.Format("Error calling {0}: {1}", methodName, response.ErrorText), response.ErrorText);
+                    string.Format("Error calling {0}: {1}", methodName, response.ErrorText), JsonConvert.DeserializeObject<ErrorResponse>(response.ErrorText));
             }
             return null;
         };
