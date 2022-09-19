@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# see https://github.com/OpenAPITools/openapi-generator/tree/f06e7c52f4aee6e6c53fe129e5f4f07161dcc660/modules/openapi-generator/src/main/resources/csharp-netcore
+# see https://github.com/OpenAPITools/openapi-generator/tree/522a5df24ab2424dcd6e4e28393000045e3ea39e/modules/openapi-generator/src/main/resources/csharp-netcore
 
 set -e
 

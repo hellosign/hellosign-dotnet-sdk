@@ -10,29 +10,14 @@ namespace HelloSign.Test.Api
 {
     public class TeamApiTests
     {
-        private readonly MockRestClient _mock;
-        private readonly TeamApi _api;
-
-        public TeamApiTests()
-        {
-            _mock = new MockRestClient();
-
-            Configuration config = new Configuration();
-            config.Username = "YOUR_API_KEY";
-
-            var client = new ApiClient(config.BasePath, _mock);
-            _api = new TeamApi(client, client, config);
-        }
-
         [Fact]
         public void TeamAddMemberTest()
         {
             var requestData = TestHelper.SerializeFromFile<TeamAddMemberRequest>("TeamAddMemberRequest");
             var responseData = TestHelper.SerializeFromFile<TeamGetResponse>("TeamGetResponse");
 
-            _mock.SetExpectedResponse(responseData, HttpStatusCode.Accepted);
-
-            var response = _api.TeamAddMember(requestData);
+            var api = MockRestClientHelper.CreateApi<TeamGetResponse, TeamApi>(responseData);
+            var response = api.TeamAddMember(requestData);
 
             JToken.DeepEquals(
                 responseData.ToJson(),
@@ -46,9 +31,8 @@ namespace HelloSign.Test.Api
             var requestData = TestHelper.SerializeFromFile<TeamCreateRequest>("TeamCreateRequest");
             var responseData = TestHelper.SerializeFromFile<TeamGetResponse>("TeamGetResponse");
 
-            _mock.SetExpectedResponse(responseData, HttpStatusCode.Accepted);
-
-            var response = _api.TeamCreate(requestData);
+            var api = MockRestClientHelper.CreateApi<TeamGetResponse, TeamApi>(responseData);
+            var response = api.TeamCreate(requestData);
 
             JToken.DeepEquals(
                 responseData.ToJson(),
@@ -65,10 +49,9 @@ namespace HelloSign.Test.Api
         public void TeamGetTest()
         {
             var responseData = TestHelper.SerializeFromFile<TeamGetResponse>("TeamGetResponse");
+            var api = MockRestClientHelper.CreateApi<TeamGetResponse, TeamApi>(responseData);
 
-            _mock.SetExpectedResponse(responseData, HttpStatusCode.Accepted);
-
-            var response = _api.TeamGet();
+            var response = api.TeamGet();
 
             JToken.DeepEquals(
                 responseData.ToJson(),
@@ -82,9 +65,9 @@ namespace HelloSign.Test.Api
             var requestData = TestHelper.SerializeFromFile<TeamUpdateRequest>("TeamUpdateRequest");
             var responseData = TestHelper.SerializeFromFile<TeamGetResponse>("TeamGetResponse");
 
-            _mock.SetExpectedResponse(responseData, HttpStatusCode.Accepted);
+            var api = MockRestClientHelper.CreateApi<TeamGetResponse, TeamApi>(responseData);
 
-            var response = _api.TeamUpdate(requestData);
+            var response = api.TeamUpdate(requestData);
 
             JToken.DeepEquals(
                 responseData.ToJson(),
@@ -98,9 +81,9 @@ namespace HelloSign.Test.Api
             var requestData = TestHelper.SerializeFromFile<TeamRemoveMemberRequest>("TeamRemoveMemberRequest");
             var responseData = TestHelper.SerializeFromFile<TeamGetResponse>("TeamGetResponse");
 
-            _mock.SetExpectedResponse(responseData, HttpStatusCode.Accepted);
+            var api = MockRestClientHelper.CreateApi<TeamGetResponse, TeamApi>(responseData);
 
-            var response = _api.TeamRemoveMember(requestData);
+            var response = api.TeamRemoveMember(requestData);
 
             JToken.DeepEquals(
                 responseData.ToJson(),

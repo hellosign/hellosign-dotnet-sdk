@@ -11,29 +11,15 @@ namespace HelloSign.Test.Api
 {
     public class SignatureRequestApiTests
     {
-        private readonly MockRestClient _mock;
-        private readonly SignatureRequestApi _api;
-
-        public SignatureRequestApiTests()
-        {
-            _mock = new MockRestClient();
-
-            Configuration config = new Configuration();
-            config.Username = "YOUR_API_KEY";
-
-            var client = new ApiClient(config.BasePath, _mock);
-            _api = new SignatureRequestApi(client, client, config);
-        }
-
         [Fact]
         public void SignatureRequestBulkCreateEmbeddedWithTemplateTest()
         {
             var requestData = TestHelper.SerializeFromFile<SignatureRequestBulkCreateEmbeddedWithTemplateRequest>("SignatureRequestBulkCreateEmbeddedWithTemplateRequest");
             var responseData = TestHelper.SerializeFromFile<BulkSendJobSendResponse>("BulkSendJobSendResponse");
 
-            _mock.SetExpectedResponse(responseData, HttpStatusCode.Accepted);
+            var api = MockRestClientHelper.CreateApi<BulkSendJobSendResponse, SignatureRequestApi>(responseData);
 
-            var response = _api.SignatureRequestBulkCreateEmbeddedWithTemplate(requestData);
+            var response = api.SignatureRequestBulkCreateEmbeddedWithTemplate(requestData);
 
             JToken.DeepEquals(
                 responseData.ToJson(),
@@ -47,9 +33,9 @@ namespace HelloSign.Test.Api
             var requestData = TestHelper.SerializeFromFile<SignatureRequestBulkSendWithTemplateRequest>("SignatureRequestBulkSendWithTemplateRequest");
             var responseData = TestHelper.SerializeFromFile<BulkSendJobSendResponse>("BulkSendJobSendResponse");
 
-            _mock.SetExpectedResponse(responseData, HttpStatusCode.Accepted);
+            var api = MockRestClientHelper.CreateApi<BulkSendJobSendResponse, SignatureRequestApi>(responseData);
 
-            var response = _api.SignatureRequestBulkSendWithTemplate(requestData);
+            var response = api.SignatureRequestBulkSendWithTemplate(requestData);
 
             JToken.DeepEquals(
                 responseData.ToJson(),
@@ -68,9 +54,9 @@ namespace HelloSign.Test.Api
             var requestData = TestHelper.SerializeFromFile<SignatureRequestCreateEmbeddedRequest>("SignatureRequestCreateEmbeddedRequest");
             var responseData = TestHelper.SerializeFromFile<SignatureRequestGetResponse>("SignatureRequestGetResponse");
 
-            _mock.SetExpectedResponse(responseData, HttpStatusCode.Accepted);
+            var api = MockRestClientHelper.CreateApi<SignatureRequestGetResponse, SignatureRequestApi>(responseData);
 
-            var response = _api.SignatureRequestCreateEmbedded(requestData);
+            var response = api.SignatureRequestCreateEmbedded(requestData);
 
             JToken.DeepEquals(
                 responseData.ToJson(),
@@ -84,9 +70,9 @@ namespace HelloSign.Test.Api
             var requestData = TestHelper.SerializeFromFile<SignatureRequestCreateEmbeddedWithTemplateRequest>("SignatureRequestCreateEmbeddedWithTemplateRequest");
             var responseData = TestHelper.SerializeFromFile<SignatureRequestGetResponse>("SignatureRequestGetResponse");
 
-            _mock.SetExpectedResponse(responseData, HttpStatusCode.Accepted);
+            var api = MockRestClientHelper.CreateApi<SignatureRequestGetResponse, SignatureRequestApi>(responseData);
 
-            var response = _api.SignatureRequestCreateEmbeddedWithTemplate(requestData);
+            var response = api.SignatureRequestCreateEmbeddedWithTemplate(requestData);
 
             JToken.DeepEquals(
                 responseData.ToJson(),
@@ -104,9 +90,9 @@ namespace HelloSign.Test.Api
 
             var responseData = TestHelper.SerializeFromFile<FileResponse>("FileResponse");
 
-            _mock.SetExpectedResponse(responseData, HttpStatusCode.Accepted);
+            var api = MockRestClientHelper.CreateApi<FileResponse, SignatureRequestApi>(responseData);
 
-            var response = _api.SignatureRequestFiles(
+            var response = api.SignatureRequestFiles(
                 templateId,
                 fileType,
                 getUrl,
@@ -126,9 +112,9 @@ namespace HelloSign.Test.Api
 
             var responseData = TestHelper.SerializeFromFile<SignatureRequestGetResponse>("SignatureRequestGetResponse");
 
-            _mock.SetExpectedResponse(responseData, HttpStatusCode.Accepted);
+            var api = MockRestClientHelper.CreateApi<SignatureRequestGetResponse, SignatureRequestApi>(responseData);
 
-            var response = _api.SignatureRequestGet(signatureRequestId);
+            var response = api.SignatureRequestGet(signatureRequestId);
 
             JToken.DeepEquals(
                 responseData.ToJson(),
@@ -143,9 +129,9 @@ namespace HelloSign.Test.Api
 
             var responseData = TestHelper.SerializeFromFile<SignatureRequestListResponse>("SignatureRequestListResponse");
 
-            _mock.SetExpectedResponse(responseData, HttpStatusCode.Accepted);
+            var api = MockRestClientHelper.CreateApi<SignatureRequestListResponse, SignatureRequestApi>(responseData);
 
-            var response = _api.SignatureRequestList(accountId);
+            var response = api.SignatureRequestList(accountId);
 
             JToken.DeepEquals(
                 responseData.ToJson(),
@@ -160,9 +146,9 @@ namespace HelloSign.Test.Api
 
             var responseData = TestHelper.SerializeFromFile<SignatureRequestGetResponse>("SignatureRequestGetResponse");
 
-            _mock.SetExpectedResponse(responseData, HttpStatusCode.Accepted);
+            var api = MockRestClientHelper.CreateApi<SignatureRequestGetResponse, SignatureRequestApi>(responseData);
 
-            var response = _api.SignatureRequestReleaseHold(signatureRequestId);
+            var response = api.SignatureRequestReleaseHold(signatureRequestId);
 
             JToken.DeepEquals(
                 responseData.ToJson(),
@@ -178,9 +164,9 @@ namespace HelloSign.Test.Api
             var requestData = TestHelper.SerializeFromFile<SignatureRequestRemindRequest>("SignatureRequestRemindRequest");
             var responseData = TestHelper.SerializeFromFile<SignatureRequestGetResponse>("SignatureRequestGetResponse");
 
-            _mock.SetExpectedResponse(responseData, HttpStatusCode.Accepted);
+            var api = MockRestClientHelper.CreateApi<SignatureRequestGetResponse, SignatureRequestApi>(responseData);
 
-            var response = _api.SignatureRequestRemind(signatureRequestId, requestData);
+            var response = api.SignatureRequestRemind(signatureRequestId, requestData);
 
             JToken.DeepEquals(
                 responseData.ToJson(),
@@ -199,9 +185,9 @@ namespace HelloSign.Test.Api
             var requestData = TestHelper.SerializeFromFile<SignatureRequestSendRequest>("SignatureRequestSendRequest");
             var responseData = TestHelper.SerializeFromFile<SignatureRequestGetResponse>("SignatureRequestGetResponse");
 
-            _mock.SetExpectedResponse(responseData, HttpStatusCode.Accepted);
+            var api = MockRestClientHelper.CreateApi<SignatureRequestGetResponse, SignatureRequestApi>(responseData);
 
-            var response = _api.SignatureRequestSend(requestData);
+            var response = api.SignatureRequestSend(requestData);
 
             JToken.DeepEquals(
                 responseData.ToJson(),
@@ -215,9 +201,9 @@ namespace HelloSign.Test.Api
             var requestData = TestHelper.SerializeFromFile<SignatureRequestSendWithTemplateRequest>("SignatureRequestSendWithTemplateRequest");
             var responseData = TestHelper.SerializeFromFile<SignatureRequestGetResponse>("SignatureRequestGetResponse");
 
-            _mock.SetExpectedResponse(responseData, HttpStatusCode.Accepted);
+            var api = MockRestClientHelper.CreateApi<SignatureRequestGetResponse, SignatureRequestApi>(responseData);
 
-            var response = _api.SignatureRequestSendWithTemplate(requestData);
+            var response = api.SignatureRequestSendWithTemplate(requestData);
 
             JToken.DeepEquals(
                 responseData.ToJson(),
@@ -233,9 +219,9 @@ namespace HelloSign.Test.Api
             var requestData = TestHelper.SerializeFromFile<SignatureRequestUpdateRequest>("SignatureRequestUpdateRequest");
             var responseData = TestHelper.SerializeFromFile<SignatureRequestGetResponse>("SignatureRequestGetResponse");
 
-            _mock.SetExpectedResponse(responseData, HttpStatusCode.Accepted);
+            var api = MockRestClientHelper.CreateApi<SignatureRequestGetResponse, SignatureRequestApi>(responseData);
 
-            var response = _api.SignatureRequestUpdate(signatureRequestId, requestData);
+            var response = api.SignatureRequestUpdate(signatureRequestId, requestData);
 
             JToken.DeepEquals(
                 responseData.ToJson(),
@@ -258,11 +244,14 @@ namespace HelloSign.Test.Api
             var requestData = TestHelper.SerializeFromFile<SignatureRequestSendRequest>("SignatureRequestSendRequest", "with_file");
             var responseData = TestHelper.SerializeFromFile<SignatureRequestGetResponse>("SignatureRequestGetResponse");
 
-            _mock.SetExpectedResponse(responseData, HttpStatusCode.Accepted);
+            var api = MockRestClientHelper.CreateApiExpectMultiFormRequest<SignatureRequestGetResponse, SignatureRequestApi>(responseData);
 
-            var response = _api.SignatureRequestSend(requestData);
-
-            Assert.Equal("multipart/form-data", _mock.GetRequestContentType());
+            var response = api.SignatureRequestSend(requestData);
+            
+            JToken.DeepEquals(
+                responseData.ToJson(),
+                response.ToJson()
+            );
         }
 
         [Fact]
@@ -271,11 +260,14 @@ namespace HelloSign.Test.Api
             var requestData = TestHelper.SerializeFromFile<SignatureRequestSendRequest>("SignatureRequestSendRequest", "with_file_url");
             var responseData = TestHelper.SerializeFromFile<SignatureRequestGetResponse>("SignatureRequestGetResponse");
 
-            _mock.SetExpectedResponse(responseData, HttpStatusCode.Accepted);
+            var api = MockRestClientHelper.CreateApiExpectJsonRequest<SignatureRequestGetResponse, SignatureRequestApi>(responseData);
 
-            var response = _api.SignatureRequestSend(requestData);
+            var response = api.SignatureRequestSend(requestData);
 
-            Assert.Equal("application/json", _mock.GetRequestContentType());
+            JToken.DeepEquals(
+                responseData.ToJson(),
+                response.ToJson()
+            );
         }
     }
 }

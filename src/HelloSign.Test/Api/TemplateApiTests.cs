@@ -10,20 +10,6 @@ namespace HelloSign.Test.Api
 {
     public class TemplateApiTests
     {
-        private readonly MockRestClient _mock;
-        private readonly TemplateApi _api;
-
-        public TemplateApiTests()
-        {
-            _mock = new MockRestClient();
-
-            Configuration config = new Configuration();
-            config.Username = "YOUR_API_KEY";
-
-            var client = new ApiClient(config.BasePath, _mock);
-            _api = new TemplateApi(client, client, config);
-        }
-
         [Fact]
         public void TemplateAddUserTest()
         {
@@ -32,9 +18,9 @@ namespace HelloSign.Test.Api
             var requestData = TestHelper.SerializeFromFile<TemplateAddUserRequest>("TemplateAddUserRequest");
             var responseData = TestHelper.SerializeFromFile<TemplateGetResponse>("TemplateGetResponse");
 
-            _mock.SetExpectedResponse(responseData, HttpStatusCode.Accepted);
+            var api = MockRestClientHelper.CreateApi<TemplateGetResponse, TemplateApi>(responseData);
 
-            var response = _api.TemplateAddUser(templateId, requestData);
+            var response = api.TemplateAddUser(templateId, requestData);
 
             JToken.DeepEquals(
                 responseData.ToJson(),
@@ -48,9 +34,9 @@ namespace HelloSign.Test.Api
             var requestData = TestHelper.SerializeFromFile<TemplateCreateEmbeddedDraftRequest>("TemplateCreateEmbeddedDraftRequest");
             var responseData = TestHelper.SerializeFromFile<TemplateCreateEmbeddedDraftResponse>("TemplateCreateEmbeddedDraftResponse");
 
-            _mock.SetExpectedResponse(responseData, HttpStatusCode.Accepted);
+            var api = MockRestClientHelper.CreateApi<TemplateCreateEmbeddedDraftResponse, TemplateApi>(responseData);
 
-            var response = _api.TemplateCreateEmbeddedDraft(requestData);
+            var response = api.TemplateCreateEmbeddedDraft(requestData);
 
             JToken.DeepEquals(
                 responseData.ToJson(),
@@ -73,9 +59,9 @@ namespace HelloSign.Test.Api
 
             var responseData = TestHelper.SerializeFromFile<FileResponse>("FileResponse");
 
-            _mock.SetExpectedResponse(responseData, HttpStatusCode.Accepted);
+            var api = MockRestClientHelper.CreateApi<FileResponse, TemplateApi>(responseData);
 
-            var response = _api.TemplateFiles(
+            var response = api.TemplateFiles(
                 templateId,
                 fileType,
                 getUrl,
@@ -95,9 +81,9 @@ namespace HelloSign.Test.Api
 
             var responseData = TestHelper.SerializeFromFile<TemplateGetResponse>("TemplateGetResponse");
 
-            _mock.SetExpectedResponse(responseData, HttpStatusCode.Accepted);
+            var api = MockRestClientHelper.CreateApi<TemplateGetResponse, TemplateApi>(responseData);
 
-            var response = _api.TemplateGet(templateId);
+            var response = api.TemplateGet(templateId);
 
             JToken.DeepEquals(
                 responseData.ToJson(),
@@ -112,9 +98,9 @@ namespace HelloSign.Test.Api
 
             var responseData = TestHelper.SerializeFromFile<TemplateListResponse>("TemplateListResponse");
 
-            _mock.SetExpectedResponse(responseData, HttpStatusCode.Accepted);
+            var api = MockRestClientHelper.CreateApi<TemplateListResponse, TemplateApi>(responseData);
 
-            var response = _api.TemplateList(accountId);
+            var response = api.TemplateList(accountId);
 
             JToken.DeepEquals(
                 responseData.ToJson(),
@@ -130,9 +116,9 @@ namespace HelloSign.Test.Api
             var requestData = TestHelper.SerializeFromFile<TemplateRemoveUserRequest>("TemplateRemoveUserRequest");
             var responseData = TestHelper.SerializeFromFile<TemplateGetResponse>("TemplateGetResponse");
 
-            _mock.SetExpectedResponse(responseData, HttpStatusCode.Accepted);
+            var api = MockRestClientHelper.CreateApi<TemplateGetResponse, TemplateApi>(responseData);
 
-            var response = _api.TemplateRemoveUser(templateId, requestData);
+            var response = api.TemplateRemoveUser(templateId, requestData);
 
             JToken.DeepEquals(
                 responseData.ToJson(),
@@ -148,9 +134,9 @@ namespace HelloSign.Test.Api
             var requestData = TestHelper.SerializeFromFile<TemplateUpdateFilesRequest>("TemplateUpdateFilesRequest");
             var responseData = TestHelper.SerializeFromFile<TemplateUpdateFilesResponse>("TemplateUpdateFilesResponse");
 
-            _mock.SetExpectedResponse(responseData, HttpStatusCode.Accepted);
+            var api = MockRestClientHelper.CreateApi<TemplateUpdateFilesResponse, TemplateApi>(responseData);
 
-            var response = _api.TemplateUpdateFiles(templateId, requestData);
+            var response = api.TemplateUpdateFiles(templateId, requestData);
 
             JToken.DeepEquals(
                 responseData.ToJson(),
