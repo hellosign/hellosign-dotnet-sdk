@@ -92,12 +92,7 @@ namespace HelloSign.Test.Api
 
             var api = MockRestClientHelper.CreateApi<FileResponse, SignatureRequestApi>(responseData);
 
-            var response = api.SignatureRequestFiles(
-                templateId,
-                fileType,
-                getUrl,
-                getDataUri
-            );
+            var response = api.SignatureRequestFilesAsFileUrl(templateId);
 
             JToken.DeepEquals(
                 responseData.ToJson(),

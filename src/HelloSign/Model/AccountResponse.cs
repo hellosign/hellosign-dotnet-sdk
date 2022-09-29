@@ -49,7 +49,7 @@ namespace HelloSign.Model
         /// <param name="quotas">quotas.</param>
         /// <param name="callbackUrl">The URL that HelloSign events will &#x60;POST&#x60; to..</param>
         /// <param name="roleCode">The membership role for the team..</param>
-        /// <param name="teamId">_t__Account::TEAM_ID.</param>
+        /// <param name="teamId">The id of the team account belongs to..</param>
         /// <param name="locale">The locale used in this Account. Check out the list of [supported locales](/api/reference/constants/#supported-locales) to learn more about the possible values..</param>
         public AccountResponse(string accountId = default(string), string emailAddress = default(string), bool isLocked = default(bool), bool isPaidHs = default(bool), bool isPaidHf = default(bool), AccountResponseQuotas quotas = default(AccountResponseQuotas), string callbackUrl = default(string), string roleCode = default(string), string teamId = default(string), string locale = default(string))
         {
@@ -122,9 +122,9 @@ namespace HelloSign.Model
         public string RoleCode { get; set; }
 
         /// <summary>
-        /// _t__Account::TEAM_ID
+        /// The id of the team account belongs to.
         /// </summary>
-        /// <value>_t__Account::TEAM_ID</value>
+        /// <value>The id of the team account belongs to.</value>
         [DataMember(Name = "team_id", EmitDefaultValue = true)]
         public string TeamId { get; set; }
 

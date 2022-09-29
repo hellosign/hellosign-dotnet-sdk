@@ -43,6 +43,7 @@ docs/EventCallbackApiAppRequestPayload.md
 docs/EventCallbackRequestEvent.md
 docs/EventCallbackRequestEventMetadata.md
 docs/FileResponse.md
+docs/FileResponseDataUri.md
 docs/ListInfoResponse.md
 docs/OAuthApi.md
 docs/OAuthTokenGenerateRequest.md
@@ -226,6 +227,7 @@ src/HelloSign/Model/EventCallbackApiAppRequestPayload.cs
 src/HelloSign/Model/EventCallbackRequestEvent.cs
 src/HelloSign/Model/EventCallbackRequestEventMetadata.cs
 src/HelloSign/Model/FileResponse.cs
+src/HelloSign/Model/FileResponseDataUri.cs
 src/HelloSign/Model/ListInfoResponse.cs
 src/HelloSign/Model/OAuthTokenGenerateRequest.cs
 src/HelloSign/Model/OAuthTokenRefreshRequest.cs

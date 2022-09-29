@@ -108,7 +108,7 @@ catch (ApiException e)
 
 <a name="accountget"></a>
 # **AccountGet**
-> AccountGetResponse AccountGet (string? accountId = null)
+> AccountGetResponse AccountGet (string? accountId = null, string? emailAddress = null)
 
 Get Account
 
@@ -158,7 +158,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // Get Account
-    ApiResponse<AccountGetResponse> response = apiInstance.AccountGetWithHttpInfo(accountId);
+    ApiResponse<AccountGetResponse> response = apiInstance.AccountGetWithHttpInfo(accountId, emailAddress);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -175,7 +175,8 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string?** | The ID of the Account | [optional]  |
+| **accountId** | **string?** | `account_id` or `email_address` is required. If both are provided, the account id prevails.   The ID of the Account. | [optional]  |
+| **emailAddress** | **string?** | `account_id` or `email_address` is required, If both are provided, the account id prevails.   The email address of the Account. | [optional]  |
 
 ### Return type
 
