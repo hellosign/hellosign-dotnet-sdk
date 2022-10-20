@@ -121,6 +121,8 @@ docs/TeamCreateRequest.md
 docs/TeamGetInfoResponse.md
 docs/TeamGetResponse.md
 docs/TeamInfoResponse.md
+docs/TeamInviteResponse.md
+docs/TeamInvitesResponse.md
 docs/TeamMemberResponse.md
 docs/TeamMembersResponse.md
 docs/TeamParentResponse.md
@@ -300,6 +302,8 @@ src/HelloSign/Model/TeamCreateRequest.cs
 src/HelloSign/Model/TeamGetInfoResponse.cs
 src/HelloSign/Model/TeamGetResponse.cs
 src/HelloSign/Model/TeamInfoResponse.cs
+src/HelloSign/Model/TeamInviteResponse.cs
+src/HelloSign/Model/TeamInvitesResponse.cs
 src/HelloSign/Model/TeamMemberResponse.cs
 src/HelloSign/Model/TeamMembersResponse.cs
 src/HelloSign/Model/TeamParentResponse.cs

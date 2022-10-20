@@ -92,7 +92,8 @@ namespace HelloSign.Model
         /// <param name="type">The type of unclaimed draft to create. Use &#x60;send_document&#x60; to create a claimable file, and &#x60;request_signature&#x60; for a claimable signature request. If the type is &#x60;request_signature&#x60; then signers name and email_address are not optional. (required).</param>
         /// <param name="usePreexistingFields">Set &#x60;use_text_tags&#x60; to &#x60;true&#x60; to enable [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) parsing in your document (defaults to disabled, or &#x60;false&#x60;). Alternatively, if your PDF contains pre-defined fields, enable the detection of these fields by setting the &#x60;use_preexisting_fields&#x60; to &#x60;true&#x60; (defaults to disabled, or &#x60;false&#x60;). Currently we only support use of either &#x60;use_text_tags&#x60; or &#x60;use_preexisting_fields&#x60; parameter, not both. (default to false).</param>
         /// <param name="useTextTags">Set &#x60;use_text_tags&#x60; to &#x60;true&#x60; to enable [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) parsing in your document (defaults to disabled, or &#x60;false&#x60;). Alternatively, if your PDF contains pre-defined fields, enable the detection of these fields by setting the &#x60;use_preexisting_fields&#x60; to &#x60;true&#x60; (defaults to disabled, or &#x60;false&#x60;). Currently we only support use of either &#x60;use_text_tags&#x60; or &#x60;use_preexisting_fields&#x60; parameter, not both. (default to false).</param>
-        public UnclaimedDraftCreateRequest(List<System.IO.Stream> file = default(List<System.IO.Stream>), List<string> fileUrl = default(List<string>), bool allowDecline = false, List<SubAttachment> attachments = default(List<SubAttachment>), List<string> ccEmailAddresses = default(List<string>), string clientId = default(string), List<SubCustomField> customFields = default(List<SubCustomField>), SubFieldOptions fieldOptions = default(SubFieldOptions), List<SubFormFieldGroup> formFieldGroups = default(List<SubFormFieldGroup>), List<SubFormFieldRule> formFieldRules = default(List<SubFormFieldRule>), List<SubFormFieldsPerDocumentBase> formFieldsPerDocument = default(List<SubFormFieldsPerDocumentBase>), bool hideTextTags = false, string message = default(string), Dictionary<string, Object> metadata = default(Dictionary<string, Object>), bool showProgressStepper = true, List<SubUnclaimedDraftSigner> signers = default(List<SubUnclaimedDraftSigner>), SubSigningOptions signingOptions = default(SubSigningOptions), string signingRedirectUrl = default(string), string subject = default(string), bool testMode = false, TypeEnum type = default(TypeEnum), bool usePreexistingFields = false, bool useTextTags = false)
+        /// <param name="expiresAt">_t__UnclaimedDraftCreate::EXPIRES_AT.</param>
+        public UnclaimedDraftCreateRequest(List<System.IO.Stream> file = default(List<System.IO.Stream>), List<string> fileUrl = default(List<string>), bool allowDecline = false, List<SubAttachment> attachments = default(List<SubAttachment>), List<string> ccEmailAddresses = default(List<string>), string clientId = default(string), List<SubCustomField> customFields = default(List<SubCustomField>), SubFieldOptions fieldOptions = default(SubFieldOptions), List<SubFormFieldGroup> formFieldGroups = default(List<SubFormFieldGroup>), List<SubFormFieldRule> formFieldRules = default(List<SubFormFieldRule>), List<SubFormFieldsPerDocumentBase> formFieldsPerDocument = default(List<SubFormFieldsPerDocumentBase>), bool hideTextTags = false, string message = default(string), Dictionary<string, Object> metadata = default(Dictionary<string, Object>), bool showProgressStepper = true, List<SubUnclaimedDraftSigner> signers = default(List<SubUnclaimedDraftSigner>), SubSigningOptions signingOptions = default(SubSigningOptions), string signingRedirectUrl = default(string), string subject = default(string), bool testMode = false, TypeEnum type = default(TypeEnum), bool usePreexistingFields = false, bool useTextTags = false, int? expiresAt = default(int?))
         {
             
             this.Type = type;
@@ -118,6 +119,7 @@ namespace HelloSign.Model
             this.TestMode = testMode;
             this.UsePreexistingFields = usePreexistingFields;
             this.UseTextTags = useTextTags;
+            this.ExpiresAt = expiresAt;
         }
 
         /// <summary>
@@ -273,6 +275,13 @@ namespace HelloSign.Model
         public bool UseTextTags { get; set; }
 
         /// <summary>
+        /// _t__UnclaimedDraftCreate::EXPIRES_AT
+        /// </summary>
+        /// <value>_t__UnclaimedDraftCreate::EXPIRES_AT</value>
+        [DataMember(Name = "expires_at", EmitDefaultValue = true)]
+        public int? ExpiresAt { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -303,6 +312,7 @@ namespace HelloSign.Model
             sb.Append("  TestMode: ").Append(TestMode).Append("\n");
             sb.Append("  UsePreexistingFields: ").Append(UsePreexistingFields).Append("\n");
             sb.Append("  UseTextTags: ").Append(UseTextTags).Append("\n");
+            sb.Append("  ExpiresAt: ").Append(ExpiresAt).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -455,6 +465,11 @@ namespace HelloSign.Model
                 (
                     this.UseTextTags == input.UseTextTags ||
                     this.UseTextTags.Equals(input.UseTextTags)
+                ) && 
+                (
+                    this.ExpiresAt == input.ExpiresAt ||
+                    (this.ExpiresAt != null &&
+                    this.ExpiresAt.Equals(input.ExpiresAt))
                 );
         }
 
@@ -538,6 +553,10 @@ namespace HelloSign.Model
                 hashCode = (hashCode * 59) + this.TestMode.GetHashCode();
                 hashCode = (hashCode * 59) + this.UsePreexistingFields.GetHashCode();
                 hashCode = (hashCode * 59) + this.UseTextTags.GetHashCode();
+                if (this.ExpiresAt != null)
+                {
+                    hashCode = (hashCode * 59) + this.ExpiresAt.GetHashCode();
+                }
                 return hashCode;
             }
         }
@@ -682,6 +701,12 @@ namespace HelloSign.Model
                 Property = "UseTextTags",
                 Type = "bool",
                 Value = UseTextTags,
+            });
+            types.Add(new OpenApiType(){
+                Name = "expires_at",
+                Property = "ExpiresAt",
+                Type = "int?",
+                Value = ExpiresAt,
             });
 
             return types;

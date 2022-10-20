@@ -27,6 +27,7 @@ Name | Type | Description | Notes
 **Title** | **string** |  The title you want to assign to the SignatureRequest.  | [optional] 
 **UseTextTags** | **bool** |  Send with a value of `true` if you wish to enable [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) parsing in your document. Defaults to disabled, or `false`.  | [optional] [default to false]
 **PopulateAutoFillFields** | **bool** |  Controls whether [auto fill fields](https://faq.hellosign.com/hc/en-us/articles/360051467511-Auto-Fill-Fields) can automatically populate a signer&#39;s information during signing.  <br><br>⚠️ **Note** ⚠️: Keep your signer&#39;s information safe by ensuring that the _signer on your signature request is the intended party_ before using this feature.  | [optional] [default to false]
+**ExpiresAt** | **int?** |  _t__UnclaimedDraftCreateEmbedded::EXPIRES_AT  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

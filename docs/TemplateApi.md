@@ -7,7 +7,7 @@ All URIs are relative to *https://api.hellosign.com/v3*
 | [**TemplateAddUser**](TemplateApi.md#templateadduser) | **POST** /template/add_user/{template_id} | Add User to Template |
 | [**TemplateCreateEmbeddedDraft**](TemplateApi.md#templatecreateembeddeddraft) | **POST** /template/create_embedded_draft | Create Embedded Template Draft |
 | [**TemplateDelete**](TemplateApi.md#templatedelete) | **POST** /template/delete/{template_id} | Delete Template |
-| [**TemplateFiles**](TemplateApi.md#templatefiles) | **GET** /template/files/{template_id} | Get Template Files |
+| [**TemplateFiles**](TemplateApi.md#templatefiles) | **GET** /template/files/{template_id} | Get Template File |
 | [**TemplateGet**](TemplateApi.md#templateget) | **GET** /template/{template_id} | Get Template |
 | [**TemplateList**](TemplateApi.md#templatelist) | **GET** /template/list | List Templates |
 | [**TemplateRemoveUser**](TemplateApi.md#templateremoveuser) | **POST** /template/remove_user/{template_id} | Remove User from Template |
@@ -338,9 +338,9 @@ void (empty response body)
 # **TemplateFiles**
 > FileResponse TemplateFiles (string templateId, string? fileType = null, bool? getUrl = null, bool? getDataUri = null)
 
-Get Template Files
+Get Template File
 
-Obtain a copy of the current documents specified by the `template_id` parameter.  Returns a PDF or ZIP file, or if `get_url` is set, a JSON object with a url to the file (PDFs only). If `get_data_uri` is set, a JSON object with a `data_uri` representing the base64 encoded file (PDFs only) is returned.  If the files are currently being prepared, a status code of `409` will be returned instead. In this case please wait for the `template_created` callback event.
+Obtain a copy of the current documents specified by the `template_id` parameter. Returns a PDF or ZIP file.  If the files are currently being prepared, a status code of `409` will be returned instead. In this case please wait for the `template_created` callback event.
 
 ### Example
 ```csharp
@@ -367,7 +367,7 @@ public class Example
 
         try
         {
-            var result = apiInstance.TemplateFiles(templateId, "pdf", false, false);
+            var result = apiInstance.TemplateFiles(templateId, "pdf");
             Console.WriteLine(result);
         }
         catch (ApiException e)
@@ -387,7 +387,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // Get Template Files
+    // Get Template File
     ApiResponse<FileResponse> response = apiInstance.TemplateFilesWithHttpInfo(templateId, fileType, getUrl, getDataUri);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
