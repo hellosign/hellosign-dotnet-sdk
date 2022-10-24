@@ -21,6 +21,7 @@ Name | Type | Description | Notes
 **SmsPhoneNumber** | **string** |  The SMS phone number used for authentication or signature request delivery.  | [optional] 
 **ReassignedBy** | **string** |  Email address of original signer who reassigned to this signer.  | [optional] 
 **ReassignmentReason** | **string** |  Reason provided by original signer who reassigned to this signer.  | [optional] 
+**ReassignedFrom** | **string** |  Previous signature identifier.  | [optional] 
 **Error** | **string** |  Error message pertaining to this signer, or null.  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

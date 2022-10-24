@@ -141,6 +141,29 @@ namespace HelloSign.Api
         /// <returns>ApiResponse of TeamGetInfoResponse</returns>
         ApiResponse<TeamGetInfoResponse> TeamInfoWithHttpInfo(string? teamId = default(string?), int operationIndex = 0);
         /// <summary>
+        /// List Team Invites
+        /// </summary>
+        /// <remarks>
+        /// Provides a list of team invites (and their roles).
+        /// </remarks>
+        /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="emailAddress">The email address for which to display the team invites. (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>TeamInvitesResponse</returns>
+        TeamInvitesResponse TeamInvites(string? emailAddress = default(string?), int operationIndex = 0);
+
+        /// <summary>
+        /// List Team Invites
+        /// </summary>
+        /// <remarks>
+        /// Provides a list of team invites (and their roles).
+        /// </remarks>
+        /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="emailAddress">The email address for which to display the team invites. (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>ApiResponse of TeamInvitesResponse</returns>
+        ApiResponse<TeamInvitesResponse> TeamInvitesWithHttpInfo(string? emailAddress = default(string?), int operationIndex = 0);
+        /// <summary>
         /// List Team Members
         /// </summary>
         /// <remarks>
@@ -372,6 +395,31 @@ namespace HelloSign.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (TeamGetInfoResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<TeamGetInfoResponse>> TeamInfoWithHttpInfoAsync(string? teamId = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <summary>
+        /// List Team Invites
+        /// </summary>
+        /// <remarks>
+        /// Provides a list of team invites (and their roles).
+        /// </remarks>
+        /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="emailAddress">The email address for which to display the team invites. (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of TeamInvitesResponse</returns>
+        System.Threading.Tasks.Task<TeamInvitesResponse> TeamInvitesAsync(string? emailAddress = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <summary>
+        /// List Team Invites
+        /// </summary>
+        /// <remarks>
+        /// Provides a list of team invites (and their roles).
+        /// </remarks>
+        /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="emailAddress">The email address for which to display the team invites. (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (TeamInvitesResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<TeamInvitesResponse>> TeamInvitesWithHttpInfoAsync(string? emailAddress = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// List Team Members
         /// </summary>
@@ -1424,6 +1472,167 @@ namespace HelloSign.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("TeamInfo", localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List Team Invites Provides a list of team invites (and their roles).
+        /// </summary>
+        /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="emailAddress">The email address for which to display the team invites. (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>TeamInvitesResponse</returns>
+        public TeamInvitesResponse TeamInvites(string? emailAddress = default(string?), int operationIndex = 0)
+        {
+            HelloSign.Client.ApiResponse<TeamInvitesResponse> localVarResponse = TeamInvitesWithHttpInfo(emailAddress);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List Team Invites Provides a list of team invites (and their roles).
+        /// </summary>
+        /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="emailAddress">The email address for which to display the team invites. (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>ApiResponse of TeamInvitesResponse</returns>
+        public HelloSign.Client.ApiResponse<TeamInvitesResponse> TeamInvitesWithHttpInfo(string? emailAddress = default(string?), int operationIndex = 0)
+        {
+            HelloSign.Client.RequestOptions localVarRequestOptions = new HelloSign.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+            var localVarContentType = HelloSign.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = HelloSign.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+            if (emailAddress != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(HelloSign.Client.ClientUtils.ParameterToMultiMap("", "email_address", emailAddress));
+            }
+            localVarRequestOptions.Operation = "TeamApi.TeamInvites";
+            localVarRequestOptions.OperationIndex = operationIndex;
+
+            // authentication (api_key) required
+            // http basic authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.Username) || !string.IsNullOrEmpty(this.Configuration.Password) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Basic " + HelloSign.Client.ClientUtils.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password));
+            }
+            // authentication (oauth2) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<TeamInvitesResponse>("/team/invites", localVarRequestOptions, this.Configuration);
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("TeamInvites", localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// List Team Invites Provides a list of team invites (and their roles).
+        /// </summary>
+        /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="emailAddress">The email address for which to display the team invites. (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of TeamInvitesResponse</returns>
+        public async System.Threading.Tasks.Task<TeamInvitesResponse> TeamInvitesAsync(string? emailAddress = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            HelloSign.Client.ApiResponse<TeamInvitesResponse> localVarResponse = await TeamInvitesWithHttpInfoAsync(emailAddress, operationIndex, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// List Team Invites Provides a list of team invites (and their roles).
+        /// </summary>
+        /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="emailAddress">The email address for which to display the team invites. (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (TeamInvitesResponse)</returns>
+        public async System.Threading.Tasks.Task<HelloSign.Client.ApiResponse<TeamInvitesResponse>> TeamInvitesWithHttpInfoAsync(string? emailAddress = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+
+            HelloSign.Client.RequestOptions localVarRequestOptions = new HelloSign.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            var localVarContentType = HelloSign.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = HelloSign.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+            if (emailAddress != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(HelloSign.Client.ClientUtils.ParameterToMultiMap("", "email_address", emailAddress));
+            }
+            localVarRequestOptions.Operation = "TeamApi.TeamInvites";
+            localVarRequestOptions.OperationIndex = operationIndex;
+
+            // authentication (api_key) required
+            // http basic authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.Username) || !string.IsNullOrEmpty(this.Configuration.Password) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Basic " + HelloSign.Client.ClientUtils.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password));
+            }
+            // authentication (oauth2) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = await this.AsynchronousClient.GetAsync<TeamInvitesResponse>("/team/invites", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("TeamInvites", localVarResponse);
                 if (_exception != null)
                 {
                     throw _exception;

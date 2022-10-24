@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **Quotas** | [**AccountResponseQuotas**](AccountResponseQuotas.md) |    | [optional] 
 **CallbackUrl** | **string** |  The URL that HelloSign events will `POST` to.  | [optional] 
 **RoleCode** | **string** |  The membership role for the team.  | [optional] 
-**TeamId** | **string** |  _t__Account::TEAM_ID  | [optional] 
+**TeamId** | **string** |  The id of the team account belongs to.  | [optional] 
 **Locale** | **string** |  The locale used in this Account. Check out the list of [supported locales](/api/reference/constants/#supported-locales) to learn more about the possible values.  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

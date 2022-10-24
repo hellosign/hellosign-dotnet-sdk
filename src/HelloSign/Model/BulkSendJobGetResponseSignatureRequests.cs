@@ -50,6 +50,7 @@ namespace HelloSign.Model
         /// <param name="message">The custom message in the email that was initially sent to the signers..</param>
         /// <param name="metadata">The metadata attached to the signature request..</param>
         /// <param name="createdAt">Time the signature request was created..</param>
+        /// <param name="expiresAt">_t__SignatureRequestResponse::EXPIRES_AT.</param>
         /// <param name="isComplete">Whether or not the SignatureRequest has been fully executed by all signers..</param>
         /// <param name="isDeclined">Whether or not the SignatureRequest has been declined by a signer..</param>
         /// <param name="hasError">Whether or not an error occurred (either during the creation of the SignatureRequest or during one of the signings)..</param>
@@ -64,7 +65,7 @@ namespace HelloSign.Model
         /// <param name="responseData">An array of form field objects containing the name, value, and type of each textbox or checkmark field filled in by the signers..</param>
         /// <param name="signatures">An array of signature objects, 1 for each signer..</param>
         /// <param name="bulkSendJobId">The id of the BulkSendJob..</param>
-        public BulkSendJobGetResponseSignatureRequests(bool? testMode = false, string signatureRequestId = default(string), string requesterEmailAddress = default(string), string title = default(string), string originalTitle = default(string), string subject = default(string), string message = default(string), Object metadata = default(Object), int createdAt = default(int), bool isComplete = default(bool), bool isDeclined = default(bool), bool hasError = default(bool), string filesUrl = default(string), string signingUrl = default(string), string detailsUrl = default(string), List<string> ccEmailAddresses = default(List<string>), string signingRedirectUrl = default(string), List<string> templateIds = default(List<string>), List<SignatureRequestResponseCustomFieldBase> customFields = default(List<SignatureRequestResponseCustomFieldBase>), List<SignatureRequestResponseAttachment> attachments = default(List<SignatureRequestResponseAttachment>), List<SignatureRequestResponseDataBase> responseData = default(List<SignatureRequestResponseDataBase>), List<SignatureRequestResponseSignatures> signatures = default(List<SignatureRequestResponseSignatures>), string bulkSendJobId = default(string))
+        public BulkSendJobGetResponseSignatureRequests(bool? testMode = false, string signatureRequestId = default(string), string requesterEmailAddress = default(string), string title = default(string), string originalTitle = default(string), string subject = default(string), string message = default(string), Object metadata = default(Object), int createdAt = default(int), int expiresAt = default(int), bool isComplete = default(bool), bool isDeclined = default(bool), bool hasError = default(bool), string filesUrl = default(string), string signingUrl = default(string), string detailsUrl = default(string), List<string> ccEmailAddresses = default(List<string>), string signingRedirectUrl = default(string), List<string> templateIds = default(List<string>), List<SignatureRequestResponseCustomFieldBase> customFields = default(List<SignatureRequestResponseCustomFieldBase>), List<SignatureRequestResponseAttachment> attachments = default(List<SignatureRequestResponseAttachment>), List<SignatureRequestResponseDataBase> responseData = default(List<SignatureRequestResponseDataBase>), List<SignatureRequestResponseSignatures> signatures = default(List<SignatureRequestResponseSignatures>), string bulkSendJobId = default(string))
         {
             
             // use default value if no "testMode" provided
@@ -77,6 +78,7 @@ namespace HelloSign.Model
             this.Message = message;
             this.Metadata = metadata;
             this.CreatedAt = createdAt;
+            this.ExpiresAt = expiresAt;
             this.IsComplete = isComplete;
             this.IsDeclined = isDeclined;
             this.HasError = hasError;
@@ -155,6 +157,13 @@ namespace HelloSign.Model
         /// <value>Time the signature request was created.</value>
         [DataMember(Name = "created_at", EmitDefaultValue = true)]
         public int CreatedAt { get; set; }
+
+        /// <summary>
+        /// _t__SignatureRequestResponse::EXPIRES_AT
+        /// </summary>
+        /// <value>_t__SignatureRequestResponse::EXPIRES_AT</value>
+        [DataMember(Name = "expires_at", EmitDefaultValue = true)]
+        public int ExpiresAt { get; set; }
 
         /// <summary>
         /// Whether or not the SignatureRequest has been fully executed by all signers.
@@ -271,6 +280,7 @@ namespace HelloSign.Model
             sb.Append("  Message: ").Append(Message).Append("\n");
             sb.Append("  Metadata: ").Append(Metadata).Append("\n");
             sb.Append("  CreatedAt: ").Append(CreatedAt).Append("\n");
+            sb.Append("  ExpiresAt: ").Append(ExpiresAt).Append("\n");
             sb.Append("  IsComplete: ").Append(IsComplete).Append("\n");
             sb.Append("  IsDeclined: ").Append(IsDeclined).Append("\n");
             sb.Append("  HasError: ").Append(HasError).Append("\n");
@@ -363,6 +373,10 @@ namespace HelloSign.Model
                 (
                     this.CreatedAt == input.CreatedAt ||
                     this.CreatedAt.Equals(input.CreatedAt)
+                ) && 
+                (
+                    this.ExpiresAt == input.ExpiresAt ||
+                    this.ExpiresAt.Equals(input.ExpiresAt)
                 ) && 
                 (
                     this.IsComplete == input.IsComplete ||
@@ -481,6 +495,7 @@ namespace HelloSign.Model
                     hashCode = (hashCode * 59) + this.Metadata.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.CreatedAt.GetHashCode();
+                hashCode = (hashCode * 59) + this.ExpiresAt.GetHashCode();
                 hashCode = (hashCode * 59) + this.IsComplete.GetHashCode();
                 hashCode = (hashCode * 59) + this.IsDeclined.GetHashCode();
                 hashCode = (hashCode * 59) + this.HasError.GetHashCode();
@@ -588,6 +603,12 @@ namespace HelloSign.Model
                 Property = "CreatedAt",
                 Type = "int",
                 Value = CreatedAt,
+            });
+            types.Add(new OpenApiType(){
+                Name = "expires_at",
+                Property = "ExpiresAt",
+                Type = "int",
+                Value = ExpiresAt,
             });
             types.Add(new OpenApiType(){
                 Name = "is_complete",

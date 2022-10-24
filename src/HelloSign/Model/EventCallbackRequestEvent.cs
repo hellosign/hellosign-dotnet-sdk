@@ -149,16 +149,22 @@ namespace HelloSign.Model
             SignatureRequestPrepared = 18,
 
             /// <summary>
+            /// Enum SignatureRequestExpired for value: signature_request_expired
+            /// </summary>
+            [EnumMember(Value = "signature_request_expired")]
+            SignatureRequestExpired = 19,
+
+            /// <summary>
             /// Enum TemplateCreated for value: template_created
             /// </summary>
             [EnumMember(Value = "template_created")]
-            TemplateCreated = 19,
+            TemplateCreated = 20,
 
             /// <summary>
             /// Enum TemplateError for value: template_error
             /// </summary>
             [EnumMember(Value = "template_error")]
-            TemplateError = 20
+            TemplateError = 21
 
         }
 
