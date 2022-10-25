@@ -9,6 +9,7 @@ All URIs are relative to *https://api.hellosign.com/v3*
 | [**TeamDelete**](TeamApi.md#teamdelete) | **DELETE** /team/destroy | Delete Team |
 | [**TeamGet**](TeamApi.md#teamget) | **GET** /team | Get Team |
 | [**TeamInfo**](TeamApi.md#teaminfo) | **GET** /team/info | Get Team Info |
+| [**TeamInvites**](TeamApi.md#teaminvites) | **GET** /team/invites | List Team Invites |
 | [**TeamMembers**](TeamApi.md#teammembers) | **GET** /team/members/{team_id} | List Team Members |
 | [**TeamRemoveMember**](TeamApi.md#teamremovemember) | **POST** /team/remove_member | Remove User from Team |
 | [**TeamSubTeams**](TeamApi.md#teamsubteams) | **GET** /team/sub_teams/{team_id} | List Sub Teams |
@@ -457,6 +458,100 @@ catch (ApiException e)
 ### Return type
 
 [**TeamGetInfoResponse**](TeamGetInfoResponse.md)
+
+### Authorization
+
+[api_key](../README.md#api_key), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | successful operation |  * X-RateLimit-Limit -  <br>  * X-RateLimit-Remaining -  <br>  * X-Ratelimit-Reset -  <br>  |
+| **4XX** | failed_operation |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="teaminvites"></a>
+# **TeamInvites**
+> TeamInvitesResponse TeamInvites (string? emailAddress = null)
+
+List Team Invites
+
+Provides a list of team invites (and their roles).
+
+### Example
+```csharp
+using System;
+using System.Collections.Generic;
+using HelloSign.Api;
+using HelloSign.Client;
+using HelloSign.Model;
+
+public class Example
+{
+    public static void Main()
+    {
+        var config = new Configuration();
+        // Configure HTTP basic authorization: api_key
+        config.Username = "YOUR_API_KEY";
+
+        // or, configure Bearer (JWT) authorization: oauth2
+        // config.AccessToken = "YOUR_BEARER_TOKEN";
+
+        var apiInstance = new TeamApi(config);
+        var emailAddress = "user@hellosign.com";
+
+        try
+        {
+            var result = apiInstance.TeamInvites(emailAddress);
+            Console.WriteLine(result);
+        }
+        catch (ApiException e)
+        {
+            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
+            Console.WriteLine("Status Code: " + e.ErrorCode);
+            Console.WriteLine(e.StackTrace);
+        }
+    }
+}
+
+```
+
+#### Using the TeamInvitesWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // List Team Invites
+    ApiResponse<TeamInvitesResponse> response = apiInstance.TeamInvitesWithHttpInfo(emailAddress);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling TeamApi.TeamInvitesWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **emailAddress** | **string?** | The email address for which to display the team invites. | [optional]  |
+
+### Return type
+
+[**TeamInvitesResponse**](TeamInvitesResponse.md)
 
 ### Authorization
 

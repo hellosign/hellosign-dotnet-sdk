@@ -104,7 +104,8 @@ namespace HelloSign.Model
         /// <param name="usePreexistingFields">Set &#x60;use_text_tags&#x60; to &#x60;true&#x60; to enable [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) parsing in your document (defaults to disabled, or &#x60;false&#x60;). Alternatively, if your PDF contains pre-defined fields, enable the detection of these fields by setting the &#x60;use_preexisting_fields&#x60; to &#x60;true&#x60; (defaults to disabled, or &#x60;false&#x60;). Currently we only support use of either &#x60;use_text_tags&#x60; or &#x60;use_preexisting_fields&#x60; parameter, not both. (default to false).</param>
         /// <param name="useTextTags">Set &#x60;use_text_tags&#x60; to &#x60;true&#x60; to enable [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) parsing in your document (defaults to disabled, or &#x60;false&#x60;). Alternatively, if your PDF contains pre-defined fields, enable the detection of these fields by setting the &#x60;use_preexisting_fields&#x60; to &#x60;true&#x60; (defaults to disabled, or &#x60;false&#x60;). Currently we only support use of either &#x60;use_text_tags&#x60; or &#x60;use_preexisting_fields&#x60; parameter, not both. (default to false).</param>
         /// <param name="populateAutoFillFields">Controls whether [auto fill fields](https://faq.hellosign.com/hc/en-us/articles/360051467511-Auto-Fill-Fields) can automatically populate a signer&#39;s information during signing.    ⚠️ **Note** ⚠️: Keep your signer&#39;s information safe by ensuring that the _signer on your signature request is the intended party_ before using this feature. (default to false).</param>
-        public UnclaimedDraftCreateEmbeddedRequest(List<System.IO.Stream> file = default(List<System.IO.Stream>), List<string> fileUrl = default(List<string>), bool allowCcs = true, bool allowDecline = false, bool allowReassign = false, List<SubAttachment> attachments = default(List<SubAttachment>), List<string> ccEmailAddresses = default(List<string>), string clientId = default(string), List<SubCustomField> customFields = default(List<SubCustomField>), SubEditorOptions editorOptions = default(SubEditorOptions), SubFieldOptions fieldOptions = default(SubFieldOptions), bool forceSignerPage = false, bool forceSubjectMessage = false, List<SubFormFieldGroup> formFieldGroups = default(List<SubFormFieldGroup>), List<SubFormFieldRule> formFieldRules = default(List<SubFormFieldRule>), List<SubFormFieldsPerDocumentBase> formFieldsPerDocument = default(List<SubFormFieldsPerDocumentBase>), bool hideTextTags = false, bool holdRequest = false, bool isForEmbeddedSigning = false, string message = default(string), Dictionary<string, Object> metadata = default(Dictionary<string, Object>), string requesterEmailAddress = default(string), string requestingRedirectUrl = default(string), bool showPreview = default(bool), bool showProgressStepper = true, List<SubUnclaimedDraftSigner> signers = default(List<SubUnclaimedDraftSigner>), SubSigningOptions signingOptions = default(SubSigningOptions), string signingRedirectUrl = default(string), bool skipMeNow = false, string subject = default(string), bool testMode = false, TypeEnum? type = TypeEnum.RequestSignature, bool usePreexistingFields = false, bool useTextTags = false, bool populateAutoFillFields = false)
+        /// <param name="expiresAt">_t__UnclaimedDraftCreateEmbedded::EXPIRES_AT.</param>
+        public UnclaimedDraftCreateEmbeddedRequest(List<System.IO.Stream> file = default(List<System.IO.Stream>), List<string> fileUrl = default(List<string>), bool allowCcs = true, bool allowDecline = false, bool allowReassign = false, List<SubAttachment> attachments = default(List<SubAttachment>), List<string> ccEmailAddresses = default(List<string>), string clientId = default(string), List<SubCustomField> customFields = default(List<SubCustomField>), SubEditorOptions editorOptions = default(SubEditorOptions), SubFieldOptions fieldOptions = default(SubFieldOptions), bool forceSignerPage = false, bool forceSubjectMessage = false, List<SubFormFieldGroup> formFieldGroups = default(List<SubFormFieldGroup>), List<SubFormFieldRule> formFieldRules = default(List<SubFormFieldRule>), List<SubFormFieldsPerDocumentBase> formFieldsPerDocument = default(List<SubFormFieldsPerDocumentBase>), bool hideTextTags = false, bool holdRequest = false, bool isForEmbeddedSigning = false, string message = default(string), Dictionary<string, Object> metadata = default(Dictionary<string, Object>), string requesterEmailAddress = default(string), string requestingRedirectUrl = default(string), bool showPreview = default(bool), bool showProgressStepper = true, List<SubUnclaimedDraftSigner> signers = default(List<SubUnclaimedDraftSigner>), SubSigningOptions signingOptions = default(SubSigningOptions), string signingRedirectUrl = default(string), bool skipMeNow = false, string subject = default(string), bool testMode = false, TypeEnum? type = TypeEnum.RequestSignature, bool usePreexistingFields = false, bool useTextTags = false, bool populateAutoFillFields = false, int? expiresAt = default(int?))
         {
             
             // to ensure "clientId" is required (not null)
@@ -152,6 +153,7 @@ namespace HelloSign.Model
             this.UsePreexistingFields = usePreexistingFields;
             this.UseTextTags = useTextTags;
             this.PopulateAutoFillFields = populateAutoFillFields;
+            this.ExpiresAt = expiresAt;
         }
 
         /// <summary>
@@ -390,6 +392,13 @@ namespace HelloSign.Model
         public bool PopulateAutoFillFields { get; set; }
 
         /// <summary>
+        /// _t__UnclaimedDraftCreateEmbedded::EXPIRES_AT
+        /// </summary>
+        /// <value>_t__UnclaimedDraftCreateEmbedded::EXPIRES_AT</value>
+        [DataMember(Name = "expires_at", EmitDefaultValue = true)]
+        public int? ExpiresAt { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -432,6 +441,7 @@ namespace HelloSign.Model
             sb.Append("  UsePreexistingFields: ").Append(UsePreexistingFields).Append("\n");
             sb.Append("  UseTextTags: ").Append(UseTextTags).Append("\n");
             sb.Append("  PopulateAutoFillFields: ").Append(PopulateAutoFillFields).Append("\n");
+            sb.Append("  ExpiresAt: ").Append(ExpiresAt).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -635,6 +645,11 @@ namespace HelloSign.Model
                 (
                     this.PopulateAutoFillFields == input.PopulateAutoFillFields ||
                     this.PopulateAutoFillFields.Equals(input.PopulateAutoFillFields)
+                ) && 
+                (
+                    this.ExpiresAt == input.ExpiresAt ||
+                    (this.ExpiresAt != null &&
+                    this.ExpiresAt.Equals(input.ExpiresAt))
                 );
         }
 
@@ -739,6 +754,10 @@ namespace HelloSign.Model
                 hashCode = (hashCode * 59) + this.UsePreexistingFields.GetHashCode();
                 hashCode = (hashCode * 59) + this.UseTextTags.GetHashCode();
                 hashCode = (hashCode * 59) + this.PopulateAutoFillFields.GetHashCode();
+                if (this.ExpiresAt != null)
+                {
+                    hashCode = (hashCode * 59) + this.ExpiresAt.GetHashCode();
+                }
                 return hashCode;
             }
         }
@@ -955,6 +974,12 @@ namespace HelloSign.Model
                 Property = "PopulateAutoFillFields",
                 Type = "bool",
                 Value = PopulateAutoFillFields,
+            });
+            types.Add(new OpenApiType(){
+                Name = "expires_at",
+                Property = "ExpiresAt",
+                Type = "int?",
+                Value = ExpiresAt,
             });
 
             return types;

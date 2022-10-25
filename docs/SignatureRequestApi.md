@@ -9,7 +9,7 @@ All URIs are relative to *https://api.hellosign.com/v3*
 | [**SignatureRequestCancel**](SignatureRequestApi.md#signaturerequestcancel) | **POST** /signature_request/cancel/{signature_request_id} | Cancel Incomplete Signature Request |
 | [**SignatureRequestCreateEmbedded**](SignatureRequestApi.md#signaturerequestcreateembedded) | **POST** /signature_request/create_embedded | Create Embedded Signature Request |
 | [**SignatureRequestCreateEmbeddedWithTemplate**](SignatureRequestApi.md#signaturerequestcreateembeddedwithtemplate) | **POST** /signature_request/create_embedded_with_template | Create Embedded Signature Request with Template |
-| [**SignatureRequestFiles**](SignatureRequestApi.md#signaturerequestfiles) | **GET** /signature_request/files/{signature_request_id} | Download Files |
+| [**SignatureRequestFiles**](SignatureRequestApi.md#signaturerequestfiles) | **GET** /signature_request/files/{signature_request_id} | Download File |
 | [**SignatureRequestGet**](SignatureRequestApi.md#signaturerequestget) | **GET** /signature_request/{signature_request_id} | Get Signature Request |
 | [**SignatureRequestList**](SignatureRequestApi.md#signaturerequestlist) | **GET** /signature_request/list | List Signature Requests |
 | [**SignatureRequestReleaseHold**](SignatureRequestApi.md#signaturerequestreleasehold) | **POST** /signature_request/release_hold/{signature_request_id} | Release On-Hold Signature Request |
@@ -641,9 +641,9 @@ catch (ApiException e)
 # **SignatureRequestFiles**
 > FileResponse SignatureRequestFiles (string signatureRequestId, string? fileType = null, bool? getUrl = null, bool? getDataUri = null)
 
-Download Files
+Download File
 
-Obtain a copy of the current documents specified by the `signature_request_id` parameter.  Returns a PDF or ZIP file, or if `get_url` is set, a JSON object with a url to the file (PDFs only). If `get_data_uri` is set, a JSON object with a `data_uri` representing the base64 encoded file (PDFs only) is returned.  If the files are currently being prepared, a status code of `409` will be returned instead.
+Obtain a copy of the current documents specified by the `signature_request_id` parameter. Returns a PDF or ZIP file.   If the files are currently being prepared, a status code of `409` will be returned instead.
 
 ### Example
 ```csharp
@@ -690,7 +690,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // Download Files
+    // Download File
     ApiResponse<FileResponse> response = apiInstance.SignatureRequestFilesWithHttpInfo(signatureRequestId, fileType, getUrl, getDataUri);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);

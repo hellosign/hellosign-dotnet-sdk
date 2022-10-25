@@ -57,8 +57,9 @@ namespace HelloSign.Model
         /// <param name="smsPhoneNumber">The SMS phone number used for authentication or signature request delivery..</param>
         /// <param name="reassignedBy">Email address of original signer who reassigned to this signer..</param>
         /// <param name="reassignmentReason">Reason provided by original signer who reassigned to this signer..</param>
+        /// <param name="reassignedFrom">Previous signature identifier..</param>
         /// <param name="error">Error message pertaining to this signer, or null..</param>
-        public SignatureRequestResponseSignatures(string signatureId = default(string), string signerEmailAddress = default(string), string signerName = default(string), string signerRole = default(string), int? order = default(int?), string statusCode = default(string), string declineReason = default(string), int? signedAt = default(int?), int? lastViewedAt = default(int?), int? lastRemindedAt = default(int?), bool hasPin = default(bool), bool? hasSmsAuth = default(bool?), bool? hasSmsDelivery = default(bool?), string smsPhoneNumber = default(string), string reassignedBy = default(string), string reassignmentReason = default(string), string error = default(string))
+        public SignatureRequestResponseSignatures(string signatureId = default(string), string signerEmailAddress = default(string), string signerName = default(string), string signerRole = default(string), int? order = default(int?), string statusCode = default(string), string declineReason = default(string), int? signedAt = default(int?), int? lastViewedAt = default(int?), int? lastRemindedAt = default(int?), bool hasPin = default(bool), bool? hasSmsAuth = default(bool?), bool? hasSmsDelivery = default(bool?), string smsPhoneNumber = default(string), string reassignedBy = default(string), string reassignmentReason = default(string), string reassignedFrom = default(string), string error = default(string))
         {
             
             this.SignatureId = signatureId;
@@ -77,6 +78,7 @@ namespace HelloSign.Model
             this.SmsPhoneNumber = smsPhoneNumber;
             this.ReassignedBy = reassignedBy;
             this.ReassignmentReason = reassignmentReason;
+            this.ReassignedFrom = reassignedFrom;
             this.Error = error;
         }
 
@@ -193,6 +195,13 @@ namespace HelloSign.Model
         public string ReassignmentReason { get; set; }
 
         /// <summary>
+        /// Previous signature identifier.
+        /// </summary>
+        /// <value>Previous signature identifier.</value>
+        [DataMember(Name = "reassigned_from", EmitDefaultValue = true)]
+        public string ReassignedFrom { get; set; }
+
+        /// <summary>
         /// Error message pertaining to this signer, or null.
         /// </summary>
         /// <value>Error message pertaining to this signer, or null.</value>
@@ -223,6 +232,7 @@ namespace HelloSign.Model
             sb.Append("  SmsPhoneNumber: ").Append(SmsPhoneNumber).Append("\n");
             sb.Append("  ReassignedBy: ").Append(ReassignedBy).Append("\n");
             sb.Append("  ReassignmentReason: ").Append(ReassignmentReason).Append("\n");
+            sb.Append("  ReassignedFrom: ").Append(ReassignedFrom).Append("\n");
             sb.Append("  Error: ").Append(Error).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -339,6 +349,11 @@ namespace HelloSign.Model
                     this.ReassignmentReason.Equals(input.ReassignmentReason))
                 ) && 
                 (
+                    this.ReassignedFrom == input.ReassignedFrom ||
+                    (this.ReassignedFrom != null &&
+                    this.ReassignedFrom.Equals(input.ReassignedFrom))
+                ) && 
+                (
                     this.Error == input.Error ||
                     (this.Error != null &&
                     this.Error.Equals(input.Error))
@@ -414,6 +429,10 @@ namespace HelloSign.Model
                 if (this.ReassignmentReason != null)
                 {
                     hashCode = (hashCode * 59) + this.ReassignmentReason.GetHashCode();
+                }
+                if (this.ReassignedFrom != null)
+                {
+                    hashCode = (hashCode * 59) + this.ReassignedFrom.GetHashCode();
                 }
                 if (this.Error != null)
                 {
@@ -521,6 +540,12 @@ namespace HelloSign.Model
                 Property = "ReassignmentReason",
                 Type = "string",
                 Value = ReassignmentReason,
+            });
+            types.Add(new OpenApiType(){
+                Name = "reassigned_from",
+                Property = "ReassignedFrom",
+                Type = "string",
+                Value = ReassignedFrom,
             });
             types.Add(new OpenApiType(){
                 Name = "error",

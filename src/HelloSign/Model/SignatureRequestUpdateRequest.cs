@@ -44,7 +44,8 @@ namespace HelloSign.Model
         /// <param name="emailAddress">The new email address for the recipient.  **NOTE**: Optional if &#x60;name&#x60; is provided..</param>
         /// <param name="name">The new name for the recipient.  **NOTE**: Optional if &#x60;email_address&#x60; is provided..</param>
         /// <param name="signatureId">The signature ID for the recipient. (required).</param>
-        public SignatureRequestUpdateRequest(string emailAddress = default(string), string name = default(string), string signatureId = default(string))
+        /// <param name="expiresAt">_t__SignatureRequestUpdate::EXPIRES_AT.</param>
+        public SignatureRequestUpdateRequest(string emailAddress = default(string), string name = default(string), string signatureId = default(string), int? expiresAt = default(int?))
         {
             
             // to ensure "signatureId" is required (not null)
@@ -55,6 +56,7 @@ namespace HelloSign.Model
             this.SignatureId = signatureId;
             this.EmailAddress = emailAddress;
             this.Name = name;
+            this.ExpiresAt = expiresAt;
         }
 
         /// <summary>
@@ -79,6 +81,13 @@ namespace HelloSign.Model
         public string Name { get; set; }
 
         /// <summary>
+        /// _t__SignatureRequestUpdate::EXPIRES_AT
+        /// </summary>
+        /// <value>_t__SignatureRequestUpdate::EXPIRES_AT</value>
+        [DataMember(Name = "expires_at", EmitDefaultValue = true)]
+        public int? ExpiresAt { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -89,6 +98,7 @@ namespace HelloSign.Model
             sb.Append("  SignatureId: ").Append(SignatureId).Append("\n");
             sb.Append("  EmailAddress: ").Append(EmailAddress).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
+            sb.Append("  ExpiresAt: ").Append(ExpiresAt).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -138,6 +148,11 @@ namespace HelloSign.Model
                     this.Name == input.Name ||
                     (this.Name != null &&
                     this.Name.Equals(input.Name))
+                ) && 
+                (
+                    this.ExpiresAt == input.ExpiresAt ||
+                    (this.ExpiresAt != null &&
+                    this.ExpiresAt.Equals(input.ExpiresAt))
                 );
         }
 
@@ -161,6 +176,10 @@ namespace HelloSign.Model
                 if (this.Name != null)
                 {
                     hashCode = (hashCode * 59) + this.Name.GetHashCode();
+                }
+                if (this.ExpiresAt != null)
+                {
+                    hashCode = (hashCode * 59) + this.ExpiresAt.GetHashCode();
                 }
                 return hashCode;
             }
@@ -186,6 +205,12 @@ namespace HelloSign.Model
                 Property = "Name",
                 Type = "string",
                 Value = Name,
+            });
+            types.Add(new OpenApiType(){
+                Name = "expires_at",
+                Property = "ExpiresAt",
+                Type = "int?",
+                Value = ExpiresAt,
             });
 
             return types;
