@@ -61,11 +61,8 @@ namespace HelloSign.Test.Api
 
             var api = MockRestClientHelper.CreateApi<FileResponse, TemplateApi>(responseData);
 
-            var response = api.TemplateFiles(
-                templateId,
-                fileType,
-                getUrl,
-                getDataUri
+            var response = api.TemplateFilesAsFileUrl(
+                templateId
             );
 
             JToken.DeepEquals(

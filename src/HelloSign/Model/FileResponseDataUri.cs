@@ -27,41 +27,33 @@ using OpenAPIDateConverter = HelloSign.Client.OpenAPIDateConverter;
 namespace HelloSign.Model
 {
     /// <summary>
-    /// BulkSendJobSendResponse
+    /// FileResponseDataUri
     /// </summary>
-    [DataContract(Name = "BulkSendJobSendResponse")]
+    [DataContract(Name = "FileResponseDataUri")]
     [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
-    public partial class BulkSendJobSendResponse : IOpenApiTyped, IEquatable<BulkSendJobSendResponse>, IValidatableObject
+    public partial class FileResponseDataUri : IOpenApiTyped, IEquatable<FileResponseDataUri>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="BulkSendJobSendResponse" /> class.
+        /// Initializes a new instance of the <see cref="FileResponseDataUri" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected BulkSendJobSendResponse() { }
+        protected FileResponseDataUri() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="BulkSendJobSendResponse" /> class.
+        /// Initializes a new instance of the <see cref="FileResponseDataUri" /> class.
         /// </summary>
-        /// <param name="bulkSendJob">bulkSendJob.</param>
-        /// <param name="warnings">A list of warnings..</param>
-        public BulkSendJobSendResponse(BulkSendJobResponse bulkSendJob = default(BulkSendJobResponse), List<WarningResponse> warnings = default(List<WarningResponse>))
+        /// <param name="dataUri">File as base64 encoded string..</param>
+        public FileResponseDataUri(string dataUri = default(string))
         {
             
-            this.BulkSendJob = bulkSendJob;
-            this.Warnings = warnings;
+            this.DataUri = dataUri;
         }
 
         /// <summary>
-        /// Gets or Sets BulkSendJob
+        /// File as base64 encoded string.
         /// </summary>
-        [DataMember(Name = "bulk_send_job", EmitDefaultValue = true)]
-        public BulkSendJobResponse BulkSendJob { get; set; }
-
-        /// <summary>
-        /// A list of warnings.
-        /// </summary>
-        /// <value>A list of warnings.</value>
-        [DataMember(Name = "warnings", EmitDefaultValue = true)]
-        public List<WarningResponse> Warnings { get; set; }
+        /// <value>File as base64 encoded string.</value>
+        [DataMember(Name = "data_uri", EmitDefaultValue = true)]
+        public string DataUri { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -70,9 +62,8 @@ namespace HelloSign.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class BulkSendJobSendResponse {\n");
-            sb.Append("  BulkSendJob: ").Append(BulkSendJob).Append("\n");
-            sb.Append("  Warnings: ").Append(Warnings).Append("\n");
+            sb.Append("class FileResponseDataUri {\n");
+            sb.Append("  DataUri: ").Append(DataUri).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -93,15 +84,15 @@ namespace HelloSign.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as BulkSendJobSendResponse);
+            return this.Equals(input as FileResponseDataUri);
         }
 
         /// <summary>
-        /// Returns true if BulkSendJobSendResponse instances are equal
+        /// Returns true if FileResponseDataUri instances are equal
         /// </summary>
-        /// <param name="input">Instance of BulkSendJobSendResponse to be compared</param>
+        /// <param name="input">Instance of FileResponseDataUri to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(BulkSendJobSendResponse input)
+        public bool Equals(FileResponseDataUri input)
         {
             if (input == null)
             {
@@ -109,15 +100,9 @@ namespace HelloSign.Model
             }
             return 
                 (
-                    this.BulkSendJob == input.BulkSendJob ||
-                    (this.BulkSendJob != null &&
-                    this.BulkSendJob.Equals(input.BulkSendJob))
-                ) && 
-                (
-                    this.Warnings == input.Warnings ||
-                    this.Warnings != null &&
-                    input.Warnings != null &&
-                    this.Warnings.SequenceEqual(input.Warnings)
+                    this.DataUri == input.DataUri ||
+                    (this.DataUri != null &&
+                    this.DataUri.Equals(input.DataUri))
                 );
         }
 
@@ -130,13 +115,9 @@ namespace HelloSign.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.BulkSendJob != null)
+                if (this.DataUri != null)
                 {
-                    hashCode = (hashCode * 59) + this.BulkSendJob.GetHashCode();
-                }
-                if (this.Warnings != null)
-                {
-                    hashCode = (hashCode * 59) + this.Warnings.GetHashCode();
+                    hashCode = (hashCode * 59) + this.DataUri.GetHashCode();
                 }
                 return hashCode;
             }
@@ -146,16 +127,10 @@ namespace HelloSign.Model
         {
             var types = new List<OpenApiType>();
             types.Add(new OpenApiType(){
-                Name = "bulk_send_job",
-                Property = "BulkSendJob",
-                Type = "BulkSendJobResponse",
-                Value = BulkSendJob,
-            });
-            types.Add(new OpenApiType(){
-                Name = "warnings",
-                Property = "Warnings",
-                Type = "List<WarningResponse>",
-                Value = Warnings,
+                Name = "data_uri",
+                Property = "DataUri",
+                Type = "string",
+                Value = DataUri,
             });
 
             return types;

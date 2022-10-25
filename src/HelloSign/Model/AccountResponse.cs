@@ -1,7 +1,7 @@
 /*
- * HelloSign API
+ * Dropbox Sign API
  *
- * HelloSign v3 API
+ * Dropbox Sign v3 API
  *
  * The version of the OpenAPI document: 3.0.0
  * Contact: apisupport@hellosign.com
@@ -44,10 +44,10 @@ namespace HelloSign.Model
         /// <param name="accountId">The ID of the Account.</param>
         /// <param name="emailAddress">The email address associated with the Account..</param>
         /// <param name="isLocked">Returns &#x60;true&#x60; if the user has been locked out of their account by a team admin..</param>
-        /// <param name="isPaidHs">Returns &#x60;true&#x60; if the user has a paid HelloSign account..</param>
+        /// <param name="isPaidHs">Returns &#x60;true&#x60; if the user has a paid Dropbox Sign account..</param>
         /// <param name="isPaidHf">Returns &#x60;true&#x60; if the user has a paid HelloFax account..</param>
         /// <param name="quotas">quotas.</param>
-        /// <param name="callbackUrl">The URL that HelloSign events will &#x60;POST&#x60; to..</param>
+        /// <param name="callbackUrl">The URL that Dropbox Sign events will &#x60;POST&#x60; to..</param>
         /// <param name="roleCode">The membership role for the team..</param>
         /// <param name="teamId">The id of the team account belongs to..</param>
         /// <param name="locale">The locale used in this Account. Check out the list of [supported locales](/api/reference/constants/#supported-locales) to learn more about the possible values..</param>
@@ -88,9 +88,9 @@ namespace HelloSign.Model
         public bool IsLocked { get; set; }
 
         /// <summary>
-        /// Returns &#x60;true&#x60; if the user has a paid HelloSign account.
+        /// Returns &#x60;true&#x60; if the user has a paid Dropbox Sign account.
         /// </summary>
-        /// <value>Returns &#x60;true&#x60; if the user has a paid HelloSign account.</value>
+        /// <value>Returns &#x60;true&#x60; if the user has a paid Dropbox Sign account.</value>
         [DataMember(Name = "is_paid_hs", EmitDefaultValue = true)]
         public bool IsPaidHs { get; set; }
 
@@ -108,9 +108,9 @@ namespace HelloSign.Model
         public AccountResponseQuotas Quotas { get; set; }
 
         /// <summary>
-        /// The URL that HelloSign events will &#x60;POST&#x60; to.
+        /// The URL that Dropbox Sign events will &#x60;POST&#x60; to.
         /// </summary>
-        /// <value>The URL that HelloSign events will &#x60;POST&#x60; to.</value>
+        /// <value>The URL that Dropbox Sign events will &#x60;POST&#x60; to.</value>
         [DataMember(Name = "callback_url", EmitDefaultValue = true)]
         public string CallbackUrl { get; set; }
 

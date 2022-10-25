@@ -1,7 +1,7 @@
 /*
- * HelloSign API
+ * Dropbox Sign API
  *
- * HelloSign v3 API
+ * Dropbox Sign v3 API
  *
  * The version of the OpenAPI document: 3.0.0
  * Contact: apisupport@hellosign.com
@@ -48,8 +48,8 @@ namespace HelloSign.Model
         /// <param name="customFields">An array defining values and options for custom fields. Required when a custom field exists in the Template..</param>
         /// <param name="editorOptions">editorOptions.</param>
         /// <param name="fieldOptions">fieldOptions.</param>
-        /// <param name="file">Use &#x60;file[]&#x60; to append additional files to the signature request being created from the template. HelloSign will parse the files for [text tags](https://app.hellosign.com/api/textTagsWalkthrough) and append it to the signature request. Text tags for signers not on the template(s) will be ignored.  **file** or **file_url[]** is required, but not both..</param>
-        /// <param name="fileUrl">Use file_url[] to append additional files to the signature request being created from the template. HelloSign will download the file, then parse it for [text tags](https://app.hellosign.com/api/textTagsWalkthrough), and append to the signature request. Text tags for signers not on the template(s) will be ignored.  **file** or **file_url[]** is required, but not both..</param>
+        /// <param name="file">Use &#x60;file[]&#x60; to append additional files to the signature request being created from the template. Dropbox Sign will parse the files for [text tags](https://app.hellosign.com/api/textTagsWalkthrough) and append it to the signature request. Text tags for signers not on the template(s) will be ignored.  **file** or **file_url[]** is required, but not both..</param>
+        /// <param name="fileUrl">Use file_url[] to append additional files to the signature request being created from the template. Dropbox Sign will download the file, then parse it for [text tags](https://app.hellosign.com/api/textTagsWalkthrough), and append to the signature request. Text tags for signers not on the template(s) will be ignored.  **file** or **file_url[]** is required, but not both..</param>
         /// <param name="forceSignerRoles">Provide users the ability to review/edit the template signer roles. (default to false).</param>
         /// <param name="forceSubjectMessage">Provide users the ability to review/edit the template subject and message. (default to false).</param>
         /// <param name="holdRequest">The request from this draft will not automatically send to signers post-claim if set to 1. Requester must [release](/api/reference/operation/signatureRequestReleaseHold/) the request from hold when ready to send. Defaults to &#x60;false&#x60;. (default to false).</param>
@@ -181,16 +181,16 @@ namespace HelloSign.Model
         public SubFieldOptions FieldOptions { get; set; }
 
         /// <summary>
-        /// Use &#x60;file[]&#x60; to append additional files to the signature request being created from the template. HelloSign will parse the files for [text tags](https://app.hellosign.com/api/textTagsWalkthrough) and append it to the signature request. Text tags for signers not on the template(s) will be ignored.  **file** or **file_url[]** is required, but not both.
+        /// Use &#x60;file[]&#x60; to append additional files to the signature request being created from the template. Dropbox Sign will parse the files for [text tags](https://app.hellosign.com/api/textTagsWalkthrough) and append it to the signature request. Text tags for signers not on the template(s) will be ignored.  **file** or **file_url[]** is required, but not both.
         /// </summary>
-        /// <value>Use &#x60;file[]&#x60; to append additional files to the signature request being created from the template. HelloSign will parse the files for [text tags](https://app.hellosign.com/api/textTagsWalkthrough) and append it to the signature request. Text tags for signers not on the template(s) will be ignored.  **file** or **file_url[]** is required, but not both.</value>
+        /// <value>Use &#x60;file[]&#x60; to append additional files to the signature request being created from the template. Dropbox Sign will parse the files for [text tags](https://app.hellosign.com/api/textTagsWalkthrough) and append it to the signature request. Text tags for signers not on the template(s) will be ignored.  **file** or **file_url[]** is required, but not both.</value>
         [DataMember(Name = "file", EmitDefaultValue = true)]
         public List<System.IO.Stream> File { get; set; }
 
         /// <summary>
-        /// Use file_url[] to append additional files to the signature request being created from the template. HelloSign will download the file, then parse it for [text tags](https://app.hellosign.com/api/textTagsWalkthrough), and append to the signature request. Text tags for signers not on the template(s) will be ignored.  **file** or **file_url[]** is required, but not both.
+        /// Use file_url[] to append additional files to the signature request being created from the template. Dropbox Sign will download the file, then parse it for [text tags](https://app.hellosign.com/api/textTagsWalkthrough), and append to the signature request. Text tags for signers not on the template(s) will be ignored.  **file** or **file_url[]** is required, but not both.
         /// </summary>
-        /// <value>Use file_url[] to append additional files to the signature request being created from the template. HelloSign will download the file, then parse it for [text tags](https://app.hellosign.com/api/textTagsWalkthrough), and append to the signature request. Text tags for signers not on the template(s) will be ignored.  **file** or **file_url[]** is required, but not both.</value>
+        /// <value>Use file_url[] to append additional files to the signature request being created from the template. Dropbox Sign will download the file, then parse it for [text tags](https://app.hellosign.com/api/textTagsWalkthrough), and append to the signature request. Text tags for signers not on the template(s) will be ignored.  **file** or **file_url[]** is required, but not both.</value>
         [DataMember(Name = "file_url", EmitDefaultValue = true)]
         public List<string> FileUrl { get; set; }
 

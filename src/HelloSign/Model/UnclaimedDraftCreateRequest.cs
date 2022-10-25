@@ -1,7 +1,7 @@
 /*
- * HelloSign API
+ * Dropbox Sign API
  *
- * HelloSign v3 API
+ * Dropbox Sign v3 API
  *
  * The version of the OpenAPI document: 3.0.0
  * Contact: apisupport@hellosign.com
@@ -70,12 +70,12 @@ namespace HelloSign.Model
         /// Initializes a new instance of the <see cref="UnclaimedDraftCreateRequest" /> class.
         /// </summary>
         /// <param name="file">Use &#x60;file[]&#x60; to indicate the uploaded file(s) to send for signature.  This endpoint requires either **file** or **file_url[]**, but not both..</param>
-        /// <param name="fileUrl">Use &#x60;file_url[]&#x60; to have HelloSign download the file(s) to send for signature.  This endpoint requires either **file** or **file_url[]**, but not both..</param>
+        /// <param name="fileUrl">Use &#x60;file_url[]&#x60; to have Dropbox Sign download the file(s) to send for signature.  This endpoint requires either **file** or **file_url[]**, but not both..</param>
         /// <param name="allowDecline">Allows signers to decline to sign a document if &#x60;true&#x60;. Defaults to &#x60;false&#x60;. (default to false).</param>
         /// <param name="attachments">A list describing the attachments.</param>
         /// <param name="ccEmailAddresses">The email addresses that should be CCed..</param>
         /// <param name="clientId">Client id of the app used to create the draft. Used to apply the branding and callback url defined for the app..</param>
-        /// <param name="customFields">When used together with merge fields, &#x60;custom_fields&#x60; allows users to add pre-filled data to their signature requests.  Pre-filled data can be used with \&quot;send-once\&quot; signature requests by adding merge fields with &#x60;form_fields_per_document&#x60; or [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) while passing values back with &#x60;custom_fields&#x60; together in one API call.  For using pre-filled on repeatable signature requests, merge fields are added to templates in the HelloSign UI or by calling [/template/create_embedded_draft](/api/reference/operation/templateCreateEmbeddedDraft) and then passing &#x60;custom_fields&#x60; on subsequent signature requests referencing that template..</param>
+        /// <param name="customFields">When used together with merge fields, &#x60;custom_fields&#x60; allows users to add pre-filled data to their signature requests.  Pre-filled data can be used with \&quot;send-once\&quot; signature requests by adding merge fields with &#x60;form_fields_per_document&#x60; or [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) while passing values back with &#x60;custom_fields&#x60; together in one API call.  For using pre-filled on repeatable signature requests, merge fields are added to templates in the Dropbox Sign UI or by calling [/template/create_embedded_draft](/api/reference/operation/templateCreateEmbeddedDraft) and then passing &#x60;custom_fields&#x60; on subsequent signature requests referencing that template..</param>
         /// <param name="fieldOptions">fieldOptions.</param>
         /// <param name="formFieldGroups">Group information for fields defined in &#x60;form_fields_per_document&#x60;. String-indexed JSON array with &#x60;group_label&#x60; and &#x60;requirement&#x60; keys. &#x60;form_fields_per_document&#x60; must contain fields referencing a group defined in &#x60;form_field_groups&#x60;..</param>
         /// <param name="formFieldRules">Conditional Logic rules for fields defined in &#x60;form_fields_per_document&#x60;..</param>
@@ -130,9 +130,9 @@ namespace HelloSign.Model
         public List<System.IO.Stream> File { get; set; }
 
         /// <summary>
-        /// Use &#x60;file_url[]&#x60; to have HelloSign download the file(s) to send for signature.  This endpoint requires either **file** or **file_url[]**, but not both.
+        /// Use &#x60;file_url[]&#x60; to have Dropbox Sign download the file(s) to send for signature.  This endpoint requires either **file** or **file_url[]**, but not both.
         /// </summary>
-        /// <value>Use &#x60;file_url[]&#x60; to have HelloSign download the file(s) to send for signature.  This endpoint requires either **file** or **file_url[]**, but not both.</value>
+        /// <value>Use &#x60;file_url[]&#x60; to have Dropbox Sign download the file(s) to send for signature.  This endpoint requires either **file** or **file_url[]**, but not both.</value>
         [DataMember(Name = "file_url", EmitDefaultValue = true)]
         public List<string> FileUrl { get; set; }
 
@@ -165,9 +165,9 @@ namespace HelloSign.Model
         public string ClientId { get; set; }
 
         /// <summary>
-        /// When used together with merge fields, &#x60;custom_fields&#x60; allows users to add pre-filled data to their signature requests.  Pre-filled data can be used with \&quot;send-once\&quot; signature requests by adding merge fields with &#x60;form_fields_per_document&#x60; or [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) while passing values back with &#x60;custom_fields&#x60; together in one API call.  For using pre-filled on repeatable signature requests, merge fields are added to templates in the HelloSign UI or by calling [/template/create_embedded_draft](/api/reference/operation/templateCreateEmbeddedDraft) and then passing &#x60;custom_fields&#x60; on subsequent signature requests referencing that template.
+        /// When used together with merge fields, &#x60;custom_fields&#x60; allows users to add pre-filled data to their signature requests.  Pre-filled data can be used with \&quot;send-once\&quot; signature requests by adding merge fields with &#x60;form_fields_per_document&#x60; or [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) while passing values back with &#x60;custom_fields&#x60; together in one API call.  For using pre-filled on repeatable signature requests, merge fields are added to templates in the Dropbox Sign UI or by calling [/template/create_embedded_draft](/api/reference/operation/templateCreateEmbeddedDraft) and then passing &#x60;custom_fields&#x60; on subsequent signature requests referencing that template.
         /// </summary>
-        /// <value>When used together with merge fields, &#x60;custom_fields&#x60; allows users to add pre-filled data to their signature requests.  Pre-filled data can be used with \&quot;send-once\&quot; signature requests by adding merge fields with &#x60;form_fields_per_document&#x60; or [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) while passing values back with &#x60;custom_fields&#x60; together in one API call.  For using pre-filled on repeatable signature requests, merge fields are added to templates in the HelloSign UI or by calling [/template/create_embedded_draft](/api/reference/operation/templateCreateEmbeddedDraft) and then passing &#x60;custom_fields&#x60; on subsequent signature requests referencing that template.</value>
+        /// <value>When used together with merge fields, &#x60;custom_fields&#x60; allows users to add pre-filled data to their signature requests.  Pre-filled data can be used with \&quot;send-once\&quot; signature requests by adding merge fields with &#x60;form_fields_per_document&#x60; or [Text Tags](https://app.hellosign.com/api/textTagsWalkthrough#TextTagIntro) while passing values back with &#x60;custom_fields&#x60; together in one API call.  For using pre-filled on repeatable signature requests, merge fields are added to templates in the Dropbox Sign UI or by calling [/template/create_embedded_draft](/api/reference/operation/templateCreateEmbeddedDraft) and then passing &#x60;custom_fields&#x60; on subsequent signature requests referencing that template.</value>
         [DataMember(Name = "custom_fields", EmitDefaultValue = true)]
         public List<SubCustomField> CustomFields { get; set; }
 

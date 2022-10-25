@@ -1,6 +1,6 @@
-# HelloSign - the C# library for the HelloSign API
+# HelloSign - the C# library for the Dropbox Sign API
 
-HelloSign v3 API
+Dropbox Sign v3 API
 
 ## ⚠ This package is not yet ready for production use ⚠
 
@@ -160,6 +160,8 @@ Class | Method | HTTP request | Description
 *SignatureRequestApi* | [**SignatureRequestCreateEmbedded**](docs/SignatureRequestApi.md#signaturerequestcreateembedded) | **POST** /signature_request/create_embedded | Create Embedded Signature Request
 *SignatureRequestApi* | [**SignatureRequestCreateEmbeddedWithTemplate**](docs/SignatureRequestApi.md#signaturerequestcreateembeddedwithtemplate) | **POST** /signature_request/create_embedded_with_template | Create Embedded Signature Request with Template
 *SignatureRequestApi* | [**SignatureRequestFiles**](docs/SignatureRequestApi.md#signaturerequestfiles) | **GET** /signature_request/files/{signature_request_id} | Download File
+*SignatureRequestApi* | [**SignatureRequestFilesAsEncodedString**](docs/SignatureRequestApi.md#signaturerequestfilesasencodedstring) | **GET** /signature_request/files/{signature_request_id}?get_data_uri&#x3D;1&amp;file_type&#x3D;pdf | Download File as Encoded String
+*SignatureRequestApi* | [**SignatureRequestFilesAsFileUrl**](docs/SignatureRequestApi.md#signaturerequestfilesasfileurl) | **GET** /signature_request/files/{signature_request_id}?get_url&#x3D;1&amp;file_type&#x3D;pdf | Download File as File Url
 *SignatureRequestApi* | [**SignatureRequestGet**](docs/SignatureRequestApi.md#signaturerequestget) | **GET** /signature_request/{signature_request_id} | Get Signature Request
 *SignatureRequestApi* | [**SignatureRequestList**](docs/SignatureRequestApi.md#signaturerequestlist) | **GET** /signature_request/list | List Signature Requests
 *SignatureRequestApi* | [**SignatureRequestReleaseHold**](docs/SignatureRequestApi.md#signaturerequestreleasehold) | **POST** /signature_request/release_hold/{signature_request_id} | Release On-Hold Signature Request
@@ -182,6 +184,8 @@ Class | Method | HTTP request | Description
 *TemplateApi* | [**TemplateCreateEmbeddedDraft**](docs/TemplateApi.md#templatecreateembeddeddraft) | **POST** /template/create_embedded_draft | Create Embedded Template Draft
 *TemplateApi* | [**TemplateDelete**](docs/TemplateApi.md#templatedelete) | **POST** /template/delete/{template_id} | Delete Template
 *TemplateApi* | [**TemplateFiles**](docs/TemplateApi.md#templatefiles) | **GET** /template/files/{template_id} | Get Template File
+*TemplateApi* | [**TemplateFilesAsEncodedString**](docs/TemplateApi.md#templatefilesasencodedstring) | **GET** /template/files/{template_id}?get_data_uri&#x3D;1&amp;file_type&#x3D;pdf | Get Template File as Encoded String
+*TemplateApi* | [**TemplateFilesAsFileUrl**](docs/TemplateApi.md#templatefilesasfileurl) | **GET** /template/files/{template_id}?get_url&#x3D;1&amp;file_type&#x3D;pdf | Get Template File as File Url
 *TemplateApi* | [**TemplateGet**](docs/TemplateApi.md#templateget) | **GET** /template/{template_id} | Get Template
 *TemplateApi* | [**TemplateList**](docs/TemplateApi.md#templatelist) | **GET** /template/list | List Templates
 *TemplateApi* | [**TemplateRemoveUser**](docs/TemplateApi.md#templateremoveuser) | **POST** /template/remove_user/{template_id} | Remove User from Template
@@ -232,6 +236,7 @@ Class | Method | HTTP request | Description
  - [Model.EventCallbackRequestEvent](docs/EventCallbackRequestEvent.md)
  - [Model.EventCallbackRequestEventMetadata](docs/EventCallbackRequestEventMetadata.md)
  - [Model.FileResponse](docs/FileResponse.md)
+ - [Model.FileResponseDataUri](docs/FileResponseDataUri.md)
  - [Model.ListInfoResponse](docs/ListInfoResponse.md)
  - [Model.OAuthTokenGenerateRequest](docs/OAuthTokenGenerateRequest.md)
  - [Model.OAuthTokenRefreshRequest](docs/OAuthTokenRefreshRequest.md)

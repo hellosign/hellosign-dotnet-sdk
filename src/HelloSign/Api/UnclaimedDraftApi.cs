@@ -1,7 +1,7 @@
 /*
- * HelloSign API
+ * Dropbox Sign API
  *
- * HelloSign v3 API
+ * Dropbox Sign v3 API
  *
  * The version of the OpenAPI document: 3.0.0
  * Contact: apisupport@hellosign.com
@@ -54,7 +54,7 @@ namespace HelloSign.Api
         /// Create Embedded Unclaimed Draft
         /// </summary>
         /// <remarks>
-        /// Creates a new Draft that can be claimed and used in an embedded iFrame. The first authenticated user to access the URL will claim the Draft and will be shown the \&quot;Request signature\&quot; page with the Draft loaded. Subsequent access to the claim URL will result in a &#x60;404&#x60;. For this embedded endpoint the &#x60;requester_email_address&#x60; parameter is required.  **NOTE**: Embedded unclaimed drafts can only be accessed in embedded iFrames whereas normal drafts can be used and accessed on HelloSign.
+        /// Creates a new Draft that can be claimed and used in an embedded iFrame. The first authenticated user to access the URL will claim the Draft and will be shown the \&quot;Request signature\&quot; page with the Draft loaded. Subsequent access to the claim URL will result in a &#x60;404&#x60;. For this embedded endpoint the &#x60;requester_email_address&#x60; parameter is required.  **NOTE**: Embedded unclaimed drafts can only be accessed in embedded iFrames whereas normal drafts can be used and accessed on Dropbox Sign.
         /// </remarks>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="unclaimedDraftCreateEmbeddedRequest"></param>
@@ -66,7 +66,7 @@ namespace HelloSign.Api
         /// Create Embedded Unclaimed Draft
         /// </summary>
         /// <remarks>
-        /// Creates a new Draft that can be claimed and used in an embedded iFrame. The first authenticated user to access the URL will claim the Draft and will be shown the \&quot;Request signature\&quot; page with the Draft loaded. Subsequent access to the claim URL will result in a &#x60;404&#x60;. For this embedded endpoint the &#x60;requester_email_address&#x60; parameter is required.  **NOTE**: Embedded unclaimed drafts can only be accessed in embedded iFrames whereas normal drafts can be used and accessed on HelloSign.
+        /// Creates a new Draft that can be claimed and used in an embedded iFrame. The first authenticated user to access the URL will claim the Draft and will be shown the \&quot;Request signature\&quot; page with the Draft loaded. Subsequent access to the claim URL will result in a &#x60;404&#x60;. For this embedded endpoint the &#x60;requester_email_address&#x60; parameter is required.  **NOTE**: Embedded unclaimed drafts can only be accessed in embedded iFrames whereas normal drafts can be used and accessed on Dropbox Sign.
         /// </remarks>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="unclaimedDraftCreateEmbeddedRequest"></param>
@@ -77,7 +77,7 @@ namespace HelloSign.Api
         /// Create Embedded Unclaimed Draft with Template
         /// </summary>
         /// <remarks>
-        /// Creates a new Draft with a previously saved template(s) that can be claimed and used in an embedded iFrame. The first authenticated user to access the URL will claim the Draft and will be shown the \&quot;Request signature\&quot; page with the Draft loaded. Subsequent access to the claim URL will result in a &#x60;404&#x60;. For this embedded endpoint the &#x60;requester_email_address&#x60; parameter is required.  **NOTE**: Embedded unclaimed drafts can only be accessed in embedded iFrames whereas normal drafts can be used and accessed on HelloSign.
+        /// Creates a new Draft with a previously saved template(s) that can be claimed and used in an embedded iFrame. The first authenticated user to access the URL will claim the Draft and will be shown the \&quot;Request signature\&quot; page with the Draft loaded. Subsequent access to the claim URL will result in a &#x60;404&#x60;. For this embedded endpoint the &#x60;requester_email_address&#x60; parameter is required.  **NOTE**: Embedded unclaimed drafts can only be accessed in embedded iFrames whereas normal drafts can be used and accessed on Dropbox Sign.
         /// </remarks>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="unclaimedDraftCreateEmbeddedWithTemplateRequest"></param>
@@ -89,7 +89,7 @@ namespace HelloSign.Api
         /// Create Embedded Unclaimed Draft with Template
         /// </summary>
         /// <remarks>
-        /// Creates a new Draft with a previously saved template(s) that can be claimed and used in an embedded iFrame. The first authenticated user to access the URL will claim the Draft and will be shown the \&quot;Request signature\&quot; page with the Draft loaded. Subsequent access to the claim URL will result in a &#x60;404&#x60;. For this embedded endpoint the &#x60;requester_email_address&#x60; parameter is required.  **NOTE**: Embedded unclaimed drafts can only be accessed in embedded iFrames whereas normal drafts can be used and accessed on HelloSign.
+        /// Creates a new Draft with a previously saved template(s) that can be claimed and used in an embedded iFrame. The first authenticated user to access the URL will claim the Draft and will be shown the \&quot;Request signature\&quot; page with the Draft loaded. Subsequent access to the claim URL will result in a &#x60;404&#x60;. For this embedded endpoint the &#x60;requester_email_address&#x60; parameter is required.  **NOTE**: Embedded unclaimed drafts can only be accessed in embedded iFrames whereas normal drafts can be used and accessed on Dropbox Sign.
         /// </remarks>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="unclaimedDraftCreateEmbeddedWithTemplateRequest"></param>
@@ -100,7 +100,7 @@ namespace HelloSign.Api
         /// Edit and Resend Unclaimed Draft
         /// </summary>
         /// <remarks>
-        /// Creates a new signature request from an embedded request that can be edited prior to being sent to the recipients. Parameter &#x60;test_mode&#x60; can be edited prior to request. Signers can be edited in embedded editor. Requester&#39;s email address will remain unchanged if &#x60;requester_email_address&#x60; parameter is not set.  **NOTE**: Embedded unclaimed drafts can only be accessed in embedded iFrames whereas normal drafts can be used and accessed on HelloSign.
+        /// Creates a new signature request from an embedded request that can be edited prior to being sent to the recipients. Parameter &#x60;test_mode&#x60; can be edited prior to request. Signers can be edited in embedded editor. Requester&#39;s email address will remain unchanged if &#x60;requester_email_address&#x60; parameter is not set.  **NOTE**: Embedded unclaimed drafts can only be accessed in embedded iFrames whereas normal drafts can be used and accessed on Dropbox Sign.
         /// </remarks>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="signatureRequestId">The ID of the signature request to edit and resend.</param>
@@ -113,7 +113,7 @@ namespace HelloSign.Api
         /// Edit and Resend Unclaimed Draft
         /// </summary>
         /// <remarks>
-        /// Creates a new signature request from an embedded request that can be edited prior to being sent to the recipients. Parameter &#x60;test_mode&#x60; can be edited prior to request. Signers can be edited in embedded editor. Requester&#39;s email address will remain unchanged if &#x60;requester_email_address&#x60; parameter is not set.  **NOTE**: Embedded unclaimed drafts can only be accessed in embedded iFrames whereas normal drafts can be used and accessed on HelloSign.
+        /// Creates a new signature request from an embedded request that can be edited prior to being sent to the recipients. Parameter &#x60;test_mode&#x60; can be edited prior to request. Signers can be edited in embedded editor. Requester&#39;s email address will remain unchanged if &#x60;requester_email_address&#x60; parameter is not set.  **NOTE**: Embedded unclaimed drafts can only be accessed in embedded iFrames whereas normal drafts can be used and accessed on Dropbox Sign.
         /// </remarks>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="signatureRequestId">The ID of the signature request to edit and resend.</param>
@@ -159,7 +159,7 @@ namespace HelloSign.Api
         /// Create Embedded Unclaimed Draft
         /// </summary>
         /// <remarks>
-        /// Creates a new Draft that can be claimed and used in an embedded iFrame. The first authenticated user to access the URL will claim the Draft and will be shown the \&quot;Request signature\&quot; page with the Draft loaded. Subsequent access to the claim URL will result in a &#x60;404&#x60;. For this embedded endpoint the &#x60;requester_email_address&#x60; parameter is required.  **NOTE**: Embedded unclaimed drafts can only be accessed in embedded iFrames whereas normal drafts can be used and accessed on HelloSign.
+        /// Creates a new Draft that can be claimed and used in an embedded iFrame. The first authenticated user to access the URL will claim the Draft and will be shown the \&quot;Request signature\&quot; page with the Draft loaded. Subsequent access to the claim URL will result in a &#x60;404&#x60;. For this embedded endpoint the &#x60;requester_email_address&#x60; parameter is required.  **NOTE**: Embedded unclaimed drafts can only be accessed in embedded iFrames whereas normal drafts can be used and accessed on Dropbox Sign.
         /// </remarks>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="unclaimedDraftCreateEmbeddedRequest"></param>
@@ -172,7 +172,7 @@ namespace HelloSign.Api
         /// Create Embedded Unclaimed Draft
         /// </summary>
         /// <remarks>
-        /// Creates a new Draft that can be claimed and used in an embedded iFrame. The first authenticated user to access the URL will claim the Draft and will be shown the \&quot;Request signature\&quot; page with the Draft loaded. Subsequent access to the claim URL will result in a &#x60;404&#x60;. For this embedded endpoint the &#x60;requester_email_address&#x60; parameter is required.  **NOTE**: Embedded unclaimed drafts can only be accessed in embedded iFrames whereas normal drafts can be used and accessed on HelloSign.
+        /// Creates a new Draft that can be claimed and used in an embedded iFrame. The first authenticated user to access the URL will claim the Draft and will be shown the \&quot;Request signature\&quot; page with the Draft loaded. Subsequent access to the claim URL will result in a &#x60;404&#x60;. For this embedded endpoint the &#x60;requester_email_address&#x60; parameter is required.  **NOTE**: Embedded unclaimed drafts can only be accessed in embedded iFrames whereas normal drafts can be used and accessed on Dropbox Sign.
         /// </remarks>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="unclaimedDraftCreateEmbeddedRequest"></param>
@@ -184,7 +184,7 @@ namespace HelloSign.Api
         /// Create Embedded Unclaimed Draft with Template
         /// </summary>
         /// <remarks>
-        /// Creates a new Draft with a previously saved template(s) that can be claimed and used in an embedded iFrame. The first authenticated user to access the URL will claim the Draft and will be shown the \&quot;Request signature\&quot; page with the Draft loaded. Subsequent access to the claim URL will result in a &#x60;404&#x60;. For this embedded endpoint the &#x60;requester_email_address&#x60; parameter is required.  **NOTE**: Embedded unclaimed drafts can only be accessed in embedded iFrames whereas normal drafts can be used and accessed on HelloSign.
+        /// Creates a new Draft with a previously saved template(s) that can be claimed and used in an embedded iFrame. The first authenticated user to access the URL will claim the Draft and will be shown the \&quot;Request signature\&quot; page with the Draft loaded. Subsequent access to the claim URL will result in a &#x60;404&#x60;. For this embedded endpoint the &#x60;requester_email_address&#x60; parameter is required.  **NOTE**: Embedded unclaimed drafts can only be accessed in embedded iFrames whereas normal drafts can be used and accessed on Dropbox Sign.
         /// </remarks>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="unclaimedDraftCreateEmbeddedWithTemplateRequest"></param>
@@ -197,7 +197,7 @@ namespace HelloSign.Api
         /// Create Embedded Unclaimed Draft with Template
         /// </summary>
         /// <remarks>
-        /// Creates a new Draft with a previously saved template(s) that can be claimed and used in an embedded iFrame. The first authenticated user to access the URL will claim the Draft and will be shown the \&quot;Request signature\&quot; page with the Draft loaded. Subsequent access to the claim URL will result in a &#x60;404&#x60;. For this embedded endpoint the &#x60;requester_email_address&#x60; parameter is required.  **NOTE**: Embedded unclaimed drafts can only be accessed in embedded iFrames whereas normal drafts can be used and accessed on HelloSign.
+        /// Creates a new Draft with a previously saved template(s) that can be claimed and used in an embedded iFrame. The first authenticated user to access the URL will claim the Draft and will be shown the \&quot;Request signature\&quot; page with the Draft loaded. Subsequent access to the claim URL will result in a &#x60;404&#x60;. For this embedded endpoint the &#x60;requester_email_address&#x60; parameter is required.  **NOTE**: Embedded unclaimed drafts can only be accessed in embedded iFrames whereas normal drafts can be used and accessed on Dropbox Sign.
         /// </remarks>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="unclaimedDraftCreateEmbeddedWithTemplateRequest"></param>
@@ -209,7 +209,7 @@ namespace HelloSign.Api
         /// Edit and Resend Unclaimed Draft
         /// </summary>
         /// <remarks>
-        /// Creates a new signature request from an embedded request that can be edited prior to being sent to the recipients. Parameter &#x60;test_mode&#x60; can be edited prior to request. Signers can be edited in embedded editor. Requester&#39;s email address will remain unchanged if &#x60;requester_email_address&#x60; parameter is not set.  **NOTE**: Embedded unclaimed drafts can only be accessed in embedded iFrames whereas normal drafts can be used and accessed on HelloSign.
+        /// Creates a new signature request from an embedded request that can be edited prior to being sent to the recipients. Parameter &#x60;test_mode&#x60; can be edited prior to request. Signers can be edited in embedded editor. Requester&#39;s email address will remain unchanged if &#x60;requester_email_address&#x60; parameter is not set.  **NOTE**: Embedded unclaimed drafts can only be accessed in embedded iFrames whereas normal drafts can be used and accessed on Dropbox Sign.
         /// </remarks>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="signatureRequestId">The ID of the signature request to edit and resend.</param>
@@ -223,7 +223,7 @@ namespace HelloSign.Api
         /// Edit and Resend Unclaimed Draft
         /// </summary>
         /// <remarks>
-        /// Creates a new signature request from an embedded request that can be edited prior to being sent to the recipients. Parameter &#x60;test_mode&#x60; can be edited prior to request. Signers can be edited in embedded editor. Requester&#39;s email address will remain unchanged if &#x60;requester_email_address&#x60; parameter is not set.  **NOTE**: Embedded unclaimed drafts can only be accessed in embedded iFrames whereas normal drafts can be used and accessed on HelloSign.
+        /// Creates a new signature request from an embedded request that can be edited prior to being sent to the recipients. Parameter &#x60;test_mode&#x60; can be edited prior to request. Signers can be edited in embedded editor. Requester&#39;s email address will remain unchanged if &#x60;requester_email_address&#x60; parameter is not set.  **NOTE**: Embedded unclaimed drafts can only be accessed in embedded iFrames whereas normal drafts can be used and accessed on Dropbox Sign.
         /// </remarks>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="signatureRequestId">The ID of the signature request to edit and resend.</param>
@@ -535,7 +535,7 @@ namespace HelloSign.Api
         }
 
         /// <summary>
-        /// Create Embedded Unclaimed Draft Creates a new Draft that can be claimed and used in an embedded iFrame. The first authenticated user to access the URL will claim the Draft and will be shown the \&quot;Request signature\&quot; page with the Draft loaded. Subsequent access to the claim URL will result in a &#x60;404&#x60;. For this embedded endpoint the &#x60;requester_email_address&#x60; parameter is required.  **NOTE**: Embedded unclaimed drafts can only be accessed in embedded iFrames whereas normal drafts can be used and accessed on HelloSign.
+        /// Create Embedded Unclaimed Draft Creates a new Draft that can be claimed and used in an embedded iFrame. The first authenticated user to access the URL will claim the Draft and will be shown the \&quot;Request signature\&quot; page with the Draft loaded. Subsequent access to the claim URL will result in a &#x60;404&#x60;. For this embedded endpoint the &#x60;requester_email_address&#x60; parameter is required.  **NOTE**: Embedded unclaimed drafts can only be accessed in embedded iFrames whereas normal drafts can be used and accessed on Dropbox Sign.
         /// </summary>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="unclaimedDraftCreateEmbeddedRequest"></param>
@@ -548,7 +548,7 @@ namespace HelloSign.Api
         }
 
         /// <summary>
-        /// Create Embedded Unclaimed Draft Creates a new Draft that can be claimed and used in an embedded iFrame. The first authenticated user to access the URL will claim the Draft and will be shown the \&quot;Request signature\&quot; page with the Draft loaded. Subsequent access to the claim URL will result in a &#x60;404&#x60;. For this embedded endpoint the &#x60;requester_email_address&#x60; parameter is required.  **NOTE**: Embedded unclaimed drafts can only be accessed in embedded iFrames whereas normal drafts can be used and accessed on HelloSign.
+        /// Create Embedded Unclaimed Draft Creates a new Draft that can be claimed and used in an embedded iFrame. The first authenticated user to access the URL will claim the Draft and will be shown the \&quot;Request signature\&quot; page with the Draft loaded. Subsequent access to the claim URL will result in a &#x60;404&#x60;. For this embedded endpoint the &#x60;requester_email_address&#x60; parameter is required.  **NOTE**: Embedded unclaimed drafts can only be accessed in embedded iFrames whereas normal drafts can be used and accessed on Dropbox Sign.
         /// </summary>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="unclaimedDraftCreateEmbeddedRequest"></param>
@@ -624,7 +624,7 @@ namespace HelloSign.Api
         }
 
         /// <summary>
-        /// Create Embedded Unclaimed Draft Creates a new Draft that can be claimed and used in an embedded iFrame. The first authenticated user to access the URL will claim the Draft and will be shown the \&quot;Request signature\&quot; page with the Draft loaded. Subsequent access to the claim URL will result in a &#x60;404&#x60;. For this embedded endpoint the &#x60;requester_email_address&#x60; parameter is required.  **NOTE**: Embedded unclaimed drafts can only be accessed in embedded iFrames whereas normal drafts can be used and accessed on HelloSign.
+        /// Create Embedded Unclaimed Draft Creates a new Draft that can be claimed and used in an embedded iFrame. The first authenticated user to access the URL will claim the Draft and will be shown the \&quot;Request signature\&quot; page with the Draft loaded. Subsequent access to the claim URL will result in a &#x60;404&#x60;. For this embedded endpoint the &#x60;requester_email_address&#x60; parameter is required.  **NOTE**: Embedded unclaimed drafts can only be accessed in embedded iFrames whereas normal drafts can be used and accessed on Dropbox Sign.
         /// </summary>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="unclaimedDraftCreateEmbeddedRequest"></param>
@@ -638,7 +638,7 @@ namespace HelloSign.Api
         }
 
         /// <summary>
-        /// Create Embedded Unclaimed Draft Creates a new Draft that can be claimed and used in an embedded iFrame. The first authenticated user to access the URL will claim the Draft and will be shown the \&quot;Request signature\&quot; page with the Draft loaded. Subsequent access to the claim URL will result in a &#x60;404&#x60;. For this embedded endpoint the &#x60;requester_email_address&#x60; parameter is required.  **NOTE**: Embedded unclaimed drafts can only be accessed in embedded iFrames whereas normal drafts can be used and accessed on HelloSign.
+        /// Create Embedded Unclaimed Draft Creates a new Draft that can be claimed and used in an embedded iFrame. The first authenticated user to access the URL will claim the Draft and will be shown the \&quot;Request signature\&quot; page with the Draft loaded. Subsequent access to the claim URL will result in a &#x60;404&#x60;. For this embedded endpoint the &#x60;requester_email_address&#x60; parameter is required.  **NOTE**: Embedded unclaimed drafts can only be accessed in embedded iFrames whereas normal drafts can be used and accessed on Dropbox Sign.
         /// </summary>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="unclaimedDraftCreateEmbeddedRequest"></param>
@@ -717,7 +717,7 @@ namespace HelloSign.Api
         }
 
         /// <summary>
-        /// Create Embedded Unclaimed Draft with Template Creates a new Draft with a previously saved template(s) that can be claimed and used in an embedded iFrame. The first authenticated user to access the URL will claim the Draft and will be shown the \&quot;Request signature\&quot; page with the Draft loaded. Subsequent access to the claim URL will result in a &#x60;404&#x60;. For this embedded endpoint the &#x60;requester_email_address&#x60; parameter is required.  **NOTE**: Embedded unclaimed drafts can only be accessed in embedded iFrames whereas normal drafts can be used and accessed on HelloSign.
+        /// Create Embedded Unclaimed Draft with Template Creates a new Draft with a previously saved template(s) that can be claimed and used in an embedded iFrame. The first authenticated user to access the URL will claim the Draft and will be shown the \&quot;Request signature\&quot; page with the Draft loaded. Subsequent access to the claim URL will result in a &#x60;404&#x60;. For this embedded endpoint the &#x60;requester_email_address&#x60; parameter is required.  **NOTE**: Embedded unclaimed drafts can only be accessed in embedded iFrames whereas normal drafts can be used and accessed on Dropbox Sign.
         /// </summary>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="unclaimedDraftCreateEmbeddedWithTemplateRequest"></param>
@@ -730,7 +730,7 @@ namespace HelloSign.Api
         }
 
         /// <summary>
-        /// Create Embedded Unclaimed Draft with Template Creates a new Draft with a previously saved template(s) that can be claimed and used in an embedded iFrame. The first authenticated user to access the URL will claim the Draft and will be shown the \&quot;Request signature\&quot; page with the Draft loaded. Subsequent access to the claim URL will result in a &#x60;404&#x60;. For this embedded endpoint the &#x60;requester_email_address&#x60; parameter is required.  **NOTE**: Embedded unclaimed drafts can only be accessed in embedded iFrames whereas normal drafts can be used and accessed on HelloSign.
+        /// Create Embedded Unclaimed Draft with Template Creates a new Draft with a previously saved template(s) that can be claimed and used in an embedded iFrame. The first authenticated user to access the URL will claim the Draft and will be shown the \&quot;Request signature\&quot; page with the Draft loaded. Subsequent access to the claim URL will result in a &#x60;404&#x60;. For this embedded endpoint the &#x60;requester_email_address&#x60; parameter is required.  **NOTE**: Embedded unclaimed drafts can only be accessed in embedded iFrames whereas normal drafts can be used and accessed on Dropbox Sign.
         /// </summary>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="unclaimedDraftCreateEmbeddedWithTemplateRequest"></param>
@@ -806,7 +806,7 @@ namespace HelloSign.Api
         }
 
         /// <summary>
-        /// Create Embedded Unclaimed Draft with Template Creates a new Draft with a previously saved template(s) that can be claimed and used in an embedded iFrame. The first authenticated user to access the URL will claim the Draft and will be shown the \&quot;Request signature\&quot; page with the Draft loaded. Subsequent access to the claim URL will result in a &#x60;404&#x60;. For this embedded endpoint the &#x60;requester_email_address&#x60; parameter is required.  **NOTE**: Embedded unclaimed drafts can only be accessed in embedded iFrames whereas normal drafts can be used and accessed on HelloSign.
+        /// Create Embedded Unclaimed Draft with Template Creates a new Draft with a previously saved template(s) that can be claimed and used in an embedded iFrame. The first authenticated user to access the URL will claim the Draft and will be shown the \&quot;Request signature\&quot; page with the Draft loaded. Subsequent access to the claim URL will result in a &#x60;404&#x60;. For this embedded endpoint the &#x60;requester_email_address&#x60; parameter is required.  **NOTE**: Embedded unclaimed drafts can only be accessed in embedded iFrames whereas normal drafts can be used and accessed on Dropbox Sign.
         /// </summary>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="unclaimedDraftCreateEmbeddedWithTemplateRequest"></param>
@@ -820,7 +820,7 @@ namespace HelloSign.Api
         }
 
         /// <summary>
-        /// Create Embedded Unclaimed Draft with Template Creates a new Draft with a previously saved template(s) that can be claimed and used in an embedded iFrame. The first authenticated user to access the URL will claim the Draft and will be shown the \&quot;Request signature\&quot; page with the Draft loaded. Subsequent access to the claim URL will result in a &#x60;404&#x60;. For this embedded endpoint the &#x60;requester_email_address&#x60; parameter is required.  **NOTE**: Embedded unclaimed drafts can only be accessed in embedded iFrames whereas normal drafts can be used and accessed on HelloSign.
+        /// Create Embedded Unclaimed Draft with Template Creates a new Draft with a previously saved template(s) that can be claimed and used in an embedded iFrame. The first authenticated user to access the URL will claim the Draft and will be shown the \&quot;Request signature\&quot; page with the Draft loaded. Subsequent access to the claim URL will result in a &#x60;404&#x60;. For this embedded endpoint the &#x60;requester_email_address&#x60; parameter is required.  **NOTE**: Embedded unclaimed drafts can only be accessed in embedded iFrames whereas normal drafts can be used and accessed on Dropbox Sign.
         /// </summary>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="unclaimedDraftCreateEmbeddedWithTemplateRequest"></param>
@@ -899,7 +899,7 @@ namespace HelloSign.Api
         }
 
         /// <summary>
-        /// Edit and Resend Unclaimed Draft Creates a new signature request from an embedded request that can be edited prior to being sent to the recipients. Parameter &#x60;test_mode&#x60; can be edited prior to request. Signers can be edited in embedded editor. Requester&#39;s email address will remain unchanged if &#x60;requester_email_address&#x60; parameter is not set.  **NOTE**: Embedded unclaimed drafts can only be accessed in embedded iFrames whereas normal drafts can be used and accessed on HelloSign.
+        /// Edit and Resend Unclaimed Draft Creates a new signature request from an embedded request that can be edited prior to being sent to the recipients. Parameter &#x60;test_mode&#x60; can be edited prior to request. Signers can be edited in embedded editor. Requester&#39;s email address will remain unchanged if &#x60;requester_email_address&#x60; parameter is not set.  **NOTE**: Embedded unclaimed drafts can only be accessed in embedded iFrames whereas normal drafts can be used and accessed on Dropbox Sign.
         /// </summary>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="signatureRequestId">The ID of the signature request to edit and resend.</param>
@@ -913,7 +913,7 @@ namespace HelloSign.Api
         }
 
         /// <summary>
-        /// Edit and Resend Unclaimed Draft Creates a new signature request from an embedded request that can be edited prior to being sent to the recipients. Parameter &#x60;test_mode&#x60; can be edited prior to request. Signers can be edited in embedded editor. Requester&#39;s email address will remain unchanged if &#x60;requester_email_address&#x60; parameter is not set.  **NOTE**: Embedded unclaimed drafts can only be accessed in embedded iFrames whereas normal drafts can be used and accessed on HelloSign.
+        /// Edit and Resend Unclaimed Draft Creates a new signature request from an embedded request that can be edited prior to being sent to the recipients. Parameter &#x60;test_mode&#x60; can be edited prior to request. Signers can be edited in embedded editor. Requester&#39;s email address will remain unchanged if &#x60;requester_email_address&#x60; parameter is not set.  **NOTE**: Embedded unclaimed drafts can only be accessed in embedded iFrames whereas normal drafts can be used and accessed on Dropbox Sign.
         /// </summary>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="signatureRequestId">The ID of the signature request to edit and resend.</param>
@@ -997,7 +997,7 @@ namespace HelloSign.Api
         }
 
         /// <summary>
-        /// Edit and Resend Unclaimed Draft Creates a new signature request from an embedded request that can be edited prior to being sent to the recipients. Parameter &#x60;test_mode&#x60; can be edited prior to request. Signers can be edited in embedded editor. Requester&#39;s email address will remain unchanged if &#x60;requester_email_address&#x60; parameter is not set.  **NOTE**: Embedded unclaimed drafts can only be accessed in embedded iFrames whereas normal drafts can be used and accessed on HelloSign.
+        /// Edit and Resend Unclaimed Draft Creates a new signature request from an embedded request that can be edited prior to being sent to the recipients. Parameter &#x60;test_mode&#x60; can be edited prior to request. Signers can be edited in embedded editor. Requester&#39;s email address will remain unchanged if &#x60;requester_email_address&#x60; parameter is not set.  **NOTE**: Embedded unclaimed drafts can only be accessed in embedded iFrames whereas normal drafts can be used and accessed on Dropbox Sign.
         /// </summary>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="signatureRequestId">The ID of the signature request to edit and resend.</param>
@@ -1012,7 +1012,7 @@ namespace HelloSign.Api
         }
 
         /// <summary>
-        /// Edit and Resend Unclaimed Draft Creates a new signature request from an embedded request that can be edited prior to being sent to the recipients. Parameter &#x60;test_mode&#x60; can be edited prior to request. Signers can be edited in embedded editor. Requester&#39;s email address will remain unchanged if &#x60;requester_email_address&#x60; parameter is not set.  **NOTE**: Embedded unclaimed drafts can only be accessed in embedded iFrames whereas normal drafts can be used and accessed on HelloSign.
+        /// Edit and Resend Unclaimed Draft Creates a new signature request from an embedded request that can be edited prior to being sent to the recipients. Parameter &#x60;test_mode&#x60; can be edited prior to request. Signers can be edited in embedded editor. Requester&#39;s email address will remain unchanged if &#x60;requester_email_address&#x60; parameter is not set.  **NOTE**: Embedded unclaimed drafts can only be accessed in embedded iFrames whereas normal drafts can be used and accessed on Dropbox Sign.
         /// </summary>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="signatureRequestId">The ID of the signature request to edit and resend.</param>

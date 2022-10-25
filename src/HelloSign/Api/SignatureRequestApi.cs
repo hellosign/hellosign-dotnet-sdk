@@ -1,7 +1,7 @@
 /*
- * HelloSign API
+ * Dropbox Sign API
  *
- * HelloSign v3 API
+ * Dropbox Sign v3 API
  *
  * The version of the OpenAPI document: 3.0.0
  * Contact: apisupport@hellosign.com
@@ -31,7 +31,7 @@ namespace HelloSign.Api
         /// Embedded Bulk Send with Template
         /// </summary>
         /// <remarks>
-        /// Creates BulkSendJob which sends up to 250 SignatureRequests in bulk based off of the provided Template(s) specified with the &#x60;template_ids&#x60; parameter to be signed in an embedded iFrame. These embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on HelloSign.  **NOTE**: Only available for Standard plan and higher.
+        /// Creates BulkSendJob which sends up to 250 SignatureRequests in bulk based off of the provided Template(s) specified with the &#x60;template_ids&#x60; parameter to be signed in an embedded iFrame. These embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on Dropbox Sign.  **NOTE**: Only available for Standard plan and higher.
         /// </remarks>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="signatureRequestBulkCreateEmbeddedWithTemplateRequest"></param>
@@ -43,7 +43,7 @@ namespace HelloSign.Api
         /// Embedded Bulk Send with Template
         /// </summary>
         /// <remarks>
-        /// Creates BulkSendJob which sends up to 250 SignatureRequests in bulk based off of the provided Template(s) specified with the &#x60;template_ids&#x60; parameter to be signed in an embedded iFrame. These embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on HelloSign.  **NOTE**: Only available for Standard plan and higher.
+        /// Creates BulkSendJob which sends up to 250 SignatureRequests in bulk based off of the provided Template(s) specified with the &#x60;template_ids&#x60; parameter to be signed in an embedded iFrame. These embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on Dropbox Sign.  **NOTE**: Only available for Standard plan and higher.
         /// </remarks>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="signatureRequestBulkCreateEmbeddedWithTemplateRequest"></param>
@@ -100,7 +100,7 @@ namespace HelloSign.Api
         /// Create Embedded Signature Request
         /// </summary>
         /// <remarks>
-        /// Creates a new SignatureRequest with the submitted documents to be signed in an embedded iFrame. If form_fields_per_document is not specified, a signature page will be affixed where all signers will be required to add their signature, signifying their agreement to all contained documents. &lt;u&gt;Note&lt;/u&gt; that embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on HelloSign.
+        /// Creates a new SignatureRequest with the submitted documents to be signed in an embedded iFrame. If form_fields_per_document is not specified, a signature page will be affixed where all signers will be required to add their signature, signifying their agreement to all contained documents. &lt;u&gt;Note&lt;/u&gt; that embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on Dropbox Sign.
         /// </remarks>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="signatureRequestCreateEmbeddedRequest"></param>
@@ -112,7 +112,7 @@ namespace HelloSign.Api
         /// Create Embedded Signature Request
         /// </summary>
         /// <remarks>
-        /// Creates a new SignatureRequest with the submitted documents to be signed in an embedded iFrame. If form_fields_per_document is not specified, a signature page will be affixed where all signers will be required to add their signature, signifying their agreement to all contained documents. &lt;u&gt;Note&lt;/u&gt; that embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on HelloSign.
+        /// Creates a new SignatureRequest with the submitted documents to be signed in an embedded iFrame. If form_fields_per_document is not specified, a signature page will be affixed where all signers will be required to add their signature, signifying their agreement to all contained documents. &lt;u&gt;Note&lt;/u&gt; that embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on Dropbox Sign.
         /// </remarks>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="signatureRequestCreateEmbeddedRequest"></param>
@@ -123,7 +123,7 @@ namespace HelloSign.Api
         /// Create Embedded Signature Request with Template
         /// </summary>
         /// <remarks>
-        /// Creates a new SignatureRequest based on the given Template(s) to be signed in an embedded iFrame. &lt;u&gt;Note&lt;/u&gt; that embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on HelloSign.
+        /// Creates a new SignatureRequest based on the given Template(s) to be signed in an embedded iFrame. &lt;u&gt;Note&lt;/u&gt; that embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on Dropbox Sign.
         /// </remarks>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="signatureRequestCreateEmbeddedWithTemplateRequest"></param>
@@ -135,7 +135,7 @@ namespace HelloSign.Api
         /// Create Embedded Signature Request with Template
         /// </summary>
         /// <remarks>
-        /// Creates a new SignatureRequest based on the given Template(s) to be signed in an embedded iFrame. &lt;u&gt;Note&lt;/u&gt; that embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on HelloSign.
+        /// Creates a new SignatureRequest based on the given Template(s) to be signed in an embedded iFrame. &lt;u&gt;Note&lt;/u&gt; that embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on Dropbox Sign.
         /// </remarks>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="signatureRequestCreateEmbeddedWithTemplateRequest"></param>
@@ -151,11 +151,9 @@ namespace HelloSign.Api
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="signatureRequestId">The id of the SignatureRequest to retrieve.</param>
         /// <param name="fileType">Set to &#x60;pdf&#x60; for a single merged document or &#x60;zip&#x60; for a collection of individual documents. (optional, default to pdf)</param>
-        /// <param name="getUrl">If &#x60;true&#x60;, the response will contain a url link to the file instead. Links are only available for PDFs and have a TTL of 3 days. (optional, default to false)</param>
-        /// <param name="getDataUri">If &#x60;true&#x60;, the response will contain the file as base64 encoded string. Base64 encoding is only available for PDFs. (optional, default to false)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>FileResponse</returns>
-        FileResponse SignatureRequestFiles(string signatureRequestId, string? fileType = default(string?), bool? getUrl = default(bool?), bool? getDataUri = default(bool?), int operationIndex = 0);
+        /// <returns>System.IO.Stream</returns>
+        System.IO.Stream SignatureRequestFiles(string signatureRequestId, string? fileType = default(string?), int operationIndex = 0);
 
         /// <summary>
         /// Download File
@@ -166,11 +164,55 @@ namespace HelloSign.Api
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="signatureRequestId">The id of the SignatureRequest to retrieve.</param>
         /// <param name="fileType">Set to &#x60;pdf&#x60; for a single merged document or &#x60;zip&#x60; for a collection of individual documents. (optional, default to pdf)</param>
-        /// <param name="getUrl">If &#x60;true&#x60;, the response will contain a url link to the file instead. Links are only available for PDFs and have a TTL of 3 days. (optional, default to false)</param>
-        /// <param name="getDataUri">If &#x60;true&#x60;, the response will contain the file as base64 encoded string. Base64 encoding is only available for PDFs. (optional, default to false)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>ApiResponse of System.IO.Stream</returns>
+        ApiResponse<System.IO.Stream> SignatureRequestFilesWithHttpInfo(string signatureRequestId, string? fileType = default(string?), int operationIndex = 0);
+        /// <summary>
+        /// Download File as Encoded String
+        /// </summary>
+        /// <remarks>
+        /// Obtain a copy of the current documents specified by the &#x60;signature_request_id&#x60; parameter. Returns a JSON object with a &#x60;data_uri&#x60; representing the base64 encoded file (PDFs only).   If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead.
+        /// </remarks>
+        /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="signatureRequestId">The id of the SignatureRequest to retrieve.</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>FileResponseDataUri</returns>
+        FileResponseDataUri SignatureRequestFilesAsEncodedString(string signatureRequestId, int operationIndex = 0);
+
+        /// <summary>
+        /// Download File as Encoded String
+        /// </summary>
+        /// <remarks>
+        /// Obtain a copy of the current documents specified by the &#x60;signature_request_id&#x60; parameter. Returns a JSON object with a &#x60;data_uri&#x60; representing the base64 encoded file (PDFs only).   If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead.
+        /// </remarks>
+        /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="signatureRequestId">The id of the SignatureRequest to retrieve.</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>ApiResponse of FileResponseDataUri</returns>
+        ApiResponse<FileResponseDataUri> SignatureRequestFilesAsEncodedStringWithHttpInfo(string signatureRequestId, int operationIndex = 0);
+        /// <summary>
+        /// Download File as File Url
+        /// </summary>
+        /// <remarks>
+        /// Obtain a copy of the current documents specified by the &#x60;signature_request_id&#x60; parameter. Returns a JSON object with a url to the file (PDFs only).   If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead.
+        /// </remarks>
+        /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="signatureRequestId">The id of the SignatureRequest to retrieve.</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>FileResponse</returns>
+        FileResponse SignatureRequestFilesAsFileUrl(string signatureRequestId, int operationIndex = 0);
+
+        /// <summary>
+        /// Download File as File Url
+        /// </summary>
+        /// <remarks>
+        /// Obtain a copy of the current documents specified by the &#x60;signature_request_id&#x60; parameter. Returns a JSON object with a url to the file (PDFs only).   If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead.
+        /// </remarks>
+        /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="signatureRequestId">The id of the SignatureRequest to retrieve.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of FileResponse</returns>
-        ApiResponse<FileResponse> SignatureRequestFilesWithHttpInfo(string signatureRequestId, string? fileType = default(string?), bool? getUrl = default(bool?), bool? getDataUri = default(bool?), int operationIndex = 0);
+        ApiResponse<FileResponse> SignatureRequestFilesAsFileUrlWithHttpInfo(string signatureRequestId, int operationIndex = 0);
         /// <summary>
         /// Get Signature Request
         /// </summary>
@@ -378,7 +420,7 @@ namespace HelloSign.Api
         /// Embedded Bulk Send with Template
         /// </summary>
         /// <remarks>
-        /// Creates BulkSendJob which sends up to 250 SignatureRequests in bulk based off of the provided Template(s) specified with the &#x60;template_ids&#x60; parameter to be signed in an embedded iFrame. These embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on HelloSign.  **NOTE**: Only available for Standard plan and higher.
+        /// Creates BulkSendJob which sends up to 250 SignatureRequests in bulk based off of the provided Template(s) specified with the &#x60;template_ids&#x60; parameter to be signed in an embedded iFrame. These embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on Dropbox Sign.  **NOTE**: Only available for Standard plan and higher.
         /// </remarks>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="signatureRequestBulkCreateEmbeddedWithTemplateRequest"></param>
@@ -391,7 +433,7 @@ namespace HelloSign.Api
         /// Embedded Bulk Send with Template
         /// </summary>
         /// <remarks>
-        /// Creates BulkSendJob which sends up to 250 SignatureRequests in bulk based off of the provided Template(s) specified with the &#x60;template_ids&#x60; parameter to be signed in an embedded iFrame. These embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on HelloSign.  **NOTE**: Only available for Standard plan and higher.
+        /// Creates BulkSendJob which sends up to 250 SignatureRequests in bulk based off of the provided Template(s) specified with the &#x60;template_ids&#x60; parameter to be signed in an embedded iFrame. These embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on Dropbox Sign.  **NOTE**: Only available for Standard plan and higher.
         /// </remarks>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="signatureRequestBulkCreateEmbeddedWithTemplateRequest"></param>
@@ -453,7 +495,7 @@ namespace HelloSign.Api
         /// Create Embedded Signature Request
         /// </summary>
         /// <remarks>
-        /// Creates a new SignatureRequest with the submitted documents to be signed in an embedded iFrame. If form_fields_per_document is not specified, a signature page will be affixed where all signers will be required to add their signature, signifying their agreement to all contained documents. &lt;u&gt;Note&lt;/u&gt; that embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on HelloSign.
+        /// Creates a new SignatureRequest with the submitted documents to be signed in an embedded iFrame. If form_fields_per_document is not specified, a signature page will be affixed where all signers will be required to add their signature, signifying their agreement to all contained documents. &lt;u&gt;Note&lt;/u&gt; that embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on Dropbox Sign.
         /// </remarks>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="signatureRequestCreateEmbeddedRequest"></param>
@@ -466,7 +508,7 @@ namespace HelloSign.Api
         /// Create Embedded Signature Request
         /// </summary>
         /// <remarks>
-        /// Creates a new SignatureRequest with the submitted documents to be signed in an embedded iFrame. If form_fields_per_document is not specified, a signature page will be affixed where all signers will be required to add their signature, signifying their agreement to all contained documents. &lt;u&gt;Note&lt;/u&gt; that embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on HelloSign.
+        /// Creates a new SignatureRequest with the submitted documents to be signed in an embedded iFrame. If form_fields_per_document is not specified, a signature page will be affixed where all signers will be required to add their signature, signifying their agreement to all contained documents. &lt;u&gt;Note&lt;/u&gt; that embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on Dropbox Sign.
         /// </remarks>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="signatureRequestCreateEmbeddedRequest"></param>
@@ -478,7 +520,7 @@ namespace HelloSign.Api
         /// Create Embedded Signature Request with Template
         /// </summary>
         /// <remarks>
-        /// Creates a new SignatureRequest based on the given Template(s) to be signed in an embedded iFrame. &lt;u&gt;Note&lt;/u&gt; that embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on HelloSign.
+        /// Creates a new SignatureRequest based on the given Template(s) to be signed in an embedded iFrame. &lt;u&gt;Note&lt;/u&gt; that embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on Dropbox Sign.
         /// </remarks>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="signatureRequestCreateEmbeddedWithTemplateRequest"></param>
@@ -491,7 +533,7 @@ namespace HelloSign.Api
         /// Create Embedded Signature Request with Template
         /// </summary>
         /// <remarks>
-        /// Creates a new SignatureRequest based on the given Template(s) to be signed in an embedded iFrame. &lt;u&gt;Note&lt;/u&gt; that embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on HelloSign.
+        /// Creates a new SignatureRequest based on the given Template(s) to be signed in an embedded iFrame. &lt;u&gt;Note&lt;/u&gt; that embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on Dropbox Sign.
         /// </remarks>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="signatureRequestCreateEmbeddedWithTemplateRequest"></param>
@@ -508,12 +550,10 @@ namespace HelloSign.Api
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="signatureRequestId">The id of the SignatureRequest to retrieve.</param>
         /// <param name="fileType">Set to &#x60;pdf&#x60; for a single merged document or &#x60;zip&#x60; for a collection of individual documents. (optional, default to pdf)</param>
-        /// <param name="getUrl">If &#x60;true&#x60;, the response will contain a url link to the file instead. Links are only available for PDFs and have a TTL of 3 days. (optional, default to false)</param>
-        /// <param name="getDataUri">If &#x60;true&#x60;, the response will contain the file as base64 encoded string. Base64 encoding is only available for PDFs. (optional, default to false)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of FileResponse</returns>
-        System.Threading.Tasks.Task<FileResponse> SignatureRequestFilesAsync(string signatureRequestId, string? fileType = default(string?), bool? getUrl = default(bool?), bool? getDataUri = default(bool?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <returns>Task of System.IO.Stream</returns>
+        System.Threading.Tasks.Task<System.IO.Stream> SignatureRequestFilesAsync(string signatureRequestId, string? fileType = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// Download File
@@ -524,12 +564,60 @@ namespace HelloSign.Api
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="signatureRequestId">The id of the SignatureRequest to retrieve.</param>
         /// <param name="fileType">Set to &#x60;pdf&#x60; for a single merged document or &#x60;zip&#x60; for a collection of individual documents. (optional, default to pdf)</param>
-        /// <param name="getUrl">If &#x60;true&#x60;, the response will contain a url link to the file instead. Links are only available for PDFs and have a TTL of 3 days. (optional, default to false)</param>
-        /// <param name="getDataUri">If &#x60;true&#x60;, the response will contain the file as base64 encoded string. Base64 encoding is only available for PDFs. (optional, default to false)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (System.IO.Stream)</returns>
+        System.Threading.Tasks.Task<ApiResponse<System.IO.Stream>> SignatureRequestFilesWithHttpInfoAsync(string signatureRequestId, string? fileType = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <summary>
+        /// Download File as Encoded String
+        /// </summary>
+        /// <remarks>
+        /// Obtain a copy of the current documents specified by the &#x60;signature_request_id&#x60; parameter. Returns a JSON object with a &#x60;data_uri&#x60; representing the base64 encoded file (PDFs only).   If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead.
+        /// </remarks>
+        /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="signatureRequestId">The id of the SignatureRequest to retrieve.</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of FileResponseDataUri</returns>
+        System.Threading.Tasks.Task<FileResponseDataUri> SignatureRequestFilesAsEncodedStringAsync(string signatureRequestId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <summary>
+        /// Download File as Encoded String
+        /// </summary>
+        /// <remarks>
+        /// Obtain a copy of the current documents specified by the &#x60;signature_request_id&#x60; parameter. Returns a JSON object with a &#x60;data_uri&#x60; representing the base64 encoded file (PDFs only).   If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead.
+        /// </remarks>
+        /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="signatureRequestId">The id of the SignatureRequest to retrieve.</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (FileResponseDataUri)</returns>
+        System.Threading.Tasks.Task<ApiResponse<FileResponseDataUri>> SignatureRequestFilesAsEncodedStringWithHttpInfoAsync(string signatureRequestId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <summary>
+        /// Download File as File Url
+        /// </summary>
+        /// <remarks>
+        /// Obtain a copy of the current documents specified by the &#x60;signature_request_id&#x60; parameter. Returns a JSON object with a url to the file (PDFs only).   If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead.
+        /// </remarks>
+        /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="signatureRequestId">The id of the SignatureRequest to retrieve.</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of FileResponse</returns>
+        System.Threading.Tasks.Task<FileResponse> SignatureRequestFilesAsFileUrlAsync(string signatureRequestId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <summary>
+        /// Download File as File Url
+        /// </summary>
+        /// <remarks>
+        /// Obtain a copy of the current documents specified by the &#x60;signature_request_id&#x60; parameter. Returns a JSON object with a url to the file (PDFs only).   If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead.
+        /// </remarks>
+        /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="signatureRequestId">The id of the SignatureRequest to retrieve.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (FileResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<FileResponse>> SignatureRequestFilesWithHttpInfoAsync(string signatureRequestId, string? fileType = default(string?), bool? getUrl = default(bool?), bool? getDataUri = default(bool?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<FileResponse>> SignatureRequestFilesAsFileUrlWithHttpInfoAsync(string signatureRequestId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Get Signature Request
         /// </summary>
@@ -861,7 +949,7 @@ namespace HelloSign.Api
         }
 
         /// <summary>
-        /// Embedded Bulk Send with Template Creates BulkSendJob which sends up to 250 SignatureRequests in bulk based off of the provided Template(s) specified with the &#x60;template_ids&#x60; parameter to be signed in an embedded iFrame. These embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on HelloSign.  **NOTE**: Only available for Standard plan and higher.
+        /// Embedded Bulk Send with Template Creates BulkSendJob which sends up to 250 SignatureRequests in bulk based off of the provided Template(s) specified with the &#x60;template_ids&#x60; parameter to be signed in an embedded iFrame. These embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on Dropbox Sign.  **NOTE**: Only available for Standard plan and higher.
         /// </summary>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="signatureRequestBulkCreateEmbeddedWithTemplateRequest"></param>
@@ -874,7 +962,7 @@ namespace HelloSign.Api
         }
 
         /// <summary>
-        /// Embedded Bulk Send with Template Creates BulkSendJob which sends up to 250 SignatureRequests in bulk based off of the provided Template(s) specified with the &#x60;template_ids&#x60; parameter to be signed in an embedded iFrame. These embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on HelloSign.  **NOTE**: Only available for Standard plan and higher.
+        /// Embedded Bulk Send with Template Creates BulkSendJob which sends up to 250 SignatureRequests in bulk based off of the provided Template(s) specified with the &#x60;template_ids&#x60; parameter to be signed in an embedded iFrame. These embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on Dropbox Sign.  **NOTE**: Only available for Standard plan and higher.
         /// </summary>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="signatureRequestBulkCreateEmbeddedWithTemplateRequest"></param>
@@ -944,7 +1032,7 @@ namespace HelloSign.Api
         }
 
         /// <summary>
-        /// Embedded Bulk Send with Template Creates BulkSendJob which sends up to 250 SignatureRequests in bulk based off of the provided Template(s) specified with the &#x60;template_ids&#x60; parameter to be signed in an embedded iFrame. These embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on HelloSign.  **NOTE**: Only available for Standard plan and higher.
+        /// Embedded Bulk Send with Template Creates BulkSendJob which sends up to 250 SignatureRequests in bulk based off of the provided Template(s) specified with the &#x60;template_ids&#x60; parameter to be signed in an embedded iFrame. These embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on Dropbox Sign.  **NOTE**: Only available for Standard plan and higher.
         /// </summary>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="signatureRequestBulkCreateEmbeddedWithTemplateRequest"></param>
@@ -958,7 +1046,7 @@ namespace HelloSign.Api
         }
 
         /// <summary>
-        /// Embedded Bulk Send with Template Creates BulkSendJob which sends up to 250 SignatureRequests in bulk based off of the provided Template(s) specified with the &#x60;template_ids&#x60; parameter to be signed in an embedded iFrame. These embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on HelloSign.  **NOTE**: Only available for Standard plan and higher.
+        /// Embedded Bulk Send with Template Creates BulkSendJob which sends up to 250 SignatureRequests in bulk based off of the provided Template(s) specified with the &#x60;template_ids&#x60; parameter to be signed in an embedded iFrame. These embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on Dropbox Sign.  **NOTE**: Only available for Standard plan and higher.
         /// </summary>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="signatureRequestBulkCreateEmbeddedWithTemplateRequest"></param>
@@ -1378,7 +1466,7 @@ namespace HelloSign.Api
         }
 
         /// <summary>
-        /// Create Embedded Signature Request Creates a new SignatureRequest with the submitted documents to be signed in an embedded iFrame. If form_fields_per_document is not specified, a signature page will be affixed where all signers will be required to add their signature, signifying their agreement to all contained documents. &lt;u&gt;Note&lt;/u&gt; that embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on HelloSign.
+        /// Create Embedded Signature Request Creates a new SignatureRequest with the submitted documents to be signed in an embedded iFrame. If form_fields_per_document is not specified, a signature page will be affixed where all signers will be required to add their signature, signifying their agreement to all contained documents. &lt;u&gt;Note&lt;/u&gt; that embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on Dropbox Sign.
         /// </summary>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="signatureRequestCreateEmbeddedRequest"></param>
@@ -1391,7 +1479,7 @@ namespace HelloSign.Api
         }
 
         /// <summary>
-        /// Create Embedded Signature Request Creates a new SignatureRequest with the submitted documents to be signed in an embedded iFrame. If form_fields_per_document is not specified, a signature page will be affixed where all signers will be required to add their signature, signifying their agreement to all contained documents. &lt;u&gt;Note&lt;/u&gt; that embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on HelloSign.
+        /// Create Embedded Signature Request Creates a new SignatureRequest with the submitted documents to be signed in an embedded iFrame. If form_fields_per_document is not specified, a signature page will be affixed where all signers will be required to add their signature, signifying their agreement to all contained documents. &lt;u&gt;Note&lt;/u&gt; that embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on Dropbox Sign.
         /// </summary>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="signatureRequestCreateEmbeddedRequest"></param>
@@ -1467,7 +1555,7 @@ namespace HelloSign.Api
         }
 
         /// <summary>
-        /// Create Embedded Signature Request Creates a new SignatureRequest with the submitted documents to be signed in an embedded iFrame. If form_fields_per_document is not specified, a signature page will be affixed where all signers will be required to add their signature, signifying their agreement to all contained documents. &lt;u&gt;Note&lt;/u&gt; that embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on HelloSign.
+        /// Create Embedded Signature Request Creates a new SignatureRequest with the submitted documents to be signed in an embedded iFrame. If form_fields_per_document is not specified, a signature page will be affixed where all signers will be required to add their signature, signifying their agreement to all contained documents. &lt;u&gt;Note&lt;/u&gt; that embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on Dropbox Sign.
         /// </summary>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="signatureRequestCreateEmbeddedRequest"></param>
@@ -1481,7 +1569,7 @@ namespace HelloSign.Api
         }
 
         /// <summary>
-        /// Create Embedded Signature Request Creates a new SignatureRequest with the submitted documents to be signed in an embedded iFrame. If form_fields_per_document is not specified, a signature page will be affixed where all signers will be required to add their signature, signifying their agreement to all contained documents. &lt;u&gt;Note&lt;/u&gt; that embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on HelloSign.
+        /// Create Embedded Signature Request Creates a new SignatureRequest with the submitted documents to be signed in an embedded iFrame. If form_fields_per_document is not specified, a signature page will be affixed where all signers will be required to add their signature, signifying their agreement to all contained documents. &lt;u&gt;Note&lt;/u&gt; that embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on Dropbox Sign.
         /// </summary>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="signatureRequestCreateEmbeddedRequest"></param>
@@ -1560,7 +1648,7 @@ namespace HelloSign.Api
         }
 
         /// <summary>
-        /// Create Embedded Signature Request with Template Creates a new SignatureRequest based on the given Template(s) to be signed in an embedded iFrame. &lt;u&gt;Note&lt;/u&gt; that embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on HelloSign.
+        /// Create Embedded Signature Request with Template Creates a new SignatureRequest based on the given Template(s) to be signed in an embedded iFrame. &lt;u&gt;Note&lt;/u&gt; that embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on Dropbox Sign.
         /// </summary>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="signatureRequestCreateEmbeddedWithTemplateRequest"></param>
@@ -1573,7 +1661,7 @@ namespace HelloSign.Api
         }
 
         /// <summary>
-        /// Create Embedded Signature Request with Template Creates a new SignatureRequest based on the given Template(s) to be signed in an embedded iFrame. &lt;u&gt;Note&lt;/u&gt; that embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on HelloSign.
+        /// Create Embedded Signature Request with Template Creates a new SignatureRequest based on the given Template(s) to be signed in an embedded iFrame. &lt;u&gt;Note&lt;/u&gt; that embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on Dropbox Sign.
         /// </summary>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="signatureRequestCreateEmbeddedWithTemplateRequest"></param>
@@ -1649,7 +1737,7 @@ namespace HelloSign.Api
         }
 
         /// <summary>
-        /// Create Embedded Signature Request with Template Creates a new SignatureRequest based on the given Template(s) to be signed in an embedded iFrame. &lt;u&gt;Note&lt;/u&gt; that embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on HelloSign.
+        /// Create Embedded Signature Request with Template Creates a new SignatureRequest based on the given Template(s) to be signed in an embedded iFrame. &lt;u&gt;Note&lt;/u&gt; that embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on Dropbox Sign.
         /// </summary>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="signatureRequestCreateEmbeddedWithTemplateRequest"></param>
@@ -1663,7 +1751,7 @@ namespace HelloSign.Api
         }
 
         /// <summary>
-        /// Create Embedded Signature Request with Template Creates a new SignatureRequest based on the given Template(s) to be signed in an embedded iFrame. &lt;u&gt;Note&lt;/u&gt; that embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on HelloSign.
+        /// Create Embedded Signature Request with Template Creates a new SignatureRequest based on the given Template(s) to be signed in an embedded iFrame. &lt;u&gt;Note&lt;/u&gt; that embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on Dropbox Sign.
         /// </summary>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="signatureRequestCreateEmbeddedWithTemplateRequest"></param>
@@ -1747,13 +1835,11 @@ namespace HelloSign.Api
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="signatureRequestId">The id of the SignatureRequest to retrieve.</param>
         /// <param name="fileType">Set to &#x60;pdf&#x60; for a single merged document or &#x60;zip&#x60; for a collection of individual documents. (optional, default to pdf)</param>
-        /// <param name="getUrl">If &#x60;true&#x60;, the response will contain a url link to the file instead. Links are only available for PDFs and have a TTL of 3 days. (optional, default to false)</param>
-        /// <param name="getDataUri">If &#x60;true&#x60;, the response will contain the file as base64 encoded string. Base64 encoding is only available for PDFs. (optional, default to false)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>FileResponse</returns>
-        public FileResponse SignatureRequestFiles(string signatureRequestId, string? fileType = default(string?), bool? getUrl = default(bool?), bool? getDataUri = default(bool?), int operationIndex = 0)
+        /// <returns>System.IO.Stream</returns>
+        public System.IO.Stream SignatureRequestFiles(string signatureRequestId, string? fileType = default(string?), int operationIndex = 0)
         {
-            HelloSign.Client.ApiResponse<FileResponse> localVarResponse = SignatureRequestFilesWithHttpInfo(signatureRequestId, fileType, getUrl, getDataUri);
+            HelloSign.Client.ApiResponse<System.IO.Stream> localVarResponse = SignatureRequestFilesWithHttpInfo(signatureRequestId, fileType);
             return localVarResponse.Data;
         }
 
@@ -1763,11 +1849,9 @@ namespace HelloSign.Api
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="signatureRequestId">The id of the SignatureRequest to retrieve.</param>
         /// <param name="fileType">Set to &#x60;pdf&#x60; for a single merged document or &#x60;zip&#x60; for a collection of individual documents. (optional, default to pdf)</param>
-        /// <param name="getUrl">If &#x60;true&#x60;, the response will contain a url link to the file instead. Links are only available for PDFs and have a TTL of 3 days. (optional, default to false)</param>
-        /// <param name="getDataUri">If &#x60;true&#x60;, the response will contain the file as base64 encoded string. Base64 encoding is only available for PDFs. (optional, default to false)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>ApiResponse of FileResponse</returns>
-        public HelloSign.Client.ApiResponse<FileResponse> SignatureRequestFilesWithHttpInfo(string signatureRequestId, string? fileType = default(string?), bool? getUrl = default(bool?), bool? getDataUri = default(bool?), int operationIndex = 0)
+        /// <returns>ApiResponse of System.IO.Stream</returns>
+        public HelloSign.Client.ApiResponse<System.IO.Stream> SignatureRequestFilesWithHttpInfo(string signatureRequestId, string? fileType = default(string?), int operationIndex = 0)
         {
             // verify the required parameter 'signatureRequestId' is set
             if (signatureRequestId == null)
@@ -1783,6 +1867,8 @@ namespace HelloSign.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/pdf",
+                "application/zip",
                 "application/json"
             };
 
@@ -1802,14 +1888,6 @@ namespace HelloSign.Api
             {
                 localVarRequestOptions.QueryParameters.Add(HelloSign.Client.ClientUtils.ParameterToMultiMap("", "file_type", fileType));
             }
-            if (getUrl != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(HelloSign.Client.ClientUtils.ParameterToMultiMap("", "get_url", getUrl));
-            }
-            if (getDataUri != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(HelloSign.Client.ClientUtils.ParameterToMultiMap("", "get_data_uri", getDataUri));
-            }
             localVarRequestOptions.Operation = "SignatureRequestApi.SignatureRequestFiles";
             localVarRequestOptions.OperationIndex = operationIndex;
 
@@ -1827,7 +1905,7 @@ namespace HelloSign.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<FileResponse>("/signature_request/files/{signature_request_id}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<System.IO.Stream>("/signature_request/files/{signature_request_id}", localVarRequestOptions, this.Configuration);
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("SignatureRequestFiles", localVarResponse);
@@ -1846,14 +1924,12 @@ namespace HelloSign.Api
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="signatureRequestId">The id of the SignatureRequest to retrieve.</param>
         /// <param name="fileType">Set to &#x60;pdf&#x60; for a single merged document or &#x60;zip&#x60; for a collection of individual documents. (optional, default to pdf)</param>
-        /// <param name="getUrl">If &#x60;true&#x60;, the response will contain a url link to the file instead. Links are only available for PDFs and have a TTL of 3 days. (optional, default to false)</param>
-        /// <param name="getDataUri">If &#x60;true&#x60;, the response will contain the file as base64 encoded string. Base64 encoding is only available for PDFs. (optional, default to false)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of FileResponse</returns>
-        public async System.Threading.Tasks.Task<FileResponse> SignatureRequestFilesAsync(string signatureRequestId, string? fileType = default(string?), bool? getUrl = default(bool?), bool? getDataUri = default(bool?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        /// <returns>Task of System.IO.Stream</returns>
+        public async System.Threading.Tasks.Task<System.IO.Stream> SignatureRequestFilesAsync(string signatureRequestId, string? fileType = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            HelloSign.Client.ApiResponse<FileResponse> localVarResponse = await SignatureRequestFilesWithHttpInfoAsync(signatureRequestId, fileType, getUrl, getDataUri, operationIndex, cancellationToken).ConfigureAwait(false);
+            HelloSign.Client.ApiResponse<System.IO.Stream> localVarResponse = await SignatureRequestFilesWithHttpInfoAsync(signatureRequestId, fileType, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -1863,17 +1939,188 @@ namespace HelloSign.Api
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="signatureRequestId">The id of the SignatureRequest to retrieve.</param>
         /// <param name="fileType">Set to &#x60;pdf&#x60; for a single merged document or &#x60;zip&#x60; for a collection of individual documents. (optional, default to pdf)</param>
-        /// <param name="getUrl">If &#x60;true&#x60;, the response will contain a url link to the file instead. Links are only available for PDFs and have a TTL of 3 days. (optional, default to false)</param>
-        /// <param name="getDataUri">If &#x60;true&#x60;, the response will contain the file as base64 encoded string. Base64 encoding is only available for PDFs. (optional, default to false)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (FileResponse)</returns>
-        public async System.Threading.Tasks.Task<HelloSign.Client.ApiResponse<FileResponse>> SignatureRequestFilesWithHttpInfoAsync(string signatureRequestId, string? fileType = default(string?), bool? getUrl = default(bool?), bool? getDataUri = default(bool?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (System.IO.Stream)</returns>
+        public async System.Threading.Tasks.Task<HelloSign.Client.ApiResponse<System.IO.Stream>> SignatureRequestFilesWithHttpInfoAsync(string signatureRequestId, string? fileType = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'signatureRequestId' is set
             if (signatureRequestId == null)
             {
                 throw new HelloSign.Client.ApiException(400, "Missing required parameter 'signatureRequestId' when calling SignatureRequestApi->SignatureRequestFiles");
+            }
+
+
+            HelloSign.Client.RequestOptions localVarRequestOptions = new HelloSign.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            var localVarContentType = HelloSign.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/pdf",
+                "application/zip",
+                "application/json"
+            };
+
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = HelloSign.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+            localVarRequestOptions.PathParameters.Add("signature_request_id", HelloSign.Client.ClientUtils.ParameterToString(signatureRequestId)); // path parameter
+            if (fileType != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(HelloSign.Client.ClientUtils.ParameterToMultiMap("", "file_type", fileType));
+            }
+            localVarRequestOptions.Operation = "SignatureRequestApi.SignatureRequestFiles";
+            localVarRequestOptions.OperationIndex = operationIndex;
+
+            // authentication (api_key) required
+            // http basic authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.Username) || !string.IsNullOrEmpty(this.Configuration.Password) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Basic " + HelloSign.Client.ClientUtils.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password));
+            }
+            // authentication (oauth2) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = await this.AsynchronousClient.GetAsync<System.IO.Stream>("/signature_request/files/{signature_request_id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("SignatureRequestFiles", localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Download File as Encoded String Obtain a copy of the current documents specified by the &#x60;signature_request_id&#x60; parameter. Returns a JSON object with a &#x60;data_uri&#x60; representing the base64 encoded file (PDFs only).   If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead.
+        /// </summary>
+        /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="signatureRequestId">The id of the SignatureRequest to retrieve.</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>FileResponseDataUri</returns>
+        public FileResponseDataUri SignatureRequestFilesAsEncodedString(string signatureRequestId, int operationIndex = 0)
+        {
+            HelloSign.Client.ApiResponse<FileResponseDataUri> localVarResponse = SignatureRequestFilesAsEncodedStringWithHttpInfo(signatureRequestId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Download File as Encoded String Obtain a copy of the current documents specified by the &#x60;signature_request_id&#x60; parameter. Returns a JSON object with a &#x60;data_uri&#x60; representing the base64 encoded file (PDFs only).   If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead.
+        /// </summary>
+        /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="signatureRequestId">The id of the SignatureRequest to retrieve.</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>ApiResponse of FileResponseDataUri</returns>
+        public HelloSign.Client.ApiResponse<FileResponseDataUri> SignatureRequestFilesAsEncodedStringWithHttpInfo(string signatureRequestId, int operationIndex = 0)
+        {
+            // verify the required parameter 'signatureRequestId' is set
+            if (signatureRequestId == null)
+            {
+                throw new HelloSign.Client.ApiException(400, "Missing required parameter 'signatureRequestId' when calling SignatureRequestApi->SignatureRequestFilesAsEncodedString");
+            }
+
+            HelloSign.Client.RequestOptions localVarRequestOptions = new HelloSign.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+            var localVarContentType = HelloSign.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = HelloSign.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+            localVarRequestOptions.PathParameters.Add("signature_request_id", HelloSign.Client.ClientUtils.ParameterToString(signatureRequestId)); // path parameter
+            localVarRequestOptions.Operation = "SignatureRequestApi.SignatureRequestFilesAsEncodedString";
+            localVarRequestOptions.OperationIndex = operationIndex;
+
+            // authentication (api_key) required
+            // http basic authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.Username) || !string.IsNullOrEmpty(this.Configuration.Password) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Basic " + HelloSign.Client.ClientUtils.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password));
+            }
+            // authentication (oauth2) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<FileResponseDataUri>("/signature_request/files/{signature_request_id}?get_data_uri=1&file_type=pdf", localVarRequestOptions, this.Configuration);
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("SignatureRequestFilesAsEncodedString", localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Download File as Encoded String Obtain a copy of the current documents specified by the &#x60;signature_request_id&#x60; parameter. Returns a JSON object with a &#x60;data_uri&#x60; representing the base64 encoded file (PDFs only).   If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead.
+        /// </summary>
+        /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="signatureRequestId">The id of the SignatureRequest to retrieve.</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of FileResponseDataUri</returns>
+        public async System.Threading.Tasks.Task<FileResponseDataUri> SignatureRequestFilesAsEncodedStringAsync(string signatureRequestId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            HelloSign.Client.ApiResponse<FileResponseDataUri> localVarResponse = await SignatureRequestFilesAsEncodedStringWithHttpInfoAsync(signatureRequestId, operationIndex, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Download File as Encoded String Obtain a copy of the current documents specified by the &#x60;signature_request_id&#x60; parameter. Returns a JSON object with a &#x60;data_uri&#x60; representing the base64 encoded file (PDFs only).   If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead.
+        /// </summary>
+        /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="signatureRequestId">The id of the SignatureRequest to retrieve.</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (FileResponseDataUri)</returns>
+        public async System.Threading.Tasks.Task<HelloSign.Client.ApiResponse<FileResponseDataUri>> SignatureRequestFilesAsEncodedStringWithHttpInfoAsync(string signatureRequestId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'signatureRequestId' is set
+            if (signatureRequestId == null)
+            {
+                throw new HelloSign.Client.ApiException(400, "Missing required parameter 'signatureRequestId' when calling SignatureRequestApi->SignatureRequestFilesAsEncodedString");
             }
 
 
@@ -1901,19 +2148,7 @@ namespace HelloSign.Api
             }
 
             localVarRequestOptions.PathParameters.Add("signature_request_id", HelloSign.Client.ClientUtils.ParameterToString(signatureRequestId)); // path parameter
-            if (fileType != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(HelloSign.Client.ClientUtils.ParameterToMultiMap("", "file_type", fileType));
-            }
-            if (getUrl != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(HelloSign.Client.ClientUtils.ParameterToMultiMap("", "get_url", getUrl));
-            }
-            if (getDataUri != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(HelloSign.Client.ClientUtils.ParameterToMultiMap("", "get_data_uri", getDataUri));
-            }
-            localVarRequestOptions.Operation = "SignatureRequestApi.SignatureRequestFiles";
+            localVarRequestOptions.Operation = "SignatureRequestApi.SignatureRequestFilesAsEncodedString";
             localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (api_key) required
@@ -1930,11 +2165,178 @@ namespace HelloSign.Api
             }
 
             // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<FileResponse>("/signature_request/files/{signature_request_id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<FileResponseDataUri>("/signature_request/files/{signature_request_id}?get_data_uri=1&file_type=pdf", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
-                Exception _exception = this.ExceptionFactory("SignatureRequestFiles", localVarResponse);
+                Exception _exception = this.ExceptionFactory("SignatureRequestFilesAsEncodedString", localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Download File as File Url Obtain a copy of the current documents specified by the &#x60;signature_request_id&#x60; parameter. Returns a JSON object with a url to the file (PDFs only).   If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead.
+        /// </summary>
+        /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="signatureRequestId">The id of the SignatureRequest to retrieve.</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>FileResponse</returns>
+        public FileResponse SignatureRequestFilesAsFileUrl(string signatureRequestId, int operationIndex = 0)
+        {
+            HelloSign.Client.ApiResponse<FileResponse> localVarResponse = SignatureRequestFilesAsFileUrlWithHttpInfo(signatureRequestId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Download File as File Url Obtain a copy of the current documents specified by the &#x60;signature_request_id&#x60; parameter. Returns a JSON object with a url to the file (PDFs only).   If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead.
+        /// </summary>
+        /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="signatureRequestId">The id of the SignatureRequest to retrieve.</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>ApiResponse of FileResponse</returns>
+        public HelloSign.Client.ApiResponse<FileResponse> SignatureRequestFilesAsFileUrlWithHttpInfo(string signatureRequestId, int operationIndex = 0)
+        {
+            // verify the required parameter 'signatureRequestId' is set
+            if (signatureRequestId == null)
+            {
+                throw new HelloSign.Client.ApiException(400, "Missing required parameter 'signatureRequestId' when calling SignatureRequestApi->SignatureRequestFilesAsFileUrl");
+            }
+
+            HelloSign.Client.RequestOptions localVarRequestOptions = new HelloSign.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+            var localVarContentType = HelloSign.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = HelloSign.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+            localVarRequestOptions.PathParameters.Add("signature_request_id", HelloSign.Client.ClientUtils.ParameterToString(signatureRequestId)); // path parameter
+            localVarRequestOptions.Operation = "SignatureRequestApi.SignatureRequestFilesAsFileUrl";
+            localVarRequestOptions.OperationIndex = operationIndex;
+
+            // authentication (api_key) required
+            // http basic authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.Username) || !string.IsNullOrEmpty(this.Configuration.Password) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Basic " + HelloSign.Client.ClientUtils.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password));
+            }
+            // authentication (oauth2) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<FileResponse>("/signature_request/files/{signature_request_id}?get_url=1&file_type=pdf", localVarRequestOptions, this.Configuration);
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("SignatureRequestFilesAsFileUrl", localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Download File as File Url Obtain a copy of the current documents specified by the &#x60;signature_request_id&#x60; parameter. Returns a JSON object with a url to the file (PDFs only).   If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead.
+        /// </summary>
+        /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="signatureRequestId">The id of the SignatureRequest to retrieve.</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of FileResponse</returns>
+        public async System.Threading.Tasks.Task<FileResponse> SignatureRequestFilesAsFileUrlAsync(string signatureRequestId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            HelloSign.Client.ApiResponse<FileResponse> localVarResponse = await SignatureRequestFilesAsFileUrlWithHttpInfoAsync(signatureRequestId, operationIndex, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Download File as File Url Obtain a copy of the current documents specified by the &#x60;signature_request_id&#x60; parameter. Returns a JSON object with a url to the file (PDFs only).   If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead.
+        /// </summary>
+        /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="signatureRequestId">The id of the SignatureRequest to retrieve.</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (FileResponse)</returns>
+        public async System.Threading.Tasks.Task<HelloSign.Client.ApiResponse<FileResponse>> SignatureRequestFilesAsFileUrlWithHttpInfoAsync(string signatureRequestId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'signatureRequestId' is set
+            if (signatureRequestId == null)
+            {
+                throw new HelloSign.Client.ApiException(400, "Missing required parameter 'signatureRequestId' when calling SignatureRequestApi->SignatureRequestFilesAsFileUrl");
+            }
+
+
+            HelloSign.Client.RequestOptions localVarRequestOptions = new HelloSign.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            var localVarContentType = HelloSign.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = HelloSign.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+            localVarRequestOptions.PathParameters.Add("signature_request_id", HelloSign.Client.ClientUtils.ParameterToString(signatureRequestId)); // path parameter
+            localVarRequestOptions.Operation = "SignatureRequestApi.SignatureRequestFilesAsFileUrl";
+            localVarRequestOptions.OperationIndex = operationIndex;
+
+            // authentication (api_key) required
+            // http basic authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.Username) || !string.IsNullOrEmpty(this.Configuration.Password) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Basic " + HelloSign.Client.ClientUtils.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password));
+            }
+            // authentication (oauth2) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = await this.AsynchronousClient.GetAsync<FileResponse>("/signature_request/files/{signature_request_id}?get_url=1&file_type=pdf", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("SignatureRequestFilesAsFileUrl", localVarResponse);
                 if (_exception != null)
                 {
                     throw _exception;
