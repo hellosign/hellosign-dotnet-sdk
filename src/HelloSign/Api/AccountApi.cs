@@ -1,7 +1,7 @@
 /*
- * HelloSign API
+ * Dropbox Sign API
  *
- * HelloSign v3 API
+ * Dropbox Sign v3 API
  *
  * The version of the OpenAPI document: 3.0.0
  * Contact: apisupport@hellosign.com
@@ -31,7 +31,7 @@ namespace HelloSign.Api
         /// Create Account
         /// </summary>
         /// <remarks>
-        /// Creates a new HelloSign Account that is associated with the specified &#x60;email_address&#x60;.
+        /// Creates a new Dropbox Sign Account that is associated with the specified &#x60;email_address&#x60;.
         /// </remarks>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountCreateRequest"></param>
@@ -43,7 +43,7 @@ namespace HelloSign.Api
         /// Create Account
         /// </summary>
         /// <remarks>
-        /// Creates a new HelloSign Account that is associated with the specified &#x60;email_address&#x60;.
+        /// Creates a new Dropbox Sign Account that is associated with the specified &#x60;email_address&#x60;.
         /// </remarks>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountCreateRequest"></param>
@@ -102,7 +102,7 @@ namespace HelloSign.Api
         /// Verify Account
         /// </summary>
         /// <remarks>
-        /// Verifies whether an HelloSign Account exists for the given email address.
+        /// Verifies whether an Dropbox Sign Account exists for the given email address.
         /// </remarks>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountVerifyRequest"></param>
@@ -114,7 +114,7 @@ namespace HelloSign.Api
         /// Verify Account
         /// </summary>
         /// <remarks>
-        /// Verifies whether an HelloSign Account exists for the given email address.
+        /// Verifies whether an Dropbox Sign Account exists for the given email address.
         /// </remarks>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountVerifyRequest"></param>
@@ -134,7 +134,7 @@ namespace HelloSign.Api
         /// Create Account
         /// </summary>
         /// <remarks>
-        /// Creates a new HelloSign Account that is associated with the specified &#x60;email_address&#x60;.
+        /// Creates a new Dropbox Sign Account that is associated with the specified &#x60;email_address&#x60;.
         /// </remarks>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountCreateRequest"></param>
@@ -147,7 +147,7 @@ namespace HelloSign.Api
         /// Create Account
         /// </summary>
         /// <remarks>
-        /// Creates a new HelloSign Account that is associated with the specified &#x60;email_address&#x60;.
+        /// Creates a new Dropbox Sign Account that is associated with the specified &#x60;email_address&#x60;.
         /// </remarks>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountCreateRequest"></param>
@@ -211,7 +211,7 @@ namespace HelloSign.Api
         /// Verify Account
         /// </summary>
         /// <remarks>
-        /// Verifies whether an HelloSign Account exists for the given email address.
+        /// Verifies whether an Dropbox Sign Account exists for the given email address.
         /// </remarks>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountVerifyRequest"></param>
@@ -224,7 +224,7 @@ namespace HelloSign.Api
         /// Verify Account
         /// </summary>
         /// <remarks>
-        /// Verifies whether an HelloSign Account exists for the given email address.
+        /// Verifies whether an Dropbox Sign Account exists for the given email address.
         /// </remarks>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountVerifyRequest"></param>
@@ -353,7 +353,7 @@ namespace HelloSign.Api
         }
 
         /// <summary>
-        /// Create Account Creates a new HelloSign Account that is associated with the specified &#x60;email_address&#x60;.
+        /// Create Account Creates a new Dropbox Sign Account that is associated with the specified &#x60;email_address&#x60;.
         /// </summary>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountCreateRequest"></param>
@@ -366,7 +366,7 @@ namespace HelloSign.Api
         }
 
         /// <summary>
-        /// Create Account Creates a new HelloSign Account that is associated with the specified &#x60;email_address&#x60;.
+        /// Create Account Creates a new Dropbox Sign Account that is associated with the specified &#x60;email_address&#x60;.
         /// </summary>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountCreateRequest"></param>
@@ -442,7 +442,7 @@ namespace HelloSign.Api
         }
 
         /// <summary>
-        /// Create Account Creates a new HelloSign Account that is associated with the specified &#x60;email_address&#x60;.
+        /// Create Account Creates a new Dropbox Sign Account that is associated with the specified &#x60;email_address&#x60;.
         /// </summary>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountCreateRequest"></param>
@@ -456,7 +456,7 @@ namespace HelloSign.Api
         }
 
         /// <summary>
-        /// Create Account Creates a new HelloSign Account that is associated with the specified &#x60;email_address&#x60;.
+        /// Create Account Creates a new Dropbox Sign Account that is associated with the specified &#x60;email_address&#x60;.
         /// </summary>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountCreateRequest"></param>
@@ -890,7 +890,7 @@ namespace HelloSign.Api
         }
 
         /// <summary>
-        /// Verify Account Verifies whether an HelloSign Account exists for the given email address.
+        /// Verify Account Verifies whether an Dropbox Sign Account exists for the given email address.
         /// </summary>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountVerifyRequest"></param>
@@ -903,7 +903,7 @@ namespace HelloSign.Api
         }
 
         /// <summary>
-        /// Verify Account Verifies whether an HelloSign Account exists for the given email address.
+        /// Verify Account Verifies whether an Dropbox Sign Account exists for the given email address.
         /// </summary>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountVerifyRequest"></param>
@@ -979,7 +979,7 @@ namespace HelloSign.Api
         }
 
         /// <summary>
-        /// Verify Account Verifies whether an HelloSign Account exists for the given email address.
+        /// Verify Account Verifies whether an Dropbox Sign Account exists for the given email address.
         /// </summary>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountVerifyRequest"></param>
@@ -993,7 +993,7 @@ namespace HelloSign.Api
         }
 
         /// <summary>
-        /// Verify Account Verifies whether an HelloSign Account exists for the given email address.
+        /// Verify Account Verifies whether an Dropbox Sign Account exists for the given email address.
         /// </summary>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="accountVerifyRequest"></param>

@@ -49,29 +49,9 @@ namespace HelloSign.Test.Api
         {
         }
 
-        [Fact]
+        [Fact(Skip="GET /template/files/{signature_request_id} skipped")]
         public void TemplateFilesTest()
         {
-            var templateId = "f57db65d3f933b5316d398057a36176831451a35";
-            var fileType = "pdf";
-            var getUrl = false;
-            var getDataUri = false;
-
-            var responseData = TestHelper.SerializeFromFile<FileResponse>("FileResponse");
-
-            var api = MockRestClientHelper.CreateApi<FileResponse, TemplateApi>(responseData);
-
-            var response = api.TemplateFiles(
-                templateId,
-                fileType,
-                getUrl,
-                getDataUri
-            );
-
-            JToken.DeepEquals(
-                responseData.ToJson(),
-                response.ToJson()
-            );
         }
 
         [Fact]

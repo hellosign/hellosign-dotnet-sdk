@@ -1,7 +1,7 @@
 /*
- * HelloSign API
+ * Dropbox Sign API
  *
- * HelloSign v3 API
+ * Dropbox Sign v3 API
  *
  * The version of the OpenAPI document: 3.0.0
  * Contact: apisupport@hellosign.com
@@ -42,7 +42,7 @@ namespace HelloSign.Model
         /// Initializes a new instance of the <see cref="AccountUpdateRequest" /> class.
         /// </summary>
         /// <param name="accountId">The ID of the Account.</param>
-        /// <param name="callbackUrl">The URL that HelloSign should POST events to..</param>
+        /// <param name="callbackUrl">The URL that Dropbox Sign should POST events to..</param>
         /// <param name="locale">The locale used in this Account. Check out the list of [supported locales](/api/reference/constants/#supported-locales) to learn more about the possible values..</param>
         public AccountUpdateRequest(string accountId = default(string), string callbackUrl = default(string), string locale = default(string))
         {
@@ -60,9 +60,9 @@ namespace HelloSign.Model
         public string AccountId { get; set; }
 
         /// <summary>
-        /// The URL that HelloSign should POST events to.
+        /// The URL that Dropbox Sign should POST events to.
         /// </summary>
-        /// <value>The URL that HelloSign should POST events to.</value>
+        /// <value>The URL that Dropbox Sign should POST events to.</value>
         [DataMember(Name = "callback_url", EmitDefaultValue = true)]
         public string CallbackUrl { get; set; }
 

@@ -1,7 +1,7 @@
 /*
- * HelloSign API
+ * Dropbox Sign API
  *
- * HelloSign v3 API
+ * Dropbox Sign v3 API
  *
  * The version of the OpenAPI document: 3.0.0
  * Contact: apisupport@hellosign.com
@@ -99,7 +99,7 @@ namespace HelloSign.Api
         /// <returns>ApiResponse of Object(void)</returns>
         ApiResponse<Object> TemplateDeleteWithHttpInfo(string templateId, int operationIndex = 0);
         /// <summary>
-        /// Get Template File
+        /// Get Template Files
         /// </summary>
         /// <remarks>
         /// Obtain a copy of the current documents specified by the &#x60;template_id&#x60; parameter. Returns a PDF or ZIP file.  If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead. In this case please wait for the &#x60;template_created&#x60; callback event.
@@ -107,14 +107,12 @@ namespace HelloSign.Api
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateId">The id of the template files to retrieve.</param>
         /// <param name="fileType">Set to &#x60;pdf&#x60; for a single merged document or &#x60;zip&#x60; for a collection of individual documents. (optional)</param>
-        /// <param name="getUrl">If &#x60;true&#x60;, the response will contain a url link to the file instead. Links are only available for PDFs and have a TTL of 3 days. (optional, default to false)</param>
-        /// <param name="getDataUri">If &#x60;true&#x60;, the response will contain the file as base64 encoded string. Base64 encoding is only available for PDFs. (optional, default to false)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>FileResponse</returns>
-        FileResponse TemplateFiles(string templateId, string? fileType = default(string?), bool? getUrl = default(bool?), bool? getDataUri = default(bool?), int operationIndex = 0);
+        /// <returns>System.IO.Stream</returns>
+        System.IO.Stream TemplateFiles(string templateId, string? fileType = default(string?), int operationIndex = 0);
 
         /// <summary>
-        /// Get Template File
+        /// Get Template Files
         /// </summary>
         /// <remarks>
         /// Obtain a copy of the current documents specified by the &#x60;template_id&#x60; parameter. Returns a PDF or ZIP file.  If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead. In this case please wait for the &#x60;template_created&#x60; callback event.
@@ -122,11 +120,55 @@ namespace HelloSign.Api
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateId">The id of the template files to retrieve.</param>
         /// <param name="fileType">Set to &#x60;pdf&#x60; for a single merged document or &#x60;zip&#x60; for a collection of individual documents. (optional)</param>
-        /// <param name="getUrl">If &#x60;true&#x60;, the response will contain a url link to the file instead. Links are only available for PDFs and have a TTL of 3 days. (optional, default to false)</param>
-        /// <param name="getDataUri">If &#x60;true&#x60;, the response will contain the file as base64 encoded string. Base64 encoding is only available for PDFs. (optional, default to false)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>ApiResponse of System.IO.Stream</returns>
+        ApiResponse<System.IO.Stream> TemplateFilesWithHttpInfo(string templateId, string? fileType = default(string?), int operationIndex = 0);
+        /// <summary>
+        /// Get Template Files as Data Uri
+        /// </summary>
+        /// <remarks>
+        /// Obtain a copy of the current documents specified by the &#x60;template_id&#x60; parameter. Returns a JSON object with a &#x60;data_uri&#x60; representing the base64 encoded file (PDFs only).   If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead. In this case please wait for the &#x60;template_created&#x60; callback event.
+        /// </remarks>
+        /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="templateId">The id of the template files to retrieve.</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>FileResponseDataUri</returns>
+        FileResponseDataUri TemplateFilesAsDataUri(string templateId, int operationIndex = 0);
+
+        /// <summary>
+        /// Get Template Files as Data Uri
+        /// </summary>
+        /// <remarks>
+        /// Obtain a copy of the current documents specified by the &#x60;template_id&#x60; parameter. Returns a JSON object with a &#x60;data_uri&#x60; representing the base64 encoded file (PDFs only).   If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead. In this case please wait for the &#x60;template_created&#x60; callback event.
+        /// </remarks>
+        /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="templateId">The id of the template files to retrieve.</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>ApiResponse of FileResponseDataUri</returns>
+        ApiResponse<FileResponseDataUri> TemplateFilesAsDataUriWithHttpInfo(string templateId, int operationIndex = 0);
+        /// <summary>
+        /// Get Template Files as File Url
+        /// </summary>
+        /// <remarks>
+        /// Obtain a copy of the current documents specified by the &#x60;template_id&#x60; parameter. Returns a JSON object with a url to the file (PDFs only).   If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead. In this case please wait for the &#x60;template_created&#x60; callback event.
+        /// </remarks>
+        /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="templateId">The id of the template files to retrieve.</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>FileResponse</returns>
+        FileResponse TemplateFilesAsFileUrl(string templateId, int operationIndex = 0);
+
+        /// <summary>
+        /// Get Template Files as File Url
+        /// </summary>
+        /// <remarks>
+        /// Obtain a copy of the current documents specified by the &#x60;template_id&#x60; parameter. Returns a JSON object with a url to the file (PDFs only).   If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead. In this case please wait for the &#x60;template_created&#x60; callback event.
+        /// </remarks>
+        /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="templateId">The id of the template files to retrieve.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of FileResponse</returns>
-        ApiResponse<FileResponse> TemplateFilesWithHttpInfo(string templateId, string? fileType = default(string?), bool? getUrl = default(bool?), bool? getDataUri = default(bool?), int operationIndex = 0);
+        ApiResponse<FileResponse> TemplateFilesAsFileUrlWithHttpInfo(string templateId, int operationIndex = 0);
         /// <summary>
         /// Get Template
         /// </summary>
@@ -316,7 +358,7 @@ namespace HelloSign.Api
         /// <returns>Task of ApiResponse</returns>
         System.Threading.Tasks.Task<ApiResponse<Object>> TemplateDeleteWithHttpInfoAsync(string templateId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// Get Template File
+        /// Get Template Files
         /// </summary>
         /// <remarks>
         /// Obtain a copy of the current documents specified by the &#x60;template_id&#x60; parameter. Returns a PDF or ZIP file.  If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead. In this case please wait for the &#x60;template_created&#x60; callback event.
@@ -324,28 +366,74 @@ namespace HelloSign.Api
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateId">The id of the template files to retrieve.</param>
         /// <param name="fileType">Set to &#x60;pdf&#x60; for a single merged document or &#x60;zip&#x60; for a collection of individual documents. (optional)</param>
-        /// <param name="getUrl">If &#x60;true&#x60;, the response will contain a url link to the file instead. Links are only available for PDFs and have a TTL of 3 days. (optional, default to false)</param>
-        /// <param name="getDataUri">If &#x60;true&#x60;, the response will contain the file as base64 encoded string. Base64 encoding is only available for PDFs. (optional, default to false)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of System.IO.Stream</returns>
+        System.Threading.Tasks.Task<System.IO.Stream> TemplateFilesAsync(string templateId, string? fileType = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <summary>
+        /// Get Template Files
+        /// </summary>
+        /// <remarks>
+        /// Obtain a copy of the current documents specified by the &#x60;template_id&#x60; parameter. Returns a PDF or ZIP file.  If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead. In this case please wait for the &#x60;template_created&#x60; callback event.
+        /// </remarks>
+        /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="templateId">The id of the template files to retrieve.</param>
+        /// <param name="fileType">Set to &#x60;pdf&#x60; for a single merged document or &#x60;zip&#x60; for a collection of individual documents. (optional)</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (System.IO.Stream)</returns>
+        System.Threading.Tasks.Task<ApiResponse<System.IO.Stream>> TemplateFilesWithHttpInfoAsync(string templateId, string? fileType = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <summary>
+        /// Get Template Files as Data Uri
+        /// </summary>
+        /// <remarks>
+        /// Obtain a copy of the current documents specified by the &#x60;template_id&#x60; parameter. Returns a JSON object with a &#x60;data_uri&#x60; representing the base64 encoded file (PDFs only).   If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead. In this case please wait for the &#x60;template_created&#x60; callback event.
+        /// </remarks>
+        /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="templateId">The id of the template files to retrieve.</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of FileResponseDataUri</returns>
+        System.Threading.Tasks.Task<FileResponseDataUri> TemplateFilesAsDataUriAsync(string templateId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <summary>
+        /// Get Template Files as Data Uri
+        /// </summary>
+        /// <remarks>
+        /// Obtain a copy of the current documents specified by the &#x60;template_id&#x60; parameter. Returns a JSON object with a &#x60;data_uri&#x60; representing the base64 encoded file (PDFs only).   If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead. In this case please wait for the &#x60;template_created&#x60; callback event.
+        /// </remarks>
+        /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="templateId">The id of the template files to retrieve.</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (FileResponseDataUri)</returns>
+        System.Threading.Tasks.Task<ApiResponse<FileResponseDataUri>> TemplateFilesAsDataUriWithHttpInfoAsync(string templateId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <summary>
+        /// Get Template Files as File Url
+        /// </summary>
+        /// <remarks>
+        /// Obtain a copy of the current documents specified by the &#x60;template_id&#x60; parameter. Returns a JSON object with a url to the file (PDFs only).   If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead. In this case please wait for the &#x60;template_created&#x60; callback event.
+        /// </remarks>
+        /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="templateId">The id of the template files to retrieve.</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of FileResponse</returns>
-        System.Threading.Tasks.Task<FileResponse> TemplateFilesAsync(string templateId, string? fileType = default(string?), bool? getUrl = default(bool?), bool? getDataUri = default(bool?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<FileResponse> TemplateFilesAsFileUrlAsync(string templateId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// Get Template File
+        /// Get Template Files as File Url
         /// </summary>
         /// <remarks>
-        /// Obtain a copy of the current documents specified by the &#x60;template_id&#x60; parameter. Returns a PDF or ZIP file.  If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead. In this case please wait for the &#x60;template_created&#x60; callback event.
+        /// Obtain a copy of the current documents specified by the &#x60;template_id&#x60; parameter. Returns a JSON object with a url to the file (PDFs only).   If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead. In this case please wait for the &#x60;template_created&#x60; callback event.
         /// </remarks>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateId">The id of the template files to retrieve.</param>
-        /// <param name="fileType">Set to &#x60;pdf&#x60; for a single merged document or &#x60;zip&#x60; for a collection of individual documents. (optional)</param>
-        /// <param name="getUrl">If &#x60;true&#x60;, the response will contain a url link to the file instead. Links are only available for PDFs and have a TTL of 3 days. (optional, default to false)</param>
-        /// <param name="getDataUri">If &#x60;true&#x60;, the response will contain the file as base64 encoded string. Base64 encoding is only available for PDFs. (optional, default to false)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (FileResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<FileResponse>> TemplateFilesWithHttpInfoAsync(string templateId, string? fileType = default(string?), bool? getUrl = default(bool?), bool? getDataUri = default(bool?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<FileResponse>> TemplateFilesAsFileUrlWithHttpInfoAsync(string templateId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// Get Template
         /// </summary>
@@ -1124,32 +1212,28 @@ namespace HelloSign.Api
         }
 
         /// <summary>
-        /// Get Template File Obtain a copy of the current documents specified by the &#x60;template_id&#x60; parameter. Returns a PDF or ZIP file.  If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead. In this case please wait for the &#x60;template_created&#x60; callback event.
+        /// Get Template Files Obtain a copy of the current documents specified by the &#x60;template_id&#x60; parameter. Returns a PDF or ZIP file.  If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead. In this case please wait for the &#x60;template_created&#x60; callback event.
         /// </summary>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateId">The id of the template files to retrieve.</param>
         /// <param name="fileType">Set to &#x60;pdf&#x60; for a single merged document or &#x60;zip&#x60; for a collection of individual documents. (optional)</param>
-        /// <param name="getUrl">If &#x60;true&#x60;, the response will contain a url link to the file instead. Links are only available for PDFs and have a TTL of 3 days. (optional, default to false)</param>
-        /// <param name="getDataUri">If &#x60;true&#x60;, the response will contain the file as base64 encoded string. Base64 encoding is only available for PDFs. (optional, default to false)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>FileResponse</returns>
-        public FileResponse TemplateFiles(string templateId, string? fileType = default(string?), bool? getUrl = default(bool?), bool? getDataUri = default(bool?), int operationIndex = 0)
+        /// <returns>System.IO.Stream</returns>
+        public System.IO.Stream TemplateFiles(string templateId, string? fileType = default(string?), int operationIndex = 0)
         {
-            HelloSign.Client.ApiResponse<FileResponse> localVarResponse = TemplateFilesWithHttpInfo(templateId, fileType, getUrl, getDataUri);
+            HelloSign.Client.ApiResponse<System.IO.Stream> localVarResponse = TemplateFilesWithHttpInfo(templateId, fileType);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Get Template File Obtain a copy of the current documents specified by the &#x60;template_id&#x60; parameter. Returns a PDF or ZIP file.  If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead. In this case please wait for the &#x60;template_created&#x60; callback event.
+        /// Get Template Files Obtain a copy of the current documents specified by the &#x60;template_id&#x60; parameter. Returns a PDF or ZIP file.  If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead. In this case please wait for the &#x60;template_created&#x60; callback event.
         /// </summary>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateId">The id of the template files to retrieve.</param>
         /// <param name="fileType">Set to &#x60;pdf&#x60; for a single merged document or &#x60;zip&#x60; for a collection of individual documents. (optional)</param>
-        /// <param name="getUrl">If &#x60;true&#x60;, the response will contain a url link to the file instead. Links are only available for PDFs and have a TTL of 3 days. (optional, default to false)</param>
-        /// <param name="getDataUri">If &#x60;true&#x60;, the response will contain the file as base64 encoded string. Base64 encoding is only available for PDFs. (optional, default to false)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
-        /// <returns>ApiResponse of FileResponse</returns>
-        public HelloSign.Client.ApiResponse<FileResponse> TemplateFilesWithHttpInfo(string templateId, string? fileType = default(string?), bool? getUrl = default(bool?), bool? getDataUri = default(bool?), int operationIndex = 0)
+        /// <returns>ApiResponse of System.IO.Stream</returns>
+        public HelloSign.Client.ApiResponse<System.IO.Stream> TemplateFilesWithHttpInfo(string templateId, string? fileType = default(string?), int operationIndex = 0)
         {
             // verify the required parameter 'templateId' is set
             if (templateId == null)
@@ -1165,6 +1249,8 @@ namespace HelloSign.Api
 
             // to determine the Accept header
             string[] _accepts = new string[] {
+                "application/pdf",
+                "application/zip",
                 "application/json"
             };
 
@@ -1184,14 +1270,6 @@ namespace HelloSign.Api
             {
                 localVarRequestOptions.QueryParameters.Add(HelloSign.Client.ClientUtils.ParameterToMultiMap("", "file_type", fileType));
             }
-            if (getUrl != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(HelloSign.Client.ClientUtils.ParameterToMultiMap("", "get_url", getUrl));
-            }
-            if (getDataUri != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(HelloSign.Client.ClientUtils.ParameterToMultiMap("", "get_data_uri", getDataUri));
-            }
             localVarRequestOptions.Operation = "TemplateApi.TemplateFiles";
             localVarRequestOptions.OperationIndex = operationIndex;
 
@@ -1209,7 +1287,7 @@ namespace HelloSign.Api
             }
 
             // make the HTTP request
-            var localVarResponse = this.Client.Get<FileResponse>("/template/files/{template_id}", localVarRequestOptions, this.Configuration);
+            var localVarResponse = this.Client.Get<System.IO.Stream>("/template/files/{template_id}", localVarRequestOptions, this.Configuration);
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("TemplateFiles", localVarResponse);
@@ -1223,39 +1301,208 @@ namespace HelloSign.Api
         }
 
         /// <summary>
-        /// Get Template File Obtain a copy of the current documents specified by the &#x60;template_id&#x60; parameter. Returns a PDF or ZIP file.  If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead. In this case please wait for the &#x60;template_created&#x60; callback event.
+        /// Get Template Files Obtain a copy of the current documents specified by the &#x60;template_id&#x60; parameter. Returns a PDF or ZIP file.  If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead. In this case please wait for the &#x60;template_created&#x60; callback event.
         /// </summary>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateId">The id of the template files to retrieve.</param>
         /// <param name="fileType">Set to &#x60;pdf&#x60; for a single merged document or &#x60;zip&#x60; for a collection of individual documents. (optional)</param>
-        /// <param name="getUrl">If &#x60;true&#x60;, the response will contain a url link to the file instead. Links are only available for PDFs and have a TTL of 3 days. (optional, default to false)</param>
-        /// <param name="getDataUri">If &#x60;true&#x60;, the response will contain the file as base64 encoded string. Base64 encoding is only available for PDFs. (optional, default to false)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of FileResponse</returns>
-        public async System.Threading.Tasks.Task<FileResponse> TemplateFilesAsync(string templateId, string? fileType = default(string?), bool? getUrl = default(bool?), bool? getDataUri = default(bool?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        /// <returns>Task of System.IO.Stream</returns>
+        public async System.Threading.Tasks.Task<System.IO.Stream> TemplateFilesAsync(string templateId, string? fileType = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            HelloSign.Client.ApiResponse<FileResponse> localVarResponse = await TemplateFilesWithHttpInfoAsync(templateId, fileType, getUrl, getDataUri, operationIndex, cancellationToken).ConfigureAwait(false);
+            HelloSign.Client.ApiResponse<System.IO.Stream> localVarResponse = await TemplateFilesWithHttpInfoAsync(templateId, fileType, operationIndex, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
         /// <summary>
-        /// Get Template File Obtain a copy of the current documents specified by the &#x60;template_id&#x60; parameter. Returns a PDF or ZIP file.  If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead. In this case please wait for the &#x60;template_created&#x60; callback event.
+        /// Get Template Files Obtain a copy of the current documents specified by the &#x60;template_id&#x60; parameter. Returns a PDF or ZIP file.  If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead. In this case please wait for the &#x60;template_created&#x60; callback event.
         /// </summary>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateId">The id of the template files to retrieve.</param>
         /// <param name="fileType">Set to &#x60;pdf&#x60; for a single merged document or &#x60;zip&#x60; for a collection of individual documents. (optional)</param>
-        /// <param name="getUrl">If &#x60;true&#x60;, the response will contain a url link to the file instead. Links are only available for PDFs and have a TTL of 3 days. (optional, default to false)</param>
-        /// <param name="getDataUri">If &#x60;true&#x60;, the response will contain the file as base64 encoded string. Base64 encoding is only available for PDFs. (optional, default to false)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
-        /// <returns>Task of ApiResponse (FileResponse)</returns>
-        public async System.Threading.Tasks.Task<HelloSign.Client.ApiResponse<FileResponse>> TemplateFilesWithHttpInfoAsync(string templateId, string? fileType = default(string?), bool? getUrl = default(bool?), bool? getDataUri = default(bool?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        /// <returns>Task of ApiResponse (System.IO.Stream)</returns>
+        public async System.Threading.Tasks.Task<HelloSign.Client.ApiResponse<System.IO.Stream>> TemplateFilesWithHttpInfoAsync(string templateId, string? fileType = default(string?), int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             // verify the required parameter 'templateId' is set
             if (templateId == null)
             {
                 throw new HelloSign.Client.ApiException(400, "Missing required parameter 'templateId' when calling TemplateApi->TemplateFiles");
+            }
+
+
+            HelloSign.Client.RequestOptions localVarRequestOptions = new HelloSign.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            var localVarContentType = HelloSign.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/pdf",
+                "application/zip",
+                "application/json"
+            };
+
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = HelloSign.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+            localVarRequestOptions.PathParameters.Add("template_id", HelloSign.Client.ClientUtils.ParameterToString(templateId)); // path parameter
+            if (fileType != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(HelloSign.Client.ClientUtils.ParameterToMultiMap("", "file_type", fileType));
+            }
+            localVarRequestOptions.Operation = "TemplateApi.TemplateFiles";
+            localVarRequestOptions.OperationIndex = operationIndex;
+
+            // authentication (api_key) required
+            // http basic authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.Username) || !string.IsNullOrEmpty(this.Configuration.Password) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Basic " + HelloSign.Client.ClientUtils.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password));
+            }
+            // authentication (oauth2) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = await this.AsynchronousClient.GetAsync<System.IO.Stream>("/template/files/{template_id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("TemplateFiles", localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get Template Files as Data Uri Obtain a copy of the current documents specified by the &#x60;template_id&#x60; parameter. Returns a JSON object with a &#x60;data_uri&#x60; representing the base64 encoded file (PDFs only).   If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead. In this case please wait for the &#x60;template_created&#x60; callback event.
+        /// </summary>
+        /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="templateId">The id of the template files to retrieve.</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>FileResponseDataUri</returns>
+        public FileResponseDataUri TemplateFilesAsDataUri(string templateId, int operationIndex = 0)
+        {
+            HelloSign.Client.ApiResponse<FileResponseDataUri> localVarResponse = TemplateFilesAsDataUriWithHttpInfo(templateId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get Template Files as Data Uri Obtain a copy of the current documents specified by the &#x60;template_id&#x60; parameter. Returns a JSON object with a &#x60;data_uri&#x60; representing the base64 encoded file (PDFs only).   If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead. In this case please wait for the &#x60;template_created&#x60; callback event.
+        /// </summary>
+        /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="templateId">The id of the template files to retrieve.</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>ApiResponse of FileResponseDataUri</returns>
+        public HelloSign.Client.ApiResponse<FileResponseDataUri> TemplateFilesAsDataUriWithHttpInfo(string templateId, int operationIndex = 0)
+        {
+            // verify the required parameter 'templateId' is set
+            if (templateId == null)
+            {
+                throw new HelloSign.Client.ApiException(400, "Missing required parameter 'templateId' when calling TemplateApi->TemplateFilesAsDataUri");
+            }
+
+            HelloSign.Client.RequestOptions localVarRequestOptions = new HelloSign.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+            var localVarContentType = HelloSign.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = HelloSign.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+            localVarRequestOptions.PathParameters.Add("template_id", HelloSign.Client.ClientUtils.ParameterToString(templateId)); // path parameter
+            localVarRequestOptions.Operation = "TemplateApi.TemplateFilesAsDataUri";
+            localVarRequestOptions.OperationIndex = operationIndex;
+
+            // authentication (api_key) required
+            // http basic authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.Username) || !string.IsNullOrEmpty(this.Configuration.Password) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Basic " + HelloSign.Client.ClientUtils.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password));
+            }
+            // authentication (oauth2) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<FileResponseDataUri>("/template/files_as_data_uri/{template_id}", localVarRequestOptions, this.Configuration);
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("TemplateFilesAsDataUri", localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get Template Files as Data Uri Obtain a copy of the current documents specified by the &#x60;template_id&#x60; parameter. Returns a JSON object with a &#x60;data_uri&#x60; representing the base64 encoded file (PDFs only).   If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead. In this case please wait for the &#x60;template_created&#x60; callback event.
+        /// </summary>
+        /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="templateId">The id of the template files to retrieve.</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of FileResponseDataUri</returns>
+        public async System.Threading.Tasks.Task<FileResponseDataUri> TemplateFilesAsDataUriAsync(string templateId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            HelloSign.Client.ApiResponse<FileResponseDataUri> localVarResponse = await TemplateFilesAsDataUriWithHttpInfoAsync(templateId, operationIndex, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get Template Files as Data Uri Obtain a copy of the current documents specified by the &#x60;template_id&#x60; parameter. Returns a JSON object with a &#x60;data_uri&#x60; representing the base64 encoded file (PDFs only).   If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead. In this case please wait for the &#x60;template_created&#x60; callback event.
+        /// </summary>
+        /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="templateId">The id of the template files to retrieve.</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (FileResponseDataUri)</returns>
+        public async System.Threading.Tasks.Task<HelloSign.Client.ApiResponse<FileResponseDataUri>> TemplateFilesAsDataUriWithHttpInfoAsync(string templateId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'templateId' is set
+            if (templateId == null)
+            {
+                throw new HelloSign.Client.ApiException(400, "Missing required parameter 'templateId' when calling TemplateApi->TemplateFilesAsDataUri");
             }
 
 
@@ -1283,19 +1530,7 @@ namespace HelloSign.Api
             }
 
             localVarRequestOptions.PathParameters.Add("template_id", HelloSign.Client.ClientUtils.ParameterToString(templateId)); // path parameter
-            if (fileType != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(HelloSign.Client.ClientUtils.ParameterToMultiMap("", "file_type", fileType));
-            }
-            if (getUrl != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(HelloSign.Client.ClientUtils.ParameterToMultiMap("", "get_url", getUrl));
-            }
-            if (getDataUri != null)
-            {
-                localVarRequestOptions.QueryParameters.Add(HelloSign.Client.ClientUtils.ParameterToMultiMap("", "get_data_uri", getDataUri));
-            }
-            localVarRequestOptions.Operation = "TemplateApi.TemplateFiles";
+            localVarRequestOptions.Operation = "TemplateApi.TemplateFilesAsDataUri";
             localVarRequestOptions.OperationIndex = operationIndex;
 
             // authentication (api_key) required
@@ -1312,11 +1547,178 @@ namespace HelloSign.Api
             }
 
             // make the HTTP request
-            var localVarResponse = await this.AsynchronousClient.GetAsync<FileResponse>("/template/files/{template_id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+            var localVarResponse = await this.AsynchronousClient.GetAsync<FileResponseDataUri>("/template/files_as_data_uri/{template_id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
 
             if (this.ExceptionFactory != null)
             {
-                Exception _exception = this.ExceptionFactory("TemplateFiles", localVarResponse);
+                Exception _exception = this.ExceptionFactory("TemplateFilesAsDataUri", localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get Template Files as File Url Obtain a copy of the current documents specified by the &#x60;template_id&#x60; parameter. Returns a JSON object with a url to the file (PDFs only).   If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead. In this case please wait for the &#x60;template_created&#x60; callback event.
+        /// </summary>
+        /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="templateId">The id of the template files to retrieve.</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>FileResponse</returns>
+        public FileResponse TemplateFilesAsFileUrl(string templateId, int operationIndex = 0)
+        {
+            HelloSign.Client.ApiResponse<FileResponse> localVarResponse = TemplateFilesAsFileUrlWithHttpInfo(templateId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get Template Files as File Url Obtain a copy of the current documents specified by the &#x60;template_id&#x60; parameter. Returns a JSON object with a url to the file (PDFs only).   If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead. In this case please wait for the &#x60;template_created&#x60; callback event.
+        /// </summary>
+        /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="templateId">The id of the template files to retrieve.</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <returns>ApiResponse of FileResponse</returns>
+        public HelloSign.Client.ApiResponse<FileResponse> TemplateFilesAsFileUrlWithHttpInfo(string templateId, int operationIndex = 0)
+        {
+            // verify the required parameter 'templateId' is set
+            if (templateId == null)
+            {
+                throw new HelloSign.Client.ApiException(400, "Missing required parameter 'templateId' when calling TemplateApi->TemplateFilesAsFileUrl");
+            }
+
+            HelloSign.Client.RequestOptions localVarRequestOptions = new HelloSign.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+            var localVarContentType = HelloSign.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = HelloSign.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+            localVarRequestOptions.PathParameters.Add("template_id", HelloSign.Client.ClientUtils.ParameterToString(templateId)); // path parameter
+            localVarRequestOptions.Operation = "TemplateApi.TemplateFilesAsFileUrl";
+            localVarRequestOptions.OperationIndex = operationIndex;
+
+            // authentication (api_key) required
+            // http basic authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.Username) || !string.IsNullOrEmpty(this.Configuration.Password) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Basic " + HelloSign.Client.ClientUtils.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password));
+            }
+            // authentication (oauth2) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<FileResponse>("/template/files_as_file_url/{template_id}", localVarRequestOptions, this.Configuration);
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("TemplateFilesAsFileUrl", localVarResponse);
+                if (_exception != null)
+                {
+                    throw _exception;
+                }
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// Get Template Files as File Url Obtain a copy of the current documents specified by the &#x60;template_id&#x60; parameter. Returns a JSON object with a url to the file (PDFs only).   If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead. In this case please wait for the &#x60;template_created&#x60; callback event.
+        /// </summary>
+        /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="templateId">The id of the template files to retrieve.</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of FileResponse</returns>
+        public async System.Threading.Tasks.Task<FileResponse> TemplateFilesAsFileUrlAsync(string templateId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            HelloSign.Client.ApiResponse<FileResponse> localVarResponse = await TemplateFilesAsFileUrlWithHttpInfoAsync(templateId, operationIndex, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// Get Template Files as File Url Obtain a copy of the current documents specified by the &#x60;template_id&#x60; parameter. Returns a JSON object with a url to the file (PDFs only).   If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead. In this case please wait for the &#x60;template_created&#x60; callback event.
+        /// </summary>
+        /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="templateId">The id of the template files to retrieve.</param>
+        /// <param name="operationIndex">Index associated with the operation.</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (FileResponse)</returns>
+        public async System.Threading.Tasks.Task<HelloSign.Client.ApiResponse<FileResponse>> TemplateFilesAsFileUrlWithHttpInfoAsync(string templateId, int operationIndex = 0, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'templateId' is set
+            if (templateId == null)
+            {
+                throw new HelloSign.Client.ApiException(400, "Missing required parameter 'templateId' when calling TemplateApi->TemplateFilesAsFileUrl");
+            }
+
+
+            HelloSign.Client.RequestOptions localVarRequestOptions = new HelloSign.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            var localVarContentType = HelloSign.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            if (localVarContentType != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+            }
+
+            var localVarAccept = HelloSign.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null)
+            {
+                localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+            }
+
+            localVarRequestOptions.PathParameters.Add("template_id", HelloSign.Client.ClientUtils.ParameterToString(templateId)); // path parameter
+            localVarRequestOptions.Operation = "TemplateApi.TemplateFilesAsFileUrl";
+            localVarRequestOptions.OperationIndex = operationIndex;
+
+            // authentication (api_key) required
+            // http basic authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.Username) || !string.IsNullOrEmpty(this.Configuration.Password) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Basic " + HelloSign.Client.ClientUtils.Base64Encode(this.Configuration.Username + ":" + this.Configuration.Password));
+            }
+            // authentication (oauth2) required
+            // bearer authentication required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = await this.AsynchronousClient.GetAsync<FileResponse>("/template/files_as_file_url/{template_id}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("TemplateFilesAsFileUrl", localVarResponse);
                 if (_exception != null)
                 {
                     throw _exception;

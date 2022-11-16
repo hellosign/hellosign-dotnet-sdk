@@ -15,13 +15,13 @@ public class Example
         // or, configure Bearer (JWT) authorization: oauth2
         // config.AccessToken = "YOUR_BEARER_TOKEN";
 
-        var apiInstance = new TemplateApi(config);
+        var apiInstance = new SignatureRequestApi(config);
 
-        var templateId = "f57db65d3f933b5316d398057a36176831451a35";
+        var signatureRequestId = "fa5c8a0b0f492d768749333ad6fcc214c111e967";
 
         try
         {
-            var result = apiInstance.TemplateFilesAsEncodedString(templateId, "pdf", false, false);
+            var result = apiInstance.SignatureRequestFilesAsDataUri(signatureRequestId);
             Console.WriteLine(result);
         }
         catch (ApiException e)
