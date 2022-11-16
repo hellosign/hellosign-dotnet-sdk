@@ -1,7 +1,7 @@
 /*
- * HelloSign API
+ * Dropbox Sign API
  *
- * HelloSign v3 API
+ * Dropbox Sign v3 API
  *
  * The version of the OpenAPI document: 3.0.0
  * Contact: apisupport@hellosign.com
@@ -50,12 +50,12 @@ namespace HelloSign.Model
         /// <param name="message">The custom message in the email that was initially sent to the signers..</param>
         /// <param name="metadata">The metadata attached to the signature request..</param>
         /// <param name="createdAt">Time the signature request was created..</param>
-        /// <param name="expiresAt">_t__SignatureRequestResponse::EXPIRES_AT.</param>
+        /// <param name="expiresAt">The time when the signature request will expire pending signatures..</param>
         /// <param name="isComplete">Whether or not the SignatureRequest has been fully executed by all signers..</param>
         /// <param name="isDeclined">Whether or not the SignatureRequest has been declined by a signer..</param>
         /// <param name="hasError">Whether or not an error occurred (either during the creation of the SignatureRequest or during one of the signings)..</param>
         /// <param name="filesUrl">The URL where a copy of the request&#39;s documents can be downloaded..</param>
-        /// <param name="signingUrl">The URL where a signer, after authenticating, can sign the documents. This should only be used by users with existing HelloSign accounts as they will be required to log in before signing..</param>
+        /// <param name="signingUrl">The URL where a signer, after authenticating, can sign the documents. This should only be used by users with existing Dropbox Sign accounts as they will be required to log in before signing..</param>
         /// <param name="detailsUrl">The URL where the requester and the signers can view the current status of the SignatureRequest..</param>
         /// <param name="ccEmailAddresses">A list of email addresses that were CCed on the SignatureRequest. They will receive a copy of the final PDF once all the signers have signed..</param>
         /// <param name="signingRedirectUrl">The URL you want the signer redirected to after they successfully sign..</param>
@@ -157,9 +157,9 @@ namespace HelloSign.Model
         public int CreatedAt { get; set; }
 
         /// <summary>
-        /// _t__SignatureRequestResponse::EXPIRES_AT
+        /// The time when the signature request will expire pending signatures.
         /// </summary>
-        /// <value>_t__SignatureRequestResponse::EXPIRES_AT</value>
+        /// <value>The time when the signature request will expire pending signatures.</value>
         [DataMember(Name = "expires_at", EmitDefaultValue = true)]
         public int ExpiresAt { get; set; }
 
@@ -192,9 +192,9 @@ namespace HelloSign.Model
         public string FilesUrl { get; set; }
 
         /// <summary>
-        /// The URL where a signer, after authenticating, can sign the documents. This should only be used by users with existing HelloSign accounts as they will be required to log in before signing.
+        /// The URL where a signer, after authenticating, can sign the documents. This should only be used by users with existing Dropbox Sign accounts as they will be required to log in before signing.
         /// </summary>
-        /// <value>The URL where a signer, after authenticating, can sign the documents. This should only be used by users with existing HelloSign accounts as they will be required to log in before signing.</value>
+        /// <value>The URL where a signer, after authenticating, can sign the documents. This should only be used by users with existing Dropbox Sign accounts as they will be required to log in before signing.</value>
         [DataMember(Name = "signing_url", EmitDefaultValue = true)]
         public string SigningUrl { get; set; }
 

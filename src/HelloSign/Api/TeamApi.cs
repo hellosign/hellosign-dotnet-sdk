@@ -1,7 +1,7 @@
 /*
- * HelloSign API
+ * Dropbox Sign API
  *
- * HelloSign v3 API
+ * Dropbox Sign v3 API
  *
  * The version of the OpenAPI document: 3.0.0
  * Contact: apisupport@hellosign.com
@@ -31,7 +31,7 @@ namespace HelloSign.Api
         /// Add User to Team
         /// </summary>
         /// <remarks>
-        /// Invites a user (specified using the &#x60;email_address&#x60; parameter) to your Team. If the user does not currently have a HelloSign Account, a new one will be created for them. If a user is already a part of another Team, a &#x60;team_invite_failed&#x60; error will be returned.
+        /// Invites a user (specified using the &#x60;email_address&#x60; parameter) to your Team. If the user does not currently have a Dropbox Sign Account, a new one will be created for them. If a user is already a part of another Team, a &#x60;team_invite_failed&#x60; error will be returned.
         /// </remarks>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="teamAddMemberRequest"></param>
@@ -44,7 +44,7 @@ namespace HelloSign.Api
         /// Add User to Team
         /// </summary>
         /// <remarks>
-        /// Invites a user (specified using the &#x60;email_address&#x60; parameter) to your Team. If the user does not currently have a HelloSign Account, a new one will be created for them. If a user is already a part of another Team, a &#x60;team_invite_failed&#x60; error will be returned.
+        /// Invites a user (specified using the &#x60;email_address&#x60; parameter) to your Team. If the user does not currently have a Dropbox Sign Account, a new one will be created for them. If a user is already a part of another Team, a &#x60;team_invite_failed&#x60; error will be returned.
         /// </remarks>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="teamAddMemberRequest"></param>
@@ -276,7 +276,7 @@ namespace HelloSign.Api
         /// Add User to Team
         /// </summary>
         /// <remarks>
-        /// Invites a user (specified using the &#x60;email_address&#x60; parameter) to your Team. If the user does not currently have a HelloSign Account, a new one will be created for them. If a user is already a part of another Team, a &#x60;team_invite_failed&#x60; error will be returned.
+        /// Invites a user (specified using the &#x60;email_address&#x60; parameter) to your Team. If the user does not currently have a Dropbox Sign Account, a new one will be created for them. If a user is already a part of another Team, a &#x60;team_invite_failed&#x60; error will be returned.
         /// </remarks>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="teamAddMemberRequest"></param>
@@ -290,7 +290,7 @@ namespace HelloSign.Api
         /// Add User to Team
         /// </summary>
         /// <remarks>
-        /// Invites a user (specified using the &#x60;email_address&#x60; parameter) to your Team. If the user does not currently have a HelloSign Account, a new one will be created for them. If a user is already a part of another Team, a &#x60;team_invite_failed&#x60; error will be returned.
+        /// Invites a user (specified using the &#x60;email_address&#x60; parameter) to your Team. If the user does not currently have a Dropbox Sign Account, a new one will be created for them. If a user is already a part of another Team, a &#x60;team_invite_failed&#x60; error will be returned.
         /// </remarks>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="teamAddMemberRequest"></param>
@@ -649,7 +649,7 @@ namespace HelloSign.Api
         }
 
         /// <summary>
-        /// Add User to Team Invites a user (specified using the &#x60;email_address&#x60; parameter) to your Team. If the user does not currently have a HelloSign Account, a new one will be created for them. If a user is already a part of another Team, a &#x60;team_invite_failed&#x60; error will be returned.
+        /// Add User to Team Invites a user (specified using the &#x60;email_address&#x60; parameter) to your Team. If the user does not currently have a Dropbox Sign Account, a new one will be created for them. If a user is already a part of another Team, a &#x60;team_invite_failed&#x60; error will be returned.
         /// </summary>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="teamAddMemberRequest"></param>
@@ -663,7 +663,7 @@ namespace HelloSign.Api
         }
 
         /// <summary>
-        /// Add User to Team Invites a user (specified using the &#x60;email_address&#x60; parameter) to your Team. If the user does not currently have a HelloSign Account, a new one will be created for them. If a user is already a part of another Team, a &#x60;team_invite_failed&#x60; error will be returned.
+        /// Add User to Team Invites a user (specified using the &#x60;email_address&#x60; parameter) to your Team. If the user does not currently have a Dropbox Sign Account, a new one will be created for them. If a user is already a part of another Team, a &#x60;team_invite_failed&#x60; error will be returned.
         /// </summary>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="teamAddMemberRequest"></param>
@@ -744,7 +744,7 @@ namespace HelloSign.Api
         }
 
         /// <summary>
-        /// Add User to Team Invites a user (specified using the &#x60;email_address&#x60; parameter) to your Team. If the user does not currently have a HelloSign Account, a new one will be created for them. If a user is already a part of another Team, a &#x60;team_invite_failed&#x60; error will be returned.
+        /// Add User to Team Invites a user (specified using the &#x60;email_address&#x60; parameter) to your Team. If the user does not currently have a Dropbox Sign Account, a new one will be created for them. If a user is already a part of another Team, a &#x60;team_invite_failed&#x60; error will be returned.
         /// </summary>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="teamAddMemberRequest"></param>
@@ -759,7 +759,7 @@ namespace HelloSign.Api
         }
 
         /// <summary>
-        /// Add User to Team Invites a user (specified using the &#x60;email_address&#x60; parameter) to your Team. If the user does not currently have a HelloSign Account, a new one will be created for them. If a user is already a part of another Team, a &#x60;team_invite_failed&#x60; error will be returned.
+        /// Add User to Team Invites a user (specified using the &#x60;email_address&#x60; parameter) to your Team. If the user does not currently have a Dropbox Sign Account, a new one will be created for them. If a user is already a part of another Team, a &#x60;team_invite_failed&#x60; error will be returned.
         /// </summary>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="teamAddMemberRequest"></param>

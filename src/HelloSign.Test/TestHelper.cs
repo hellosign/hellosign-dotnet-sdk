@@ -10,7 +10,7 @@ namespace HelloSign.Test
 {
     public class TestHelper
     {
-        private const string RootPath = "../../../../../oas/test_fixtures";
+        private const string RootPath = "../../../../../test_fixtures";
 
         public static StreamReader ReadFileFromResource(string fileName)
         {

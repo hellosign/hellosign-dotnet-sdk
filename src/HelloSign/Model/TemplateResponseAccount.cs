@@ -1,7 +1,7 @@
 /*
- * HelloSign API
+ * Dropbox Sign API
  *
- * HelloSign v3 API
+ * Dropbox Sign v3 API
  *
  * The version of the OpenAPI document: 3.0.0
  * Contact: apisupport@hellosign.com
@@ -44,7 +44,7 @@ namespace HelloSign.Model
         /// <param name="accountId">The id of the Account..</param>
         /// <param name="emailAddress">The email address associated with the Account..</param>
         /// <param name="isLocked">Returns &#x60;true&#x60; if the user has been locked out of their account by a team admin..</param>
-        /// <param name="isPaidHs">Returns &#x60;true&#x60; if the user has a paid HelloSign account..</param>
+        /// <param name="isPaidHs">Returns &#x60;true&#x60; if the user has a paid Dropbox Sign account..</param>
         /// <param name="isPaidHf">Returns &#x60;true&#x60; if the user has a paid HelloFax account..</param>
         /// <param name="quotas">quotas.</param>
         public TemplateResponseAccount(string accountId = default(string), string emailAddress = default(string), bool isLocked = default(bool), bool isPaidHs = default(bool), bool isPaidHf = default(bool), TemplateResponseAccountQuota quotas = default(TemplateResponseAccountQuota))
@@ -80,9 +80,9 @@ namespace HelloSign.Model
         public bool IsLocked { get; set; }
 
         /// <summary>
-        /// Returns &#x60;true&#x60; if the user has a paid HelloSign account.
+        /// Returns &#x60;true&#x60; if the user has a paid Dropbox Sign account.
         /// </summary>
-        /// <value>Returns &#x60;true&#x60; if the user has a paid HelloSign account.</value>
+        /// <value>Returns &#x60;true&#x60; if the user has a paid Dropbox Sign account.</value>
         [DataMember(Name = "is_paid_hs", EmitDefaultValue = true)]
         public bool IsPaidHs { get; set; }
 

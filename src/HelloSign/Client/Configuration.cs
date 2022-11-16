@@ -1,7 +1,7 @@
 /*
- * HelloSign API
+ * Dropbox Sign API
  *
- * HelloSign v3 API
+ * Dropbox Sign v3 API
  *
  * The version of the OpenAPI document: 3.0.0
  * Contact: apisupport@hellosign.com
@@ -36,7 +36,7 @@ namespace HelloSign.Client
         /// Version of the package.
         /// </summary>
         /// <value>Version of the package.</value>
-        public const string Version = "6.0.0-beta.3";
+        public const string Version = "6.0.0-beta22.22";
 
         /// <summary>
         /// Identifier for ISO 8601 DateTime Format
@@ -118,7 +118,7 @@ namespace HelloSign.Client
         public Configuration()
         {
             Proxy = null;
-            UserAgent = WebUtility.UrlEncode("OpenAPI-Generator/6.0.0-beta.3/csharp");
+            UserAgent = WebUtility.UrlEncode("OpenAPI-Generator/6.0.0-beta22.22/csharp");
             BasePath = "https://api.hellosign.com/v3";
             DefaultHeaders = new ConcurrentDictionary<string, string>();
             ApiKey = new ConcurrentDictionary<string, string>();
@@ -550,7 +550,7 @@ namespace HelloSign.Client
             report += "    OS: " + System.Environment.OSVersion + "\n";
             report += "    .NET Framework Version: " + System.Environment.Version  + "\n";
             report += "    Version of the API: 3.0.0\n";
-            report += "    SDK Package Version: 6.0.0-beta.3\n";
+            report += "    SDK Package Version: 6.0.0-beta22.22\n";
 
             return report;
         }

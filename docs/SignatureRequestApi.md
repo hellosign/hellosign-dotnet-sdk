@@ -9,7 +9,9 @@ All URIs are relative to *https://api.hellosign.com/v3*
 | [**SignatureRequestCancel**](SignatureRequestApi.md#signaturerequestcancel) | **POST** /signature_request/cancel/{signature_request_id} | Cancel Incomplete Signature Request |
 | [**SignatureRequestCreateEmbedded**](SignatureRequestApi.md#signaturerequestcreateembedded) | **POST** /signature_request/create_embedded | Create Embedded Signature Request |
 | [**SignatureRequestCreateEmbeddedWithTemplate**](SignatureRequestApi.md#signaturerequestcreateembeddedwithtemplate) | **POST** /signature_request/create_embedded_with_template | Create Embedded Signature Request with Template |
-| [**SignatureRequestFiles**](SignatureRequestApi.md#signaturerequestfiles) | **GET** /signature_request/files/{signature_request_id} | Download File |
+| [**SignatureRequestFiles**](SignatureRequestApi.md#signaturerequestfiles) | **GET** /signature_request/files/{signature_request_id} | Download Files |
+| [**SignatureRequestFilesAsDataUri**](SignatureRequestApi.md#signaturerequestfilesasdatauri) | **GET** /signature_request/files_as_data_uri/{signature_request_id} | Download Files as Data Uri |
+| [**SignatureRequestFilesAsFileUrl**](SignatureRequestApi.md#signaturerequestfilesasfileurl) | **GET** /signature_request/files_as_file_url/{signature_request_id} | Download Files as File Url |
 | [**SignatureRequestGet**](SignatureRequestApi.md#signaturerequestget) | **GET** /signature_request/{signature_request_id} | Get Signature Request |
 | [**SignatureRequestList**](SignatureRequestApi.md#signaturerequestlist) | **GET** /signature_request/list | List Signature Requests |
 | [**SignatureRequestReleaseHold**](SignatureRequestApi.md#signaturerequestreleasehold) | **POST** /signature_request/release_hold/{signature_request_id} | Release On-Hold Signature Request |
@@ -25,7 +27,7 @@ All URIs are relative to *https://api.hellosign.com/v3*
 
 Embedded Bulk Send with Template
 
-Creates BulkSendJob which sends up to 250 SignatureRequests in bulk based off of the provided Template(s) specified with the `template_ids` parameter to be signed in an embedded iFrame. These embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on HelloSign.  **NOTE**: Only available for Standard plan and higher.
+Creates BulkSendJob which sends up to 250 SignatureRequests in bulk based off of the provided Template(s) specified with the `template_ids` parameter to be signed in an embedded iFrame. These embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on Dropbox Sign.  **NOTE**: Only available for Standard plan and higher.
 
 ### Example
 ```csharp
@@ -402,7 +404,7 @@ void (empty response body)
 
 Create Embedded Signature Request
 
-Creates a new SignatureRequest with the submitted documents to be signed in an embedded iFrame. If form_fields_per_document is not specified, a signature page will be affixed where all signers will be required to add their signature, signifying their agreement to all contained documents. <u>Note</u> that embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on HelloSign.
+Creates a new SignatureRequest with the submitted documents to be signed in an embedded iFrame. If form_fields_per_document is not specified, a signature page will be affixed where all signers will be required to add their signature, signifying their agreement to all contained documents. <u>Note</u> that embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on Dropbox Sign.
 
 ### Example
 ```csharp
@@ -527,7 +529,7 @@ catch (ApiException e)
 
 Create Embedded Signature Request with Template
 
-Creates a new SignatureRequest based on the given Template(s) to be signed in an embedded iFrame. <u>Note</u> that embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on HelloSign.
+Creates a new SignatureRequest based on the given Template(s) to be signed in an embedded iFrame. <u>Note</u> that embedded signature requests can only be signed in embedded iFrames whereas normal signature requests can only be signed on Dropbox Sign.
 
 ### Example
 ```csharp
@@ -639,9 +641,9 @@ catch (ApiException e)
 
 <a name="signaturerequestfiles"></a>
 # **SignatureRequestFiles**
-> FileResponse SignatureRequestFiles (string signatureRequestId, string? fileType = null, bool? getUrl = null, bool? getDataUri = null)
+> System.IO.Stream SignatureRequestFiles (string signatureRequestId, string? fileType = null)
 
-Download File
+Download Files
 
 Obtain a copy of the current documents specified by the `signature_request_id` parameter. Returns a PDF or ZIP file.   If the files are currently being prepared, a status code of `409` will be returned instead.
 
@@ -690,8 +692,8 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // Download File
-    ApiResponse<FileResponse> response = apiInstance.SignatureRequestFilesWithHttpInfo(signatureRequestId, fileType, getUrl, getDataUri);
+    // Download Files
+    ApiResponse<System.IO.Stream> response = apiInstance.SignatureRequestFilesWithHttpInfo(signatureRequestId, fileType);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -710,8 +712,196 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **signatureRequestId** | **string** | The id of the SignatureRequest to retrieve. |  |
 | **fileType** | **string?** | Set to `pdf` for a single merged document or `zip` for a collection of individual documents. | [optional] [default to pdf] |
-| **getUrl** | **bool?** | If `true`, the response will contain a url link to the file instead. Links are only available for PDFs and have a TTL of 3 days. | [optional] [default to false] |
-| **getDataUri** | **bool?** | If `true`, the response will contain the file as base64 encoded string. Base64 encoding is only available for PDFs. | [optional] [default to false] |
+
+### Return type
+
+**System.IO.Stream**
+
+### Authorization
+
+[api_key](../README.md#api_key), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/pdf, application/zip, application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | successful operation |  * X-RateLimit-Limit -  <br>  * X-RateLimit-Remaining -  <br>  * X-Ratelimit-Reset -  <br>  |
+| **4XX** | failed_operation |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="signaturerequestfilesasdatauri"></a>
+# **SignatureRequestFilesAsDataUri**
+> FileResponseDataUri SignatureRequestFilesAsDataUri (string signatureRequestId)
+
+Download Files as Data Uri
+
+Obtain a copy of the current documents specified by the `signature_request_id` parameter. Returns a JSON object with a `data_uri` representing the base64 encoded file (PDFs only).   If the files are currently being prepared, a status code of `409` will be returned instead.
+
+### Example
+```csharp
+using System;
+using System.Collections.Generic;
+using HelloSign.Api;
+using HelloSign.Client;
+using HelloSign.Model;
+
+public class Example
+{
+    public static void Main()
+    {
+        var config = new Configuration();
+        // Configure HTTP basic authorization: api_key
+        config.Username = "YOUR_API_KEY";
+
+        // or, configure Bearer (JWT) authorization: oauth2
+        // config.AccessToken = "YOUR_BEARER_TOKEN";
+
+        var apiInstance = new SignatureRequestApi(config);
+
+        var signatureRequestId = "fa5c8a0b0f492d768749333ad6fcc214c111e967";
+
+        try
+        {
+            var result = apiInstance.SignatureRequestFilesAsDataUri(signatureRequestId);
+            Console.WriteLine(result);
+        }
+        catch (ApiException e)
+        {
+            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
+            Console.WriteLine("Status Code: " + e.ErrorCode);
+            Console.WriteLine(e.StackTrace);
+        }
+    }
+}
+
+```
+
+#### Using the SignatureRequestFilesAsDataUriWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Download Files as Data Uri
+    ApiResponse<FileResponseDataUri> response = apiInstance.SignatureRequestFilesAsDataUriWithHttpInfo(signatureRequestId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling SignatureRequestApi.SignatureRequestFilesAsDataUriWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **signatureRequestId** | **string** | The id of the SignatureRequest to retrieve. |  |
+
+### Return type
+
+[**FileResponseDataUri**](FileResponseDataUri.md)
+
+### Authorization
+
+[api_key](../README.md#api_key), [oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | successful operation |  * X-RateLimit-Limit -  <br>  * X-RateLimit-Remaining -  <br>  * X-Ratelimit-Reset -  <br>  |
+| **4XX** | failed_operation |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="signaturerequestfilesasfileurl"></a>
+# **SignatureRequestFilesAsFileUrl**
+> FileResponse SignatureRequestFilesAsFileUrl (string signatureRequestId)
+
+Download Files as File Url
+
+Obtain a copy of the current documents specified by the `signature_request_id` parameter. Returns a JSON object with a url to the file (PDFs only).   If the files are currently being prepared, a status code of `409` will be returned instead.
+
+### Example
+```csharp
+using System;
+using System.Collections.Generic;
+using HelloSign.Api;
+using HelloSign.Client;
+using HelloSign.Model;
+
+public class Example
+{
+    public static void Main()
+    {
+        var config = new Configuration();
+        // Configure HTTP basic authorization: api_key
+        config.Username = "YOUR_API_KEY";
+
+        // or, configure Bearer (JWT) authorization: oauth2
+        // config.AccessToken = "YOUR_BEARER_TOKEN";
+
+        var apiInstance = new SignatureRequestApi(config);
+
+        var signatureRequestId = "fa5c8a0b0f492d768749333ad6fcc214c111e967";
+
+        try
+        {
+            var result = apiInstance.SignatureRequestFilesAsFileUrl(signatureRequestId);
+            Console.WriteLine(result);
+        }
+        catch (ApiException e)
+        {
+            Console.WriteLine("Exception when calling HelloSign API: " + e.Message);
+            Console.WriteLine("Status Code: " + e.ErrorCode);
+            Console.WriteLine(e.StackTrace);
+        }
+    }
+}
+
+```
+
+#### Using the SignatureRequestFilesAsFileUrlWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // Download Files as File Url
+    ApiResponse<FileResponse> response = apiInstance.SignatureRequestFilesAsFileUrlWithHttpInfo(signatureRequestId);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling SignatureRequestApi.SignatureRequestFilesAsFileUrlWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **signatureRequestId** | **string** | The id of the SignatureRequest to retrieve. |  |
 
 ### Return type
 
