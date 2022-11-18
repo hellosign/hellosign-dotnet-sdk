@@ -305,6 +305,15 @@ namespace {{packageName}}.Client
                     continue; 
                 }
 
+                if (item.Value is Enum)
+                {
+                    requestOptions.FormParameters.Add(
+                        item.Name,
+                        JsonConvert.SerializeObject(item.Value).Replace("\"", string.Empty) //strip extra double quotes
+                    );
+                    continue;
+                }
+
                 if (item.Value is List<Stream> streams)
                 {
                     for (var i = 0; i < streams.Count; i++)
