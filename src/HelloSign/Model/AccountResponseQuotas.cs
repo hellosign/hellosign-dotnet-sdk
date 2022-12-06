@@ -43,13 +43,15 @@ namespace HelloSign.Model
         /// </summary>
         /// <param name="apiSignatureRequestsLeft">API signature requests remaining..</param>
         /// <param name="documentsLeft">Signature requests remaining..</param>
+        /// <param name="totalTemplates">Total API templates allowed..</param>
         /// <param name="templatesLeft">API templates remaining..</param>
         /// <param name="smsVerificationsLeft">SMS verifications  remaining..</param>
-        public AccountResponseQuotas(int? apiSignatureRequestsLeft = default(int?), int? documentsLeft = default(int?), int? templatesLeft = default(int?), int? smsVerificationsLeft = default(int?))
+        public AccountResponseQuotas(int? apiSignatureRequestsLeft = default(int?), int? documentsLeft = default(int?), int? totalTemplates = default(int?), int? templatesLeft = default(int?), int? smsVerificationsLeft = default(int?))
         {
             
             this.ApiSignatureRequestsLeft = apiSignatureRequestsLeft;
             this.DocumentsLeft = documentsLeft;
+            this.TotalTemplates = totalTemplates;
             this.TemplatesLeft = templatesLeft;
             this.SmsVerificationsLeft = smsVerificationsLeft;
         }
@@ -67,6 +69,13 @@ namespace HelloSign.Model
         /// <value>Signature requests remaining.</value>
         [DataMember(Name = "documents_left", EmitDefaultValue = true)]
         public int? DocumentsLeft { get; set; }
+
+        /// <summary>
+        /// Total API templates allowed.
+        /// </summary>
+        /// <value>Total API templates allowed.</value>
+        [DataMember(Name = "total_templates", EmitDefaultValue = true)]
+        public int? TotalTemplates { get; set; }
 
         /// <summary>
         /// API templates remaining.
@@ -92,6 +101,7 @@ namespace HelloSign.Model
             sb.Append("class AccountResponseQuotas {\n");
             sb.Append("  ApiSignatureRequestsLeft: ").Append(ApiSignatureRequestsLeft).Append("\n");
             sb.Append("  DocumentsLeft: ").Append(DocumentsLeft).Append("\n");
+            sb.Append("  TotalTemplates: ").Append(TotalTemplates).Append("\n");
             sb.Append("  TemplatesLeft: ").Append(TemplatesLeft).Append("\n");
             sb.Append("  SmsVerificationsLeft: ").Append(SmsVerificationsLeft).Append("\n");
             sb.Append("}\n");
@@ -140,6 +150,11 @@ namespace HelloSign.Model
                     this.DocumentsLeft.Equals(input.DocumentsLeft))
                 ) && 
                 (
+                    this.TotalTemplates == input.TotalTemplates ||
+                    (this.TotalTemplates != null &&
+                    this.TotalTemplates.Equals(input.TotalTemplates))
+                ) && 
+                (
                     this.TemplatesLeft == input.TemplatesLeft ||
                     (this.TemplatesLeft != null &&
                     this.TemplatesLeft.Equals(input.TemplatesLeft))
@@ -168,6 +183,10 @@ namespace HelloSign.Model
                 {
                     hashCode = (hashCode * 59) + this.DocumentsLeft.GetHashCode();
                 }
+                if (this.TotalTemplates != null)
+                {
+                    hashCode = (hashCode * 59) + this.TotalTemplates.GetHashCode();
+                }
                 if (this.TemplatesLeft != null)
                 {
                     hashCode = (hashCode * 59) + this.TemplatesLeft.GetHashCode();
@@ -194,6 +213,12 @@ namespace HelloSign.Model
                 Property = "DocumentsLeft",
                 Type = "int?",
                 Value = DocumentsLeft,
+            });
+            types.Add(new OpenApiType(){
+                Name = "total_templates",
+                Property = "TotalTemplates",
+                Type = "int?",
+                Value = TotalTemplates,
             });
             types.Add(new OpenApiType(){
                 Name = "templates_left",
