@@ -57,8 +57,8 @@ namespace HelloSign.Api
         /// Returns the properties and settings of your Account.
         /// </remarks>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">&#x60;account_id&#x60; or &#x60;email_address&#x60; is required. If both are provided, the account id prevails.   The ID of the Account. (optional)</param>
-        /// <param name="emailAddress">&#x60;account_id&#x60; or &#x60;email_address&#x60; is required, If both are provided, the account id prevails.   The email address of the Account. (optional)</param>
+        /// <param name="accountId">&#x60;account_id&#x60; or &#x60;email_address&#x60; is required. If both are provided, the account id prevails.  The ID of the Account. (optional)</param>
+        /// <param name="emailAddress">&#x60;account_id&#x60; or &#x60;email_address&#x60; is required, If both are provided, the account id prevails.  The email address of the Account. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>AccountGetResponse</returns>
         AccountGetResponse AccountGet(string? accountId = default(string?), string? emailAddress = default(string?), int operationIndex = 0);
@@ -70,8 +70,8 @@ namespace HelloSign.Api
         /// Returns the properties and settings of your Account.
         /// </remarks>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">&#x60;account_id&#x60; or &#x60;email_address&#x60; is required. If both are provided, the account id prevails.   The ID of the Account. (optional)</param>
-        /// <param name="emailAddress">&#x60;account_id&#x60; or &#x60;email_address&#x60; is required, If both are provided, the account id prevails.   The email address of the Account. (optional)</param>
+        /// <param name="accountId">&#x60;account_id&#x60; or &#x60;email_address&#x60; is required. If both are provided, the account id prevails.  The ID of the Account. (optional)</param>
+        /// <param name="emailAddress">&#x60;account_id&#x60; or &#x60;email_address&#x60; is required, If both are provided, the account id prevails.  The email address of the Account. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of AccountGetResponse</returns>
         ApiResponse<AccountGetResponse> AccountGetWithHttpInfo(string? accountId = default(string?), string? emailAddress = default(string?), int operationIndex = 0);
@@ -162,8 +162,8 @@ namespace HelloSign.Api
         /// Returns the properties and settings of your Account.
         /// </remarks>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">&#x60;account_id&#x60; or &#x60;email_address&#x60; is required. If both are provided, the account id prevails.   The ID of the Account. (optional)</param>
-        /// <param name="emailAddress">&#x60;account_id&#x60; or &#x60;email_address&#x60; is required, If both are provided, the account id prevails.   The email address of the Account. (optional)</param>
+        /// <param name="accountId">&#x60;account_id&#x60; or &#x60;email_address&#x60; is required. If both are provided, the account id prevails.  The ID of the Account. (optional)</param>
+        /// <param name="emailAddress">&#x60;account_id&#x60; or &#x60;email_address&#x60; is required, If both are provided, the account id prevails.  The email address of the Account. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of AccountGetResponse</returns>
@@ -176,8 +176,8 @@ namespace HelloSign.Api
         /// Returns the properties and settings of your Account.
         /// </remarks>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">&#x60;account_id&#x60; or &#x60;email_address&#x60; is required. If both are provided, the account id prevails.   The ID of the Account. (optional)</param>
-        /// <param name="emailAddress">&#x60;account_id&#x60; or &#x60;email_address&#x60; is required, If both are provided, the account id prevails.   The email address of the Account. (optional)</param>
+        /// <param name="accountId">&#x60;account_id&#x60; or &#x60;email_address&#x60; is required. If both are provided, the account id prevails.  The ID of the Account. (optional)</param>
+        /// <param name="emailAddress">&#x60;account_id&#x60; or &#x60;email_address&#x60; is required, If both are provided, the account id prevails.  The email address of the Account. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (AccountGetResponse)</returns>
@@ -538,8 +538,8 @@ namespace HelloSign.Api
         /// Get Account Returns the properties and settings of your Account.
         /// </summary>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">&#x60;account_id&#x60; or &#x60;email_address&#x60; is required. If both are provided, the account id prevails.   The ID of the Account. (optional)</param>
-        /// <param name="emailAddress">&#x60;account_id&#x60; or &#x60;email_address&#x60; is required, If both are provided, the account id prevails.   The email address of the Account. (optional)</param>
+        /// <param name="accountId">&#x60;account_id&#x60; or &#x60;email_address&#x60; is required. If both are provided, the account id prevails.  The ID of the Account. (optional)</param>
+        /// <param name="emailAddress">&#x60;account_id&#x60; or &#x60;email_address&#x60; is required, If both are provided, the account id prevails.  The email address of the Account. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>AccountGetResponse</returns>
         public AccountGetResponse AccountGet(string? accountId = default(string?), string? emailAddress = default(string?), int operationIndex = 0)
@@ -552,8 +552,8 @@ namespace HelloSign.Api
         /// Get Account Returns the properties and settings of your Account.
         /// </summary>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">&#x60;account_id&#x60; or &#x60;email_address&#x60; is required. If both are provided, the account id prevails.   The ID of the Account. (optional)</param>
-        /// <param name="emailAddress">&#x60;account_id&#x60; or &#x60;email_address&#x60; is required, If both are provided, the account id prevails.   The email address of the Account. (optional)</param>
+        /// <param name="accountId">&#x60;account_id&#x60; or &#x60;email_address&#x60; is required. If both are provided, the account id prevails.  The ID of the Account. (optional)</param>
+        /// <param name="emailAddress">&#x60;account_id&#x60; or &#x60;email_address&#x60; is required, If both are provided, the account id prevails.  The email address of the Account. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <returns>ApiResponse of AccountGetResponse</returns>
         public HelloSign.Client.ApiResponse<AccountGetResponse> AccountGetWithHttpInfo(string? accountId = default(string?), string? emailAddress = default(string?), int operationIndex = 0)
@@ -622,8 +622,8 @@ namespace HelloSign.Api
         /// Get Account Returns the properties and settings of your Account.
         /// </summary>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">&#x60;account_id&#x60; or &#x60;email_address&#x60; is required. If both are provided, the account id prevails.   The ID of the Account. (optional)</param>
-        /// <param name="emailAddress">&#x60;account_id&#x60; or &#x60;email_address&#x60; is required, If both are provided, the account id prevails.   The email address of the Account. (optional)</param>
+        /// <param name="accountId">&#x60;account_id&#x60; or &#x60;email_address&#x60; is required. If both are provided, the account id prevails.  The ID of the Account. (optional)</param>
+        /// <param name="emailAddress">&#x60;account_id&#x60; or &#x60;email_address&#x60; is required, If both are provided, the account id prevails.  The email address of the Account. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of AccountGetResponse</returns>
@@ -637,8 +637,8 @@ namespace HelloSign.Api
         /// Get Account Returns the properties and settings of your Account.
         /// </summary>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="accountId">&#x60;account_id&#x60; or &#x60;email_address&#x60; is required. If both are provided, the account id prevails.   The ID of the Account. (optional)</param>
-        /// <param name="emailAddress">&#x60;account_id&#x60; or &#x60;email_address&#x60; is required, If both are provided, the account id prevails.   The email address of the Account. (optional)</param>
+        /// <param name="accountId">&#x60;account_id&#x60; or &#x60;email_address&#x60; is required. If both are provided, the account id prevails.  The ID of the Account. (optional)</param>
+        /// <param name="emailAddress">&#x60;account_id&#x60; or &#x60;email_address&#x60; is required, If both are provided, the account id prevails.  The email address of the Account. (optional)</param>
         /// <param name="operationIndex">Index associated with the operation.</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (AccountGetResponse)</returns>

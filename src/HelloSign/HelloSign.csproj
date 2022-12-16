@@ -11,7 +11,7 @@
     <AssemblyTitle>HelloSign .Net SDK</AssemblyTitle>
     <Description>Client library for using the HelloSign API</Description>
     <RootNamespace>HelloSign</RootNamespace>
-    <Version>6.0.0-beta22.23</Version>
+    <Version>6.0.0-beta22.24</Version>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\HelloSign.xml</DocumentationFile>
     <RepositoryUrl>https://github.com/GIT_USER_ID/GIT_REPO_ID.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>

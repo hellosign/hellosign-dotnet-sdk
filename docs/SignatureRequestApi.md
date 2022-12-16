@@ -410,6 +410,7 @@ Creates a new SignatureRequest with the submitted documents to be signed in an e
 ```csharp
 using System;
 using System.Collections.Generic;
+using System.IO;
 using HelloSign.Api;
 using HelloSign.Client;
 using HelloSign.Model;
@@ -447,6 +448,15 @@ public class Example
             defaultType: SubSigningOptions.DefaultTypeEnum.Draw
         );
 
+        var files = new List<Stream> {
+            new FileStream(
+                TestHelper.RootPath + "/example_signature_request.pdf",
+                FileMode.Open,
+                FileAccess.Read,
+                FileShare.Read
+            )
+        };
+
         var data = new SignatureRequestCreateEmbeddedRequest(
             clientId: "ec64a202072370a737edf4a0eb7f4437",
             title: "NDA with Acme Co.",
@@ -454,7 +464,7 @@ public class Example
             message: "Please sign this NDA and then we can discuss more. Let me know if you have any questions.",
             signers: new List<SubSignatureRequestSigner>(){signer1, signer2},
             ccEmailAddresses: new List<string>(){"lawyer@hellosign.com", "lawyer@example.com"},
-            fileUrl: new List<string>(){"https://app.hellosign.com/docs/example_signature_request.pdf"},
+            file: files,
             signingOptions: signingOptions,
             testMode: true
         );
@@ -645,7 +655,7 @@ catch (ApiException e)
 
 Download Files
 
-Obtain a copy of the current documents specified by the `signature_request_id` parameter. Returns a PDF or ZIP file.   If the files are currently being prepared, a status code of `409` will be returned instead.
+Obtain a copy of the current documents specified by the `signature_request_id` parameter. Returns a PDF or ZIP file.  If the files are currently being prepared, a status code of `409` will be returned instead.
 
 ### Example
 ```csharp
@@ -672,8 +682,12 @@ public class Example
 
         try
         {
-            var result = apiInstance.SignatureRequestFiles(signatureRequestId);
-            Console.WriteLine(result);
+            var result = apiInstance.SignatureRequestFiles(signatureRequestId, "pdf");
+
+            var fileStream = File.Create("file_response.pdf");
+            result.Seek(0, SeekOrigin.Begin);
+            result.CopyTo(fileStream);
+            fileStream.Close();
         }
         catch (ApiException e)
         {
@@ -741,7 +755,7 @@ catch (ApiException e)
 
 Download Files as Data Uri
 
-Obtain a copy of the current documents specified by the `signature_request_id` parameter. Returns a JSON object with a `data_uri` representing the base64 encoded file (PDFs only).   If the files are currently being prepared, a status code of `409` will be returned instead.
+Obtain a copy of the current documents specified by the `signature_request_id` parameter. Returns a JSON object with a `data_uri` representing the base64 encoded file (PDFs only).  If the files are currently being prepared, a status code of `409` will be returned instead.
 
 ### Example
 ```csharp
@@ -836,7 +850,7 @@ catch (ApiException e)
 
 Download Files as File Url
 
-Obtain a copy of the current documents specified by the `signature_request_id` parameter. Returns a JSON object with a url to the file (PDFs only).   If the files are currently being prepared, a status code of `409` will be returned instead.
+Obtain a copy of the current documents specified by the `signature_request_id` parameter. Returns a JSON object with a url to the file (PDFs only).  If the files are currently being prepared, a status code of `409` will be returned instead.
 
 ### Example
 ```csharp
@@ -1416,6 +1430,7 @@ Creates and sends a new SignatureRequest with the submitted documents. If `form_
 ```csharp
 using System;
 using System.Collections.Generic;
+using System.IO;
 using HelloSign.Api;
 using HelloSign.Client;
 using HelloSign.Model;
@@ -1463,13 +1478,22 @@ public class Example
             ["custom_text"] = "NDA #9"
         };
 
+        var files = new List<Stream> {
+            new FileStream(
+                TestHelper.RootPath + "/example_signature_request.pdf",
+                FileMode.Open,
+                FileAccess.Read,
+                FileShare.Read
+            )
+        };
+
         var data = new SignatureRequestSendRequest(
             title: "NDA with Acme Co.",
             subject: "The NDA we talked about",
             message: "Please sign this NDA and then we can discuss more. Let me know if you have any questions.",
             signers: new List<SubSignatureRequestSigner>(){signer1, signer2},
             ccEmailAddresses: new List<string>(){"lawyer@hellosign.com", "lawyer@example.com"},
-            fileUrl: new List<string>(){"https://app.hellosign.com/docs/example_signature_request.pdf"},
+            file: files,
             metadata: metadata,
             signingOptions: signingOptions,
             fieldOptions: subFieldOptions,

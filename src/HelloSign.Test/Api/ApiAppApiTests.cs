@@ -1,9 +1,9 @@
 using System.Collections.Generic;
+using System.IO;
 using System.Net;
 using Newtonsoft.Json.Linq;
 using Xunit;
 
-using HelloSign.Client;
 using HelloSign.Api;
 using HelloSign.Model;
 
@@ -18,6 +18,13 @@ namespace HelloSign.Test.Api
             var responseData = TestHelper.SerializeFromFile<ApiAppGetResponse>("ApiAppGetResponse");
 
             var api = MockRestClientHelper.CreateApi<ApiAppGetResponse, ApiAppApi>(responseData);
+
+            requestData.CustomLogoFile = new FileStream(
+                TestHelper.RootPath + "/pdf-sample.pdf",
+                FileMode.Open,
+                FileAccess.Read,
+                FileShare.Read
+            );
 
             var response = api.ApiAppCreate(requestData);
 
@@ -37,24 +44,6 @@ namespace HelloSign.Test.Api
             var api = MockRestClientHelper.CreateApi<ApiAppGetResponse, ApiAppApi>(responseData);
 
             var response = api.ApiAppGet(clientId);
-
-            JToken.DeepEquals(
-                responseData.ToJson(),
-                response.ToJson()
-            );
-        }
-
-        [Fact]
-        public void ApiAppUpdateTest()
-        {
-            var clientId = "0dd3b823a682527788c4e40cb7b6f7e9";
-
-            var requestData = TestHelper.SerializeFromFile<ApiAppUpdateRequest>("ApiAppUpdateRequest");
-            var responseData = TestHelper.SerializeFromFile<ApiAppGetResponse>("ApiAppGetResponse");
-
-            var api = MockRestClientHelper.CreateApi<ApiAppGetResponse, ApiAppApi>(responseData);
-
-            var response = api.ApiAppUpdate(clientId, requestData);
 
             JToken.DeepEquals(
                 responseData.ToJson(),
@@ -86,7 +75,32 @@ namespace HelloSign.Test.Api
         }
 
         [Fact]
-        public void ValusJsonifiedTest()
+        public void ApiAppUpdateTest()
+        {
+            var clientId = "0dd3b823a682527788c4e40cb7b6f7e9";
+
+            var requestData = TestHelper.SerializeFromFile<ApiAppUpdateRequest>("ApiAppUpdateRequest");
+            var responseData = TestHelper.SerializeFromFile<ApiAppGetResponse>("ApiAppGetResponse");
+
+            var api = MockRestClientHelper.CreateApi<ApiAppGetResponse, ApiAppApi>(responseData);
+
+            requestData.CustomLogoFile = new FileStream(
+                TestHelper.RootPath + "/pdf-sample.pdf",
+                FileMode.Open,
+                FileAccess.Read,
+                FileShare.Read
+            );
+
+            var response = api.ApiAppUpdate(clientId, requestData);
+
+            JToken.DeepEquals(
+                responseData.ToJson(),
+                response.ToJson()
+            );
+        }
+
+        [Fact]
+        public void ValuesJsonifiedTest()
         {
             var oauth = new SubOAuth(
                 callbackUrl: "https://oauth-callback.test",
@@ -105,9 +119,9 @@ namespace HelloSign.Test.Api
 
             var responseData = TestHelper.SerializeFromFile<ApiAppGetResponse>("ApiAppGetResponse");
 
-            
-            var api = MockRestClientHelper.CreateApiExpectContentContains<ApiAppGetResponse, ApiAppApi>(responseData, 
-                HttpStatusCode.Accepted, 
+
+            var api = MockRestClientHelper.CreateApiExpectContentContains<ApiAppGetResponse, ApiAppApi>(responseData,
+                HttpStatusCode.Accepted,
                 "application/json",
                 "[\"domain1.com\",\"domain2.com\"]",
                 "My name is",
@@ -115,7 +129,7 @@ namespace HelloSign.Test.Api
                 );
 
             var response = api.ApiAppCreate(obj);
-            
+
             JToken.DeepEquals(
                 responseData.ToJson(),
                 response.ToJson()

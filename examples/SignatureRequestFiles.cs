@@ -21,8 +21,12 @@ public class Example
 
         try
         {
-            var result = apiInstance.SignatureRequestFiles(signatureRequestId);
-            Console.WriteLine(result);
+            var result = apiInstance.SignatureRequestFiles(signatureRequestId, "pdf");
+
+            var fileStream = File.Create("file_response.pdf");
+            result.Seek(0, SeekOrigin.Begin);
+            result.CopyTo(fileStream);
+            fileStream.Close();
         }
         catch (ApiException e)
         {

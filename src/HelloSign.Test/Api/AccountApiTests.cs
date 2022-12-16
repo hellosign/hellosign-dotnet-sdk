@@ -52,7 +52,7 @@ namespace HelloSign.Test.Api
 
             var api = MockRestClientHelper.CreateApi<AccountGetResponse, AccountApi>(responseData);
 
-            var response = api.AccountGet();
+            var response = api.AccountGet(null, "jack@example.com");
 
             JToken.DeepEquals(
                 responseData.ToJson(),

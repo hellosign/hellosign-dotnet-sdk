@@ -19,7 +19,7 @@ public class Example
 
         try
         {
-            var result = apiInstance.AccountGet();
+            var result = apiInstance.AccountGet(null, "jack@example.com");
             Console.WriteLine(result);
         }
         catch (ApiException e)

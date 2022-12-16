@@ -1,8 +1,8 @@
-using System.Net;
+using System.Collections.Generic;
+using System.IO;
 using Newtonsoft.Json.Linq;
 using Xunit;
 
-using HelloSign.Client;
 using HelloSign.Api;
 using HelloSign.Model;
 
@@ -35,6 +35,15 @@ namespace HelloSign.Test.Api
             var responseData = TestHelper.SerializeFromFile<TemplateCreateEmbeddedDraftResponse>("TemplateCreateEmbeddedDraftResponse");
 
             var api = MockRestClientHelper.CreateApi<TemplateCreateEmbeddedDraftResponse, TemplateApi>(responseData);
+
+            requestData.File = new List<Stream> {
+                new FileStream(
+                    TestHelper.RootPath + "/pdf-sample.pdf",
+                    FileMode.Open,
+                    FileAccess.Read,
+                    FileShare.Read
+                )
+            };
 
             var response = api.TemplateCreateEmbeddedDraft(requestData);
 
@@ -115,6 +124,15 @@ namespace HelloSign.Test.Api
             var responseData = TestHelper.SerializeFromFile<TemplateUpdateFilesResponse>("TemplateUpdateFilesResponse");
 
             var api = MockRestClientHelper.CreateApi<TemplateUpdateFilesResponse, TemplateApi>(responseData);
+
+            requestData.File = new List<Stream> {
+                new FileStream(
+                    TestHelper.RootPath + "/pdf-sample.pdf",
+                    FileMode.Open,
+                    FileAccess.Read,
+                    FileShare.Read
+                )
+            };
 
             var response = api.TemplateUpdateFiles(templateId, requestData);
 

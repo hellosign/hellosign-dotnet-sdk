@@ -127,7 +127,7 @@ namespace HelloSign.Api
         /// Get Template Files as Data Uri
         /// </summary>
         /// <remarks>
-        /// Obtain a copy of the current documents specified by the &#x60;template_id&#x60; parameter. Returns a JSON object with a &#x60;data_uri&#x60; representing the base64 encoded file (PDFs only).   If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead. In this case please wait for the &#x60;template_created&#x60; callback event.
+        /// Obtain a copy of the current documents specified by the &#x60;template_id&#x60; parameter. Returns a JSON object with a &#x60;data_uri&#x60; representing the base64 encoded file (PDFs only).  If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead. In this case please wait for the &#x60;template_created&#x60; callback event.
         /// </remarks>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateId">The id of the template files to retrieve.</param>
@@ -139,7 +139,7 @@ namespace HelloSign.Api
         /// Get Template Files as Data Uri
         /// </summary>
         /// <remarks>
-        /// Obtain a copy of the current documents specified by the &#x60;template_id&#x60; parameter. Returns a JSON object with a &#x60;data_uri&#x60; representing the base64 encoded file (PDFs only).   If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead. In this case please wait for the &#x60;template_created&#x60; callback event.
+        /// Obtain a copy of the current documents specified by the &#x60;template_id&#x60; parameter. Returns a JSON object with a &#x60;data_uri&#x60; representing the base64 encoded file (PDFs only).  If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead. In this case please wait for the &#x60;template_created&#x60; callback event.
         /// </remarks>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateId">The id of the template files to retrieve.</param>
@@ -150,7 +150,7 @@ namespace HelloSign.Api
         /// Get Template Files as File Url
         /// </summary>
         /// <remarks>
-        /// Obtain a copy of the current documents specified by the &#x60;template_id&#x60; parameter. Returns a JSON object with a url to the file (PDFs only).   If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead. In this case please wait for the &#x60;template_created&#x60; callback event.
+        /// Obtain a copy of the current documents specified by the &#x60;template_id&#x60; parameter. Returns a JSON object with a url to the file (PDFs only).  If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead. In this case please wait for the &#x60;template_created&#x60; callback event.
         /// </remarks>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateId">The id of the template files to retrieve.</param>
@@ -162,7 +162,7 @@ namespace HelloSign.Api
         /// Get Template Files as File Url
         /// </summary>
         /// <remarks>
-        /// Obtain a copy of the current documents specified by the &#x60;template_id&#x60; parameter. Returns a JSON object with a url to the file (PDFs only).   If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead. In this case please wait for the &#x60;template_created&#x60; callback event.
+        /// Obtain a copy of the current documents specified by the &#x60;template_id&#x60; parameter. Returns a JSON object with a url to the file (PDFs only).  If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead. In this case please wait for the &#x60;template_created&#x60; callback event.
         /// </remarks>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateId">The id of the template files to retrieve.</param>
@@ -388,7 +388,7 @@ namespace HelloSign.Api
         /// Get Template Files as Data Uri
         /// </summary>
         /// <remarks>
-        /// Obtain a copy of the current documents specified by the &#x60;template_id&#x60; parameter. Returns a JSON object with a &#x60;data_uri&#x60; representing the base64 encoded file (PDFs only).   If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead. In this case please wait for the &#x60;template_created&#x60; callback event.
+        /// Obtain a copy of the current documents specified by the &#x60;template_id&#x60; parameter. Returns a JSON object with a &#x60;data_uri&#x60; representing the base64 encoded file (PDFs only).  If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead. In this case please wait for the &#x60;template_created&#x60; callback event.
         /// </remarks>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateId">The id of the template files to retrieve.</param>
@@ -401,7 +401,7 @@ namespace HelloSign.Api
         /// Get Template Files as Data Uri
         /// </summary>
         /// <remarks>
-        /// Obtain a copy of the current documents specified by the &#x60;template_id&#x60; parameter. Returns a JSON object with a &#x60;data_uri&#x60; representing the base64 encoded file (PDFs only).   If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead. In this case please wait for the &#x60;template_created&#x60; callback event.
+        /// Obtain a copy of the current documents specified by the &#x60;template_id&#x60; parameter. Returns a JSON object with a &#x60;data_uri&#x60; representing the base64 encoded file (PDFs only).  If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead. In this case please wait for the &#x60;template_created&#x60; callback event.
         /// </remarks>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateId">The id of the template files to retrieve.</param>
@@ -413,7 +413,7 @@ namespace HelloSign.Api
         /// Get Template Files as File Url
         /// </summary>
         /// <remarks>
-        /// Obtain a copy of the current documents specified by the &#x60;template_id&#x60; parameter. Returns a JSON object with a url to the file (PDFs only).   If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead. In this case please wait for the &#x60;template_created&#x60; callback event.
+        /// Obtain a copy of the current documents specified by the &#x60;template_id&#x60; parameter. Returns a JSON object with a url to the file (PDFs only).  If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead. In this case please wait for the &#x60;template_created&#x60; callback event.
         /// </remarks>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateId">The id of the template files to retrieve.</param>
@@ -426,7 +426,7 @@ namespace HelloSign.Api
         /// Get Template Files as File Url
         /// </summary>
         /// <remarks>
-        /// Obtain a copy of the current documents specified by the &#x60;template_id&#x60; parameter. Returns a JSON object with a url to the file (PDFs only).   If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead. In this case please wait for the &#x60;template_created&#x60; callback event.
+        /// Obtain a copy of the current documents specified by the &#x60;template_id&#x60; parameter. Returns a JSON object with a url to the file (PDFs only).  If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead. In this case please wait for the &#x60;template_created&#x60; callback event.
         /// </remarks>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateId">The id of the template files to retrieve.</param>
@@ -1395,7 +1395,7 @@ namespace HelloSign.Api
         }
 
         /// <summary>
-        /// Get Template Files as Data Uri Obtain a copy of the current documents specified by the &#x60;template_id&#x60; parameter. Returns a JSON object with a &#x60;data_uri&#x60; representing the base64 encoded file (PDFs only).   If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead. In this case please wait for the &#x60;template_created&#x60; callback event.
+        /// Get Template Files as Data Uri Obtain a copy of the current documents specified by the &#x60;template_id&#x60; parameter. Returns a JSON object with a &#x60;data_uri&#x60; representing the base64 encoded file (PDFs only).  If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead. In this case please wait for the &#x60;template_created&#x60; callback event.
         /// </summary>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateId">The id of the template files to retrieve.</param>
@@ -1408,7 +1408,7 @@ namespace HelloSign.Api
         }
 
         /// <summary>
-        /// Get Template Files as Data Uri Obtain a copy of the current documents specified by the &#x60;template_id&#x60; parameter. Returns a JSON object with a &#x60;data_uri&#x60; representing the base64 encoded file (PDFs only).   If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead. In this case please wait for the &#x60;template_created&#x60; callback event.
+        /// Get Template Files as Data Uri Obtain a copy of the current documents specified by the &#x60;template_id&#x60; parameter. Returns a JSON object with a &#x60;data_uri&#x60; representing the base64 encoded file (PDFs only).  If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead. In this case please wait for the &#x60;template_created&#x60; callback event.
         /// </summary>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateId">The id of the template files to retrieve.</param>
@@ -1476,7 +1476,7 @@ namespace HelloSign.Api
         }
 
         /// <summary>
-        /// Get Template Files as Data Uri Obtain a copy of the current documents specified by the &#x60;template_id&#x60; parameter. Returns a JSON object with a &#x60;data_uri&#x60; representing the base64 encoded file (PDFs only).   If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead. In this case please wait for the &#x60;template_created&#x60; callback event.
+        /// Get Template Files as Data Uri Obtain a copy of the current documents specified by the &#x60;template_id&#x60; parameter. Returns a JSON object with a &#x60;data_uri&#x60; representing the base64 encoded file (PDFs only).  If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead. In this case please wait for the &#x60;template_created&#x60; callback event.
         /// </summary>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateId">The id of the template files to retrieve.</param>
@@ -1490,7 +1490,7 @@ namespace HelloSign.Api
         }
 
         /// <summary>
-        /// Get Template Files as Data Uri Obtain a copy of the current documents specified by the &#x60;template_id&#x60; parameter. Returns a JSON object with a &#x60;data_uri&#x60; representing the base64 encoded file (PDFs only).   If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead. In this case please wait for the &#x60;template_created&#x60; callback event.
+        /// Get Template Files as Data Uri Obtain a copy of the current documents specified by the &#x60;template_id&#x60; parameter. Returns a JSON object with a &#x60;data_uri&#x60; representing the base64 encoded file (PDFs only).  If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead. In this case please wait for the &#x60;template_created&#x60; callback event.
         /// </summary>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateId">The id of the template files to retrieve.</param>
@@ -1562,7 +1562,7 @@ namespace HelloSign.Api
         }
 
         /// <summary>
-        /// Get Template Files as File Url Obtain a copy of the current documents specified by the &#x60;template_id&#x60; parameter. Returns a JSON object with a url to the file (PDFs only).   If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead. In this case please wait for the &#x60;template_created&#x60; callback event.
+        /// Get Template Files as File Url Obtain a copy of the current documents specified by the &#x60;template_id&#x60; parameter. Returns a JSON object with a url to the file (PDFs only).  If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead. In this case please wait for the &#x60;template_created&#x60; callback event.
         /// </summary>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateId">The id of the template files to retrieve.</param>
@@ -1575,7 +1575,7 @@ namespace HelloSign.Api
         }
 
         /// <summary>
-        /// Get Template Files as File Url Obtain a copy of the current documents specified by the &#x60;template_id&#x60; parameter. Returns a JSON object with a url to the file (PDFs only).   If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead. In this case please wait for the &#x60;template_created&#x60; callback event.
+        /// Get Template Files as File Url Obtain a copy of the current documents specified by the &#x60;template_id&#x60; parameter. Returns a JSON object with a url to the file (PDFs only).  If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead. In this case please wait for the &#x60;template_created&#x60; callback event.
         /// </summary>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateId">The id of the template files to retrieve.</param>
@@ -1643,7 +1643,7 @@ namespace HelloSign.Api
         }
 
         /// <summary>
-        /// Get Template Files as File Url Obtain a copy of the current documents specified by the &#x60;template_id&#x60; parameter. Returns a JSON object with a url to the file (PDFs only).   If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead. In this case please wait for the &#x60;template_created&#x60; callback event.
+        /// Get Template Files as File Url Obtain a copy of the current documents specified by the &#x60;template_id&#x60; parameter. Returns a JSON object with a url to the file (PDFs only).  If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead. In this case please wait for the &#x60;template_created&#x60; callback event.
         /// </summary>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateId">The id of the template files to retrieve.</param>
@@ -1657,7 +1657,7 @@ namespace HelloSign.Api
         }
 
         /// <summary>
-        /// Get Template Files as File Url Obtain a copy of the current documents specified by the &#x60;template_id&#x60; parameter. Returns a JSON object with a url to the file (PDFs only).   If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead. In this case please wait for the &#x60;template_created&#x60; callback event.
+        /// Get Template Files as File Url Obtain a copy of the current documents specified by the &#x60;template_id&#x60; parameter. Returns a JSON object with a url to the file (PDFs only).  If the files are currently being prepared, a status code of &#x60;409&#x60; will be returned instead. In this case please wait for the &#x60;template_created&#x60; callback event.
         /// </summary>
         /// <exception cref="HelloSign.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="templateId">The id of the template files to retrieve.</param>

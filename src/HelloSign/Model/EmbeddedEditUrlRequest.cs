@@ -46,7 +46,7 @@ namespace HelloSign.Model
         /// <param name="editorOptions">editorOptions.</param>
         /// <param name="forceSignerRoles">Provide users the ability to review/edit the template signer roles. (default to false).</param>
         /// <param name="forceSubjectMessage">Provide users the ability to review/edit the template subject and message. (default to false).</param>
-        /// <param name="mergeFields">Add additional merge fields to the template, which can be used used to pre-fill data by passing values into signature requests made with that template.      Remove all merge fields on the template by passing an empty array &#x60;[]&#x60;..</param>
+        /// <param name="mergeFields">Add additional merge fields to the template, which can be used used to pre-fill data by passing values into signature requests made with that template.  Remove all merge fields on the template by passing an empty array &#x60;[]&#x60;..</param>
         /// <param name="previewOnly">This allows the requester to enable the preview experience (i.e. does not allow the requester&#39;s end user to add any additional fields via the editor).  **Note**: This parameter overwrites &#x60;show_preview&#x3D;true&#x60; (if set). (default to false).</param>
         /// <param name="showPreview">This allows the requester to enable the editor/preview experience. (default to false).</param>
         /// <param name="showProgressStepper">When only one step remains in the signature request process and this parameter is set to &#x60;false&#x60; then the progress stepper will be hidden. (default to true).</param>
@@ -101,9 +101,9 @@ namespace HelloSign.Model
         public bool ForceSubjectMessage { get; set; }
 
         /// <summary>
-        /// Add additional merge fields to the template, which can be used used to pre-fill data by passing values into signature requests made with that template.      Remove all merge fields on the template by passing an empty array &#x60;[]&#x60;.
+        /// Add additional merge fields to the template, which can be used used to pre-fill data by passing values into signature requests made with that template.  Remove all merge fields on the template by passing an empty array &#x60;[]&#x60;.
         /// </summary>
-        /// <value>Add additional merge fields to the template, which can be used used to pre-fill data by passing values into signature requests made with that template.      Remove all merge fields on the template by passing an empty array &#x60;[]&#x60;.</value>
+        /// <value>Add additional merge fields to the template, which can be used used to pre-fill data by passing values into signature requests made with that template.  Remove all merge fields on the template by passing an empty array &#x60;[]&#x60;.</value>
         [DataMember(Name = "merge_fields", EmitDefaultValue = true)]
         public List<SubMergeField> MergeFields { get; set; }
 

@@ -1,9 +1,8 @@
 using System.Collections.Generic;
-using System.Net;
+using System.IO;
 using Newtonsoft.Json.Linq;
 using Xunit;
 
-using HelloSign.Client;
 using HelloSign.Api;
 using HelloSign.Model;
 
@@ -18,6 +17,13 @@ namespace HelloSign.Test.Api
             var responseData = TestHelper.SerializeFromFile<BulkSendJobSendResponse>("BulkSendJobSendResponse");
 
             var api = MockRestClientHelper.CreateApi<BulkSendJobSendResponse, SignatureRequestApi>(responseData);
+
+            requestData.SignerFile = new FileStream(
+                TestHelper.RootPath + "/bulk-send-sample.csv",
+                FileMode.Open,
+                FileAccess.Read,
+                FileShare.Read
+            );
 
             var response = api.SignatureRequestBulkCreateEmbeddedWithTemplate(requestData);
 
@@ -34,6 +40,13 @@ namespace HelloSign.Test.Api
             var responseData = TestHelper.SerializeFromFile<BulkSendJobSendResponse>("BulkSendJobSendResponse");
 
             var api = MockRestClientHelper.CreateApi<BulkSendJobSendResponse, SignatureRequestApi>(responseData);
+
+            requestData.SignerFile = new FileStream(
+                TestHelper.RootPath + "/bulk-send-sample.csv",
+                FileMode.Open,
+                FileAccess.Read,
+                FileShare.Read
+            );
 
             var response = api.SignatureRequestBulkSendWithTemplate(requestData);
 
@@ -56,6 +69,15 @@ namespace HelloSign.Test.Api
 
             var api = MockRestClientHelper.CreateApi<SignatureRequestGetResponse, SignatureRequestApi>(responseData);
 
+            requestData.File = new List<Stream> {
+                new FileStream(
+                    TestHelper.RootPath + "/pdf-sample.pdf",
+                    FileMode.Open,
+                    FileAccess.Read,
+                    FileShare.Read
+                )
+            };
+
             var response = api.SignatureRequestCreateEmbedded(requestData);
 
             JToken.DeepEquals(
@@ -71,6 +93,15 @@ namespace HelloSign.Test.Api
             var responseData = TestHelper.SerializeFromFile<SignatureRequestGetResponse>("SignatureRequestGetResponse");
 
             var api = MockRestClientHelper.CreateApi<SignatureRequestGetResponse, SignatureRequestApi>(responseData);
+
+            requestData.File = new List<Stream> {
+                new FileStream(
+                    TestHelper.RootPath + "/pdf-sample.pdf",
+                    FileMode.Open,
+                    FileAccess.Read,
+                    FileShare.Read
+                )
+            };
 
             var response = api.SignatureRequestCreateEmbeddedWithTemplate(requestData);
 
@@ -167,6 +198,15 @@ namespace HelloSign.Test.Api
 
             var api = MockRestClientHelper.CreateApi<SignatureRequestGetResponse, SignatureRequestApi>(responseData);
 
+            requestData.File = new List<Stream> {
+                new FileStream(
+                    TestHelper.RootPath + "/pdf-sample.pdf",
+                    FileMode.Open,
+                    FileAccess.Read,
+                    FileShare.Read
+                )
+            };
+
             var response = api.SignatureRequestSend(requestData);
 
             JToken.DeepEquals(
@@ -210,24 +250,24 @@ namespace HelloSign.Test.Api
         }
 
         [Fact]
-        public void MultipleFilesInstantiatedTest()
-        {
-            var requestData = TestHelper.SerializeFromFile<SignatureRequestSendRequest>("SignatureRequestSendRequest");
-
-            Assert.IsType<List<System.IO.Stream>>(requestData.File);
-            Assert.NotEmpty(requestData.File);
-        }
-
-        [Fact]
         public void FileForcesMultipartFormDataTest()
         {
-            var requestData = TestHelper.SerializeFromFile<SignatureRequestSendRequest>("SignatureRequestSendRequest", "with_file");
+            var requestData = TestHelper.SerializeFromFile<SignatureRequestSendRequest>("SignatureRequestSendRequest");
             var responseData = TestHelper.SerializeFromFile<SignatureRequestGetResponse>("SignatureRequestGetResponse");
 
             var api = MockRestClientHelper.CreateApiExpectMultiFormRequest<SignatureRequestGetResponse, SignatureRequestApi>(responseData);
 
+            requestData.File = new List<Stream> {
+                new FileStream(
+                    TestHelper.RootPath + "/pdf-sample.pdf",
+                    FileMode.Open,
+                    FileAccess.Read,
+                    FileShare.Read
+                )
+            };
+
             var response = api.SignatureRequestSend(requestData);
-            
+
             JToken.DeepEquals(
                 responseData.ToJson(),
                 response.ToJson()
@@ -237,7 +277,7 @@ namespace HelloSign.Test.Api
         [Fact]
         public void NoFileForcesJsonTest()
         {
-            var requestData = TestHelper.SerializeFromFile<SignatureRequestSendRequest>("SignatureRequestSendRequest", "with_file_url");
+            var requestData = TestHelper.SerializeFromFile<SignatureRequestSendRequest>("SignatureRequestSendRequest");
             var responseData = TestHelper.SerializeFromFile<SignatureRequestGetResponse>("SignatureRequestGetResponse");
 
             var api = MockRestClientHelper.CreateApiExpectJsonRequest<SignatureRequestGetResponse, SignatureRequestApi>(responseData);
