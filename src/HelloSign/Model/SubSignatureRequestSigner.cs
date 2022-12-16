@@ -34,9 +34,9 @@ namespace HelloSign.Model
     public partial class SubSignatureRequestSigner : IOpenApiTyped, IEquatable<SubSignatureRequestSigner>, IValidatableObject
     {
         /// <summary>
-        /// Specifies the feature used with the &#x60;sms_phone_number&#x60;. Default &#x60;authentication&#x60;.  If &#x60;authentication&#x60;, signer is sent a verification code via SMS that is required to access the document.  If &#x60;delivery&#x60;, the completed signature request is delivered via SMS (_and_ email).
+        /// Specifies the feature used with the &#x60;sms_phone_number&#x60;. Default &#x60;authentication&#x60;.  If &#x60;authentication&#x60;, signer is sent a verification code via SMS that is required to access the document.  If &#x60;delivery&#x60;, a link to complete the signature request is delivered via SMS (_and_ email).
         /// </summary>
-        /// <value>Specifies the feature used with the &#x60;sms_phone_number&#x60;. Default &#x60;authentication&#x60;.  If &#x60;authentication&#x60;, signer is sent a verification code via SMS that is required to access the document.  If &#x60;delivery&#x60;, the completed signature request is delivered via SMS (_and_ email).</value>
+        /// <value>Specifies the feature used with the &#x60;sms_phone_number&#x60;. Default &#x60;authentication&#x60;.  If &#x60;authentication&#x60;, signer is sent a verification code via SMS that is required to access the document.  If &#x60;delivery&#x60;, a link to complete the signature request is delivered via SMS (_and_ email).</value>
         [JsonConverter(typeof(StringEnumConverter))]
         public enum SmsPhoneNumberTypeEnum
         {
@@ -56,9 +56,9 @@ namespace HelloSign.Model
 
 
         /// <summary>
-        /// Specifies the feature used with the &#x60;sms_phone_number&#x60;. Default &#x60;authentication&#x60;.  If &#x60;authentication&#x60;, signer is sent a verification code via SMS that is required to access the document.  If &#x60;delivery&#x60;, the completed signature request is delivered via SMS (_and_ email).
+        /// Specifies the feature used with the &#x60;sms_phone_number&#x60;. Default &#x60;authentication&#x60;.  If &#x60;authentication&#x60;, signer is sent a verification code via SMS that is required to access the document.  If &#x60;delivery&#x60;, a link to complete the signature request is delivered via SMS (_and_ email).
         /// </summary>
-        /// <value>Specifies the feature used with the &#x60;sms_phone_number&#x60;. Default &#x60;authentication&#x60;.  If &#x60;authentication&#x60;, signer is sent a verification code via SMS that is required to access the document.  If &#x60;delivery&#x60;, the completed signature request is delivered via SMS (_and_ email).</value>
+        /// <value>Specifies the feature used with the &#x60;sms_phone_number&#x60;. Default &#x60;authentication&#x60;.  If &#x60;authentication&#x60;, signer is sent a verification code via SMS that is required to access the document.  If &#x60;delivery&#x60;, a link to complete the signature request is delivered via SMS (_and_ email).</value>
         [DataMember(Name = "sms_phone_number_type", EmitDefaultValue = true)]
         public SmsPhoneNumberTypeEnum? SmsPhoneNumberType { get; set; }
         /// <summary>
@@ -74,7 +74,7 @@ namespace HelloSign.Model
         /// <param name="order">The order the signer is required to sign in..</param>
         /// <param name="pin">The 4- to 12-character access code that will secure this signer&#39;s signature page..</param>
         /// <param name="smsPhoneNumber">An E.164 formatted phone number.  **Note**: Not available in test mode and requires a Standard plan or higher..</param>
-        /// <param name="smsPhoneNumberType">Specifies the feature used with the &#x60;sms_phone_number&#x60;. Default &#x60;authentication&#x60;.  If &#x60;authentication&#x60;, signer is sent a verification code via SMS that is required to access the document.  If &#x60;delivery&#x60;, the completed signature request is delivered via SMS (_and_ email)..</param>
+        /// <param name="smsPhoneNumberType">Specifies the feature used with the &#x60;sms_phone_number&#x60;. Default &#x60;authentication&#x60;.  If &#x60;authentication&#x60;, signer is sent a verification code via SMS that is required to access the document.  If &#x60;delivery&#x60;, a link to complete the signature request is delivered via SMS (_and_ email)..</param>
         public SubSignatureRequestSigner(string name = default(string), string emailAddress = default(string), int? order = default(int?), string pin = default(string), string smsPhoneNumber = default(string), SmsPhoneNumberTypeEnum? smsPhoneNumberType = default(SmsPhoneNumberTypeEnum?))
         {
             

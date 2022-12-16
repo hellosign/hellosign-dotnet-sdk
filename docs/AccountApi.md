@@ -137,7 +137,7 @@ public class Example
 
         try
         {
-            var result = apiInstance.AccountGet();
+            var result = apiInstance.AccountGet(null, "jack@example.com");
             Console.WriteLine(result);
         }
         catch (ApiException e)
@@ -175,8 +175,8 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **accountId** | **string?** | `account_id` or `email_address` is required. If both are provided, the account id prevails.   The ID of the Account. | [optional]  |
-| **emailAddress** | **string?** | `account_id` or `email_address` is required, If both are provided, the account id prevails.   The email address of the Account. | [optional]  |
+| **accountId** | **string?** | `account_id` or `email_address` is required. If both are provided, the account id prevails.  The ID of the Account. | [optional]  |
+| **emailAddress** | **string?** | `account_id` or `email_address` is required, If both are provided, the account id prevails.  The email address of the Account. | [optional]  |
 
 ### Return type
 

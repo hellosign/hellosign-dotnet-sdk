@@ -15,13 +15,13 @@ namespace HelloSign.Test
         {
             using (var r = TestHelper.ReadFileFromResource("EventCallbackHelper"))
             {
-                var payload = JsonConvert.DeserializeObject<Dictionary<string, EventCallbackApiAppRequestPayload>>(r.ReadToEnd());
+                var payload = JsonConvert.DeserializeObject<Dictionary<string, EventCallbackRequest>>(r.ReadToEnd());
                 Assert.NotNull(payload);
 
-                foreach(var item in payload.Values)
+                foreach(var callbackEvent in payload.Values)
                 {
-                    Assert.True(EventCallbackHelper.IsValid(ApiKey, item.Event));
-                    Assert.False(EventCallbackHelper.IsValid(Reverse(ApiKey), item.Event));
+                    Assert.True(EventCallbackHelper.IsValid(ApiKey, callbackEvent));
+                    Assert.False(EventCallbackHelper.IsValid(Reverse(ApiKey), callbackEvent));
                 }
             }
         }

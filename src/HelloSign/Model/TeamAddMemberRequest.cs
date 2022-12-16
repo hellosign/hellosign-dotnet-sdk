@@ -81,8 +81,8 @@ namespace HelloSign.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="TeamAddMemberRequest" /> class.
         /// </summary>
-        /// <param name="accountId">&#x60;account_id&#x60; or &#x60;email_address&#x60; is required. If both are provided, the account id prevails.   Account id of the user to invite to your Team..</param>
-        /// <param name="emailAddress">&#x60;account_id&#x60; or &#x60;email_address&#x60; is required, If both are provided, the account id prevails.   Email address of the user to invite to your Team..</param>
+        /// <param name="accountId">&#x60;account_id&#x60; or &#x60;email_address&#x60; is required. If both are provided, the account id prevails.  Account id of the user to invite to your Team..</param>
+        /// <param name="emailAddress">&#x60;account_id&#x60; or &#x60;email_address&#x60; is required, If both are provided, the account id prevails.  Email address of the user to invite to your Team..</param>
         /// <param name="role">A role member will take in a new Team.  **Note**: This parameter is used only if &#x60;team_id&#x60; is provided..</param>
         public TeamAddMemberRequest(string accountId = default(string), string emailAddress = default(string), RoleEnum? role = default(RoleEnum?))
         {
@@ -93,16 +93,16 @@ namespace HelloSign.Model
         }
 
         /// <summary>
-        /// &#x60;account_id&#x60; or &#x60;email_address&#x60; is required. If both are provided, the account id prevails.   Account id of the user to invite to your Team.
+        /// &#x60;account_id&#x60; or &#x60;email_address&#x60; is required. If both are provided, the account id prevails.  Account id of the user to invite to your Team.
         /// </summary>
-        /// <value>&#x60;account_id&#x60; or &#x60;email_address&#x60; is required. If both are provided, the account id prevails.   Account id of the user to invite to your Team.</value>
+        /// <value>&#x60;account_id&#x60; or &#x60;email_address&#x60; is required. If both are provided, the account id prevails.  Account id of the user to invite to your Team.</value>
         [DataMember(Name = "account_id", EmitDefaultValue = true)]
         public string AccountId { get; set; }
 
         /// <summary>
-        /// &#x60;account_id&#x60; or &#x60;email_address&#x60; is required, If both are provided, the account id prevails.   Email address of the user to invite to your Team.
+        /// &#x60;account_id&#x60; or &#x60;email_address&#x60; is required, If both are provided, the account id prevails.  Email address of the user to invite to your Team.
         /// </summary>
-        /// <value>&#x60;account_id&#x60; or &#x60;email_address&#x60; is required, If both are provided, the account id prevails.   Email address of the user to invite to your Team.</value>
+        /// <value>&#x60;account_id&#x60; or &#x60;email_address&#x60; is required, If both are provided, the account id prevails.  Email address of the user to invite to your Team.</value>
         [DataMember(Name = "email_address", EmitDefaultValue = true)]
         public string EmailAddress { get; set; }
 

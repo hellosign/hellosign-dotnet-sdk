@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using HelloSign.Api;
 using HelloSign.Client;
 using HelloSign.Model;
@@ -37,6 +38,15 @@ public class Example
             defaultType: SubSigningOptions.DefaultTypeEnum.Draw
         );
 
+        var files = new List<Stream> {
+            new FileStream(
+                TestHelper.RootPath + "/example_signature_request.pdf",
+                FileMode.Open,
+                FileAccess.Read,
+                FileShare.Read
+            )
+        };
+
         var data = new SignatureRequestCreateEmbeddedRequest(
             clientId: "ec64a202072370a737edf4a0eb7f4437",
             title: "NDA with Acme Co.",
@@ -44,7 +54,7 @@ public class Example
             message: "Please sign this NDA and then we can discuss more. Let me know if you have any questions.",
             signers: new List<SubSignatureRequestSigner>(){signer1, signer2},
             ccEmailAddresses: new List<string>(){"lawyer@hellosign.com", "lawyer@example.com"},
-            fileUrl: new List<string>(){"https://app.hellosign.com/docs/example_signature_request.pdf"},
+            file: files,
             signingOptions: signingOptions,
             testMode: true
         );

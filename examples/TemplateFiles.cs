@@ -22,7 +22,11 @@ public class Example
         try
         {
             var result = apiInstance.TemplateFiles(templateId, "pdf");
-            Console.WriteLine(result);
+
+            var fileStream = File.Create("file_response.pdf");
+            result.Seek(0, SeekOrigin.Begin);
+            result.CopyTo(fileStream);
+            fileStream.Close();
         }
         catch (ApiException e)
         {

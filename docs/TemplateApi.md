@@ -127,6 +127,7 @@ The first step in an embedded template workflow. Creates a draft template that c
 ```csharp
 using System;
 using System.Collections.Generic;
+using System.IO;
 using HelloSign.Api;
 using HelloSign.Client;
 using HelloSign.Model;
@@ -168,9 +169,18 @@ public class Example
             dateFormat: SubFieldOptions.DateFormatEnum.DDMMYYYY
         );
 
+        var files = new List<Stream> {
+            new FileStream(
+                TestHelper.RootPath + "/example_signature_request.pdf",
+                FileMode.Open,
+                FileAccess.Read,
+                FileShare.Read
+            )
+        };
+
         var data = new TemplateCreateEmbeddedDraftRequest(
             clientId: "37dee8d8440c66d54cfa05d92c160882",
-            fileUrl: new List<string>(){"https://app.hellosign.com/docs/example_signature_request.pdf"},
+            file: files,
             title: "Test Template",
             subject: "Please sign this document",
             message: "For your approval",
@@ -370,7 +380,11 @@ public class Example
         try
         {
             var result = apiInstance.TemplateFiles(templateId, "pdf");
-            Console.WriteLine(result);
+
+            var fileStream = File.Create("file_response.pdf");
+            result.Seek(0, SeekOrigin.Begin);
+            result.CopyTo(fileStream);
+            fileStream.Close();
         }
         catch (ApiException e)
         {
@@ -438,7 +452,7 @@ catch (ApiException e)
 
 Get Template Files as Data Uri
 
-Obtain a copy of the current documents specified by the `template_id` parameter. Returns a JSON object with a `data_uri` representing the base64 encoded file (PDFs only).   If the files are currently being prepared, a status code of `409` will be returned instead. In this case please wait for the `template_created` callback event.
+Obtain a copy of the current documents specified by the `template_id` parameter. Returns a JSON object with a `data_uri` representing the base64 encoded file (PDFs only).  If the files are currently being prepared, a status code of `409` will be returned instead. In this case please wait for the `template_created` callback event.
 
 ### Example
 ```csharp
@@ -533,7 +547,7 @@ catch (ApiException e)
 
 Get Template Files as File Url
 
-Obtain a copy of the current documents specified by the `template_id` parameter. Returns a JSON object with a url to the file (PDFs only).   If the files are currently being prepared, a status code of `409` will be returned instead. In this case please wait for the `template_created` callback event.
+Obtain a copy of the current documents specified by the `template_id` parameter. Returns a JSON object with a url to the file (PDFs only).  If the files are currently being prepared, a status code of `409` will be returned instead. In this case please wait for the `template_created` callback event.
 
 ### Example
 ```csharp
@@ -927,6 +941,7 @@ Overlays a new file with the overlay of an existing template. The new file(s) mu
 ```csharp
 using System;
 using System.Collections.Generic;
+using System.IO;
 using HelloSign.Api;
 using HelloSign.Client;
 using HelloSign.Model;
@@ -944,8 +959,17 @@ public class Example
 
         var apiInstance = new TemplateApi(config);
 
+        var files = new List<Stream> {
+            new FileStream(
+                TestHelper.RootPath + "/example_signature_request.pdf",
+                FileMode.Open,
+                FileAccess.Read,
+                FileShare.Read
+            )
+        };
+
         var data = new TemplateUpdateFilesRequest(
-            fileUrl: new List<string>(){"https://app.hellosign.com/docs/example_signature_request.pdf"}
+            file: files,
         );
 
         var templateId = "21f920ec2b7f4b6bb64d3ed79f26303843046536";

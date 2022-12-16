@@ -48,7 +48,7 @@ namespace HelloSign.Model
         /// <param name="isEmbedded">&#x60;true&#x60; if this template was created using an embedded flow, &#x60;false&#x60; if it was created on our website..</param>
         /// <param name="isCreator">&#x60;true&#x60; if you are the owner of this template, &#x60;false&#x60; if it&#39;s been shared with you by a team member..</param>
         /// <param name="canEdit">Indicates whether edit rights have been granted to you by the owner (always &#x60;true&#x60; if that&#39;s you)..</param>
-        /// <param name="isLocked">Indicates whether the template is locked.  If &#x60;true&#x60;, then the template was created outside your quota and can only be used in &#x60;test_mode&#x60;.  If &#x60;false&#x60;, then the template is within your quota and can be used to create signature requests..</param>
+        /// <param name="isLocked">Indicates whether the template is locked. If &#x60;true&#x60;, then the template was created outside your quota and can only be used in &#x60;test_mode&#x60;. If &#x60;false&#x60;, then the template is within your quota and can be used to create signature requests..</param>
         /// <param name="metadata">The metadata attached to the template..</param>
         /// <param name="signerRoles">An array of the designated signer roles that must be specified when sending a SignatureRequest using this Template..</param>
         /// <param name="ccRoles">An array of the designated CC roles that must be specified when sending a SignatureRequest using this Template..</param>
@@ -126,9 +126,9 @@ namespace HelloSign.Model
         public bool? CanEdit { get; set; }
 
         /// <summary>
-        /// Indicates whether the template is locked.  If &#x60;true&#x60;, then the template was created outside your quota and can only be used in &#x60;test_mode&#x60;.  If &#x60;false&#x60;, then the template is within your quota and can be used to create signature requests.
+        /// Indicates whether the template is locked. If &#x60;true&#x60;, then the template was created outside your quota and can only be used in &#x60;test_mode&#x60;. If &#x60;false&#x60;, then the template is within your quota and can be used to create signature requests.
         /// </summary>
-        /// <value>Indicates whether the template is locked.  If &#x60;true&#x60;, then the template was created outside your quota and can only be used in &#x60;test_mode&#x60;.  If &#x60;false&#x60;, then the template is within your quota and can be used to create signature requests.</value>
+        /// <value>Indicates whether the template is locked. If &#x60;true&#x60;, then the template was created outside your quota and can only be used in &#x60;test_mode&#x60;. If &#x60;false&#x60;, then the template is within your quota and can be used to create signature requests.</value>
         [DataMember(Name = "is_locked", EmitDefaultValue = true)]
         public bool? IsLocked { get; set; }
 

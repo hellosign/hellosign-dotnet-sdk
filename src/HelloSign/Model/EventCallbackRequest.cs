@@ -27,32 +27,34 @@ using OpenAPIDateConverter = HelloSign.Client.OpenAPIDateConverter;
 namespace HelloSign.Model
 {
     /// <summary>
-    /// EventCallbackAccountRequestPayload
+    /// EventCallbackRequest
     /// </summary>
-    [DataContract(Name = "EventCallbackAccountRequestPayload")]
+    [DataContract(Name = "EventCallbackRequest")]
     [JsonObject(ItemNullValueHandling = NullValueHandling.Ignore)]
-    public partial class EventCallbackAccountRequestPayload : IOpenApiTyped, IEquatable<EventCallbackAccountRequestPayload>, IValidatableObject
+    public partial class EventCallbackRequest : IOpenApiTyped, IEquatable<EventCallbackRequest>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="EventCallbackAccountRequestPayload" /> class.
+        /// Initializes a new instance of the <see cref="EventCallbackRequest" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected EventCallbackAccountRequestPayload() { }
+        protected EventCallbackRequest() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="EventCallbackAccountRequestPayload" /> class.
+        /// Initializes a new instance of the <see cref="EventCallbackRequest" /> class.
         /// </summary>
         /// <param name="_event">_event (required).</param>
+        /// <param name="account">account.</param>
         /// <param name="signatureRequest">signatureRequest.</param>
         /// <param name="template">template.</param>
-        public EventCallbackAccountRequestPayload(EventCallbackRequestEvent _event = default(EventCallbackRequestEvent), SignatureRequestResponse signatureRequest = default(SignatureRequestResponse), TemplateResponse template = default(TemplateResponse))
+        public EventCallbackRequest(EventCallbackRequestEvent _event = default(EventCallbackRequestEvent), AccountResponse account = default(AccountResponse), SignatureRequestResponse signatureRequest = default(SignatureRequestResponse), TemplateResponse template = default(TemplateResponse))
         {
             
             // to ensure "_event" is required (not null)
             if (_event == null)
             {
-                throw new ArgumentNullException("_event is a required property for EventCallbackAccountRequestPayload and cannot be null");
+                throw new ArgumentNullException("_event is a required property for EventCallbackRequest and cannot be null");
             }
             this.Event = _event;
+            this.Account = account;
             this.SignatureRequest = signatureRequest;
             this.Template = template;
         }
@@ -62,6 +64,12 @@ namespace HelloSign.Model
         /// </summary>
         [DataMember(Name = "event", IsRequired = true, EmitDefaultValue = true)]
         public EventCallbackRequestEvent Event { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Account
+        /// </summary>
+        [DataMember(Name = "account", EmitDefaultValue = true)]
+        public AccountResponse Account { get; set; }
 
         /// <summary>
         /// Gets or Sets SignatureRequest
@@ -82,8 +90,9 @@ namespace HelloSign.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class EventCallbackAccountRequestPayload {\n");
+            sb.Append("class EventCallbackRequest {\n");
             sb.Append("  Event: ").Append(Event).Append("\n");
+            sb.Append("  Account: ").Append(Account).Append("\n");
             sb.Append("  SignatureRequest: ").Append(SignatureRequest).Append("\n");
             sb.Append("  Template: ").Append(Template).Append("\n");
             sb.Append("}\n");
@@ -106,15 +115,15 @@ namespace HelloSign.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as EventCallbackAccountRequestPayload);
+            return this.Equals(input as EventCallbackRequest);
         }
 
         /// <summary>
-        /// Returns true if EventCallbackAccountRequestPayload instances are equal
+        /// Returns true if EventCallbackRequest instances are equal
         /// </summary>
-        /// <param name="input">Instance of EventCallbackAccountRequestPayload to be compared</param>
+        /// <param name="input">Instance of EventCallbackRequest to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(EventCallbackAccountRequestPayload input)
+        public bool Equals(EventCallbackRequest input)
         {
             if (input == null)
             {
@@ -125,6 +134,11 @@ namespace HelloSign.Model
                     this.Event == input.Event ||
                     (this.Event != null &&
                     this.Event.Equals(input.Event))
+                ) && 
+                (
+                    this.Account == input.Account ||
+                    (this.Account != null &&
+                    this.Account.Equals(input.Account))
                 ) && 
                 (
                     this.SignatureRequest == input.SignatureRequest ||
@@ -151,6 +165,10 @@ namespace HelloSign.Model
                 {
                     hashCode = (hashCode * 59) + this.Event.GetHashCode();
                 }
+                if (this.Account != null)
+                {
+                    hashCode = (hashCode * 59) + this.Account.GetHashCode();
+                }
                 if (this.SignatureRequest != null)
                 {
                     hashCode = (hashCode * 59) + this.SignatureRequest.GetHashCode();
@@ -171,6 +189,12 @@ namespace HelloSign.Model
                 Property = "Event",
                 Type = "EventCallbackRequestEvent",
                 Value = Event,
+            });
+            types.Add(new OpenApiType(){
+                Name = "account",
+                Property = "Account",
+                Type = "AccountResponse",
+                Value = Account,
             });
             types.Add(new OpenApiType(){
                 Name = "signature_request",

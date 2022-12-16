@@ -1,8 +1,6 @@
-using System.Net;
 using Newtonsoft.Json.Linq;
 using Xunit;
 
-using HelloSign.Client;
 using HelloSign.Api;
 using HelloSign.Model;
 

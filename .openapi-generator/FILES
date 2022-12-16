@@ -36,10 +36,7 @@ docs/EmbeddedSignUrlResponse.md
 docs/EmbeddedSignUrlResponseEmbedded.md
 docs/ErrorResponse.md
 docs/ErrorResponseError.md
-docs/EventCallbackAccountRequest.md
-docs/EventCallbackAccountRequestPayload.md
-docs/EventCallbackApiAppRequest.md
-docs/EventCallbackApiAppRequestPayload.md
+docs/EventCallbackRequest.md
 docs/EventCallbackRequestEvent.md
 docs/EventCallbackRequestEventMetadata.md
 docs/FileResponse.md
@@ -190,6 +187,7 @@ src/HelloSign/Client/Multimap.cs
 src/HelloSign/Client/OpenAPIDateConverter.cs
 src/HelloSign/Client/RequestOptions.cs
 src/HelloSign/Client/RetryConfiguration.cs
+src/HelloSign/EventCallbackHelper.cs
 src/HelloSign/HelloSign.csproj
 src/HelloSign/Model/AbstractOpenAPISchema.cs
 src/HelloSign/Model/AccountCreateRequest.cs
@@ -222,10 +220,7 @@ src/HelloSign/Model/EmbeddedSignUrlResponse.cs
 src/HelloSign/Model/EmbeddedSignUrlResponseEmbedded.cs
 src/HelloSign/Model/ErrorResponse.cs
 src/HelloSign/Model/ErrorResponseError.cs
-src/HelloSign/Model/EventCallbackAccountRequest.cs
-src/HelloSign/Model/EventCallbackAccountRequestPayload.cs
-src/HelloSign/Model/EventCallbackApiAppRequest.cs
-src/HelloSign/Model/EventCallbackApiAppRequestPayload.cs
+src/HelloSign/Model/EventCallbackRequest.cs
 src/HelloSign/Model/EventCallbackRequestEvent.cs
 src/HelloSign/Model/EventCallbackRequestEventMetadata.cs
 src/HelloSign/Model/FileResponse.cs
