@@ -14,7 +14,6 @@ namespace HelloSign
 
         public string SmsPhoneNumberType { get; set; }
         
-
         /// <summary>
         /// Create a new Signer object quickly.
         /// </summary>

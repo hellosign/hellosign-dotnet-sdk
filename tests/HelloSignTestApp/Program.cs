@@ -81,7 +81,7 @@ namespace HelloSignTestApp
             byte[] file2 = System.Text.Encoding.ASCII.GetBytes("Did I mention this is only a test?");
             byte[] textTagsFile1 = System.Text.Encoding.ASCII.GetBytes("This file has text tags:\n\n[sig|req|signer1]\n\n[initial|req|signer2]");
             byte[] pdfFile1 = Properties.Resources.Test_Document;
-
+            
             // Get account
             var account = client.GetAccount();
 
@@ -510,6 +510,35 @@ namespace HelloSignTestApp
                 Console.WriteLine("Successfully parsed Event Json");
             }
             
+            /*
+            // Include Phone number in E.164 format if testing
+            string testSmsNumber = "ENTER_TEST_NUMBER";
+
+            // Note: Test mode needs to be false for this to work and you must have the SMS Tools option added to a Standard API plan or above
+            // Ensure the setting in Admin Console (Settings > Signature Requests > Signature Request Options > Signature request delivery methods) is enabled
+            
+            // Send signature request with SMS type delivery 
+            var smsRequest = new SignatureRequest();
+            smsRequest.Title = "NDA with Acme Co.";
+            smsRequest.Subject = "The NDA we talked about";
+            smsRequest.Message = "Please sign this NDA and then we can discuss more. Let me know if you have any questions.";
+            smsRequest.AddSigner("jack@dropbox.com", "Jack", null, null, testSmsNumber, BaseSignatureRequest.SmsPhoneNumberTypeEnum.Delivery);
+            smsRequest.AddFile(file1, "NDA.txt");
+            smsRequest.SigningOptions = new SigningOptions
+            {
+                Draw = true,
+                Type = true,
+                Default = "type",
+                Phone = true
+            };
+            smsRequest.TestMode = false;
+            var smsResponse = client.SendSignatureRequest(smsRequest);
+            Console.WriteLine("New Signature Request ID: " + smsResponse.SignatureRequestId);
+
+            var smsSignatureRequest = client.GetSignatureRequest(smsResponse.SignatureRequestId);
+            Console.WriteLine("Fetched request with Title: " + smsSignatureRequest.Title);
+            */
+
             Console.WriteLine("Press ENTER to exit.");
             Console.Read(); // Keeps the output window open
         }

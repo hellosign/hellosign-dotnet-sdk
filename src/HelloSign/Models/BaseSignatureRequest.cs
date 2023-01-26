@@ -67,22 +67,13 @@ namespace HelloSign
         /// <param name="smsPhoneNumberType"></param>
         public void AddSigner(string emailAddress, string name, int? order = null, string pin = null, string smsPhoneNumber = null, SmsPhoneNumberTypeEnum? smsPhoneNumberType = null)
         {
-            if(smsPhoneNumberType != null) {
-                string typeString;
-                switch(smsPhoneNumberType) {
-                    case SmsPhoneNumberTypeEnum.Authentication:
-                        typeString = "authentication";
-                        Signers.Add(new Signer(emailAddress, name, order, pin, null, smsPhoneNumber, typeString)); 
-                        break;
-
-                    case SmsPhoneNumberTypeEnum.Delivery:
-                        typeString = "delivery";
-                        Signers.Add(new Signer(emailAddress, name, order, pin, null, smsPhoneNumber, typeString)); 
-                        break;
-                }  
-            } else {
-                Signers.Add(new Signer(emailAddress, name, order, pin, null, smsPhoneNumber, null));
+            string typeString = null;
+            if(smsPhoneNumberType != null)
+            {
+                var result = smsPhoneNumberType == SmsPhoneNumberTypeEnum.Delivery ? typeString = "delivery" : typeString = "authentication";
             }
+            Console.WriteLine("String passed " + typeString);
+            Signers.Add(new Signer(emailAddress, name, order, pin, null, smsPhoneNumber, typeString));
         }
 
         /// <summary>
