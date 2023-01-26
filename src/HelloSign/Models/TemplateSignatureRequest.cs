@@ -39,9 +39,26 @@ namespace HelloSign
         /// <param name="name"></param>
         /// <param name="order"></param>
         /// <param name="pin"></param>
-        public void AddSigner(string role, string emailAddress, string name, int? order = null, string pin = null, string smsPhoneNumber = null)
+        /// <param name="smsPhoneNumber"></param>
+        /// <param name="smsPhoneNumberType"></param>
+        public void AddSigner(string role, string emailAddress, string name, int? order = null, string pin = null, string smsPhoneNumber = null, SmsPhoneNumberTypeEnum? smsPhoneNumberType = null)
         {
-            Signers.Add(new Signer(emailAddress, name, order, pin, role, smsPhoneNumber));
+            if(smsPhoneNumberType != null) {
+                string typeString;
+                switch(smsPhoneNumberType) {
+                    case SmsPhoneNumberTypeEnum.Authentication:
+                        typeString = "authentication";
+                        Signers.Add(new Signer(emailAddress, name, order, pin, role, smsPhoneNumber, typeString)); 
+                        break;
+
+                    case SmsPhoneNumberTypeEnum.Delivery:
+                        typeString = "delivery";
+                        Signers.Add(new Signer(emailAddress, name, order, pin, role, smsPhoneNumber, typeString)); 
+                        break;
+                }  
+            } else {
+                Signers.Add(new Signer(emailAddress, name, order, pin, role, smsPhoneNumber, null));
+            }
         }
 
         /// <summary>
