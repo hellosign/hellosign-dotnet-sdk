@@ -512,7 +512,7 @@ namespace HelloSignTestApp
             
             /*
             // Include Phone number in E.164 format if testing
-            string testSmsNumber = "ENTER_TEST_NUMBER";
+            string testSmsNumber = "PHONE_NUMBER_HERE";
 
             // Note: Test mode needs to be false for this to work and you must have the SMS Tools option added to a Standard API plan or above
             // Ensure the setting in Admin Console (Settings > Signature Requests > Signature Request Options > Signature request delivery methods) is enabled
@@ -522,7 +522,7 @@ namespace HelloSignTestApp
             smsRequest.Title = "NDA with Acme Co.";
             smsRequest.Subject = "The NDA we talked about";
             smsRequest.Message = "Please sign this NDA and then we can discuss more. Let me know if you have any questions.";
-            smsRequest.AddSigner("jack@dropbox.com", "Jack", null, null, testSmsNumber, BaseSignatureRequest.SmsPhoneNumberTypeEnum.Delivery);
+            smsRequest.AddSigner("jack@dropbox.com", "Jack", null, null, testSmsNumber, Signer.SmsPhoneNumberTypeEnum.Delivery);
             smsRequest.AddFile(file1, "NDA.txt");
             smsRequest.SigningOptions = new SigningOptions
             {

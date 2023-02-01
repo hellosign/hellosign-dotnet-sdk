@@ -12,7 +12,12 @@ namespace HelloSign
         public string Role { get; set; }
         public string SmsPhoneNumber { get; set; }
 
-        public string SmsPhoneNumberType { get; set; }
+        public enum SmsPhoneNumberTypeEnum {
+            Authentication,
+            Delivery
+        }
+
+        public SmsPhoneNumberTypeEnum? SmsPhoneNumberType { get; set; }
         
         /// <summary>
         /// Create a new Signer object quickly.
@@ -24,7 +29,7 @@ namespace HelloSign
         /// <param name="role">Optional Role name (if this is for a Template)</param>
         /// <param name="SmsPhoneNumber">Optional Phone number for SMS verification</param>
         /// <param name="SmsPhoneNumberType">Specifies the feature used with the SmsPhoneNumber</param>
-        public Signer(string emailAddress, string name, int? order = null, string pin = null, string role = null, string smsPhoneNumber = null, string smsPhoneNumberType = null)
+        public Signer(string emailAddress, string name, int? order = null, string pin = null, string role = null, string smsPhoneNumber = null, SmsPhoneNumberTypeEnum? smsPhoneNumberType = null)
         {
             EmailAddress = emailAddress;
             Name = name;
@@ -33,6 +38,15 @@ namespace HelloSign
             Role = role;
             SmsPhoneNumber = smsPhoneNumber;
             SmsPhoneNumberType = smsPhoneNumberType;
+        }
+
+        public string getSmsPhoneNumberTypeString (SmsPhoneNumberTypeEnum? smsPhoneNumberType = null){
+            string typeString = null;
+            if(smsPhoneNumberType != null)
+            {
+                var result = smsPhoneNumberType == SmsPhoneNumberTypeEnum.Delivery ? typeString = "delivery" : typeString = "authentication";
+            }
+            return typeString;
         }
     }
 }

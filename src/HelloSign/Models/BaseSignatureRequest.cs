@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using static HelloSign.Signer;
 
 namespace HelloSign
 {
@@ -40,12 +41,6 @@ namespace HelloSign
         public bool ForceSubjectMessage { get; set; } = false;
 
         public List<Signer> Signers = new List<Signer>();
-        public enum SmsPhoneNumberTypeEnum {
-            Authentication,
-            Delivery
-        }
-
-        public SmsPhoneNumberTypeEnum? SmsPhoneNumberType { get; set; }
 
         public BaseSignatureRequest()
         {
@@ -67,13 +62,7 @@ namespace HelloSign
         /// <param name="smsPhoneNumberType"></param>
         public void AddSigner(string emailAddress, string name, int? order = null, string pin = null, string smsPhoneNumber = null, SmsPhoneNumberTypeEnum? smsPhoneNumberType = null)
         {
-            string typeString = null;
-            if(smsPhoneNumberType != null)
-            {
-                var result = smsPhoneNumberType == SmsPhoneNumberTypeEnum.Delivery ? typeString = "delivery" : typeString = "authentication";
-            }
-            Console.WriteLine("String passed " + typeString);
-            Signers.Add(new Signer(emailAddress, name, order, pin, null, smsPhoneNumber, typeString));
+            Signers.Add(new Signer(emailAddress, name, order, pin, null, smsPhoneNumber, smsPhoneNumberType));
         }
 
         /// <summary>

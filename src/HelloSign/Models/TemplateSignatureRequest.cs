@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using RestSharp;
+using static HelloSign.Signer;
 
 namespace HelloSign
 {
@@ -43,12 +44,7 @@ namespace HelloSign
         /// <param name="smsPhoneNumberType"></param>
         public void AddSigner(string role, string emailAddress, string name, int? order = null, string pin = null, string smsPhoneNumber = null, SmsPhoneNumberTypeEnum? smsPhoneNumberType = null)
         {
-            string typeString = null;
-            if(smsPhoneNumberType != null)
-            {
-                var result = smsPhoneNumberType == SmsPhoneNumberTypeEnum.Delivery ? typeString = "delivery" : typeString = "authentication";
-            }
-            Signers.Add(new Signer(emailAddress, name, order, pin, null, smsPhoneNumber, typeString));
+            Signers.Add(new Signer(emailAddress, name, order, pin, null, smsPhoneNumber, smsPhoneNumberType));
         }
 
         /// <summary>
