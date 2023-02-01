@@ -44,7 +44,7 @@ namespace HelloSign
         /// <param name="smsPhoneNumberType"></param>
         public void AddSigner(string role, string emailAddress, string name, int? order = null, string pin = null, string smsPhoneNumber = null, SmsPhoneNumberTypeEnum? smsPhoneNumberType = null)
         {
-            Signers.Add(new Signer(emailAddress, name, order, pin, null, smsPhoneNumber, smsPhoneNumberType));
+            Signers.Add(new Signer(emailAddress, name, order, pin, role, smsPhoneNumber, smsPhoneNumberType));
         }
 
         /// <summary>
