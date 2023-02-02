@@ -81,7 +81,10 @@ namespace HelloSignTestApp
             byte[] file2 = System.Text.Encoding.ASCII.GetBytes("Did I mention this is only a test?");
             byte[] textTagsFile1 = System.Text.Encoding.ASCII.GetBytes("This file has text tags:\n\n[sig|req|signer1]\n\n[initial|req|signer2]");
             byte[] pdfFile1 = Properties.Resources.Test_Document;
-            
+
+            // Include Phone number in E.164 format if testing SMS Option
+            string testSmsNumber = "PHONE_NUMBER_HERE";
+
             // Get account
             var account = client.GetAccount();
 
@@ -509,10 +512,6 @@ namespace HelloSignTestApp
             }else{
                 Console.WriteLine("Successfully parsed Event Json");
             }
-            
-            /*
-            // Include Phone number in E.164 format if testing
-            string testSmsNumber = "PHONE_NUMBER_HERE";
 
             // Note: Test mode needs to be false for this to work and you must have the SMS Tools option added to a Standard API plan or above
             // Ensure the setting in Admin Console (Settings > Signature Requests > Signature Request Options > Signature request delivery methods) is enabled
@@ -537,7 +536,6 @@ namespace HelloSignTestApp
 
             var smsSignatureRequest = client.GetSignatureRequest(smsResponse.SignatureRequestId);
             Console.WriteLine("Fetched request with Title: " + smsSignatureRequest.Title);
-            */
 
             Console.WriteLine("Press ENTER to exit.");
             Console.Read(); // Keeps the output window open

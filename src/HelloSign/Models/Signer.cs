@@ -40,11 +40,12 @@ namespace HelloSign
             SmsPhoneNumberType = smsPhoneNumberType;
         }
 
-        public string getSmsPhoneNumberTypeString (SmsPhoneNumberTypeEnum? smsPhoneNumberType = null){
+        public string getSmsPhoneNumberTypeString()
+        {
             string typeString = null;
-            if(smsPhoneNumberType != null)
+            if (this.SmsPhoneNumberType != null)
             {
-                var result = smsPhoneNumberType == SmsPhoneNumberTypeEnum.Delivery ? typeString = "delivery" : typeString = "authentication";
+                typeString = this.SmsPhoneNumberType == SmsPhoneNumberTypeEnum.Delivery ? "delivery" : "authentication";
             }
             return typeString;
         }
