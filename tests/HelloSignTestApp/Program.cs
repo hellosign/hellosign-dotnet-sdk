@@ -82,6 +82,9 @@ namespace HelloSignTestApp
             byte[] textTagsFile1 = System.Text.Encoding.ASCII.GetBytes("This file has text tags:\n\n[sig|req|signer1]\n\n[initial|req|signer2]");
             byte[] pdfFile1 = Properties.Resources.Test_Document;
 
+            // Include Phone number in E.164 format as a string if testing SMS Option
+            string testSmsNumber = null;
+
             // Get account
             var account = client.GetAccount();
 
@@ -470,7 +473,7 @@ namespace HelloSignTestApp
             // Delete the API app we created
             client.DeleteApiApp(clientId);
             Console.WriteLine("Deleted test API App");
-
+            /*
             // Get Report
             try
             {
@@ -492,7 +495,7 @@ namespace HelloSignTestApp
                     Console.WriteLine($"Plan Error: {e.Message}");
                 }
             }
-
+            */
             // Parse Event
             var eventTime = 1650571758;
             var eventType = "account_confirmed";
@@ -509,7 +512,37 @@ namespace HelloSignTestApp
             }else{
                 Console.WriteLine("Successfully parsed Event Json");
             }
+
+            // Note: Test mode needs to be false for this to work and you must have the SMS Tools option added to a Standard API plan or above
+            // Ensure the setting in Admin Console (Settings > Signature Requests > Signature Request Options > Signature request delivery methods) is enabled
             
+            if(testSmsNumber != null){
+                // Send signature request with SMS type delivery 
+                var smsRequest = new SignatureRequest();
+                smsRequest.Title = "NDA with Acme Co.";
+                smsRequest.Subject = "The NDA we talked about";
+                smsRequest.Message = "Please sign this NDA and then we can discuss more. Let me know if you have any questions.";
+                smsRequest.AddSigner("jack@dropbox.com", "Jack", null, null, testSmsNumber, Signer.SmsPhoneNumberTypeEnum.Delivery);
+                smsRequest.AddFile(file1, "NDA.txt");
+                smsRequest.SigningOptions = new SigningOptions
+                {
+                    Draw = true,
+                    Type = true,
+                    Default = "type",
+                    Phone = true
+                };
+                smsRequest.TestMode = false;
+                var smsResponse = client.SendSignatureRequest(smsRequest);
+                Console.WriteLine("New Signature Request ID: " + smsResponse.SignatureRequestId);
+
+                var smsSignatureRequest = client.GetSignatureRequest(smsResponse.SignatureRequestId);
+                Console.WriteLine("Fetched request with Title: " + smsSignatureRequest.Title);
+            }
+            else
+            {
+                Console.WriteLine("Skipping SMS type delivery request");
+            }
+
             Console.WriteLine("Press ENTER to exit.");
             Console.Read(); // Keeps the output window open
         }

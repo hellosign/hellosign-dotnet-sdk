@@ -545,6 +545,7 @@ namespace HelloSign
                 if (signer.Order != null) request.AddParameter(prefix + "[order]", signer.getOrderInt());
                 if (signer.Pin != null) request.AddParameter(prefix + "[pin]", signer.Pin);
                 if (signer.SmsPhoneNumber != null) request.AddParameter(prefix + "[sms_phone_number]", signer.SmsPhoneNumber);
+                if (signer.SmsPhoneNumberType != null) request.AddParameter(prefix + "[sms_phone_number_type]", signer.getSmsPhoneNumberTypeString());
                 i++;
             }
 
@@ -676,6 +677,7 @@ namespace HelloSign
                 if (signer.Order != null) request.AddParameter(prefix + "[order]", signer.getOrderInt());
                 if (signer.Pin != null) request.AddParameter(prefix + "[pin]", signer.Pin);
                 if (signer.SmsPhoneNumber != null) request.AddParameter(prefix + "[sms_phone_number]", signer.SmsPhoneNumber);
+                if (signer.SmsPhoneNumberType != null) request.AddParameter(prefix + "[sms_phone_number_type]", signer.getSmsPhoneNumberTypeString());
             }
 
             // Add CCs

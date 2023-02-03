@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using static HelloSign.Signer;
 
 namespace HelloSign
 {
@@ -49,6 +50,7 @@ namespace HelloSign
             AllowDecline = false;
         }
 
+
         /// <summary>
         /// Convenience method for creating and adding a Signer.
         /// </summary>
@@ -57,9 +59,10 @@ namespace HelloSign
         /// <param name="order"></param>
         /// <param name="pin"></param>
         /// <param name="smsPhoneNumber"></param>
-        public void AddSigner(string emailAddress, string name, int? order = null, string pin = null, string smsPhoneNumber = null)
+        /// <param name="smsPhoneNumberType"></param>
+        public void AddSigner(string emailAddress, string name, int? order = null, string pin = null, string smsPhoneNumber = null, SmsPhoneNumberTypeEnum? smsPhoneNumberType = null)
         {
-            Signers.Add(new Signer(emailAddress, name, order, pin, null, smsPhoneNumber));
+            Signers.Add(new Signer(emailAddress, name, order, pin, null, smsPhoneNumber, smsPhoneNumberType));
         }
 
         /// <summary>
