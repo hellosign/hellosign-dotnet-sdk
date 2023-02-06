@@ -1,7 +1,0 @@
-#!/usr/bin/env bash
-
-set -e
-DIR=$(cd `dirname $0` && pwd)
-ROOT_DIR="${DIR}/.."
-
-perl -pi -e 's/(.*)AllOf.md\)\n//g' "${ROOT_DIR}/README.md"
