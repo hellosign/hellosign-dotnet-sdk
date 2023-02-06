@@ -1,3 +1,15 @@
+# ⚠ This SDK has been deprecated ⚠
+
+This SDK is now deprecated and will no longer receive feature updates or bug fixes. Security fixes will still be applied as needed.
+
+The new `Dropbox.Sign` SDK can be found at [hellosign/dropbox-sign-dotnet](https://github.com/hellosign/dropbox-sign-dotnet)!
+
+The new SDK and this legacy SDK are _not_ backwards-compatible!
+
+Please [see here for a comprehensive migration guide](https://developers.hellosign.com/docs/sdks/dotnet/migration-guide/).
+
+----
+
 # HelloSign .NET SDK
 
 [![Build status](https://ci.appveyor.com/api/projects/status/90m1ygpgg50qt30v/branch/v3?svg=true)](https://ci.appveyor.com/project/HelloSign/hellosign-dotnet-sdk/branch/v3)
